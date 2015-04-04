@@ -1,1 +1,1 @@
-export JAVA_OPTS_EXT=-Djavamelody.datasources=java:jboss/datasources/MySQLDS -javaagent:/var/lib/openshift/54933ef1e0b8cded6b000205/app-root/gestionnaire/newrelic/newrelic.jar
+export JAVA_OPTS_EXT=-Djavamelody.datasources=java:jboss/datasources/MySQLDS
