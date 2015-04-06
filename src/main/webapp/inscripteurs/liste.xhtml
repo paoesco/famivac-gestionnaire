@@ -46,7 +46,7 @@
                                             placeholder="Prénom"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="input_organisme">Prénom</label>
+                                        <label for="input_organisme">Organisme</label>
                                         <p:inputText 
                                             id="input_organisme"
                                             styleClass="form-control" 
@@ -59,7 +59,6 @@
                                             value="Rechercher"
                                             update=":datatable"
                                             actionListener="#{inscripteursListeBean.rechercher()}"
-                                            onclick="alert('non fonctionnel');return false;"
                                             icon="ui-icon-search"/>
                                     </div>
                                 </h:form>  
@@ -87,10 +86,14 @@
                                     rows="20"
                                     lazy="true">
 
-                                    <p:column headerText="Prénom nom - Organisme">
+                                    <p:column headerText="Libellé">
                                         <h:outputText rendered="#{bean.isParticulier()}" value="#{bean.prenom} "></h:outputText> 
                                         <h:outputText rendered="#{bean.isParticulier()}" value="#{bean.nom}"></h:outputText>
                                         <h:outputText rendered="#{bean.isTypeServiceSocialOuAutre()}" value="#{bean.organisme}"></h:outputText>
+                                    </p:column>
+                                    
+                                    <p:column headerText="Type" width="250">
+                                        <h:outputText value="#{bean.type}"></h:outputText>
                                     </p:column>
 
                                     <p:column width="100">

@@ -23,6 +23,9 @@ public class InscripteursListeBean implements Serializable {
     @Inject
     private InscripteurService inscripteurService;
 
+    @Inject
+    private RechercherInscripteursForm rechercheForm;
+
     /**
      * Initialisation du bean.
      */
@@ -31,7 +34,7 @@ public class InscripteursListeBean implements Serializable {
     }
 
     public void rechercher() {
-        lazyModel = new LazyInscripteurDataModel(inscripteurService.retrieve());
+        lazyModel = new LazyInscripteurDataModel(inscripteurService.search(rechercheForm.getNom(), rechercheForm.getPrenom(), rechercheForm.getOrganisme()));
     }
 
     public void supprimer(Long id) {

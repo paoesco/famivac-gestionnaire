@@ -1,5 +1,6 @@
 package fr.fava.gestionnaire.application.enfant;
 
+import fr.fava.gestionnaire.domain.InscripteurRepository;
 import fr.fava.gestionnaire.domain.model.enfant.Enfant;
 import fr.fava.gestionnaire.domain.model.enfant.Inscripteur;
 import java.util.List;
@@ -21,10 +22,31 @@ public class InscripteurService {
     @Inject
     private EntityManager entityManager;
 
+    @Inject
+    private InscripteurRepository inscripteurRepository;
+
     public List<RetrieveInscripteursResponseDTO> retrieve() {
         return entityManager
                 .createNamedQuery(Inscripteur.QUERY_RETRIEVE_ALL, Inscripteur.class)
                 .getResultList()
+                .stream()
+                .map((Inscripteur entity) -> {
+                    RetrieveInscripteursResponseDTO dto = new RetrieveInscripteursResponseDTO();
+                    dto.setId(entity.getId());
+                    dto.setNom(entity.getNom());
+                    dto.setPrenom(entity.getPrenom());
+                    dto.setOrganisme(entity.getOrganisme());
+                    dto.setType(entity.getType());
+                    return dto;
+                }).collect(Collectors.toList());
+    }
+
+    public List<RetrieveInscripteursResponseDTO> search(String nom, String prenom, String organisme) {
+        if ((nom == null || nom.isEmpty()) && (prenom == null || prenom.isEmpty()) && (organisme == null || organisme.isEmpty())) {
+            return retrieve();
+        }
+        return inscripteurRepository
+                .search(nom, prenom, organisme)
                 .stream()
                 .map((Inscripteur entity) -> {
                     RetrieveInscripteursResponseDTO dto = new RetrieveInscripteursResponseDTO();
