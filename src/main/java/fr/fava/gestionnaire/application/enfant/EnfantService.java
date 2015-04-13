@@ -19,26 +19,25 @@ import net.bull.javamelody.MonitoringInterceptor;
 @Stateless
 @Interceptors({MonitoringInterceptor.class})
 public class EnfantService {
-    
+
     @Inject
     private EntityManager entityManager;
-    
+
     @Inject
     private EnfantRepository enfantRepository;
-    
+
     public Long create(Enfant enfant) {
         if (enfant.getInscripteur().isResponsableLegal()) {
-            entityManager.merge(enfant.getInscripteur());
             enfant.setResponsableLegal(new ResponsableLegal(enfant.getInscripteur()));
         }
         entityManager.persist(enfant);
         return enfant.getId();
     }
-    
+
     public Enfant retrieve(long id) {
         return entityManager.find(Enfant.class, id);
     }
-    
+
     public void update(Enfant enfant) {
         entityManager.merge(enfant.getInscripteur());
         if (enfant.getInscripteur().isResponsableLegal()) {
@@ -52,7 +51,7 @@ public class EnfantService {
         }
         entityManager.merge(enfant);
     }
-    
+
     public List<RetrieveEnfantsDTO> retrieve(String nomEnfant, String prenomEnfant) {
         List<Enfant> entities = enfantRepository.retrieve(nomEnfant, prenomEnfant);
         return entities.stream().map((Enfant entity) -> {
@@ -63,7 +62,7 @@ public class EnfantService {
             return dto;
         }).collect(Collectors.toList());
     }
-    
+
     public void delete(@PathParam("id") long id) {
         Enfant entity = entityManager.find(Enfant.class, id);
         if (entity == null) {
@@ -71,5 +70,5 @@ public class EnfantService {
         }
         entityManager.remove(entity);
     }
-    
+
 }

@@ -60,7 +60,7 @@ public class Famille implements Serializable {
 
     private String precisionsSejoursNonComplets;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 2000)
     private String projet;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -70,6 +70,7 @@ public class Famille implements Serializable {
     @Enumerated(EnumType.STRING)
     private Set<TrancheAgeEnfant> tranchesAges;
 
+    @Column(length = 2000)
     private String connaissanceAssociation;
 
     private Integer nombreFillesSouhaitees;
@@ -100,6 +101,9 @@ public class Famille implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private Avis avisDdcs;
+
+    @Column(length = 2000)
+    private String remarque;
 
     protected Famille() {
         adresse = new Adresse();
@@ -333,6 +337,14 @@ public class Famille implements Serializable {
 
     public void setAvisDdcs(Avis avisDdcs) {
         this.avisDdcs = avisDdcs;
+    }
+
+    public String getRemarque() {
+        return remarque;
+    }
+
+    public void setRemarque(String remarque) {
+        this.remarque = remarque;
     }
 
 }

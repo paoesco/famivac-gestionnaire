@@ -110,6 +110,20 @@
                                                 value="#{ajouterEnfantBean.form.classeFrequentee}"/>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <p:outputLabel 
+                                            for="input_enfant_remarque" 
+                                            value="Remarques" 
+                                            styleClass="col-sm-3 control-label" /> 
+                                        <div class="col-md-8">
+                                            <p:inputTextarea
+                                                id="input_enfant_remarque"
+                                                styleClass="form-control"
+                                                maxlength="2000"
+                                                rows="5"
+                                                value="#{ajouterEnfantBean.form.remarque}"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="panel panel-default">
@@ -205,7 +219,6 @@
                                                     id="responsable_nom"
                                                     styleClass="form-control" 
                                                     maxlength="255"
-                                                    required="true"
                                                     value="#{ajouterEnfantBean.form.responsableLegal.nom}"
                                                     disabled="#{ajouterEnfantBean.inscripteurEstResponsableLegal}"/>
                                             </div>
@@ -217,8 +230,21 @@
                                                     id="responsable_prenom"
                                                     styleClass="form-control" 
                                                     maxlength="255"
-                                                    required="true"
                                                     value="#{ajouterEnfantBean.form.responsableLegal.prenom}"
+                                                    disabled="#{ajouterEnfantBean.inscripteurEstResponsableLegal}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
+                                                for="input_responsable_organisme"
+                                                value="Organisme"
+                                                styleClass="col-sm-3 control-label"/> 
+                                            <div class="col-md-8">
+                                                <p:inputText
+                                                    id="input_responsable_organisme"
+                                                    maxlength="255"
+                                                    styleClass="form-control"
+                                                    value="#{ajouterEnfantBean.form.responsableLegal.organisme}"
                                                     disabled="#{ajouterEnfantBean.inscripteurEstResponsableLegal}"/>
                                             </div>
                                         </div>

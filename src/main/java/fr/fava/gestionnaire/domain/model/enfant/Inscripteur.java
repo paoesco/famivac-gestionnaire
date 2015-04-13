@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -55,6 +56,9 @@ public class Inscripteur implements Serializable {
     private boolean responsableLegal;
 
     private String numeroSiret;
+
+    @Column(length = 2000)
+    private String remarque;
 
     public Inscripteur() {
         enfants = new HashSet<>();
@@ -161,6 +165,14 @@ public class Inscripteur implements Serializable {
 
     public boolean isTypeServiceSocialOuAutre() {
         return TypeInscripteur.SERVICE_SOCIAL.equals(type) || TypeInscripteur.AUTRE.equals(type);
+    }
+
+    public String getRemarque() {
+        return remarque;
+    }
+
+    public void setRemarque(String remarque) {
+        this.remarque = remarque;
     }
 
 }

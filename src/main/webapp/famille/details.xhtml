@@ -56,12 +56,26 @@
                                                 <div class="col-md-8">
                                                     <p:inputTextarea
                                                         styleClass="form-control" 
-                                                        rows="6"
+                                                        rows="5"
                                                         autoResize="false"
                                                         id="form_connaissance_association" 
-                                                        required="true"
-                                                        maxlength="255"
+                                                        maxlength="2000"
                                                         value="#{familleDetailsBean.form.connaissanceAssociation}"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <p:outputLabel 
+                                                    for="input_famille_remarque" 
+                                                    styleClass="col-sm-3 control-label"
+                                                    value="Remarques" />
+                                                <div class="col-md-8">
+                                                    <p:inputTextarea
+                                                        styleClass="form-control" 
+                                                        rows="5"
+                                                        autoResize="false"
+                                                        id="input_famille_remarque" 
+                                                        maxlength="2000"
+                                                        value="#{familleDetailsBean.form.remarque}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">

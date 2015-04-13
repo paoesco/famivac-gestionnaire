@@ -4,6 +4,7 @@ import fr.fava.gestionnaire.domain.model.Sexe;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -45,6 +46,9 @@ public class Enfant implements Serializable {
 
     @Embedded
     private final InformationsComplementairesEnfant informationsComplementairesEnfant;
+
+    @Column(length = 2000)
+    private String remarque;
 
     public Enfant() {
         inscripteur = new Inscripteur();
@@ -114,6 +118,14 @@ public class Enfant implements Serializable {
 
     public InformationsComplementairesEnfant getInformationsComplementairesEnfant() {
         return informationsComplementairesEnfant;
+    }
+
+    public String getRemarque() {
+        return remarque;
+    }
+
+    public void setRemarque(String remarque) {
+        this.remarque = remarque;
     }
 
 }
