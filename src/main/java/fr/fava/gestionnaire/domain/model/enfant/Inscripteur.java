@@ -54,6 +54,8 @@ public class Inscripteur implements Serializable {
 
     private boolean responsableLegal;
 
+    private String numeroSiret;
+
     public Inscripteur() {
         enfants = new HashSet<>();
         adresse = new Adresse();
@@ -143,6 +145,14 @@ public class Inscripteur implements Serializable {
 
     public void setResponsableLegal(boolean responsableLegal) {
         this.responsableLegal = responsableLegal;
+    }
+
+    public String getNumeroSiret() {
+        return numeroSiret;
+    }
+
+    public void setNumeroSiret(String numeroSiret) {
+        this.numeroSiret = numeroSiret;
     }
 
     public boolean isParticulier() {
