@@ -45,7 +45,8 @@ public class FamilleService {
                 request.getMembrePrincipal().getDateNaissance(),
                 request.getMembrePrincipal().getProfession(),
                 true,
-                communeMembre);
+                communeMembre,
+                request.getMembrePrincipal().getCoordonnees());
         entityManager.persist(membre);
         entity.ajouterMembre(membre);
         return entity.getId();
@@ -98,7 +99,8 @@ public class FamilleService {
                 Sexe.valueOf(request.getSexe()),
                 request.getDateNaissance(),
                 request.getProfession(),
-                commune);
+                commune,
+                request.getCoordonnees());
         entityManager.persist(membre);
         famille.ajouterMembre(membre);
         return membre.getId();

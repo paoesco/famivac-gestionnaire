@@ -32,9 +32,7 @@ public class MembreService {
         dto.setProfession(entity.getProfession());
         dto.setReferent(entity.isReferent());
         dto.setSexe(entity.getSexe().name());
-        dto.setTel1(entity.getTel1());
-        dto.setTel2(entity.getTel2());
-        dto.setEmail(entity.getEmail());
+        dto.setCoordonnees(entity.getCoordonnees());
         return dto;
         
     }
@@ -51,9 +49,7 @@ public class MembreService {
         entity.setProfession(request.getProfession());
         entity.setReferent(request.isReferent());
         entity.setSexe(Sexe.valueOf(request.getSexe()));
-        entity.setTel1(request.getTel1());
-        entity.setTel2(request.getTel2());
-        entity.setEmail(request.getEmail());
+        entity.setCoordonnees(request.getCoordonnees());
         entityManager.merge(entity);
     }
     

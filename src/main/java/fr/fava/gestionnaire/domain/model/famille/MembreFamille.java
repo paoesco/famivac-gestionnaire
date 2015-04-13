@@ -1,12 +1,14 @@
 package fr.fava.gestionnaire.domain.model.famille;
 
 import fr.fava.gestionnaire.domain.model.Commune;
+import fr.fava.gestionnaire.domain.model.Coordonnees;
 import fr.fava.gestionnaire.domain.model.Sexe;
 import fr.fava.gestionnaire.domain.utils.Email;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -59,22 +61,18 @@ public class MembreFamille implements Serializable {
 
     private String lienDeParente;
 
-    private String tel1;
-
-    private String tel2;
-
-    @Email
-    private String email;
+    @Embedded
+    private Coordonnees coordonnees;
 
     protected MembreFamille() {
-
+        coordonnees = new Coordonnees();
     }
 
-    public MembreFamille(Famille famille, String nom, String nomDeNaissance, String prenom, Sexe sexe, Date dateNaissance, String profession, Commune communeDeNaissance) {
-        this(famille, nom, nomDeNaissance, prenom, sexe, dateNaissance, profession, false, communeDeNaissance);
+    public MembreFamille(Famille famille, String nom, String nomDeNaissance, String prenom, Sexe sexe, Date dateNaissance, String profession, Commune communeDeNaissance, Coordonnees coordonnees) {
+        this(famille, nom, nomDeNaissance, prenom, sexe, dateNaissance, profession, false, communeDeNaissance, coordonnees);
     }
 
-    public MembreFamille(Famille famille, String nom, String nomDeNaissance, String prenom, Sexe sexe, Date dateNaissance, String profession, boolean referent, Commune communeDeNaissance) {
+    public MembreFamille(Famille famille, String nom, String nomDeNaissance, String prenom, Sexe sexe, Date dateNaissance, String profession, boolean referent, Commune communeDeNaissance, Coordonnees coordonnees) {
         if (famille == null
                 || nom == null
                 || nom.isEmpty()
@@ -94,6 +92,12 @@ public class MembreFamille implements Serializable {
         this.profession = profession;
         this.referent = referent;
         this.communeDeNaissance = communeDeNaissance;
+        if (Objects.isNull(coordonnees)) {
+            this.coordonnees = new Coordonnees();
+        } else {
+            this.coordonnees = coordonnees.clone();
+        }
+
     }
 
     public Long getId() {
@@ -191,28 +195,16 @@ public class MembreFamille implements Serializable {
         this.lienDeParente = lienDeParente;
     }
 
-    public String getTel1() {
-        return tel1;
+    public Coordonnees getCoordonnees() {
+        return coordonnees;
     }
 
-    public void setTel1(String tel1) {
-        this.tel1 = tel1;
-    }
-
-    public String getTel2() {
-        return tel2;
-    }
-
-    public void setTel2(String tel2) {
-        this.tel2 = tel2;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCoordonnees(Coordonnees coordonnees) {
+        if (Objects.isNull(coordonnees)) {
+            this.coordonnees = new Coordonnees();
+        } else {
+            this.coordonnees = coordonnees;
+        }
     }
 
     @Override

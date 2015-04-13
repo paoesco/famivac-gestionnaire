@@ -204,7 +204,7 @@
                                         <div class="form-group">
                                             <p:outputLabel 
                                                 for="responsable_familleASE" 
-                                                value="Enfant placé chez une famille A.S.E."
+                                                value="Enfant placé chez une famille d'accueil"
                                                 styleClass="col-sm-5 control-label"/>
                                             <div class="col-md-6">
                                                 <p:selectOneRadio 
@@ -263,7 +263,6 @@
                                                 <p:inputText
                                                     id="responsable_nom"
                                                     maxlength="255"
-                                                    required="true"
                                                     styleClass="form-control"
                                                     value="#{enfantDetailsBean.form.responsableLegal.nom}"
                                                     disabled="#{enfantDetailsBean.inscripteurEstResponsableLegal}"/>
@@ -278,9 +277,22 @@
                                                 <p:inputText
                                                     id="responsable_prenom"
                                                     maxlength="255"
-                                                    required="true"
                                                     styleClass="form-control"
                                                     value="#{enfantDetailsBean.form.responsableLegal.prenom}"
+                                                    disabled="#{enfantDetailsBean.inscripteurEstResponsableLegal}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
+                                                for="input_responsable_organisme"
+                                                value="Organisme"
+                                                styleClass="col-sm-3 control-label"/> 
+                                            <div class="col-md-8">
+                                                <p:inputText
+                                                    id="input_responsable_organisme"
+                                                    maxlength="255"
+                                                    styleClass="form-control"
+                                                    value="#{enfantDetailsBean.form.responsableLegal.organisme}"
                                                     disabled="#{enfantDetailsBean.inscripteurEstResponsableLegal}"/>
                                             </div>
                                         </div>
@@ -359,7 +371,7 @@
                                                     id="responsable_tel"
                                                     maxlength="255"
                                                     styleClass="form-control"
-                                                    value="#{enfantDetailsBean.form.responsableLegal.telephone}"
+                                                    value="#{enfantDetailsBean.form.responsableLegal.coordonnees.telephone1}"
                                                     disabled="#{enfantDetailsBean.inscripteurEstResponsableLegal}"/>
                                             </div>
                                         </div>
@@ -373,7 +385,7 @@
                                                     id="responsable_email"
                                                     maxlength="255"
                                                     styleClass="form-control"
-                                                    value="#{enfantDetailsBean.form.responsableLegal.email}"
+                                                    value="#{enfantDetailsBean.form.responsableLegal.coordonnees.email}"
                                                     disabled="#{enfantDetailsBean.inscripteurEstResponsableLegal}"/>
                                             </div>
                                         </div>

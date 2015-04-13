@@ -1,10 +1,11 @@
 package fr.fava.gestionnaire.domain.model.enfant;
 
 import fr.fava.gestionnaire.domain.model.Adresse;
-import fr.fava.gestionnaire.domain.utils.Email;
+import fr.fava.gestionnaire.domain.model.Coordonnees;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
@@ -14,7 +15,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
@@ -49,12 +49,8 @@ public class Inscripteur implements Serializable {
 
     private String personneReferente;
 
-    private String telephone;
-
-    private String fax;
-
-    @Email
-    private String email;
+    @Embedded
+    private Coordonnees coordonnees;
 
     private boolean responsableLegal;
 
@@ -62,6 +58,7 @@ public class Inscripteur implements Serializable {
         enfants = new HashSet<>();
         adresse = new Adresse();
         type = TypeInscripteur.SERVICE_SOCIAL;
+        coordonnees = new Coordonnees();
     }
 
     public Long getId() {
@@ -128,28 +125,16 @@ public class Inscripteur implements Serializable {
         this.personneReferente = personneReferente;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public Coordonnees getCoordonnees() {
+        return coordonnees;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public String getFax() {
-        return fax;
-    }
-
-    public void setFax(String fax) {
-        this.fax = fax;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCoordonnees(Coordonnees coordonnees) {
+        if (Objects.isNull(coordonnees)) {
+            this.coordonnees = new Coordonnees();
+        } else {
+            this.coordonnees = coordonnees;
+        }
     }
 
     public boolean isResponsableLegal() {

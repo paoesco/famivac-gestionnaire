@@ -1,10 +1,12 @@
 package fr.fava.gestionnaire.domain.model.enfant;
 
 import fr.fava.gestionnaire.domain.model.Adresse;
+import fr.fava.gestionnaire.domain.model.Coordonnees;
 import fr.fava.gestionnaire.domain.utils.Email;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -35,21 +37,20 @@ public class ResponsableLegal implements Serializable {
 
     private String prenom;
 
+    private String organisme;
+
     @Embedded
     private Adresse adresse;
 
     private String lienDeParente;
 
-    private String telephone;
-
-    private String fax;
-
-    @Email
-    private String email;
+    @Embedded
+    private Coordonnees coordonnees;
 
     public ResponsableLegal() {
         enfants = new HashSet<>();
         adresse = new Adresse();
+        coordonnees = new Coordonnees();
     }
 
     public ResponsableLegal(Inscripteur inscripteur) {
@@ -62,9 +63,8 @@ public class ResponsableLegal implements Serializable {
         nom = inscripteur.getNom();
         prenom = inscripteur.getPrenom();
         adresse = inscripteur.getAdresse();
-        telephone = inscripteur.getTelephone();
-        fax = inscripteur.getFax();
-        email = inscripteur.getEmail();
+        organisme = inscripteur.getOrganisme();
+        coordonnees = inscripteur.getCoordonnees().clone();
 
     }
 
@@ -108,6 +108,14 @@ public class ResponsableLegal implements Serializable {
         this.prenom = prenom;
     }
 
+    public String getOrganisme() {
+        return organisme;
+    }
+
+    public void setOrganisme(String organisme) {
+        this.organisme = organisme;
+    }
+
     public Adresse getAdresse() {
         return adresse;
     }
@@ -124,30 +132,16 @@ public class ResponsableLegal implements Serializable {
         this.lienDeParente = lienDeParente;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public Coordonnees getCoordonnees() {
+        return coordonnees;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setCoordonnees(Coordonnees coordonnees) {
+        if (Objects.isNull(coordonnees)) {
+            this.coordonnees = new Coordonnees();
+        } else {
+            this.coordonnees = coordonnees;
+        }
     }
-
-    public String getFax() {
-        return fax;
-    }
-
-    public void setFax(String fax) {
-        this.fax = fax;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-   
 
 }
