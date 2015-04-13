@@ -30,9 +30,20 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     Enfant (Inscripteur : 
-                                    <h:outputText rendered="#{ajouterEnfantBean.form.inscripteur.isParticulier()}" value="#{ajouterEnfantBean.form.inscripteur.prenom} "></h:outputText> 
-                                    <h:outputText rendered="#{ajouterEnfantBean.form.inscripteur.isParticulier()}" value="#{ajouterEnfantBean.form.inscripteur.nom}"></h:outputText>
-                                    <h:outputText rendered="#{ajouterEnfantBean.form.inscripteur.isTypeServiceSocialOuAutre()}" value="#{ajouterEnfantBean.form.inscripteur.organisme}"></h:outputText>
+                                    <h:link 
+                                        target="_blank"
+                                        outcome="/inscripteur/details.xhtml"
+                                        rendered="#{ajouterEnfantBean.form.inscripteur.isParticulier()}"
+                                        value="#{ajouterEnfantBean.form.inscripteur.prenom} #{ajouterEnfantBean.form.inscripteur.nom}">
+                                        <f:param name="id" value="#{ajouterEnfantBean.form.inscripteur.id}"></f:param>    
+                                    </h:link>
+                                    <h:link 
+                                        target="_blank"
+                                        outcome="/inscripteur/details.xhtml"
+                                        rendered="#{ajouterEnfantBean.form.inscripteur.isTypeServiceSocialOuAutre()}"
+                                        value="#{ajouterEnfantBean.form.inscripteur.organisme}">
+                                        <f:param name="id" value="#{ajouterEnfantBean.form.inscripteur.id}"></f:param>    
+                                    </h:link>
                                     )
                                 </div>
                                 <div class="panel-body">
