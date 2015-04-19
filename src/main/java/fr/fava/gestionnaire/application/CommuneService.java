@@ -2,7 +2,10 @@ package fr.fava.gestionnaire.application;
 
 import fr.fava.gestionnaire.domain.model.Commune;
 import java.util.List;
+import javax.ejb.Lock;
 import javax.ejb.Singleton;
+import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
@@ -10,7 +13,7 @@ import javax.persistence.EntityManager;
  *
  * @author paoesco
  */
-@Singleton
+@Stateless
 public class CommuneService {
 
     @Inject

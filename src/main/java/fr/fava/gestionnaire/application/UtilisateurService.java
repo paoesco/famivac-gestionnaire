@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import javax.ejb.Singleton;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 /**
  * @author paoesco
  */
-@Singleton
+@Stateless
 public class UtilisateurService {
     
     @Inject

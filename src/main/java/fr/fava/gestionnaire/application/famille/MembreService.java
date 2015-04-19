@@ -5,14 +5,17 @@ import fr.fava.gestionnaire.domain.model.famille.MembreFamille;
 import fr.fava.gestionnaire.domain.model.Sexe;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.ws.rs.PathParam;
+import net.bull.javamelody.MonitoringInterceptor;
 
 /**
  *
  * @author paoesco
  */
 @Stateless
+@Interceptors({MonitoringInterceptor.class})
 public class MembreService {
     
     @Inject
