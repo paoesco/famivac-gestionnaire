@@ -43,6 +43,7 @@
                             <li class="#{view.viewId.startsWith('/enfants') ? 'active' : ''}"><h:link outcome="/enfants/liste.xhtml" value="Enfants" /></li>
                             <li class="#{view.viewId.startsWith('/inscripteurs') ? 'active' : ''}"><h:link outcome="/inscripteurs/liste.xhtml" value="Inscripteurs" /></li>
                             <li class="#{view.viewId.startsWith('/parametres') ? 'active' : ''}"><h:link rendered="#{request.isUserInRole('ROLE_ADMIN')}" outcome="/parametres/communes.xhtml" value="Paramètres"/></li>
+                            <li class="#{view.viewId.startsWith('/monitoring') ? 'active' : ''}"><h:outputLink value="#{request.contextPath}/monitoring" target="_blank" rendered="#{request.isUserInRole('ROLE_MONITORING')}">Monitoring</h:outputLink></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
@@ -56,7 +57,7 @@
                                         <h:link rendered="#{sessionBean.connectedUser.enabled}" outcome="/moncompte/changerMotDePasse.xhtml" value="Mon compte" />
                                     </li>
                                     <li>
-                                        <a href="#{request.contextPath}/j_spring_security_logout">Déconnexion</a>
+                                        <h:outputLink value="#{request.contextPath}/j_spring_security_logout">Déconnexion</h:outputLink>
                                     </li>
                                 </ul>
                             </li>

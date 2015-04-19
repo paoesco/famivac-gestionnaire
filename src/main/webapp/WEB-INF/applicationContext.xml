@@ -16,7 +16,7 @@
     <http>
         <intercept-url pattern="/monitoring/**" access="ROLE_MONITORING" />
         <intercept-url pattern="/faces/parametres/**" access="ROLE_ADMIN" />
-        <intercept-url pattern="/faces/**" access="ROLE_GESTIONNAIRE,ROLE_ADMIN" />
+        <intercept-url pattern="/faces/**" access="ROLE_GESTIONNAIRE,ROLE_ADMIN,ROLE_MONITORING" />
         <form-login 
             login-page='/login.html'
             default-target-url='/faces/index.xhtml'/>
