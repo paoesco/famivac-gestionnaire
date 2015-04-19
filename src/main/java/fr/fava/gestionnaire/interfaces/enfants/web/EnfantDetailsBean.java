@@ -3,7 +3,7 @@ package fr.fava.gestionnaire.interfaces.enfants.web;
 import fr.fava.gestionnaire.application.CommuneService;
 import fr.fava.gestionnaire.application.enfant.EnfantService;
 import fr.fava.gestionnaire.domain.model.enfant.Enfant;
-import fr.fava.gestionnaire.domain.model.enfant.TypeInscripteur;
+import fr.fava.gestionnaire.domain.model.inscripteur.TypeInscripteur;
 import fr.fava.gestionnaire.interfaces.utils.web.CompleteCommune;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;

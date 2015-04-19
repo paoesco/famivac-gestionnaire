@@ -2,7 +2,7 @@ package fr.fava.gestionnaire.application.enfant;
 
 import fr.fava.gestionnaire.domain.InscripteurRepository;
 import fr.fava.gestionnaire.domain.model.enfant.Enfant;
-import fr.fava.gestionnaire.domain.model.enfant.Inscripteur;
+import fr.fava.gestionnaire.domain.model.inscripteur.Inscripteur;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.Stateless;

@@ -1,5 +1,6 @@
 package fr.fava.gestionnaire.domain.model.enfant;
 
+import fr.fava.gestionnaire.domain.model.inscripteur.TypeInscripteur;
 import fr.fava.gestionnaire.domain.model.Adresse;
 import java.io.Serializable;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package fr.fava.gestionnaire.domain.model.enfant;
+package fr.fava.gestionnaire.domain.model.inscripteur;
 
 /**
  *

@@ -1,5 +1,6 @@
 package fr.fava.gestionnaire.domain.model.enfant;
 
+import fr.fava.gestionnaire.domain.model.inscripteur.Inscripteur;
 import fr.fava.gestionnaire.domain.model.Sexe;
 import java.io.Serializable;
 import java.util.Date;
@@ -85,11 +86,11 @@ public class Enfant implements Serializable {
     }
 
     public Date getDateNaissance() {
-        return dateNaissance;
+        return dateNaissance == null ? null : (Date) dateNaissance.clone();
     }
 
     public void setDateNaissance(Date dateNaissance) {
-        this.dateNaissance = dateNaissance;
+        this.dateNaissance = (dateNaissance == null ? null : (Date) dateNaissance.clone());
     }
 
     public String getClasseFrequentee() {

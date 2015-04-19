@@ -1,7 +1,8 @@
-package fr.fava.gestionnaire.domain.model.enfant;
+package fr.fava.gestionnaire.domain.model.inscripteur;
 
 import fr.fava.gestionnaire.domain.model.Adresse;
 import fr.fava.gestionnaire.domain.model.Coordonnees;
+import fr.fava.gestionnaire.domain.model.enfant.Enfant;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,6 +19,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -27,7 +29,7 @@ import javax.persistence.OneToMany;
 @NamedQuery(name = Inscripteur.QUERY_RETRIEVE_ALL, query = "select i from Inscripteur i order by i.nom,i.prenom,i.organisme")
 public class Inscripteur implements Serializable {
 
-    public static final String QUERY_RETRIEVE_ALL = "insctipteurRetrieveAll";
+    public static final String QUERY_RETRIEVE_ALL = "inscripteurRetrieveAll";
 
     @Id
     @GeneratedValue
@@ -48,8 +50,6 @@ public class Inscripteur implements Serializable {
     @Embedded
     private Adresse adresse;
 
-    private String personneReferente;
-
     @Embedded
     private Coordonnees coordonnees;
 
@@ -60,11 +60,15 @@ public class Inscripteur implements Serializable {
     @Column(length = 2000)
     private String remarque;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private ResponsableInscripteur responsable;
+
     public Inscripteur() {
         enfants = new HashSet<>();
         adresse = new Adresse();
         type = TypeInscripteur.SERVICE_SOCIAL;
         coordonnees = new Coordonnees();
+        responsable = new ResponsableInscripteur();
     }
 
     public Long getId() {
@@ -123,14 +127,6 @@ public class Inscripteur implements Serializable {
         this.adresse = adresse;
     }
 
-    public String getPersonneReferente() {
-        return personneReferente;
-    }
-
-    public void setPersonneReferente(String personneReferente) {
-        this.personneReferente = personneReferente;
-    }
-
     public Coordonnees getCoordonnees() {
         return coordonnees;
     }
@@ -173,6 +169,14 @@ public class Inscripteur implements Serializable {
 
     public void setRemarque(String remarque) {
         this.remarque = remarque;
+    }
+
+    public ResponsableInscripteur getResponsable() {
+        return responsable;
+    }
+
+    public void setResponsable(ResponsableInscripteur responsable) {
+        this.responsable = responsable;
     }
 
 }

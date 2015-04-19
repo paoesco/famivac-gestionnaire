@@ -3,7 +3,6 @@ package fr.fava.gestionnaire.domain.model.famille;
 import fr.fava.gestionnaire.domain.model.Commune;
 import fr.fava.gestionnaire.domain.model.Coordonnees;
 import fr.fava.gestionnaire.domain.model.Sexe;
-import fr.fava.gestionnaire.domain.utils.Email;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -88,7 +87,7 @@ public class MembreFamille implements Serializable {
         this.nomDeNaissance = nomDeNaissance;
         this.prenom = prenom;
         this.sexe = sexe;
-        this.dateNaissance = dateNaissance;
+        this.dateNaissance = (Date) dateNaissance.clone();
         this.profession = profession;
         this.referent = referent;
         this.communeDeNaissance = communeDeNaissance;
@@ -125,7 +124,7 @@ public class MembreFamille implements Serializable {
     }
 
     public Date getDateNaissance() {
-        return dateNaissance;
+        return dateNaissance == null ? null : (Date) dateNaissance.clone();
     }
 
     public boolean isReferent() {
@@ -157,23 +156,23 @@ public class MembreFamille implements Serializable {
 
     public void setPrenom(String prenom) {
         if (prenom == null || prenom.isEmpty()) {
-            throw new IllegalArgumentException("Le nom est obligatoire");
+            throw new IllegalArgumentException("Le prénom est obligatoire");
         }
         this.prenom = prenom;
     }
 
     public void setSexe(Sexe sexe) {
         if (sexe == null) {
-            throw new IllegalArgumentException("Le nom est obligatoire");
+            throw new IllegalArgumentException("Le sexe est obligatoire");
         }
         this.sexe = sexe;
     }
 
     public void setDateNaissance(Date dateNaissance) {
         if (dateNaissance == null) {
-            throw new IllegalArgumentException("Le nom est obligatoire");
+            throw new IllegalArgumentException("La date de naissance est obligatoire");
         }
-        this.dateNaissance = dateNaissance;
+        this.dateNaissance = (Date) dateNaissance.clone();
     }
 
     public void setReferent(boolean referent) {
@@ -182,7 +181,7 @@ public class MembreFamille implements Serializable {
 
     public void setCommuneDeNaissance(Commune communeDeNaissance) {
         if (communeDeNaissance == null || communeDeNaissance.getCode() == null || communeDeNaissance.getCode().isEmpty()) {
-            throw new IllegalArgumentException("Le nom est obligatoire");
+            throw new IllegalArgumentException("La commune de naissance est obligatoire");
         }
         this.communeDeNaissance = communeDeNaissance;
     }

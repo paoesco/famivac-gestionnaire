@@ -1,5 +1,7 @@
 package fr.fava.gestionnaire.domain.model.enfant;
 
+import fr.fava.gestionnaire.domain.model.inscripteur.Inscripteur;
+import fr.fava.gestionnaire.domain.model.inscripteur.TypeInscripteur;
 import fr.fava.gestionnaire.domain.model.Adresse;
 import fr.fava.gestionnaire.domain.model.Coordonnees;
 import fr.fava.gestionnaire.domain.utils.Email;

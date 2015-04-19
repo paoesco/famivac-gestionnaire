@@ -1,6 +1,6 @@
 package fr.fava.gestionnaire.application.enfant;
 
-import fr.fava.gestionnaire.domain.model.enfant.TypeInscripteur;
+import fr.fava.gestionnaire.domain.model.inscripteur.TypeInscripteur;
 
 /**
  * @author paoesco

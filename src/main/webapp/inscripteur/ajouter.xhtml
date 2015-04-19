@@ -23,8 +23,8 @@
             <ui:define name="content">
 
                 <div class="container">
-                    <div class="col-md-offset-1 col-md-10">
-                        <h:form id="form" styleClass="form-horizontal" role="form">
+                    <h:form id="form" styleClass="form-horizontal" role="form">
+                        <div class="col-md-6">
                             <p:focus context="form" />
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -148,17 +148,6 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <p:outputLabel for="inscripteur_referent" value="Personne référente" styleClass="col-sm-3 control-label" />
-                                        <div class="col-md-8">
-                                            <p:inputText 
-                                                id="inscripteur_referent" 
-                                                styleClass="form-control" 
-                                                required="true"
-                                                value="#{ajouterInscripteurBean.form.personneReferente}"
-                                                maxlength="255"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
                                         <p:outputLabel for="inscripteur_tel" value="Téléphone" styleClass="col-sm-3 control-label" /> 
                                         <div class="col-md-8">
                                             <p:inputText
@@ -203,20 +192,89 @@
                                                 value="#{ajouterInscripteurBean.form.remarque}"/>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Personne responsable
+                                </div>
+                                <div class="panel-body">
                                     <div class="form-group">
-                                        <div class="col-md-11">
-                                            <p:commandButton
-                                                styleClass="btn-primary pull-right" 
-                                                value="Ajouter"
-                                                icon="ui-icon-plus"
-                                                ajax="false"
-                                                action="#{ajouterInscripteurBean.ajouter()}"/>
+                                        <p:outputLabel for="input_responsable_nom" value="Nom" styleClass="col-sm-3 control-label" /> 
+                                        <div class="col-md-8">
+                                            <p:inputText
+                                                id="input_responsable_nom"
+                                                styleClass="form-control" 
+                                                maxlength="255"
+                                                value="#{ajouterInscripteurBean.form.responsable.nom}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:outputLabel for="input_responsable_prenom" value="Prénom" styleClass="col-sm-3 control-label" /> 
+                                        <div class="col-md-8">
+                                            <p:inputText
+                                                id="input_responsable_prenom"
+                                                styleClass="form-control" 
+                                                maxlength="255"
+                                                value="#{ajouterInscripteurBean.form.responsable.prenom}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:outputLabel for="input_responsable_telephone1" value="Téléphone 1" styleClass="col-sm-3 control-label" /> 
+                                        <div class="col-md-8">
+                                            <p:inputText
+                                                id="input_responsable_telephone1"
+                                                styleClass="form-control" 
+                                                maxlength="255"
+                                                value="#{ajouterInscripteurBean.form.responsable.coordonnees.telephone1}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:outputLabel for="input_responsable_telephone2" value="Téléphone 2" styleClass="col-sm-3 control-label" /> 
+                                        <div class="col-md-8">
+                                            <p:inputText
+                                                id="input_responsable_telephone2"
+                                                styleClass="form-control" 
+                                                maxlength="255"
+                                                value="#{ajouterInscripteurBean.form.responsable.coordonnees.telephone2}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:outputLabel for="input_responsable_email" value="Email" styleClass="col-sm-3 control-label" /> 
+                                        <div class="col-md-8">
+                                            <p:inputText
+                                                id="input_responsable_email"
+                                                styleClass="form-control" 
+                                                maxlength="255"
+                                                value="#{ajouterInscripteurBean.form.responsable.coordonnees.email}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:outputLabel for="input_responsable_fax" value="Fax" styleClass="col-sm-3 control-label" /> 
+                                        <div class="col-md-8">
+                                            <p:inputText
+                                                id="input_responsable_fax"
+                                                styleClass="form-control" 
+                                                maxlength="255"
+                                                value="#{ajouterInscripteurBean.form.responsable.coordonnees.fax}"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </h:form>
-                    </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-11">
+                                <p:commandButton
+                                    styleClass="btn-primary pull-right" 
+                                    value="Ajouter"
+                                    icon="ui-icon-plus"
+                                    ajax="false"
+                                    action="#{ajouterInscripteurBean.ajouter()}"/>
+                            </div>
+                        </div>
+                    </h:form>
                 </div> <!-- .container -->
             </ui:define>
         </ui:composition>

@@ -284,11 +284,11 @@ public class Famille implements Serializable {
     }
 
     public Date getDateReceptionCasierJudiciaire() {
-        return dateReceptionCasierJudiciaire;
+        return dateReceptionCasierJudiciaire == null ? null : (Date) dateReceptionCasierJudiciaire.clone();
     }
 
     public void setDateReceptionCasierJudiciaire(Date dateReceptionCasierJudiciaire) {
-        this.dateReceptionCasierJudiciaire = dateReceptionCasierJudiciaire;
+        this.dateReceptionCasierJudiciaire = dateReceptionCasierJudiciaire == null ? null : (Date) dateReceptionCasierJudiciaire.clone();
     }
 
     public String getNomRecruteur() {
@@ -300,11 +300,11 @@ public class Famille implements Serializable {
     }
 
     public Date getDateRecrutement() {
-        return dateRecrutement;
+        return dateRecrutement == null ? null : (Date) dateRecrutement.clone();
     }
 
     public void setDateRecrutement(Date dateRecrutement) {
-        this.dateRecrutement = dateRecrutement;
+        this.dateRecrutement = dateRecrutement == null ? null : (Date) dateRecrutement.clone();
     }
 
     public Avis getAvisRecrutement() {
@@ -324,11 +324,11 @@ public class Famille implements Serializable {
     }
 
     public Date getDateVisiteDdcs() {
-        return dateVisiteDdcs;
+        return dateVisiteDdcs == null ? null : (Date) dateVisiteDdcs.clone();
     }
 
     public void setDateVisiteDdcs(Date dateVisiteDdcs) {
-        this.dateVisiteDdcs = dateVisiteDdcs;
+        this.dateVisiteDdcs = dateVisiteDdcs == null ? null : (Date) dateVisiteDdcs.clone();
     }
 
     public Avis getAvisDdcs() {
