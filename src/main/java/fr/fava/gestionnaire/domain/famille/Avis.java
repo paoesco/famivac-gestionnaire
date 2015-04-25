@@ -1,4 +1,4 @@
-package fr.fava.gestionnaire.domain.model.famille;
+package fr.fava.gestionnaire.domain.famille;
 
 /**
  * @author Paolo

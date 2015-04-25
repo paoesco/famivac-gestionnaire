@@ -1,4 +1,4 @@
-package fr.fava.gestionnaire.domain.model.famille;
+package fr.fava.gestionnaire.domain.famille;
 
 import fr.fava.gestionnaire.domain.model.Commune;
 import fr.fava.gestionnaire.domain.model.Coordonnees;

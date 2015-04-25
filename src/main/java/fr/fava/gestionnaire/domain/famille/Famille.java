@@ -1,4 +1,4 @@
-package fr.fava.gestionnaire.domain.model.famille;
+package fr.fava.gestionnaire.domain.famille;
 
 import fr.fava.gestionnaire.domain.model.Adresse;
 import java.io.Serializable;

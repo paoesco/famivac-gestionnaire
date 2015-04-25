@@ -1,8 +1,8 @@
 package fr.fava.gestionnaire.application.enfant;
 
-import fr.fava.gestionnaire.domain.EnfantRepository;
-import fr.fava.gestionnaire.domain.model.enfant.Enfant;
-import fr.fava.gestionnaire.domain.model.enfant.ResponsableLegal;
+import fr.fava.gestionnaire.domain.enfant.EnfantRepository;
+import fr.fava.gestionnaire.domain.enfant.Enfant;
+import fr.fava.gestionnaire.domain.enfant.ResponsableLegal;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.Stateless;

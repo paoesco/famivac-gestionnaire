@@ -1,11 +1,11 @@
 package fr.fava.gestionnaire.application.famille;
 
-import fr.fava.gestionnaire.domain.FamilleRepository;
+import fr.fava.gestionnaire.domain.famille.FamilleRepository;
 import fr.fava.gestionnaire.domain.model.Adresse;
-import fr.fava.gestionnaire.domain.model.famille.Chambre;
+import fr.fava.gestionnaire.domain.famille.Chambre;
 import fr.fava.gestionnaire.domain.model.Commune;
-import fr.fava.gestionnaire.domain.model.famille.Famille;
-import fr.fava.gestionnaire.domain.model.famille.MembreFamille;
+import fr.fava.gestionnaire.domain.famille.Famille;
+import fr.fava.gestionnaire.domain.famille.MembreFamille;
 import fr.fava.gestionnaire.domain.model.Sexe;
 import java.util.List;
 import java.util.stream.Collectors;

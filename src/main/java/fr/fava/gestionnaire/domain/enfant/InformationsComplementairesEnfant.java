@@ -1,4 +1,4 @@
-package fr.fava.gestionnaire.domain.model.enfant;
+package fr.fava.gestionnaire.domain.enfant;
 
 import java.io.Serializable;
 import javax.persistence.Embeddable;

@@ -1,6 +1,6 @@
-package fr.fava.gestionnaire.domain.model.enfant;
+package fr.fava.gestionnaire.domain.enfant;
 
-import fr.fava.gestionnaire.domain.model.inscripteur.Inscripteur;
+import fr.fava.gestionnaire.domain.inscripteur.Inscripteur;
 import fr.fava.gestionnaire.domain.model.Sexe;
 import java.io.Serializable;
 import java.util.Date;

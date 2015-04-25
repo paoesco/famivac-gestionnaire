@@ -1,7 +1,7 @@
-package fr.fava.gestionnaire.domain;
+package fr.fava.gestionnaire.domain.inscripteur;
 
-import fr.fava.gestionnaire.domain.model.inscripteur.Inscripteur;
-import fr.fava.gestionnaire.domain.model.inscripteur.TypeInscripteur;
+import fr.fava.gestionnaire.domain.inscripteur.Inscripteur;
+import fr.fava.gestionnaire.domain.inscripteur.TypeInscripteur;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
