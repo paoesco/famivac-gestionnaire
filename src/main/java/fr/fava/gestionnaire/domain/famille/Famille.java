@@ -46,7 +46,7 @@ public class Famille implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private final Set<MembreFamille> membres;
 
     @Embedded

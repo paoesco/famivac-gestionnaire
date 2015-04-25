@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head></h:head>
+
+    <h:body>
+
+        <ui:composition template="/WEB-INF/template/layout.xhtml">
+
+            <ui:define name="metadata">
+                <f:metadata>
+                    <f:viewAction action="#{sejoursBean.init()}"></f:viewAction>
+                </f:metadata>
+            </ui:define>
+
+            <ui:define name="title">Séjours</ui:define>
+
+            <ui:define name="content">
+
+                <div class="container">
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Rechercher</div>
+                            <div class="panel-body">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Séjours</div>
+                            <div class="panel-body">
+                                <p:button 
+                                    outcome="/sejour/ajouter.xhtml"
+                                    styleClass="btn-default" 
+                                    value="Ajouter"
+                                    icon="ui-icon-plus"/>
+                                <br/>
+                                <br/>
+                                <p:dataTable 
+                                    id="datatable"
+                                    var="bean" 
+                                    value="#{sejoursBean.lazyModel}"
+                                    paginator="true"
+                                    rowKey="#{bean.id}"
+                                    rows="20"
+                                    lazy="true">
+
+                                    <p:column headerText="Enfant">
+                                        <h:outputText value="#{bean.enfant}"></h:outputText>
+                                    </p:column>
+                                    <p:column headerText="Famille">
+                                        <h:outputText value="#{bean.famille}"></h:outputText>
+                                    </p:column>
+                                    <p:column headerText="Date début">
+                                        <h:outputText value="#{bean.dateDebut}"></h:outputText>
+                                    </p:column>
+                                    <p:column headerText="Date fin">
+                                        <h:outputText value="#{bean.dateFin}"></h:outputText>
+                                    </p:column>
+
+                                    <p:column width="100">
+                                        <p:button 
+                                            outcome="/sejour/details.xhtml"
+                                            styleClass="btn-default" 
+                                            icon="ui-icon-pencil">
+                                            <f:param name="id" value="#{bean.id}"></f:param>
+                                        </p:button>
+                                        <h:form styleClass="pull-right">
+                                            <p:commandButton 
+                                                styleClass="btn-default"
+                                                icon="ui-icon-trash"
+                                                actionListener="#{sejoursBean.supprimer(bean.id)}"
+                                                update=":datatable">
+                                                <p:confirm 
+                                                    header="Confirmation" 
+                                                    message="Êtes vous sûr de vouloir supprimer ce séjour ?" 
+                                                    icon="ui-icon-alert" />
+                                            </p:commandButton>
+                                            <p:confirmDialog global="true">
+                                                <p:commandButton 
+                                                    value="Oui" 
+                                                    type="button" 
+                                                    styleClass="ui-confirmdialog-yes pull-right" 
+                                                    icon="ui-icon-check" />
+                                                <p:commandButton 
+                                                    value="Non" 
+                                                    type="button" 
+                                                    styleClass="ui-confirmdialog-no pull-right" 
+                                                    icon="ui-icon-close" />
+                                            </p:confirmDialog>
+                                        </h:form>
+                                    </p:column>
+
+                                </p:dataTable>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- .container -->
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

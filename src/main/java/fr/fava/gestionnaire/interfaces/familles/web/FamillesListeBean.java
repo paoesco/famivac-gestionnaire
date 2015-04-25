@@ -16,7 +16,7 @@ import javax.inject.Named;
 public class FamillesListeBean implements Serializable {
 
     /**
-     * Liste des enfants.
+     * Liste des familles.
      */
     private LazyFamilleDataModel lazyModel;
 

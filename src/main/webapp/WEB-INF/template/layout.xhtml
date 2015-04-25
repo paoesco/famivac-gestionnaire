@@ -39,10 +39,11 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="#{view.viewId.startsWith('/familles') ? 'active' : ''}"><h:link outcome="/familles/liste.xhtml" value="Familles"/></li>
-                            <li class="#{view.viewId.startsWith('/enfants') ? 'active' : ''}"><h:link outcome="/enfants/liste.xhtml" value="Enfants" /></li>
-                            <li class="#{view.viewId.startsWith('/inscripteurs') ? 'active' : ''}"><h:link outcome="/inscripteurs/liste.xhtml" value="Inscripteurs" /></li>
-                            <li class="#{view.viewId.startsWith('/parametres') ? 'active' : ''}"><h:link rendered="#{request.isUserInRole('ROLE_ADMIN')}" outcome="/parametres/communes.xhtml" value="Paramètres"/></li>
+                            <li class="#{view.viewId.startsWith('/famille') ? 'active' : ''}"><h:link outcome="/familles/liste.xhtml" value="Familles"/></li>
+                            <li class="#{view.viewId.startsWith('/enfant') ? 'active' : ''}"><h:link outcome="/enfants/liste.xhtml" value="Enfants" /></li>
+                            <li class="#{view.viewId.startsWith('/inscripteur') ? 'active' : ''}"><h:link outcome="/inscripteurs/liste.xhtml" value="Inscripteurs" /></li>
+                            <li class="#{view.viewId.startsWith('/sejour') ? 'active' : ''}"><h:link outcome="/sejours/liste.xhtml" value="Séjours" /></li>
+                            <li class="#{view.viewId.startsWith('/parametre') ? 'active' : ''}"><h:link rendered="#{request.isUserInRole('ROLE_ADMIN')}" outcome="/parametres/communes.xhtml" value="Paramètres"/></li>
                             <li class="#{view.viewId.startsWith('/monitoring') ? 'active' : ''}"><h:outputLink value="#{request.contextPath}/monitoring" target="_blank" rendered="#{request.isUserInRole('ROLE_MONITORING')}">Monitoring</h:outputLink></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
