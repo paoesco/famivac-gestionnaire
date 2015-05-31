@@ -1,18 +1,28 @@
-package fr.fava.gestionnaire.application.sejours;
+package fr.fava.gestionnaire.application.sejour;
 
+import fr.fava.gestionnaire.domain.sejour.Sejour;
 import java.util.Date;
 
 /**
  *
  * @author paoesco
  */
-public class RetrieveSejoursDTO {
+public class SejourDTO {
 
     private Long id;
     private String famille;
     private String enfant;
     private Date dateDebut;
     private Date dateFin;
+
+    public SejourDTO(Sejour bean) {
+        this.id = bean.getId();
+
+        this.famille = bean.getFamille().getMembreReferent().getPrenom() + " " + bean.getFamille().getMembreReferent().getNom();
+        this.enfant = bean.getEnfant().getPrenom() + " " + bean.getEnfant().getNom();
+        this.dateDebut = bean.getDateDebut();
+        this.dateFin = bean.getDateFinEffective();
+    }
 
     public Long getId() {
         return id;

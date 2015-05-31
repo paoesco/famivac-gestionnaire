@@ -5,6 +5,7 @@ import fr.fava.gestionnaire.application.AjouterUtilisateurDTO;
 import fr.fava.gestionnaire.application.mail.Mail;
 import fr.fava.gestionnaire.application.mail.MailService;
 import java.text.MessageFormat;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
@@ -12,7 +13,7 @@ import javax.inject.Inject;
  *
  * @author paoesco
  */
-@RequestScoped
+@ApplicationScoped
 public class UtilisateurServiceFacade {
 
     @Inject

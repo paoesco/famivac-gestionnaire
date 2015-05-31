@@ -1,6 +1,6 @@
 package fr.fava.gestionnaire.domain.inscripteur;
 
-import fr.fava.gestionnaire.domain.model.Coordonnees;
+import fr.fava.gestionnaire.domain.common.Coordonnees;
 import java.io.Serializable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;

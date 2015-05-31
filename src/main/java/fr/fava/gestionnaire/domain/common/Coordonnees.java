@@ -1,4 +1,4 @@
-package fr.fava.gestionnaire.domain.model;
+package fr.fava.gestionnaire.domain.common;
 
 import fr.fava.gestionnaire.domain.utils.Email;
 import java.io.Serializable;

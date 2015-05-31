@@ -1,6 +1,6 @@
 package fr.fava.gestionnaire.interfaces.enfants.web;
 
-import fr.fava.gestionnaire.application.enfant.RetrieveEnfantsDTO;
+import fr.fava.gestionnaire.application.enfant.EnfantDTO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,17 +10,17 @@ import org.primefaces.model.SortOrder;
 /**
  * @author paoesco
  */
-public class LazyEnfantDataModel extends LazyDataModel<RetrieveEnfantsDTO> {
+public class LazyEnfantDataModel extends LazyDataModel<EnfantDTO> {
 
-    private final List<RetrieveEnfantsDTO> datasource;
+    private final List<EnfantDTO> datasource;
 
-    public LazyEnfantDataModel(List<RetrieveEnfantsDTO> datasource) {
+    public LazyEnfantDataModel(List<EnfantDTO> datasource) {
         this.datasource = new ArrayList<>(datasource);
     }
 
     @Override
-    public RetrieveEnfantsDTO getRowData(String rowKey) {
-        for (RetrieveEnfantsDTO bean : datasource) {
+    public EnfantDTO getRowData(String rowKey) {
+        for (EnfantDTO bean : datasource) {
             if (Long.valueOf(rowKey).equals(bean.getId())) {
                 return bean;
             }
@@ -29,12 +29,12 @@ public class LazyEnfantDataModel extends LazyDataModel<RetrieveEnfantsDTO> {
     }
 
     @Override
-    public Object getRowKey(RetrieveEnfantsDTO bean) {
+    public Object getRowKey(EnfantDTO bean) {
         return bean.getId();
     }
 
     @Override
-    public List<RetrieveEnfantsDTO> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+    public List<EnfantDTO> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
         int max = first + pageSize > datasource.size() ? datasource.size() : first + pageSize;
         setRowCount(datasource.size());
         return datasource.subList(first, max);

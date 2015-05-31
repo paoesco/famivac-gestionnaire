@@ -1,8 +1,8 @@
 package fr.fava.gestionnaire.domain.famille;
 
-import fr.fava.gestionnaire.domain.model.Commune;
-import fr.fava.gestionnaire.domain.model.Coordonnees;
-import fr.fava.gestionnaire.domain.model.Sexe;
+import fr.fava.gestionnaire.domain.common.Commune;
+import fr.fava.gestionnaire.domain.common.Coordonnees;
+import fr.fava.gestionnaire.domain.common.Sexe;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;

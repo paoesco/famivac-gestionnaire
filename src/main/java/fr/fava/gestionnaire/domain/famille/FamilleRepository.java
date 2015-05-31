@@ -1,8 +1,7 @@
 package fr.fava.gestionnaire.domain.famille;
 
-import fr.fava.gestionnaire.domain.famille.Famille;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -11,7 +10,7 @@ import javax.persistence.Query;
  *
  * @author paoesco
  */
-@RequestScoped
+@ApplicationScoped
 public class FamilleRepository {
 
     @Inject
@@ -35,7 +34,7 @@ public class FamilleRepository {
         }
         return query.getResultList();
     }
-
+    
 //    private String stripAccents(String s) {
 //        s = Normalizer.normalize(s, Normalizer.Form.NFD);
 //        s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");

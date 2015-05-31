@@ -3,7 +3,7 @@ package fr.fava.gestionnaire.interfaces.enfants.web;
 import fr.fava.gestionnaire.application.CommuneService;
 import fr.fava.gestionnaire.application.enfant.EnfantService;
 import fr.fava.gestionnaire.application.enfant.InscripteurService;
-import fr.fava.gestionnaire.domain.model.Commune;
+import fr.fava.gestionnaire.domain.common.Commune;
 import fr.fava.gestionnaire.domain.enfant.Enfant;
 import fr.fava.gestionnaire.domain.inscripteur.Inscripteur;
 import fr.fava.gestionnaire.domain.inscripteur.TypeInscripteur;

@@ -1,6 +1,6 @@
 package fr.fava.gestionnaire.interfaces.communes.web;
 
-import fr.fava.gestionnaire.domain.model.Commune;
+import fr.fava.gestionnaire.domain.common.Commune;
 import fr.fava.gestionnaire.application.CommuneService;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;

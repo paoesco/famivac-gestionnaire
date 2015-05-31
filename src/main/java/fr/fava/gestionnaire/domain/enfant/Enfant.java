@@ -1,7 +1,7 @@
 package fr.fava.gestionnaire.domain.enfant;
 
 import fr.fava.gestionnaire.domain.inscripteur.Inscripteur;
-import fr.fava.gestionnaire.domain.model.Sexe;
+import fr.fava.gestionnaire.domain.common.Sexe;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;

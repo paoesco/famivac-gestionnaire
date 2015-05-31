@@ -41,8 +41,31 @@
                                         <p:tab id="tab_chambres" title="Chambres (#{familleDetailsBean.chambres.size()})">
                                             <ui:include src="chambres.xhtml" />
                                         </p:tab>
-                                        <p:tab title="Séjours">
-                                            Indisponible
+                                        <p:tab title="Séjours (#{familleDetailsBean.sejours.size()})">
+                                            <p:dataTable 
+                                                id="sejoursDatatable"
+                                                var="bean" 
+                                                value="#{familleDetailsBean.sejours}"
+                                                paginator="true"
+                                                rowKey="#{bean.id}"
+                                                rows="20">
+                                                <p:column headerText="Enfant">
+                                                    #{bean.enfant.prenom} #{bean.enfant.nom}
+                                                </p:column>
+                                                <p:column headerText="Début">
+                                                    <h:outputText value="#{bean.dateDebut}">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                    </h:outputText>
+                                                </p:column>
+                                                <p:column headerText="Fin">
+                                                    <h:outputText value="#{bean.dateFin}">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                    </h:outputText>
+                                                </p:column>
+                                                <p:column>
+                                                    bouton loupe
+                                                </p:column>
+                                            </p:dataTable>
                                         </p:tab>
                                         <p:tab id="tab_formalites" title="Formalités">
                                             <ui:include src="formalites.xhtml" />

@@ -52,14 +52,10 @@ public class EnfantService {
         entityManager.merge(enfant);
     }
 
-    public List<RetrieveEnfantsDTO> retrieve(String nomEnfant, String prenomEnfant) {
+    public List<EnfantDTO> retrieve(String nomEnfant, String prenomEnfant) {
         List<Enfant> entities = enfantRepository.retrieve(nomEnfant, prenomEnfant);
         return entities.stream().map((Enfant entity) -> {
-            RetrieveEnfantsDTO dto = new RetrieveEnfantsDTO();
-            dto.setId(entity.getId());
-            dto.setNomEnfant(entity.getNom());
-            dto.setPrenomEnfant(entity.getPrenom());
-            return dto;
+            return new EnfantDTO(entity);
         }).collect(Collectors.toList());
     }
 

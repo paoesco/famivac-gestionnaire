@@ -2,7 +2,7 @@ package fr.fava.gestionnaire.interfaces.inscripteurs.web;
 
 import fr.fava.gestionnaire.application.CommuneService;
 import fr.fava.gestionnaire.application.enfant.InscripteurService;
-import fr.fava.gestionnaire.domain.model.Commune;
+import fr.fava.gestionnaire.domain.common.Commune;
 import fr.fava.gestionnaire.domain.inscripteur.Inscripteur;
 import fr.fava.gestionnaire.domain.inscripteur.TypeInscripteur;
 import java.io.Serializable;

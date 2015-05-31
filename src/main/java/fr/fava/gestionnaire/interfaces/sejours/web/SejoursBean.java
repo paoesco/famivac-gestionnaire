@@ -1,8 +1,9 @@
 package fr.fava.gestionnaire.interfaces.sejours.web;
 
+import fr.fava.gestionnaire.application.sejour.SejourService;
 import java.io.Serializable;
-import java.util.Collections;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -18,8 +19,11 @@ public class SejoursBean implements Serializable {
      */
     private LazySejourDataModel lazyModel;
 
+    @Inject
+    private SejourService sejourService;
+
     public void init() {
-        lazyModel = new LazySejourDataModel(Collections.EMPTY_LIST);
+        lazyModel = new LazySejourDataModel(sejourService.retrieve());
     }
 
     public void supprimer(Long id) {

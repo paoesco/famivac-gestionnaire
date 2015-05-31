@@ -66,6 +66,48 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <p:outputLabel 
+                                            for="input_famille" 
+                                            value="Famille" 
+                                            styleClass="col-sm-3 control-label" />
+                                        <div class="col-md-8">
+                                            <p:autoComplete
+                                                id="input_famille"
+                                                required="true"
+                                                dropdown="true"
+                                                value="#{ajouterSejourBean.form.famille}"
+                                                cache="true"
+                                                forceSelection="true"
+                                                var="famille"
+                                                completeMethod="#{ajouterSejourBean.completeFamille}"
+                                                converter="#{familleConverter}"
+                                                itemValue="#{famille}"
+                                                itemLabel="#{famille.prenomReferent} #{famille.nomReferent}">
+                                            </p:autoComplete>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:outputLabel 
+                                            for="input_enfant" 
+                                            value="Enfant" 
+                                            styleClass="col-sm-3 control-label" />
+                                        <div class="col-md-8">
+                                            <p:autoComplete
+                                                id="input_enfant"
+                                                required="true"
+                                                dropdown="true"
+                                                value="#{ajouterSejourBean.form.enfant}"
+                                                cache="true"
+                                                forceSelection="true"
+                                                var="enfant"
+                                                completeMethod="#{ajouterSejourBean.completeEnfant}"
+                                                converter="#{enfantConverter}"
+                                                itemValue="#{enfant}"
+                                                itemLabel="#{enfant.prenomEnfant} #{enfant.nomEnfant}">
+                                            </p:autoComplete>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <div class="col-md-11">
                                             <p:button 
                                                 icon="ui-icon-circle-arrow-w"

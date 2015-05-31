@@ -1,8 +1,8 @@
 package fr.fava.gestionnaire.application;
 
 import fr.fava.gestionnaire.application.exceptions.WrongPasswordException;
-import fr.fava.gestionnaire.domain.model.Groupe;
-import fr.fava.gestionnaire.domain.model.Utilisateur;
+import fr.fava.gestionnaire.domain.common.Groupe;
+import fr.fava.gestionnaire.domain.common.Utilisateur;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

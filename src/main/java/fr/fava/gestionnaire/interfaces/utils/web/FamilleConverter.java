@@ -1,7 +1,8 @@
 package fr.fava.gestionnaire.interfaces.utils.web;
 
-import fr.fava.gestionnaire.domain.common.Commune;
-import fr.fava.gestionnaire.application.CommuneService;
+import fr.fava.gestionnaire.application.famille.FamilleService;
+import fr.fava.gestionnaire.application.famille.FamilleDTO;
+import fr.fava.gestionnaire.domain.famille.Famille;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -16,15 +17,19 @@ import javax.inject.Named;
  */
 @Named
 @ApplicationScoped
-@FacesConverter("communeConverter")
-public class CommuneConverter implements Converter {
+@FacesConverter("familleConverter")
+public class FamilleConverter implements Converter {
 
     @Inject
-    private CommuneService communeService;
+    private FamilleService service;
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        return communeService.retrieve(value);
+        if (value == null || value.isEmpty()) {
+            return null;
+        }
+        Famille bean = service.retrieve(Long.valueOf(value));
+        return new FamilleDTO(bean);
     }
 
     @Override
@@ -32,7 +37,7 @@ public class CommuneConverter implements Converter {
         if (value == null) {
             return null;
         }
-        return ((Commune) value).getCode();
+        return ((FamilleDTO) value).getId().toString();
     }
 
 }

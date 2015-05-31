@@ -1,10 +1,8 @@
 package fr.fava.gestionnaire.domain.inscripteur;
 
-import fr.fava.gestionnaire.domain.inscripteur.Inscripteur;
-import fr.fava.gestionnaire.domain.inscripteur.TypeInscripteur;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -13,7 +11,7 @@ import javax.persistence.Query;
  *
  * @author paoesco
  */
-@RequestScoped
+@ApplicationScoped
 public class InscripteurRepository {
 
     @Inject

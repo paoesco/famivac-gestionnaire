@@ -1,12 +1,12 @@
 package fr.fava.gestionnaire.application.famille;
 
 import fr.fava.gestionnaire.domain.famille.FamilleRepository;
-import fr.fava.gestionnaire.domain.model.Adresse;
+import fr.fava.gestionnaire.domain.common.Adresse;
 import fr.fava.gestionnaire.domain.famille.Chambre;
-import fr.fava.gestionnaire.domain.model.Commune;
+import fr.fava.gestionnaire.domain.common.Commune;
 import fr.fava.gestionnaire.domain.famille.Famille;
 import fr.fava.gestionnaire.domain.famille.MembreFamille;
-import fr.fava.gestionnaire.domain.model.Sexe;
+import fr.fava.gestionnaire.domain.common.Sexe;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.Stateless;
@@ -56,14 +56,10 @@ public class FamilleService {
         return entityManager.find(Famille.class, id);
     }
 
-    public List<RetrieveFamillesResponseDTO> retrieve(String nomReferent, @QueryParam("param1") String prenomReferent) {
+    public List<FamilleDTO> retrieve(String nomReferent, @QueryParam("param1") String prenomReferent) {
         List<Famille> beans = repository.retrieve(nomReferent, prenomReferent);
-        List<RetrieveFamillesResponseDTO> dtos = beans.stream().map((Famille f) -> {
-            RetrieveFamillesResponseDTO dto = new RetrieveFamillesResponseDTO();
-            dto.setId(f.getId());
-            dto.setNomReferent(f.getMembreReferent().getNom());
-            dto.setPrenomReferent(f.getMembreReferent().getPrenom());
-            return dto;
+        List<FamilleDTO> dtos = beans.stream().map((Famille f) -> {
+            return new FamilleDTO(f);
         }).collect(Collectors.toList());
         return dtos;
     }

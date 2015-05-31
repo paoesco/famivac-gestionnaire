@@ -13,6 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,17 +26,23 @@ import javax.validation.constraints.NotNull;
  * @author paoesco
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_LA_FAMILLE, query = "select s from Sejour s where s.famille.id = :familleId order by s.dateDebut"),
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_RETRIEVE, query = "select s from Sejour s order by s.dateDebut, s.dateFin")})
 public class Sejour implements Serializable {
+
+    public static final String QUERY_SEJOURS_DE_LA_FAMILLE = "querySejoursDeLaFamille";
+    public static final String QUERY_SEJOURS_RETRIEVE = "querySejoursRetrieve";
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @NotNull
     private Famille famille;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @NotNull
     private Enfant enfant;
 
@@ -143,6 +152,10 @@ public class Sejour implements Serializable {
 
     public void setTarif(int tarif) {
         this.tarif = tarif;
+    }
+
+    public Date getDateFinEffective() {
+        return getDateFinReelle() == null ? getDateFin() : getDateFinReelle();
     }
 
 }

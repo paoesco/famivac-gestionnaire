@@ -1,6 +1,6 @@
 package fr.fava.gestionnaire.application.famille;
 
-import fr.fava.gestionnaire.domain.model.Adresse;
+import fr.fava.gestionnaire.domain.common.Adresse;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**

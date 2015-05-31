@@ -1,8 +1,8 @@
 package fr.fava.gestionnaire.application.famille;
 
-import fr.fava.gestionnaire.domain.model.Commune;
+import fr.fava.gestionnaire.domain.common.Commune;
 import fr.fava.gestionnaire.domain.famille.MembreFamille;
-import fr.fava.gestionnaire.domain.model.Sexe;
+import fr.fava.gestionnaire.domain.common.Sexe;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;

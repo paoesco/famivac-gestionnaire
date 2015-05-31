@@ -37,8 +37,7 @@
         </authentication-provider>
         <authentication-provider>
             <user-service>
-                <user name="monitor" password="j'adorejavamelody" authorities="ROLE_MONITORING" />
-                <user name="admin" password="admin123" authorities="ROLE_GESTIONNAIRE, ROLE_ADMIN" />
+                <user name="admin" password="admin123" authorities="ROLE_GESTIONNAIRE, ROLE_ADMIN, ROLE_MONITORING" />
                 <user name="user" password="user123" authorities="ROLE_GESTIONNAIRE" />
             </user-service>
         </authentication-provider>

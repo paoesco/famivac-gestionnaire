@@ -1,11 +1,11 @@
 package fr.fava.gestionnaire.interfaces.parametres.utilisateurs.web;
 
 import fr.fava.gestionnaire.application.GroupeService;
-import fr.fava.gestionnaire.domain.model.Groupe;
+import fr.fava.gestionnaire.domain.common.Groupe;
 import fr.fava.gestionnaire.application.UtilisateurService;
 import fr.fava.gestionnaire.application.AjouterUtilisateurDTO;
 import fr.fava.gestionnaire.application.RetrieveUtilisateursDTO;
-import fr.fava.gestionnaire.domain.model.Utilisateur;
+import fr.fava.gestionnaire.domain.common.Utilisateur;
 import fr.fava.gestionnaire.interfaces.utilisateurs.facade.UtilisateurServiceFacade;
 import java.io.Serializable;
 import java.text.MessageFormat;

@@ -1,18 +1,25 @@
 package fr.fava.gestionnaire.application.famille;
 
+import fr.fava.gestionnaire.domain.famille.Famille;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author paoesco
  */
 @XmlRootElement
-public class RetrieveFamillesResponseDTO {
+public class FamilleDTO {
 
     private Long id;
 
     private String nomReferent;
 
     private String prenomReferent;
+
+    public FamilleDTO(Famille bean) {
+        this.id = bean.getId();
+        this.nomReferent = bean.getMembreReferent().getNom();
+        this.prenomReferent = bean.getMembreReferent().getPrenom();
+    }
 
     public Long getId() {
         return id;

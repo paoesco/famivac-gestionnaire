@@ -1,7 +1,7 @@
 package fr.fava.gestionnaire.domain.inscripteur;
 
-import fr.fava.gestionnaire.domain.model.Adresse;
-import fr.fava.gestionnaire.domain.model.Coordonnees;
+import fr.fava.gestionnaire.domain.common.Adresse;
+import fr.fava.gestionnaire.domain.common.Coordonnees;
 import fr.fava.gestionnaire.domain.enfant.Enfant;
 import java.io.Serializable;
 import java.util.Collections;

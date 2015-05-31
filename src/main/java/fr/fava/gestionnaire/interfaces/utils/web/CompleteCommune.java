@@ -1,7 +1,7 @@
 package fr.fava.gestionnaire.interfaces.utils.web;
 
 import fr.fava.gestionnaire.application.CommuneService;
-import fr.fava.gestionnaire.domain.model.Commune;
+import fr.fava.gestionnaire.domain.common.Commune;
 import java.util.List;
 import java.util.stream.Collectors;
 

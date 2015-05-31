@@ -1,4 +1,4 @@
-package fr.fava.gestionnaire.domain.model;
+package fr.fava.gestionnaire.domain.common;
 
 import java.io.Serializable;
 import java.util.Collections;

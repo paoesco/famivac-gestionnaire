@@ -6,6 +6,8 @@ import fr.fava.gestionnaire.application.famille.MembreDTO;
 import fr.fava.gestionnaire.domain.famille.Chambre;
 import fr.fava.gestionnaire.domain.famille.Famille;
 import fr.fava.gestionnaire.application.CommuneService;
+import fr.fava.gestionnaire.domain.sejour.Sejour;
+import fr.fava.gestionnaire.domain.sejour.SejourRepository;
 import fr.fava.gestionnaire.interfaces.utils.web.CompleteCommune;
 import java.io.Serializable;
 import java.text.MessageFormat;
@@ -38,6 +40,10 @@ public class FamilleDetailsBean implements Serializable, CompleteCommune {
 
     private Chambre nouvelleChambre;
 
+    private List<Sejour> sejours;
+
+    @Inject
+    private SejourRepository sejourRepository;
     @Inject
     private FamilleService familleService;
     @Inject
@@ -66,6 +72,7 @@ public class FamilleDetailsBean implements Serializable, CompleteCommune {
         });
         chambres = form.getChambres();
         nouvelleChambre = new Chambre(0, form);
+        sejours = sejourRepository.sejoursFamille(id);
     }
 
     public void update() {
@@ -189,6 +196,10 @@ public class FamilleDetailsBean implements Serializable, CompleteCommune {
 
     public void setMembreForm(MembreDTO membreForm) {
         this.membreForm = membreForm;
+    }
+
+    public List<Sejour> getSejours() {
+        return sejours;
     }
 
 }

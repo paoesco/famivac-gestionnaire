@@ -57,13 +57,16 @@
                                     <p:column headerText="Famille">
                                         <h:outputText value="#{bean.famille}"></h:outputText>
                                     </p:column>
-                                    <p:column headerText="Date début">
-                                        <h:outputText value="#{bean.dateDebut}"></h:outputText>
+                                    <p:column headerText="Début">
+                                        <h:outputText value="#{bean.dateDebut}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
                                     </p:column>
-                                    <p:column headerText="Date fin">
-                                        <h:outputText value="#{bean.dateFin}"></h:outputText>
+                                    <p:column headerText="Fin">
+                                        <h:outputText value="#{bean.dateFin}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
                                     </p:column>
-
                                     <p:column width="100">
                                         <p:button 
                                             outcome="/sejour/details.xhtml"

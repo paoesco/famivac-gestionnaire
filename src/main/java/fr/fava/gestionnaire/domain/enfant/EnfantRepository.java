@@ -1,8 +1,7 @@
 package fr.fava.gestionnaire.domain.enfant;
 
-import fr.fava.gestionnaire.domain.enfant.Enfant;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -11,7 +10,7 @@ import javax.persistence.Query;
  *
  * @author paoesco
  */
-@RequestScoped
+@ApplicationScoped
 public class EnfantRepository {
 
     @Inject

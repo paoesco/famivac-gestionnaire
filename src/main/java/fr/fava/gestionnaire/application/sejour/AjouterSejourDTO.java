@@ -1,5 +1,7 @@
-package fr.fava.gestionnaire.application.sejours;
+package fr.fava.gestionnaire.application.sejour;
 
+import fr.fava.gestionnaire.application.enfant.EnfantDTO;
+import fr.fava.gestionnaire.application.famille.FamilleDTO;
 import java.util.Date;
 import javax.validation.constraints.NotNull;
 
@@ -10,10 +12,10 @@ import javax.validation.constraints.NotNull;
 public class AjouterSejourDTO {
 
     @NotNull
-    private Long familleId;
+    private FamilleDTO famille;
 
     @NotNull
-    private Long enfantId;
+    private EnfantDTO enfant;
 
     @NotNull
     private Date dateDebut;
@@ -21,20 +23,20 @@ public class AjouterSejourDTO {
     @NotNull
     private Date dateFin;
 
-    public Long getFamilleId() {
-        return familleId;
+    public FamilleDTO getFamille() {
+        return famille;
     }
 
-    public void setFamilleId(Long familleId) {
-        this.familleId = familleId;
+    public void setFamille(FamilleDTO famille) {
+        this.famille = famille;
     }
 
-    public Long getEnfantId() {
-        return enfantId;
+    public EnfantDTO getEnfant() {
+        return enfant;
     }
 
-    public void setEnfantId(Long enfantId) {
-        this.enfantId = enfantId;
+    public void setEnfant(EnfantDTO enfant) {
+        this.enfant = enfant;
     }
 
     public Date getDateDebut() {

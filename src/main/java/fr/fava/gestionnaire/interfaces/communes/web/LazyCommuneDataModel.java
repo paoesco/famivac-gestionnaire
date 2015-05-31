@@ -1,6 +1,6 @@
 package fr.fava.gestionnaire.interfaces.communes.web;
 
-import fr.fava.gestionnaire.domain.model.Commune;
+import fr.fava.gestionnaire.domain.common.Commune;
 import fr.fava.gestionnaire.domain.utils.AlphanumComparator;
 import java.util.ArrayList;
 import java.util.Comparator;

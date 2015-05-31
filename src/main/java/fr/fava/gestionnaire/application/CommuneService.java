@@ -1,6 +1,6 @@
 package fr.fava.gestionnaire.application;
 
-import fr.fava.gestionnaire.domain.model.Commune;
+import fr.fava.gestionnaire.domain.common.Commune;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;

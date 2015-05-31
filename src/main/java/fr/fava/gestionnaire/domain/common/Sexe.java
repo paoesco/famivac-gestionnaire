@@ -1,4 +1,4 @@
-package fr.fava.gestionnaire.domain.model;
+package fr.fava.gestionnaire.domain.common;
 
 /**
  * @author paoesco
