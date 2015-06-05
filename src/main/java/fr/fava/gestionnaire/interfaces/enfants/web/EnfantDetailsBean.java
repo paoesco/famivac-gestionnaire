@@ -69,7 +69,7 @@ public class EnfantDetailsBean implements Serializable, CompleteCommune {
     }
 
     public boolean isInscripteurEstResponsableLegal() {
-        return form.getInscripteur().isResponsableLegal();
+        return form.isInscripteurEstResponsableLegal();
     }
 
 }

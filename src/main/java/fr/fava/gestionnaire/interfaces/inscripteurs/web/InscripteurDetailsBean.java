@@ -40,6 +40,7 @@ public class InscripteurDetailsBean implements Serializable, CompleteCommune {
 
     public void supprimerEnfant(long enfantId) {
         inscripteurService.retirerEnfant(enfantId);
+        init();
     }
 
     public long getId() {
@@ -70,10 +71,6 @@ public class InscripteurDetailsBean implements Serializable, CompleteCommune {
     public boolean isTypeServiceSocialOuAutre() {
         return TypeInscripteur.SERVICE_SOCIAL.equals(form.getType())
                 || TypeInscripteur.AUTRE.equals(form.getType());
-    }
-
-    public boolean isInscripteurEstResponsableLegal() {
-        return form.isResponsableLegal();
     }
 
 }

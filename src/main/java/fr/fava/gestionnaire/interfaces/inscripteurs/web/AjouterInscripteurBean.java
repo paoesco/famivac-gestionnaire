@@ -59,10 +59,6 @@ public class AjouterInscripteurBean implements Serializable {
                 || TypeInscripteur.AUTRE.equals(form.getType());
     }
 
-    public boolean isInscripteurEstResponsableLegal() {
-        return form.isResponsableLegal();
-    }
-
     public List<Commune> getCommunes() {
         return communes;
     }

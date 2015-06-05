@@ -13,6 +13,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -31,6 +32,8 @@ public class Enfant implements Serializable {
 
     private String prenom;
 
+    private boolean inscripteurEstResponsableLegal;
+
     @Enumerated(EnumType.STRING)
     private Sexe sexe;
 
@@ -42,7 +45,7 @@ public class Enfant implements Serializable {
     @ManyToOne
     private Inscripteur inscripteur;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private ResponsableLegal responsableLegal;
 
     @Embedded
@@ -127,6 +130,14 @@ public class Enfant implements Serializable {
 
     public void setRemarque(String remarque) {
         this.remarque = remarque;
+    }
+
+    public boolean isInscripteurEstResponsableLegal() {
+        return inscripteurEstResponsableLegal;
+    }
+
+    public void setInscripteurEstResponsableLegal(boolean inscripteurEstResponsableLegal) {
+        this.inscripteurEstResponsableLegal = inscripteurEstResponsableLegal;
     }
 
 }

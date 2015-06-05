@@ -69,7 +69,7 @@ public class AjouterEnfantBean implements Serializable {
     }
 
     public boolean isInscripteurEstResponsableLegal() {
-        return form.getInscripteur().isResponsableLegal();
+        return form.isInscripteurEstResponsableLegal();
     }
 
     public List<Commune> getCommunes() {

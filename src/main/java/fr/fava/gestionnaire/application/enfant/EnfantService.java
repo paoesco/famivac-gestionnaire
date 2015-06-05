@@ -27,7 +27,7 @@ public class EnfantService {
     private EnfantRepository enfantRepository;
 
     public Long create(Enfant enfant) {
-        if (enfant.getInscripteur().isResponsableLegal()) {
+        if (enfant.isInscripteurEstResponsableLegal()) {
             enfant.setResponsableLegal(new ResponsableLegal(enfant.getInscripteur()));
         }
         entityManager.persist(enfant);
@@ -40,7 +40,7 @@ public class EnfantService {
 
     public void update(Enfant enfant) {
         entityManager.merge(enfant.getInscripteur());
-        if (enfant.getInscripteur().isResponsableLegal()) {
+        if (enfant.isInscripteurEstResponsableLegal()) {
             enfant.getResponsableLegal().setAdresse(enfant.getInscripteur().getAdresse());
             enfant.getResponsableLegal().setCoordonnees(enfant.getInscripteur().getCoordonnees());
             //enfant.getResponsableLegal().setLienDeParente();

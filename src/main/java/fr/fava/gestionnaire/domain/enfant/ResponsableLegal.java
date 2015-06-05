@@ -29,9 +29,6 @@ public class ResponsableLegal implements Serializable {
     @GeneratedValue
     private Long id;
 
-    @OneToMany
-    private Set<Enfant> enfants;
-
     @Enumerated(EnumType.STRING)
     private TypeInscripteur type;
 
@@ -50,17 +47,11 @@ public class ResponsableLegal implements Serializable {
     private Coordonnees coordonnees;
 
     public ResponsableLegal() {
-        enfants = new HashSet<>();
         adresse = new Adresse();
         coordonnees = new Coordonnees();
     }
 
     public ResponsableLegal(Inscripteur inscripteur) {
-        this();
-        if (!inscripteur.isResponsableLegal()) {
-            throw new IllegalArgumentException("L'inscripteur doit être le responsable légal");
-        }
-        enfants = new HashSet<>(inscripteur.getEnfants());
         type = inscripteur.getType();
         nom = inscripteur.getNom();
         prenom = inscripteur.getPrenom();
@@ -72,18 +63,6 @@ public class ResponsableLegal implements Serializable {
 
     public Long getId() {
         return id;
-    }
-
-    public Set<Enfant> getEnfants() {
-        return Collections.unmodifiableSet(enfants);
-    }
-
-    public void ajouterEnfant(Enfant enfant) {
-        enfants.add(enfant);
-    }
-
-    public void retirerEnfant(Enfant enfant) {
-        enfants.remove(enfant);
     }
 
     public TypeInscripteur getType() {

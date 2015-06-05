@@ -53,8 +53,6 @@ public class Inscripteur implements Serializable {
     @Embedded
     private Coordonnees coordonnees;
 
-    private boolean responsableLegal;
-
     private String numeroSiret;
 
     @Column(length = 2000)
@@ -137,14 +135,6 @@ public class Inscripteur implements Serializable {
         } else {
             this.coordonnees = coordonnees;
         }
-    }
-
-    public boolean isResponsableLegal() {
-        return responsableLegal;
-    }
-
-    public void setResponsableLegal(boolean responsableLegal) {
-        this.responsableLegal = responsableLegal;
     }
 
     public String getNumeroSiret() {
