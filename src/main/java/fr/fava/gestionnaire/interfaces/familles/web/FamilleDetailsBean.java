@@ -91,8 +91,6 @@ public class FamilleDetailsBean implements Serializable, CompleteCommune {
 
     public void updateMembre() {
         membreService.update(membreForm);
-        init();
-        membreForm = selectedMembre;
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informations sur le membre sauvées", ""));
     }
 

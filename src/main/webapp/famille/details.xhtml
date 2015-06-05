@@ -62,8 +62,13 @@
                                                         <f:convertDateTime pattern="dd/MM/yyyy" />
                                                     </h:outputText>
                                                 </p:column>
-                                                <p:column>
-                                                    bouton loupe
+                                                <p:column width="100">
+                                                    <p:button 
+                                                        outcome="/sejour/details.xhtml"
+                                                        styleClass="btn-default" 
+                                                        icon="ui-icon-pencil">
+                                                        <f:param name="id" value="#{bean.id}"></f:param>
+                                                    </p:button>
                                                 </p:column>
                                             </p:dataTable>
                                         </p:tab>

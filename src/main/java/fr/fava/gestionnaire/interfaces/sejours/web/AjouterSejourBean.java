@@ -35,9 +35,9 @@ public class AjouterSejourBean implements Serializable {
         form = new AjouterSejourDTO();
     }
 
-    public void ajouter() {
-        sejourService.create(form);
-        form = new AjouterSejourDTO();
+    public String ajouter() {
+        long sejourId = sejourService.create(form);
+        return "/sejour/details.xhtml?id=" + sejourId + "&faces-redirect=true";
     }
 
     public List<FamilleDTO> completeFamille(String query) {

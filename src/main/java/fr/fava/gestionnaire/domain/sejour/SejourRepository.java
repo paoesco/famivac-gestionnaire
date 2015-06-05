@@ -22,4 +22,8 @@ public class SejourRepository {
                 .getResultList();
     }
 
+    public Sejour get(long id) {
+        return entityManager.find(Sejour.class, id);
+    }
+
 }

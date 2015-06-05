@@ -27,6 +27,7 @@ public class SejoursBean implements Serializable {
     }
 
     public void supprimer(Long id) {
+        sejourService.delete(id);
         init(); // recharge des séjours
     }
 
