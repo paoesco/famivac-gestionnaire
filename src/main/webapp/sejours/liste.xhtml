@@ -27,6 +27,45 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">Rechercher</div>
                             <div class="panel-body">
+                                <h:form id="form" role="form">
+                                    <p:focus context="form"/>
+                                    <div class="form-group">
+                                        <label for="form_nom">Nom famille</label>
+                                        <p:inputText 
+                                            styleClass="form-control" 
+                                            value="#{rechercherSejoursForm.nomReferent}"
+                                            placeholder="Nom référent famille"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="form_prenom">Prénom famille</label>
+                                        <p:inputText 
+                                            styleClass="form-control" 
+                                            value="#{rechercherSejoursForm.prenomReferent}"
+                                            placeholder="Prénom référent famille"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="form_nom">Nom enfant</label>
+                                        <p:inputText 
+                                            styleClass="form-control" 
+                                            value="#{rechercherSejoursForm.nomEnfant}"
+                                            placeholder="Nom enfant"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="form_prenom">Prénom enfant</label>
+                                        <p:inputText 
+                                            styleClass="form-control" 
+                                            value="#{rechercherSejoursForm.prenomEnfant}"
+                                            placeholder="Prénom enfant"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:commandButton 
+                                            styleClass="btn-primary" 
+                                            value="Rechercher"
+                                            update=":datatable"
+                                            actionListener="#{sejoursBean.rechercher()}"
+                                            icon="ui-icon-search"/>
+                                    </div>
+                                </h:form> 
                             </div>
                         </div>
                     </div>

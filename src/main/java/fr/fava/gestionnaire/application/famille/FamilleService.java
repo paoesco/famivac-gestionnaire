@@ -14,7 +14,6 @@ import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.QueryParam;
 import net.bull.javamelody.MonitoringInterceptor;
 
 /**
@@ -50,11 +49,11 @@ public class FamilleService {
         return entity.getId();
     }
 
-    public Famille retrieve(@PathParam("id") long id) {
+    public Famille get(@PathParam("id") long id) {
         return entityManager.find(Famille.class, id);
     }
 
-    public List<FamilleDTO> retrieve(String nomReferent, @QueryParam("param1") String prenomReferent) {
+    public List<FamilleDTO> rechercher(String nomReferent, String prenomReferent) {
         List<Famille> beans = repository.retrieve(nomReferent, prenomReferent);
         List<FamilleDTO> dtos = beans.stream().map((Famille f) -> {
             return new FamilleDTO(f);
@@ -105,8 +104,8 @@ public class FamilleService {
         MembreFamille membre = entityManager.find(MembreFamille.class, membreId);
         famille.retirerMembre(membre);
     }
-    
-    public void definirReferent(long familleId, long membreId){
+
+    public void definirReferent(long familleId, long membreId) {
         Famille famille = entityManager.find(Famille.class, familleId);
         famille.definirReferent(membreId);
     }

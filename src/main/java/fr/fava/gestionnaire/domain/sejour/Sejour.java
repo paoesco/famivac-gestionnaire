@@ -34,11 +34,14 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NamedQueries({
     @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_LA_FAMILLE, query = "select s from Sejour s where s.famille.id = :familleId order by s.dateDebut"),
-    @NamedQuery(name = Sejour.QUERY_SEJOURS_RETRIEVE, query = "select s from Sejour s order by s.dateDebut, s.dateFin")})
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_RETRIEVE, query = "select s from Sejour s order by s.dateDebut, s.dateFin"),
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_RECHERCHER, query = "select s from Sejour s join s.famille f join f.membres m where lower(s.enfant.nom) like :nomEnfant and lower(s.enfant.prenom) like :prenomEnfant and lower(m.nom) like :nomReferent and lower(m.prenom) like :prenomReferent and m.referent = true  order by s.dateDebut, s.dateFin")
+})
 public class Sejour implements Serializable {
 
     public static final String QUERY_SEJOURS_DE_LA_FAMILLE = "querySejoursDeLaFamille";
     public static final String QUERY_SEJOURS_RETRIEVE = "querySejoursRetrieve";
+    public static final String QUERY_SEJOURS_RECHERCHER = "querySejoursRechercher";
 
     @Id
     @GeneratedValue
@@ -102,12 +105,7 @@ public class Sejour implements Serializable {
 
     public int nombreJours() {
         LocalDate lDateDebut = dateDebut.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate lDateFin;
-        if (Objects.isNull(dateFinReelle)) {
-            lDateFin = dateFin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        } else {
-            lDateFin = dateFinReelle.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        }
+        LocalDate lDateFin = getDateFinEffective().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         return Period.between(lDateDebut, lDateFin).getDays();
     }
 

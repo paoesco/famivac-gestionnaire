@@ -1,8 +1,8 @@
-package fr.fava.gestionnaire.interfaces.enfants.web;
+package fr.fava.gestionnaire.interfaces.web.inscripteurs;
 
 import fr.fava.gestionnaire.application.CommuneService;
-import fr.fava.gestionnaire.application.enfant.EnfantService;
-import fr.fava.gestionnaire.domain.enfant.Enfant;
+import fr.fava.gestionnaire.application.enfant.InscripteurService;
+import fr.fava.gestionnaire.domain.inscripteur.Inscripteur;
 import fr.fava.gestionnaire.domain.inscripteur.TypeInscripteur;
 import fr.fava.gestionnaire.interfaces.web.utils.CompleteCommune;
 import java.io.Serializable;
@@ -17,25 +17,30 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class EnfantDetailsBean implements Serializable, CompleteCommune {
+public class InscripteurDetailsBean implements Serializable, CompleteCommune {
 
     private long id;
 
-    private Enfant form;
+    private Inscripteur form;
 
     @Inject
     private CommuneService communeService;
 
     @Inject
-    private EnfantService enfantService;
+    private InscripteurService inscripteurService;
 
     public void init() {
-        form = enfantService.retrieve(id);
+        form = inscripteurService.retrieve(id);
     }
 
     public void update() {
-        enfantService.update(form);
+        inscripteurService.update(form);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informations sauvées", ""));
+    }
+
+    public void supprimerEnfant(long enfantId) {
+        inscripteurService.retirerEnfant(enfantId);
+        init();
     }
 
     public long getId() {
@@ -46,11 +51,11 @@ public class EnfantDetailsBean implements Serializable, CompleteCommune {
         this.id = id;
     }
 
-    public Enfant getForm() {
+    public Inscripteur getForm() {
         return form;
     }
 
-    public void setForm(Enfant form) {
+    public void setForm(Inscripteur form) {
         this.form = form;
     }
 
@@ -60,16 +65,12 @@ public class EnfantDetailsBean implements Serializable, CompleteCommune {
     }
 
     public boolean isTypeInscripteurParticulier() {
-        return TypeInscripteur.PARTICULIER.equals(form.getInscripteur().getType());
+        return TypeInscripteur.PARTICULIER.equals(form.getType());
     }
 
     public boolean isTypeServiceSocialOuAutre() {
-        return TypeInscripteur.SERVICE_SOCIAL.equals(form.getInscripteur().getType())
-                || TypeInscripteur.AUTRE.equals(form.getInscripteur().getType());
-    }
-
-    public boolean isInscripteurEstResponsableLegal() {
-        return form.isInscripteurEstResponsableLegal();
+        return TypeInscripteur.SERVICE_SOCIAL.equals(form.getType())
+                || TypeInscripteur.AUTRE.equals(form.getType());
     }
 
 }
