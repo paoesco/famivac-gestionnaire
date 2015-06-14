@@ -34,10 +34,8 @@ public class FamilleService {
         Commune communeFamille = new Commune(request.getAdresse().getCommune().getCode(), request.getAdresse().getCommune().getVille());
         Adresse adresse = new Adresse(request.getAdresse().getLigneAdresseUne(), request.getAdresse().getLigneAdresseDeux(), communeFamille);
         Famille entity = new Famille(adresse, request.getProjet());
-        entityManager.persist(entity);
-
         Commune communeMembre = request.getMembrePrincipal().getCommuneDeNaissance();
-        MembreFamille membre = new MembreFamille(entity,
+        MembreFamille membre = new MembreFamille(
                 request.getMembrePrincipal().getNom(),
                 request.getMembrePrincipal().getNomDeNaissance(),
                 request.getMembrePrincipal().getPrenom(),
@@ -47,8 +45,8 @@ public class FamilleService {
                 true,
                 communeMembre,
                 request.getMembrePrincipal().getCoordonnees());
-        entityManager.persist(membre);
         entity.ajouterMembre(membre);
+        entityManager.persist(entity);
         return entity.getId();
     }
 
@@ -88,7 +86,7 @@ public class FamilleService {
             throw new IllegalArgumentException("La famille n'existe pas");
         }
         Commune commune = new Commune(request.getCommuneDeNaissance().getCode(), request.getCommuneDeNaissance().getVille());
-        MembreFamille membre = new MembreFamille(famille,
+        MembreFamille membre = new MembreFamille(
                 request.getNom(),
                 request.getNomDeNaissance(),
                 request.getPrenom(),
@@ -97,10 +95,20 @@ public class FamilleService {
                 request.getProfession(),
                 commune,
                 request.getCoordonnees());
-        entityManager.persist(membre);
         famille.ajouterMembre(membre);
         return membre.getId();
 
+    }
+
+    public void removeMembre(long familleId, long membreId) {
+        Famille famille = entityManager.find(Famille.class, familleId);
+        MembreFamille membre = entityManager.find(MembreFamille.class, membreId);
+        famille.retirerMembre(membre);
+    }
+    
+    public void definirReferent(long familleId, long membreId){
+        Famille famille = entityManager.find(Famille.class, familleId);
+        famille.definirReferent(membreId);
     }
 
     public Chambre addChambre(long familleId, Chambre entity) {

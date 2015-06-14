@@ -101,13 +101,13 @@ public class FamilleDetailsBean implements Serializable, CompleteCommune {
     }
 
     public void retirerMembre(MembreDTO membre) {
-        membreService.delete(membre.getId());
+        familleService.removeMembre(id, membre.getId());
         init();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Membre retiré", ""));
     }
 
     public void definirReferent(MembreDTO membre) {
-        membreService.definirReferent(membre.getId());
+        familleService.definirReferent(id, membre.getId());
         init();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, MessageFormat.format("{0} {1} est désormais le membre référent de la famille", membre.getPrenom(), membre.getNom()), ""));
     }

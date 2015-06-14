@@ -35,10 +35,10 @@
             <artifactId>bootstrap</artifactId>  
             <version>1.0.10</version>  
         </dependency>
-        <dependency>
+                <dependency>
             <groupId>net.bull.javamelody</groupId>
             <artifactId>javamelody-core</artifactId>
-            <version>1.55.0</version>
+            <version>1.56.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -57,6 +57,19 @@
             <groupId>junit</groupId>  
             <artifactId>junit</artifactId>  
             <scope>test</scope> 
+        </dependency>
+        
+        <dependency>  
+            <groupId>org.hsqldb</groupId>  
+            <artifactId>hsqldb</artifactId>  
+            <scope>test</scope> 
+        </dependency>
+        
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.3.7.Final</version>
+            <scope>test</scope>
         </dependency>
         
         <dependency>

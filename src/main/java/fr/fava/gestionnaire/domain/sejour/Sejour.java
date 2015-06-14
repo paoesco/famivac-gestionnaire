@@ -1,21 +1,27 @@
 package fr.fava.gestionnaire.domain.sejour;
 
 import fr.fava.gestionnaire.domain.enfant.Enfant;
+import fr.fava.gestionnaire.domain.enfant.Payeur;
 import fr.fava.gestionnaire.domain.famille.Famille;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -62,7 +68,12 @@ public class Sejour implements Serializable {
     private Date dateFinReelle;
     private int tarif;
 
+    @OneToMany(mappedBy = "sejour")
+    private Set<Payeur> payeurs;
+
     protected Sejour() {
+        this.tarif = 0;
+        this.payeurs = new HashSet<>();
     }
 
     protected Sejour(Date dateDebut, Date dateFin) {
@@ -71,6 +82,8 @@ public class Sejour implements Serializable {
         }
         this.dateDebut = (Date) dateDebut.clone();
         this.dateFin = (Date) dateFin.clone();
+        this.tarif = 0;
+        this.payeurs = new HashSet<>();
     }
 
     public Sejour(Famille famille, Enfant enfant, Date dateDebut, Date dateFin) {
@@ -83,6 +96,8 @@ public class Sejour implements Serializable {
         this.retour = new Voyage();
         this.dateDebut = (Date) dateDebut.clone();
         this.dateFin = (Date) dateFin.clone();
+        this.tarif = 0;
+        this.payeurs = new HashSet<>();
     }
 
     public int nombreJours() {
@@ -156,6 +171,28 @@ public class Sejour implements Serializable {
 
     public Date getDateFinEffective() {
         return getDateFinReelle() == null ? getDateFin() : getDateFinReelle();
+    }
+
+    public Set<Payeur> getPayeurs() {
+        return Collections.unmodifiableSet(payeurs);
+    }
+
+    public void setPayeurs(Set<Payeur> payeurs) {
+        this.payeurs = new HashSet<>(payeurs);
+    }
+
+    public void ajouterPayeur(Payeur payeur) {
+        if (payeur == null) {
+            throw new IllegalArgumentException("Le payeur est obligatoire");
+        }
+        this.payeurs.add(payeur);
+    }
+
+    public void retirerPayeur(Payeur payeur) {
+        if (payeur == null) {
+            throw new IllegalArgumentException("Le payeur est obligatoire");
+        }
+        this.payeurs.remove(payeur);
     }
 
 }

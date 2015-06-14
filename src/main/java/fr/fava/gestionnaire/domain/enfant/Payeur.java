@@ -2,16 +2,15 @@ package fr.fava.gestionnaire.domain.enfant;
 
 import fr.fava.gestionnaire.domain.inscripteur.TypeInscripteur;
 import fr.fava.gestionnaire.domain.common.Adresse;
+import fr.fava.gestionnaire.domain.sejour.Sejour;
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.Set;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -24,9 +23,6 @@ public class Payeur implements Serializable {
     @GeneratedValue
     private Long id;
 
-    @OneToMany
-    private Set<Enfant> enfants;
-
     @Enumerated(EnumType.STRING)
     private TypeInscripteur type;
 
@@ -37,24 +33,15 @@ public class Payeur implements Serializable {
     @Embedded
     private Adresse adresse;
 
+    @ManyToOne
+    private Sejour sejour;
+
     public Payeur() {
         adresse = new Adresse();
     }
 
     public Long getId() {
         return id;
-    }
-
-    public Set<Enfant> getEnfants() {
-        return Collections.unmodifiableSet(enfants);
-    }
-
-    public void ajouterEnfant(Enfant enfant) {
-        enfants.add(enfant);
-    }
-
-    public void retirerEnfant(Enfant enfant) {
-        enfants.remove(enfant);
     }
 
     public TypeInscripteur getType() {
@@ -87,6 +74,14 @@ public class Payeur implements Serializable {
 
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
+    }
+
+    public Sejour getSejour() {
+        return sejour;
+    }
+
+    public void setSejour(Sejour sejour) {
+        this.sejour = sejour;
     }
 
 }

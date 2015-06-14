@@ -17,10 +17,10 @@ import net.bull.javamelody.MonitoringInterceptor;
 @Stateless
 @Interceptors({MonitoringInterceptor.class})
 public class MembreService {
-    
+
     @Inject
     private EntityManager entityManager;
-    
+
     public MembreDTO retrieve(@PathParam("id") long id) {
         MembreFamille entity = entityManager.find(MembreFamille.class, id);
         MembreDTO dto = new MembreDTO();
@@ -37,9 +37,9 @@ public class MembreService {
         dto.setSexe(entity.getSexe().name());
         dto.setCoordonnees(entity.getCoordonnees());
         return dto;
-        
+
     }
-    
+
     public void update(MembreDTO request) {
         MembreFamille entity = entityManager.find(MembreFamille.class, request.getId());
         Commune commune = new Commune(request.getCommuneDeNaissance().getCode(), request.getCommuneDeNaissance().getVille());
@@ -55,21 +55,5 @@ public class MembreService {
         entity.setCoordonnees(request.getCoordonnees());
         entityManager.merge(entity);
     }
-    
-    public void definirReferent(long id) {
-        MembreFamille entity = entityManager.find(MembreFamille.class, id);
-        entity.setReferent(true);
-        entity.getFamille().getMembres().stream().forEach((MembreFamille m) -> {
-            if (m.getId() != id) {
-                m.setReferent(false);
-            }
-        });
-    }
-    
-    public void delete(@PathParam("id") long id) {
-        MembreFamille entity = entityManager.find(MembreFamille.class, id);
-        entity.getFamille().retirerMembre(entity);
-        entityManager.remove(entity);
-    }
-    
+
 }

@@ -29,10 +29,6 @@ public class MembreFamille implements Serializable {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Famille famille;
-
     @Column(nullable = false)
     private String nom;
 
@@ -67,13 +63,12 @@ public class MembreFamille implements Serializable {
         coordonnees = new Coordonnees();
     }
 
-    public MembreFamille(Famille famille, String nom, String nomDeNaissance, String prenom, Sexe sexe, Date dateNaissance, String profession, Commune communeDeNaissance, Coordonnees coordonnees) {
-        this(famille, nom, nomDeNaissance, prenom, sexe, dateNaissance, profession, false, communeDeNaissance, coordonnees);
+    public MembreFamille(String nom, String nomDeNaissance, String prenom, Sexe sexe, Date dateNaissance, String profession, Commune communeDeNaissance, Coordonnees coordonnees) {
+        this(nom, nomDeNaissance, prenom, sexe, dateNaissance, profession, false, communeDeNaissance, coordonnees);
     }
 
-    public MembreFamille(Famille famille, String nom, String nomDeNaissance, String prenom, Sexe sexe, Date dateNaissance, String profession, boolean referent, Commune communeDeNaissance, Coordonnees coordonnees) {
-        if (famille == null
-                || nom == null
+    public MembreFamille(String nom, String nomDeNaissance, String prenom, Sexe sexe, Date dateNaissance, String profession, boolean referent, Commune communeDeNaissance, Coordonnees coordonnees) {
+        if (nom == null
                 || nom.isEmpty()
                 || prenom == null
                 || prenom.isEmpty()
@@ -82,7 +77,6 @@ public class MembreFamille implements Serializable {
                 || communeDeNaissance == null) {
             throw new IllegalArgumentException("Tous les paramètres sont obligatoires");
         }
-        this.famille = famille;
         this.nom = nom;
         this.nomDeNaissance = nomDeNaissance;
         this.prenom = prenom;
@@ -101,10 +95,6 @@ public class MembreFamille implements Serializable {
 
     public Long getId() {
         return id;
-    }
-
-    public Famille getFamille() {
-        return famille;
     }
 
     public String getNom() {
