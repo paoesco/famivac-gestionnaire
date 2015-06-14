@@ -23,7 +23,7 @@
         <logout/>
     </http>
     
-    <jee:jndi-lookup id="datasource" jndi-name="java:/jboss/datasources/MySQLDS" expected-type="javax.sql.DataSource" />
+    <jee:jndi-lookup id="datasource" jndi-name="java:/jboss/datasources/PostgreSQLDS" expected-type="javax.sql.DataSource" />
     
     <authentication-manager>
         <authentication-provider>
