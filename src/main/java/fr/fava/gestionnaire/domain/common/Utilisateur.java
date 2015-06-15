@@ -58,8 +58,8 @@ public class Utilisateur implements Serializable {
             Set<Groupe> groupes,
             String nom,
             String prenom) {
-        this.login = login;
-        this.email = email;
+        this.login = login.trim().toLowerCase();
+        this.email = email.trim();
         this.password = password;
         this.groupes = new HashSet<>(groupes);
         this.nom = nom;

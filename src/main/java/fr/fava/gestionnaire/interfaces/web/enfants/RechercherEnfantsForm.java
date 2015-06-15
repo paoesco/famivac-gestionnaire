@@ -1,4 +1,4 @@
-package fr.fava.gestionnaire.interfaces.enfants.web;
+package fr.fava.gestionnaire.interfaces.web.enfants;
 
 import java.io.Serializable;
 import javax.faces.view.ViewScoped;

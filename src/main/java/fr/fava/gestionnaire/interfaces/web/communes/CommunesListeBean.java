@@ -1,4 +1,4 @@
-package fr.fava.gestionnaire.interfaces.communes.web;
+package fr.fava.gestionnaire.interfaces.web.communes;
 
 import fr.fava.gestionnaire.domain.common.Commune;
 import fr.fava.gestionnaire.application.CommuneService;

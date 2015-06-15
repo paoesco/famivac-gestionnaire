@@ -2,6 +2,7 @@ package fr.fava.gestionnaire.interfaces.web.moncompte;
 
 import fr.fava.gestionnaire.application.UtilisateurService;
 import fr.fava.gestionnaire.application.exceptions.WrongPasswordException;
+import fr.fava.gestionnaire.interfaces.web.utils.SessionBean;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -22,6 +23,9 @@ public class ChangerMotDePasseBean {
     private String newPassword;
 
     private String confirmNewPassword;
+    
+    @Inject
+    private SessionBean sessionBean;
 
     @Inject
     private UtilisateurService utilisateurService;
@@ -33,7 +37,7 @@ public class ChangerMotDePasseBean {
             return;
         }
         try {
-            utilisateurService.changePassword("pescobar", actualPassword, newPassword);
+            utilisateurService.changePassword(sessionBean.getConnectedUser().getLogin(), actualPassword, newPassword);
             actualPassword = "";
             newPassword = "";
             confirmNewPassword = "";

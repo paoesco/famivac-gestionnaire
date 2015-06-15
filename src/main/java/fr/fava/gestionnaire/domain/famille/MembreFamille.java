@@ -49,7 +49,7 @@ public class MembreFamille implements Serializable {
     private boolean referent;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn
     private Commune communeDeNaissance;
 
     private String profession;

@@ -35,11 +35,11 @@
                 authorities-by-username-query=
 		    " select utilisateurs_login,groupes_nom from Utilisateur_Groupe where utilisateurs_login = ? " />
         </authentication-provider>
-        <authentication-provider>
+<!--        <authentication-provider>
             <user-service>
                 <user name="admin" password="admin123" authorities="ROLE_GESTIONNAIRE, ROLE_ADMIN, ROLE_MONITORING" />
                 <user name="user" password="user123" authorities="ROLE_GESTIONNAIRE" />
             </user-service>
-        </authentication-provider>
+        </authentication-provider>-->
     </authentication-manager>
 </beans:beans>
