@@ -23,17 +23,14 @@
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
-    
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
-
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping> 
-    
+    </filter-mapping>
     <filter>
         <filter-name>monitoring</filter-name>
         <filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
@@ -42,16 +39,13 @@
         <filter-name>monitoring</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
     <listener>
         <listener-class>net.bull.javamelody.SessionListener</listener-class>
     </listener>
-    
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    
-<!--    <security-constraint>
+    <!--    <security-constraint>
         <display-name>Restrict raw XHTML Documents</display-name>
         <web-resource-collection>
             <web-resource-name>XHTML</web-resource-name>
@@ -59,4 +53,17 @@
         </web-resource-collection>
         <auth-constraint />
     </security-constraint>-->
+    <security-constraint>
+        <display-name>SSL</display-name>
+        <web-resource-collection>
+            <web-resource-name>All</web-resource-name>
+            <description/>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    
 </web-app>
