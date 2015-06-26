@@ -23,6 +23,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -107,12 +108,16 @@ public class Famille implements Serializable {
     @Column(length = 2000)
     private String remarque;
 
+    @OneToOne(mappedBy = "famille", cascade = CascadeType.ALL, orphanRemoval = true)
+    private InformationsHabitation informationsHabitation;
+
     protected Famille() {
-        adresse = new Adresse();
-        membres = new HashSet<>();
-        chambres = new HashSet<>();
-        tranchesAges = new HashSet<>();
-        periodesSouhaitees = new HashSet<>();
+        this.adresse = new Adresse();
+        this.membres = new HashSet<>();
+        this.chambres = new HashSet<>();
+        this.tranchesAges = new HashSet<>();
+        this.periodesSouhaitees = new HashSet<>();
+        this.informationsHabitation = new InformationsHabitation(this);
     }
 
     public Famille(Adresse adresse, String projet) {
@@ -125,6 +130,7 @@ public class Famille implements Serializable {
         membres = new HashSet<>();
         this.projet = projet;
         chambres = new HashSet<>();
+        this.informationsHabitation = new InformationsHabitation(this);
     }
 
     public void ajouterChambre(Chambre chambre) {
@@ -347,6 +353,14 @@ public class Famille implements Serializable {
 
     public void setRemarque(String remarque) {
         this.remarque = remarque;
+    }
+
+    public InformationsHabitation getInformationsHabitation() {
+        return informationsHabitation == null ? new InformationsHabitation() : informationsHabitation;
+    }
+
+    public void setInformationsHabitation(InformationsHabitation informationsHabitation) {
+        this.informationsHabitation = informationsHabitation;
     }
 
 }

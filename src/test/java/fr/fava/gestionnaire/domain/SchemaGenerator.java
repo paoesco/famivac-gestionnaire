@@ -6,10 +6,9 @@ import javax.persistence.Persistence;
  *
  * @author paoesco
  */
-public class JpaUtils {
+public class SchemaGenerator {
 
     public static void main(String[] args) {
         Persistence.generateSchema("gestionnairePUTest", null);
     }
-
 }

@@ -7,6 +7,7 @@ import fr.fava.gestionnaire.domain.common.Commune;
 import fr.fava.gestionnaire.domain.famille.Famille;
 import fr.fava.gestionnaire.domain.famille.MembreFamille;
 import fr.fava.gestionnaire.domain.common.Sexe;
+import fr.fava.gestionnaire.domain.famille.InformationsHabitation;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.Stateless;
@@ -50,7 +51,14 @@ public class FamilleService {
     }
 
     public Famille get(@PathParam("id") long id) {
-        return entityManager.find(Famille.class, id);
+        Famille famille = entityManager.find(Famille.class, id);
+        // Migration
+        if (famille.getInformationsHabitation().getId() == null) {
+            InformationsHabitation informationsHabitation = new InformationsHabitation(famille);
+            entityManager.persist(informationsHabitation);
+            famille.setInformationsHabitation(informationsHabitation);
+        }
+        return famille;
     }
 
     public List<FamilleDTO> rechercher(String nomReferent, String prenomReferent) {

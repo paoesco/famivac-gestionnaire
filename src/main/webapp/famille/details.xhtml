@@ -30,10 +30,12 @@
                                 <h:form id="form" styleClass="form-horizontal" role="form">
                                     <p:tabView 
                                         id="tabView_famille" 
-                                        dynamic="true"
-                                        orientation="left">
+                                        dynamic="true">
                                         <p:tab id="tab_informations" title="Informations">
                                             <ui:include src="informations.xhtml"></ui:include>
+                                        </p:tab>
+                                        <p:tab id="tab_informations_habitation" title="Informations habitation">
+                                            <ui:include src="informationsHabitation.xhtml"></ui:include>
                                         </p:tab>
                                         <p:tab id="tab_accueil" title="Accueil">
                                             <ui:include src="accueil.xhtml"></ui:include>

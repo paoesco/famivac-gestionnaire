@@ -1,0 +1,3 @@
+
+create table INFORMATIONS_HABITATION (id int8 not null, AUTRES_ANIMAUX varchar(1000), JARDIN_ESCPACE_JEU boolean, NOMBRE_CHATS int4, NOMBRE_CHIENS int4, PISCINE boolean, PISCINE_SECURISE boolean, POINT_VIGILANCE varchar(1000), SITUATION_HABITATION varchar(255), TYPE_HABITATION varchar(255), VILLE_LA_PLUS_PROCHE varchar(255), FAMILLE_ID int8 not null, primary key (id))
+alter table INFORMATIONS_HABITATION add constraint FK_d18dtqqiao27ubldu9mlnvylv foreign key (FAMILLE_ID) references Famille
