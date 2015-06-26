@@ -8,6 +8,19 @@
     <packaging>war</packaging>
 
     <name>gestionnaire</name>
+    
+    <developers>
+        <developer>
+            <id>paoesco</id>
+            <name>Paolo Escobar</name>
+            <email>pao.esco@outlook.com</email>
+            <url>https://hubesco.com</url>
+        </developer>
+    </developers>
+    
+    <url>https://gestionnaire.famivac.fr</url>
+    
+    <inceptionYear>2015</inceptionYear>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
