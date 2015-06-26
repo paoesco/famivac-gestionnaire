@@ -4,7 +4,7 @@
 
     <groupId>fr.fava</groupId>
     <artifactId>gestionnaire</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>war</packaging>
 
     <name>gestionnaire</name>
