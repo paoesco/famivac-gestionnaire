@@ -1,1 +1,1 @@
-export JAVA_OPTS_EXT=-Djavamelody.datasources=java:jboss/datasources/MySQLDS
+export JAVA_OPTS_EXT=-Djavamelody.datasources=java:jboss/datasources/PostgreSQLDS
