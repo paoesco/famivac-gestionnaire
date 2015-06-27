@@ -126,6 +126,7 @@
                         <artifactId>maven-war-plugin</artifactId>
                         <version>2.3</version>
                         <configuration>
+                            <webXml>openshift/web.xml</webXml>
                             <failOnMissingWebXml>false</failOnMissingWebXml>
                             <outputDirectory>deployments</outputDirectory>
                             <warName>ROOT</warName>
