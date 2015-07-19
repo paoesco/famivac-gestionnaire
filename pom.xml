@@ -23,9 +23,9 @@
     <inceptionYear>2015</inceptionYear>
     
     <scm>
-        <connection>scm:git:git@github.com:paoesco/famivac-gestionnaire.git</connection>
+        <connection>scm:git:https://github.com/paoesco/famivac-gestionnaire.git</connection>
         <url>https://github.com/paoesco/famivac-gestionnaire.git</url>
-        <developerConnection>scm:git:git@github.com:paoesco/famivac-gestionnaire.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/paoesco/famivac-gestionnaire.git</developerConnection>
     </scm>
 
     <properties>
