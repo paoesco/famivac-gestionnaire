@@ -35,6 +35,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <!--<maven.compiler.executable>${env.OPENSHIFT_WILDFLY_DIR}usr/lib/jvm/jdk1.8.0_05/bin/javac</maven.compiler.executable>-->
         <maven.compiler.fork>true</maven.compiler.fork>
+        <additionalparam>-Xdoclint:none</additionalparam>
     </properties>
     
     <dependencies>
