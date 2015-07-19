@@ -21,6 +21,12 @@
     <url>https://gestionnaire.famivac.fr</url>
     
     <inceptionYear>2015</inceptionYear>
+    
+    <scm>
+        <connection>scm:git:git@github.com:paoesco/famivac-gestionnaire.git</connection>
+        <url>https://github.com/paoesco/famivac-gestionnaire.git</url>
+        <developerConnection>scm:git:git@paoesco/famivac-gestionnaire.git</developerConnection>
+    </scm>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
