@@ -14,6 +14,7 @@ public class SejourDTO {
     private String enfant;
     private Date dateDebut;
     private Date dateFin;
+    private String statut;
 
     public SejourDTO(Sejour bean) {
         this.id = bean.getId();
@@ -22,6 +23,7 @@ public class SejourDTO {
         this.enfant = bean.getEnfant().getPrenom() + " " + bean.getEnfant().getNom();
         this.dateDebut = bean.getDateDebut();
         this.dateFin = bean.getDateFinEffective();
+        this.statut = bean.statutDuJour().name();
     }
 
     public Long getId() {
@@ -64,4 +66,14 @@ public class SejourDTO {
         this.dateFin = dateFin;
     }
 
+    public String getStatut() {
+        return statut;
+    }
+
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
+
+    
+    
 }

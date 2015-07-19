@@ -3,6 +3,7 @@ package fr.fava.gestionnaire.domain.sejour;
 import fr.fava.gestionnaire.domain.enfant.Enfant;
 import fr.fava.gestionnaire.domain.enfant.Payeur;
 import fr.fava.gestionnaire.domain.famille.Famille;
+import fr.fava.gestionnaire.domain.utils.DateUtils;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
@@ -11,13 +12,14 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -71,6 +73,14 @@ public class Sejour implements Serializable {
     private Date dateFinReelle;
     private int tarif;
 
+    @Temporal(TemporalType.DATE)
+    @Column(name = "DATE_ANNULATION")
+    private Date dateAnnulation;
+    @Column(length = 1000, name = "MOTIF_ANNULATION")
+    private String motifAnnulation;
+    @Column(length = 1000, name = "MOTIF_FIN_SEJOUR")
+    private String motifFinSejour;
+
     @OneToMany(mappedBy = "sejour")
     private Set<Payeur> payeurs;
 
@@ -104,8 +114,11 @@ public class Sejour implements Serializable {
     }
 
     public int nombreJours() {
-        LocalDate lDateDebut = dateDebut.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate lDateFin = getDateFinEffective().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        if (getDateAnnulation() != null) {
+            return 0;
+        }
+        LocalDate lDateDebut = DateUtils.toLocalDate(getDateDebut());
+        LocalDate lDateFin = DateUtils.toLocalDate(getDateFinEffective());
         return Period.between(lDateDebut, lDateFin).getDays();
     }
 
@@ -191,6 +204,50 @@ public class Sejour implements Serializable {
             throw new IllegalArgumentException("Le payeur est obligatoire");
         }
         this.payeurs.remove(payeur);
+    }
+
+    public Date getDateAnnulation() {
+        return Objects.isNull(dateAnnulation) ? null : (Date) dateAnnulation.clone();
+    }
+
+    public void setDateAnnulation(Date dateAnnulation) {
+        this.dateAnnulation = Objects.isNull(dateAnnulation) ? null : (Date) dateAnnulation.clone();
+    }
+
+    public String getMotifAnnulation() {
+        return motifAnnulation;
+    }
+
+    public void setMotifAnnulation(String motifAnnulation) {
+        this.motifAnnulation = motifAnnulation;
+    }
+
+    public String getMotifFinSejour() {
+        return motifFinSejour;
+    }
+
+    public void setMotifFinSejour(String motifFinSejour) {
+        this.motifFinSejour = motifFinSejour;
+    }
+
+    public Optional<StatutSejour> statut(Date date) {
+        if (!Objects.isNull(getDateAnnulation())) {
+            return Optional.of(StatutSejour.ANNULE);
+        }
+        if (date.before(getDateDebut())) {
+            return Optional.of(StatutSejour.A_VENIR);
+        }
+        if (DateUtils.between(date, getDateDebut(), getDateFinEffective())) {
+            return Optional.of(StatutSejour.EN_COURS);
+        }
+        if (DateUtils.after(date, getDateFinEffective())) {
+            return getDateFinReelle() == null ? Optional.of(StatutSejour.TERMINE) : Optional.of(StatutSejour.TERMINE_PREMATUREMENT);
+        }
+        return Optional.empty();
+    }
+    
+    public StatutSejour statutDuJour() {
+        return statut(new Date()).get();
     }
 
 }

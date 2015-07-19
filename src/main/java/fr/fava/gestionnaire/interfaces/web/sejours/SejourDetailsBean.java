@@ -7,8 +7,11 @@ import fr.fava.gestionnaire.application.famille.FamilleService;
 import fr.fava.gestionnaire.application.sejour.SejourService;
 import fr.fava.gestionnaire.domain.sejour.Sejour;
 import fr.fava.gestionnaire.domain.sejour.SejourRepository;
+import fr.fava.gestionnaire.domain.sejour.StatutSejour;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -64,6 +67,26 @@ public class SejourDetailsBean implements Serializable {
         return enfantService.retrieve(query, "%");
     }
 
+    public void terminerSejour() {
+        sejourService.update(sejour);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Le séjour a été terminé.", ""));
+    }
+
+    public void annulerSejour() {
+        sejour.setDateAnnulation(new Date());
+        sejourService.update(sejour);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Le séjour a été annulé.", ""));
+    }
+    
+    public void reactiverSejour(){
+        sejour.setDateAnnulation(null);
+        sejour.setDateFinReelle(null);
+        sejour.setMotifAnnulation(null);
+        sejour.setMotifFinSejour(null);
+        sejourService.update(sejour);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Le séjour a été réactivé.", ""));
+    }
+
     public Sejour getSejour() {
         return sejour;
     }
@@ -78,6 +101,14 @@ public class SejourDetailsBean implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getStatut() {
+        Optional<StatutSejour> ostatut = sejour.statut(new Date());
+        if (!ostatut.isPresent()) {
+            return "";
+        }
+        return ostatut.get().name();
     }
 
 }

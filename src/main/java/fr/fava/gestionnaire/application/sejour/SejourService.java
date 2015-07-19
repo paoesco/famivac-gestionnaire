@@ -90,5 +90,5 @@ public class SejourService {
         Sejour sejour = entityManager.find(Sejour.class, id);
         entityManager.remove(sejour);
     }
-
+    
 }
