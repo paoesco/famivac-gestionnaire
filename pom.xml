@@ -25,7 +25,7 @@
     <scm>
         <connection>scm:git:ssh://git@github.com/paoesco/famivac-gestionnaire.git</connection>
         <url>https://github.com/paoesco/famivac-gestionnaire.git</url>
-        <developerConnection>sscm:git:ssh://git@github.com/paoesco/famivac-gestionnaire.git</developerConnection>
+        <developerConnection>scm:git:ssh://git@github.com/paoesco/famivac-gestionnaire.git</developerConnection>
     </scm>
 
     <properties>
