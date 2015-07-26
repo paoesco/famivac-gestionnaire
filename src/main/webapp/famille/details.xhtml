@@ -64,6 +64,13 @@
                                                         <f:convertDateTime pattern="dd/MM/yyyy" />
                                                     </h:outputText>
                                                 </p:column>
+                                                <p:column headerText="Statut">
+                                                    <h:outputText styleClass="label label-default" value="A venir" rendered="#{bean.statutDuJour().name().equals('A_VENIR')}"/>
+                                                    <h:outputText styleClass="label label-success" value="Terminé" rendered="#{bean.statutDuJour().name().equals('TERMINE')}"/>
+                                                    <h:outputText styleClass="label label-primary" value="En cours" rendered="#{bean.statutDuJour().name().equals('EN_COURS')}"/>
+                                                    <h:outputText styleClass="label label-default" value="Annulé" rendered="#{bean.statutDuJour().name().equals('ANNULE')}"/>
+                                                    <h:outputText styleClass="label label-warning" value="Terminé prém." rendered="#{bean.statutDuJour().name().equals('TERMINE_PREMATUREMENT')}"/>
+                                                </p:column>
                                                 <p:column width="100">
                                                     <p:button 
                                                         outcome="/sejour/details.xhtml"
