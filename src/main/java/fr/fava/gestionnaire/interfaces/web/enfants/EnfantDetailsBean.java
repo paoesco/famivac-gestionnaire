@@ -3,6 +3,7 @@ package fr.fava.gestionnaire.interfaces.web.enfants;
 import fr.fava.gestionnaire.application.CommuneService;
 import fr.fava.gestionnaire.application.enfant.EnfantService;
 import fr.fava.gestionnaire.domain.enfant.Enfant;
+import fr.fava.gestionnaire.domain.enfant.FamilleAccueil;
 import fr.fava.gestionnaire.domain.inscripteur.TypeInscripteur;
 import fr.fava.gestionnaire.interfaces.web.utils.CompleteCommune;
 import java.io.Serializable;
@@ -23,6 +24,8 @@ public class EnfantDetailsBean implements Serializable, CompleteCommune {
 
     private Enfant form;
 
+    private FamilleAccueil formFamilleAccueil;
+
     @Inject
     private CommuneService communeService;
 
@@ -31,9 +34,20 @@ public class EnfantDetailsBean implements Serializable, CompleteCommune {
 
     public void init() {
         form = enfantService.retrieve(id);
+        if (form.getFamilleAccueil() == null) {
+            formFamilleAccueil = new FamilleAccueil();
+        } else {
+            formFamilleAccueil = form.getFamilleAccueil();
+        }
     }
 
     public void update() {
+        enfantService.update(form);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informations sauvées", ""));
+    }
+
+    public void updateFamilleAccueil() {
+        form.setFamilleAccueil(formFamilleAccueil);
         enfantService.update(form);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informations sauvées", ""));
     }
@@ -70,6 +84,14 @@ public class EnfantDetailsBean implements Serializable, CompleteCommune {
 
     public boolean isInscripteurEstResponsableLegal() {
         return form.isInscripteurEstResponsableLegal();
+    }
+
+    public FamilleAccueil getFormFamilleAccueil() {
+        return formFamilleAccueil;
+    }
+
+    public void setFormFamilleAccueil(FamilleAccueil formFamilleAccueil) {
+        this.formFamilleAccueil = formFamilleAccueil;
     }
 
 }

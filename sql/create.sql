@@ -1,7 +1,8 @@
 create table Chambre (id int8 not null, nombreLits int4 not null, famille_id int8, primary key (id))
 create table Commune (code varchar(255) not null, ville varchar(255) not null, primary key (code))
-create table Enfant (id int8 not null, classeFrequentee varchar(255), dateNaissance date, attestationCMU boolean not null, carteVitale boolean not null, contactUrgence varchar(255), enuretique boolean not null, familleASE boolean not null, telephoneUrgence varchar(255), inscripteurEstResponsableLegal boolean not null, nom varchar(255), prenom varchar(255), remarque varchar(2000), sexe varchar(255), inscripteur_id int8, responsableLegal_id int8, primary key (id))
+create table Enfant (id int8 not null, classeFrequentee varchar(255), dateNaissance date, attestationCMU boolean not null, carteVitale boolean not null, contactUrgence varchar(255), enuretique boolean not null, familleASE boolean not null, telephoneUrgence varchar(255), inscripteurEstResponsableLegal boolean not null, nom varchar(255), prenom varchar(255), remarque varchar(2000), sexe varchar(255), familleAccueil_id int8, inscripteur_id int8, responsableLegal_id int8, primary key (id))
 create table Famille (id int8 not null, accepteHandicap boolean not null, accepteMalade boolean not null, ligneAdresseDeux varchar(255) not null, ligneAdresseUne varchar(255) not null, avisDdcs varchar(255), avisRecrutement varchar(255), connaissanceAssociation varchar(2000), dateReceptionCasierJudiciaire date, dateRecrutement date, dateVisiteDdcs date, extraitCasierJudiciaire boolean not null, nomRecruteur varchar(255), nombreFillesSouhaitees int4, nombreGarconsSouhaites int4, precisionsSejoursNonComplets varchar(255), projet varchar(2000) not null, remarque varchar(2000), sejoursComplets boolean not null, visiteDdcs boolean not null, commune_code varchar(255) not null, primary key (id))
+create table FamilleAccueil (id int8 not null, ligneAdresseDeux varchar(255) not null, ligneAdresseUne varchar(255) not null, email varchar(255), fax varchar(255), telephone1 varchar(255), telephone2 varchar(255), nom varchar(255), prenom varchar(255), commune_code varchar(255) not null, primary key (id))
 create table Famille_Chambre (Famille_id int8 not null, chambres_id int8 not null, primary key (Famille_id, chambres_id))
 create table Famille_periodesSouhaitees (Famille_id int8 not null, periodesSouhaitees varchar(255))
 create table Famille_tranchesAges (Famille_id int8 not null, tranchesAges varchar(255))
@@ -12,15 +13,17 @@ create table MembreFamille (id int8 not null, email varchar(255), fax varchar(25
 create table Payeur (id int8 not null, ligneAdresseDeux varchar(255) not null, ligneAdresseUne varchar(255) not null, nom varchar(255), prenom varchar(255), type varchar(255), commune_code varchar(255) not null, sejour_id int8, primary key (id))
 create table ResponsableInscripteur (id int8 not null, email varchar(255), fax varchar(255), telephone1 varchar(255), telephone2 varchar(255), nom varchar(255), prenom varchar(255), primary key (id))
 create table ResponsableLegal (id int8 not null, ligneAdresseDeux varchar(255) not null, ligneAdresseUne varchar(255) not null, email varchar(255), fax varchar(255), telephone1 varchar(255), telephone2 varchar(255), lienDeParente varchar(255), nom varchar(255), organisme varchar(255), prenom varchar(255), type varchar(255), commune_code varchar(255) not null, primary key (id))
-create table Sejour (id int8 not null, DATE_ANNULATION date, dateDebut date, dateFin date, dateFinReelle date, MOTIF_ANNULATION varchar(1000), tarif int4 not null, aller_id int8, enfant_id int8, famille_id int8, retour_id int8, primary key (id))
+create table Sejour (id int8 not null, DATE_ANNULATION date, dateDebut date, dateFin date, dateFinReelle date, MOTIF_ANNULATION varchar(1000), MOTIF_FIN_SEJOUR varchar(1000), tarif int4 not null, aller_id int8, enfant_id int8, famille_id int8, retour_id int8, primary key (id))
 create table Utilisateur (login varchar(255) not null, email varchar(2000) not null, enabled boolean not null, nom varchar(255) not null, password varchar(2000) not null, prenom varchar(255) not null, primary key (login))
 create table Utilisateur_Groupe (utilisateurs_login varchar(255) not null, groupes_nom varchar(255) not null, primary key (utilisateurs_login, groupes_nom))
 create table Voyage (id int8 not null, dateVoyage date, heureArrivee time, heureDepart time, lieuArrivee varchar(255), lieuRendezVous varchar(255), nomPersonneAReception varchar(255), telephonePersonneAReception varchar(255), transport varchar(255), primary key (id))
 alter table Famille_Chambre add constraint UK_2016dhn9lku68h1d75vy1ubco  unique (chambres_id)
 alter table Chambre add constraint FK_ii7teigi7o2vw9x1e6ypbvgaw foreign key (famille_id) references Famille
+alter table Enfant add constraint FK_evct0xayck0q16x5dglh6jnar foreign key (familleAccueil_id) references FamilleAccueil
 alter table Enfant add constraint FK_b3e453tqcl64uhpj7lw0ift2k foreign key (inscripteur_id) references Inscripteur
 alter table Enfant add constraint FK_5ho4f6qcgy7eyvib7832i1ljj foreign key (responsableLegal_id) references ResponsableLegal
 alter table Famille add constraint FK_6x3ukx5a2whssi5k41lhek7ul foreign key (commune_code) references Commune
+alter table FamilleAccueil add constraint FK_qxirdjdt8v0qjodusqgfeksk1 foreign key (commune_code) references Commune
 alter table Famille_Chambre add constraint FK_2016dhn9lku68h1d75vy1ubco foreign key (chambres_id) references Chambre
 alter table Famille_Chambre add constraint FK_3gijihmcsur0c1m7gxn5ymqk4 foreign key (Famille_id) references Famille
 alter table Famille_periodesSouhaitees add constraint FK_kr79t281hqi7gfg6jbpsw6xs5 foreign key (Famille_id) references Famille

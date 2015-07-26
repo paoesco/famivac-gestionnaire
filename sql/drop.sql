@@ -1,7 +1,9 @@
 alter table Chambre drop constraint FK_ii7teigi7o2vw9x1e6ypbvgaw
+alter table Enfant drop constraint FK_evct0xayck0q16x5dglh6jnar
 alter table Enfant drop constraint FK_b3e453tqcl64uhpj7lw0ift2k
 alter table Enfant drop constraint FK_5ho4f6qcgy7eyvib7832i1ljj
 alter table Famille drop constraint FK_6x3ukx5a2whssi5k41lhek7ul
+alter table FamilleAccueil drop constraint FK_qxirdjdt8v0qjodusqgfeksk1
 alter table Famille_Chambre drop constraint FK_2016dhn9lku68h1d75vy1ubco
 alter table Famille_Chambre drop constraint FK_3gijihmcsur0c1m7gxn5ymqk4
 alter table Famille_periodesSouhaitees drop constraint FK_kr79t281hqi7gfg6jbpsw6xs5
@@ -24,6 +26,7 @@ drop table if exists Chambre cascade
 drop table if exists Commune cascade
 drop table if exists Enfant cascade
 drop table if exists Famille cascade
+drop table if exists FamilleAccueil cascade
 drop table if exists Famille_Chambre cascade
 drop table if exists Famille_periodesSouhaitees cascade
 drop table if exists Famille_tranchesAges cascade

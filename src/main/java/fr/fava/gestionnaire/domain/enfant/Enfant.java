@@ -51,6 +51,9 @@ public class Enfant implements Serializable {
     @Embedded
     private final InformationsComplementairesEnfant informationsComplementairesEnfant;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private FamilleAccueil familleAccueil;
+
     @Column(length = 2000)
     private String remarque;
 
@@ -138,6 +141,14 @@ public class Enfant implements Serializable {
 
     public void setInscripteurEstResponsableLegal(boolean inscripteurEstResponsableLegal) {
         this.inscripteurEstResponsableLegal = inscripteurEstResponsableLegal;
+    }
+
+    public FamilleAccueil getFamilleAccueil() {
+        return familleAccueil;
+    }
+
+    public void setFamilleAccueil(FamilleAccueil familleAccueil) {
+        this.familleAccueil = familleAccueil;
     }
 
 }

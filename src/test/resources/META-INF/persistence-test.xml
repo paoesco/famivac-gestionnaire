@@ -8,6 +8,7 @@
         <class>fr.fava.gestionnaire.domain.enfant.Enfant</class>
         <class>fr.fava.gestionnaire.domain.enfant.Payeur</class>
         <class>fr.fava.gestionnaire.domain.enfant.ResponsableLegal</class>
+        <class>fr.fava.gestionnaire.domain.enfant.FamilleAccueil</class>
         <class>fr.fava.gestionnaire.domain.famille.Chambre</class>
         <class>fr.fava.gestionnaire.domain.famille.Famille</class>
         <class>fr.fava.gestionnaire.domain.famille.MembreFamille</class>

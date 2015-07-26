@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf/passthrough">
 
     <h:head></h:head>
 
@@ -236,7 +237,7 @@
                                                 <p:commandButton
                                                     styleClass="btn-default pull-right" 
                                                     value="Sauver"
-                                                    update="@form"
+                                                    update="@form :panel_famille_accueil"
                                                     icon="ui-icon-circle-check"
                                                     actionListener="#{enfantDetailsBean.update()}"/>
                                             </div>
@@ -419,7 +420,135 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <p:outputPanel id="panel_famille_accueil">
+                            <p:outputPanel rendered="#{enfantDetailsBean.form.informationsComplementairesEnfant.familleASE}">
+                                <div class="col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            Famille Accueil
+                                        </div>
+                                        <div class="panel-body">
+                                            <h:form id="form_famille_accueil" styleClass="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <p:outputLabel 
+                                                        for="input_famille_nom" 
+                                                        value="Nom"
+                                                        styleClass="col-sm-3 control-label"/> 
+                                                    <div class="col-md-8">
+                                                        <p:inputText
+                                                            id="input_famille_nom"
+                                                            maxlength="255"
+                                                            styleClass="form-control"
+                                                            value="#{enfantDetailsBean.formFamilleAccueil.nom}"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <p:outputLabel 
+                                                        for="input_famille_prenom"
+                                                        value="Prénom"
+                                                        styleClass="col-sm-3 control-label"/> 
+                                                    <div class="col-md-8">
+                                                        <p:inputText
+                                                            id="input_famille_prenom"
+                                                            maxlength="255"
+                                                            styleClass="form-control"
+                                                            value="#{enfantDetailsBean.formFamilleAccueil.prenom}"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <p:outputLabel 
+                                                        for="form_la1" 
+                                                        styleClass="col-sm-3 control-label"
+                                                        value="Ligne adresse 1" />
+                                                    <div class="col-md-8">
+                                                        <p:inputText 
+                                                            styleClass="form-control" 
+                                                            id="form_la1" 
+                                                            placeholder="Ligne adresse 1"
+                                                            required="true"
+                                                            maxlength="255"
+                                                            value="#{enfantDetailsBean.formFamilleAccueil.adresse.ligneAdresseUne}"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <p:outputLabel 
+                                                        for="form_la2" 
+                                                        styleClass="col-sm-3 control-label"
+                                                        value="Ligne adresse 2" />
+                                                    <div class="col-md-8">
+                                                        <p:inputText 
+                                                            styleClass="form-control" 
+                                                            id="form_la2" 
+                                                            placeholder="Ligne adresse 2"
+                                                            maxlength="255"
+                                                            value="#{enfantDetailsBean.formFamilleAccueil.adresse.ligneAdresseDeux}"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <p:outputLabel 
+                                                        for="form_commune" 
+                                                        styleClass="col-sm-3 control-label"
+                                                        value="Commune" />
+                                                    <div class="col-md-8">
+                                                        <p:autoComplete
+                                                            id="form_commune"
+                                                            required="true"
+                                                            dropdown="true"
+                                                            value="#{enfantDetailsBean.formFamilleAccueil.adresse.commune}"
+                                                            converter="#{communeConverter}"
+                                                            cache="true"
+                                                            forceSelection="true"
+                                                            var="commune"
+                                                            completeMethod="#{enfantDetailsBean.completeCommune}"
+                                                            itemLabel="#{commune.label}"
+                                                            itemValue="#{commune}">
+                                                        </p:autoComplete>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <p:outputLabel 
+                                                        for="input_famille_tel" 
+                                                        value="Téléphone"
+                                                        styleClass="col-sm-3 control-label"/> 
+                                                    <div class="col-md-8">
+                                                        <p:inputText
+                                                            id="input_famille_tel"
+                                                            maxlength="255"
+                                                            styleClass="form-control"
+                                                            value="#{enfantDetailsBean.formFamilleAccueil.coordonnees.telephone1}"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <p:outputLabel 
+                                                        for="input_famille_email" 
+                                                        value="Email"
+                                                        styleClass="col-sm-3 control-label"/> 
+                                                    <div class="col-md-8">
+                                                        <p:inputText
+                                                            id="input_famille_email"
+                                                            maxlength="255"
+                                                            styleClass="form-control"
+                                                            value="#{enfantDetailsBean.formFamilleAccueil.coordonnees.email}"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-md-11">
+                                                        <p:commandButton
+                                                            styleClass="btn-default pull-right" 
+                                                            value="Sauver"
+                                                            update="@form"
+                                                            icon="ui-icon-circle-check"
+                                                            actionListener="#{enfantDetailsBean.updateFamilleAccueil()}"/>
+                                                    </div>
+                                                </div>
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                </div> <!-- .col-md-6 -->
+                            </p:outputPanel>
+                        </p:outputPanel>
+                    </div> <!-- .row -->
 
                 </div> <!-- .container -->
 
