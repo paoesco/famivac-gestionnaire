@@ -11,7 +11,9 @@ public class SejourDTO {
 
     private Long id;
     private String famille;
+    private Long familleId;
     private String enfant;
+    private Long enfantId;
     private Date dateDebut;
     private Date dateFin;
     private String statut;
@@ -20,7 +22,9 @@ public class SejourDTO {
         this.id = bean.getId();
 
         this.famille = bean.getFamille().getMembreReferent().getPrenom() + " " + bean.getFamille().getMembreReferent().getNom();
+        this.familleId = bean.getFamille().getId();
         this.enfant = bean.getEnfant().getPrenom() + " " + bean.getEnfant().getNom();
+        this.enfantId = bean.getEnfant().getId();
         this.dateDebut = bean.getDateDebut();
         this.dateFin = bean.getDateFinEffective();
         this.statut = bean.statutDuJour().name();
@@ -74,6 +78,20 @@ public class SejourDTO {
         this.statut = statut;
     }
 
-    
-    
+    public Long getFamilleId() {
+        return familleId;
+    }
+
+    public void setFamilleId(Long familleId) {
+        this.familleId = familleId;
+    }
+
+    public Long getEnfantId() {
+        return enfantId;
+    }
+
+    public void setEnfantId(Long enfantId) {
+        this.enfantId = enfantId;
+    }
+
 }

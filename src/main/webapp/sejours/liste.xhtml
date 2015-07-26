@@ -91,10 +91,20 @@
                                     lazy="true">
 
                                     <p:column headerText="Enfant">
-                                        <h:outputText value="#{bean.enfant}"></h:outputText>
+                                        <h:link 
+                                            target="_blank"
+                                            outcome="/enfant/details.xhtml"
+                                            value="#{bean.enfant}">
+                                            <f:param name="id" value="#{bean.enfantId}"></f:param>    
+                                        </h:link>
                                     </p:column>
                                     <p:column headerText="Famille">
-                                        <h:outputText value="#{bean.famille}"></h:outputText>
+                                        <h:link 
+                                            target="_blank"
+                                            outcome="/famille/details.xhtml"
+                                            value="#{bean.famille}">
+                                            <f:param name="id" value="#{bean.familleId}"></f:param>    
+                                        </h:link>
                                     </p:column>
                                     <p:column headerText="Début">
                                         <h:outputText value="#{bean.dateDebut}">

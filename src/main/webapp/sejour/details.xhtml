@@ -34,9 +34,12 @@
                                                 styleClass="col-sm-3 control-label"
                                                 value="Famille" /> 
                                             <div class="col-md-8">
-                                                <h:outputText 
-                                                    id="input_famille"
-                                                    value="#{sejourDetailsBean.sejour.famille.membreReferent.prenom} #{sejourDetailsBean.sejour.famille.membreReferent.nom}"/>
+                                                <h:link 
+                                                    target="_blank"
+                                                    outcome="/famille/details.xhtml"
+                                                    value="#{sejourDetailsBean.sejour.famille.membreReferent.prenom} #{sejourDetailsBean.sejour.famille.membreReferent.nom}">
+                                                    <f:param name="id" value="#{sejourDetailsBean.sejour.famille.id}"></f:param>    
+                                                </h:link>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -44,9 +47,12 @@
                                                 styleClass="col-sm-3 control-label"
                                                 value="Enfant" />
                                             <div class="col-md-8">
-                                                <h:outputText 
-                                                    id="input_enfant"
-                                                    value="#{sejourDetailsBean.sejour.enfant.prenom} #{sejourDetailsBean.sejour.enfant.nom}"/>
+                                                <h:link 
+                                                    target="_blank"
+                                                    outcome="/enfant/details.xhtml"
+                                                    value="#{sejourDetailsBean.sejour.enfant.prenom} #{sejourDetailsBean.sejour.enfant.nom}">
+                                                    <f:param name="id" value="#{sejourDetailsBean.sejour.enfant.id}"></f:param>    
+                                                </h:link>
                                             </div>
                                         </div>
                                         <div class="form-group">
