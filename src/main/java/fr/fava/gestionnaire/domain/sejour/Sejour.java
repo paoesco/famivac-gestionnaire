@@ -6,8 +6,7 @@ import fr.fava.gestionnaire.domain.famille.Famille;
 import fr.fava.gestionnaire.domain.utils.DateUtils;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -119,7 +118,8 @@ public class Sejour implements Serializable {
         }
         LocalDate lDateDebut = DateUtils.toLocalDate(getDateDebut());
         LocalDate lDateFin = DateUtils.toLocalDate(getDateFinEffective());
-        return Period.between(lDateDebut, lDateFin).getDays();
+        return (int) ChronoUnit.DAYS.between(lDateDebut, lDateFin);
+        //return Period.between(lDateDebut, lDateFin).getDays();
     }
 
     public Long getId() {

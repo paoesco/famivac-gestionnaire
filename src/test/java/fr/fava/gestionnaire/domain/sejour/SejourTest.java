@@ -29,6 +29,12 @@ public class SejourTest {
     }
 
     @Test
+    public void testNombreJoursDateFinMoisDifferents() {
+        Sejour sejour = new Sejour(toDate("01/01/2015"), toDate("02/02/2015"));
+        Assert.assertEquals(32, sejour.nombreJours());
+    }
+
+    @Test
     public void testNombreJoursDateFinReelle() {
         Sejour sejour = new Sejour(toDate("01/01/2015"), toDate("10/01/2015"));
         sejour.setDateFinReelle(toDate("08/01/2015"));
