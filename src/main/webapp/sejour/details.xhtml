@@ -246,7 +246,7 @@
                                                 <p:calendar 
                                                     locale="fr"
                                                     pattern="dd/MM/yyyy"
-                                                    mask="99/99/9999"
+                                                    mask="true"
                                                     id="input_date_voyage"
                                                     navigator="true"
                                                     yearRange="c-10:c+10"
@@ -256,15 +256,42 @@
                                         <div class="form-group">
                                             <p:outputLabel 
                                                 styleClass="col-sm-3 control-label"
+                                                for="input_heure_depart"
                                                 value="Heure départ" />
                                             <div class="col-md-8">
+                                                <p:calendar 
+                                                    id="input_heure_depart" 
+                                                    value="#{sejourDetailsBean.sejour.aller.heureDepart}" 
+                                                    pattern="HH:mm" 
+                                                    timeOnly="true" 
+                                                    mask="true"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
+                                                for="input_lieu_depart" 
+                                                styleClass="col-sm-3 control-label"
+                                                value="Lieu départ" />
+                                            <div class="col-md-8">
+                                                <p:inputText
+                                                    id="input_lieu_depart"
+                                                    maxlength="255"
+                                                    styleClass="form-control"
+                                                    value="#{sejourDetailsBean.sejour.aller.lieuDepart}"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <p:outputLabel 
                                                 styleClass="col-sm-3 control-label"
+                                                for="input_heure_arrivee"
                                                 value="Heure arrivée" />
                                             <div class="col-md-8">
+                                                <p:calendar 
+                                                    id="input_heure_arrivee" 
+                                                    value="#{sejourDetailsBean.sejour.aller.heureArrivee}" 
+                                                    pattern="HH:mm" 
+                                                    timeOnly="true"
+                                                    mask="true"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -364,7 +391,7 @@
                                                 <p:calendar 
                                                     locale="fr"
                                                     pattern="dd/MM/yyyy"
-                                                    mask="99/99/9999"
+                                                    mask="true"
                                                     id="input_date_voyage"
                                                     navigator="true"
                                                     yearRange="c-10:c+10"
@@ -374,15 +401,42 @@
                                         <div class="form-group">
                                             <p:outputLabel 
                                                 styleClass="col-sm-3 control-label"
+                                                for="input_heure_depart"
                                                 value="Heure départ" />
                                             <div class="col-md-8">
+                                                <p:calendar 
+                                                    id="input_heure_depart" 
+                                                    value="#{sejourDetailsBean.sejour.retour.heureDepart}" 
+                                                    pattern="HH:mm" 
+                                                    timeOnly="true" 
+                                                    mask="true"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
+                                                for="input_lieu_depart" 
+                                                styleClass="col-sm-3 control-label"
+                                                value="Lieu départ" />
+                                            <div class="col-md-8">
+                                                <p:inputText
+                                                    id="input_lieu_depart"
+                                                    maxlength="255"
+                                                    styleClass="form-control"
+                                                    value="#{sejourDetailsBean.sejour.retour.lieuDepart}"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <p:outputLabel 
                                                 styleClass="col-sm-3 control-label"
+                                                for="input_heure_arrivee"
                                                 value="Heure arrivée" />
                                             <div class="col-md-8">
+                                                <p:calendar 
+                                                    id="input_heure_arrivee" 
+                                                    value="#{sejourDetailsBean.sejour.retour.heureArrivee}" 
+                                                    pattern="HH:mm" 
+                                                    timeOnly="true" 
+                                                    mask="true"/>
                                             </div>
                                         </div>
                                         <div class="form-group">

@@ -17,8 +17,9 @@
         <class>fr.fava.gestionnaire.domain.inscripteur.ResponsableInscripteur</class>
         <class>fr.fava.gestionnaire.domain.sejour.Sejour</class>
         <class>fr.fava.gestionnaire.domain.sejour.Voyage</class>
+        <class>fr.fava.gestionnaire.domain.sejour.Accompagnateur</class>
         <properties>
-<!--            <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
+            <!--            <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:testdb"/>
             <property name="javax.persistence.jdbc.user" value="sa"/>
             <property name="javax.persistence.jdbc.password" value=""/>

@@ -22,6 +22,8 @@ alter table Sejour drop constraint FK_9goskutbmwqss0mle4mp5ps96
 alter table Sejour drop constraint FK_jh4lpkravwbrqp9xoh1mdap08
 alter table Utilisateur_Groupe drop constraint FK_t67b6nnekv5d7wym3u1j16poa
 alter table Utilisateur_Groupe drop constraint FK_8kb3wn07t5qwb9tgtft01bl59
+alter table Voyage drop constraint FK_6q0kstbkpanocb9iv817gl76r
+drop table if exists ACCOMPAGNATEUR cascade
 drop table if exists Chambre cascade
 drop table if exists Commune cascade
 drop table if exists Enfant cascade

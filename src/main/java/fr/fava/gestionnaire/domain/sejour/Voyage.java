@@ -3,11 +3,16 @@ package fr.fava.gestionnaire.domain.sejour;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,6 +31,7 @@ public class Voyage implements Serializable {
     private Date dateVoyage;
     @Temporal(TemporalType.TIME)
     private Date heureDepart;
+    private String lieuDepart;
     @Enumerated(EnumType.STRING)
     private Transport transport;
     private String lieuRendezVous;
@@ -34,8 +40,14 @@ public class Voyage implements Serializable {
     private Date heureArrivee;
     private String nomPersonneAReception;
     private String telephonePersonneAReception;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ACCOMPAGNATEUR_ID")
+    private Accompagnateur accompagnateur;
 
-    
+    public Voyage() {
+        this.accompagnateur = new Accompagnateur();
+    }
+
     public Long getId() {
         return id;
     }
@@ -102,6 +114,22 @@ public class Voyage implements Serializable {
 
     public void setTelephonePersonneAReception(String telephonePersonneAReception) {
         this.telephonePersonneAReception = telephonePersonneAReception;
+    }
+
+    public String getLieuDepart() {
+        return lieuDepart;
+    }
+
+    public void setLieuDepart(String lieuDepart) {
+        this.lieuDepart = lieuDepart;
+    }
+
+    public Accompagnateur getAccompagnateur() {
+        return accompagnateur;
+    }
+
+    public void setAccompagnateur(Accompagnateur accompagnateur) {
+        this.accompagnateur = accompagnateur == null ? new Accompagnateur() : accompagnateur;
     }
 
 }
