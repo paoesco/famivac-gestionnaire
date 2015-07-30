@@ -4,7 +4,7 @@
 
     <groupId>fr.famivac</groupId>
     <artifactId>gestionnaire</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
     <packaging>war</packaging>
 
     <name>gestionnaire</name>
@@ -26,7 +26,8 @@
         <connection>scm:git:ssh://git@github.com/paoesco/famivac-gestionnaire.git</connection>
         <url>https://github.com/paoesco/famivac-gestionnaire</url>
         <developerConnection>scm:git:ssh://git@github.com/paoesco/famivac-gestionnaire.git</developerConnection>
-    </scm>
+      <tag>gestionnaire-1.0.3</tag>
+  </scm>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
