@@ -1,0 +1,1 @@
+alter table ACCOMPAGNATEUR add column EMAIL varchar(255);
