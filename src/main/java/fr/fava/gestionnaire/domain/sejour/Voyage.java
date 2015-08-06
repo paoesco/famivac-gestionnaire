@@ -1,18 +1,21 @@
 package fr.fava.gestionnaire.domain.sejour;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -40,12 +43,12 @@ public class Voyage implements Serializable {
     private Date heureArrivee;
     private String nomPersonneAReception;
     private String telephonePersonneAReception;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ACCOMPAGNATEUR_ID")
-    private Accompagnateur accompagnateur;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "VOYAGE_ACCOMPAGNATEUR", joinColumns = @JoinColumn(name = "VOYAGE_ID"), inverseJoinColumns = @JoinColumn(name = "ACCOMPAGNATEUR_ID"))
+    private Set<Accompagnateur> accompagnateurs;
 
     public Voyage() {
-        this.accompagnateur = new Accompagnateur();
+        this.accompagnateurs = new HashSet<>();
     }
 
     public Long getId() {
@@ -124,12 +127,12 @@ public class Voyage implements Serializable {
         this.lieuDepart = lieuDepart;
     }
 
-    public Accompagnateur getAccompagnateur() {
-        return accompagnateur;
+    public Set<Accompagnateur> getAccompagnateurs() {
+        return accompagnateurs;
     }
 
-    public void setAccompagnateur(Accompagnateur accompagnateur) {
-        this.accompagnateur = accompagnateur == null ? new Accompagnateur() : accompagnateur;
+    public void setAccompagnateurs(Set<Accompagnateur> accompagnateurs) {
+        this.accompagnateurs = accompagnateurs;
     }
 
 }

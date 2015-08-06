@@ -22,7 +22,8 @@ alter table Sejour drop constraint FK_9goskutbmwqss0mle4mp5ps96
 alter table Sejour drop constraint FK_jh4lpkravwbrqp9xoh1mdap08
 alter table Utilisateur_Groupe drop constraint FK_t67b6nnekv5d7wym3u1j16poa
 alter table Utilisateur_Groupe drop constraint FK_8kb3wn07t5qwb9tgtft01bl59
-alter table Voyage drop constraint FK_6q0kstbkpanocb9iv817gl76r
+alter table VOYAGE_ACCOMPAGNATEUR drop constraint FK_d65wa5e58aucod8qaxcu1vqqj
+alter table VOYAGE_ACCOMPAGNATEUR drop constraint FK_1xbim917thrw81xt8a664xf1x
 drop table if exists ACCOMPAGNATEUR cascade
 drop table if exists Chambre cascade
 drop table if exists Commune cascade
@@ -42,5 +43,6 @@ drop table if exists ResponsableLegal cascade
 drop table if exists Sejour cascade
 drop table if exists Utilisateur cascade
 drop table if exists Utilisateur_Groupe cascade
+drop table if exists VOYAGE_ACCOMPAGNATEUR cascade
 drop table if exists Voyage cascade
 drop sequence hibernate_sequence

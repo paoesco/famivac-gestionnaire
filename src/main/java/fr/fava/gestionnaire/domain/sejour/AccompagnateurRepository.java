@@ -21,4 +21,18 @@ public class AccompagnateurRepository {
                 .getResultList();
     }
 
+    public List<Accompagnateur> rechercher(String nom, String prenom) {
+        if (nom == null || nom.isEmpty()) {
+            nom = "%";
+        }
+        if (prenom == null || prenom.isEmpty()) {
+            prenom = "%";
+        }
+        return entityManager
+                .createNamedQuery(Accompagnateur.QUERY_RECHERCHER, Accompagnateur.class)
+                .setParameter("nom", nom.trim().toLowerCase())
+                .setParameter("prenom", prenom.trim().toLowerCase())
+                .getResultList();
+    }
+
 }

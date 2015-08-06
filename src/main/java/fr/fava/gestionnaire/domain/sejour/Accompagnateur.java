@@ -4,6 +4,7 @@ import fr.fava.gestionnaire.domain.Entity;
 import fr.fava.gestionnaire.domain.utils.Email;
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -12,10 +13,14 @@ import javax.persistence.Table;
  */
 @javax.persistence.Entity
 @Table(name = "ACCOMPAGNATEUR")
-@NamedQuery(name = Accompagnateur.QUERY_GET_ALL, query = "select acc from Accompagnateur acc order by acc.nom, acc.prenom")
+@NamedQueries({
+    @NamedQuery(name = Accompagnateur.QUERY_GET_ALL, query = "select acc from Accompagnateur acc order by acc.nom, acc.prenom"),
+    @NamedQuery(name = Accompagnateur.QUERY_RECHERCHER, query = "select acc from Accompagnateur acc where lower(acc.nom) like :nom or lower(acc.prenom) like :prenom order by acc.nom, acc.prenom")
+})
 public class Accompagnateur extends Entity implements Serializable {
 
     public static final String QUERY_GET_ALL = "queryAccompagnateurGetAll";
+    public static final String QUERY_RECHERCHER = "queryAccompagnateurRechercher";
 
     @Column(name = "NOM")
     private String nom;

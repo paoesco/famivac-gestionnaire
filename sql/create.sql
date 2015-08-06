@@ -1,4 +1,4 @@
-create table ACCOMPAGNATEUR (ID int8 not null, NOM varchar(255), PRENOM varchar(255), TELEPHONE varchar(255), primary key (ID))
+create table ACCOMPAGNATEUR (ID int8 not null, EMAIL varchar(255), NOM varchar(255), PRENOM varchar(255), TELEPHONE varchar(255), primary key (ID))
 create table Chambre (id int8 not null, nombreLits int4 not null, famille_id int8, primary key (id))
 create table Commune (code varchar(255) not null, ville varchar(255) not null, primary key (code))
 create table Enfant (id int8 not null, classeFrequentee varchar(255), dateNaissance date, attestationCMU boolean not null, carteVitale boolean not null, contactUrgence varchar(255), enuretique boolean not null, familleASE boolean not null, telephoneUrgence varchar(255), inscripteurEstResponsableLegal boolean not null, nom varchar(255), prenom varchar(255), remarque varchar(2000), sexe varchar(255), familleAccueil_id int8, inscripteur_id int8, responsableLegal_id int8, primary key (id))
@@ -17,7 +17,8 @@ create table ResponsableLegal (id int8 not null, ligneAdresseDeux varchar(255) n
 create table Sejour (id int8 not null, DATE_ANNULATION date, dateDebut date, dateFin date, dateFinReelle date, MOTIF_ANNULATION varchar(1000), MOTIF_FIN_SEJOUR varchar(1000), tarif int4 not null, aller_id int8, enfant_id int8, famille_id int8, retour_id int8, primary key (id))
 create table Utilisateur (login varchar(255) not null, email varchar(2000) not null, enabled boolean not null, nom varchar(255) not null, password varchar(2000) not null, prenom varchar(255) not null, primary key (login))
 create table Utilisateur_Groupe (utilisateurs_login varchar(255) not null, groupes_nom varchar(255) not null, primary key (utilisateurs_login, groupes_nom))
-create table Voyage (id int8 not null, dateVoyage date, heureArrivee time, heureDepart time, lieuArrivee varchar(255), lieuDepart varchar(255), lieuRendezVous varchar(255), nomPersonneAReception varchar(255), telephonePersonneAReception varchar(255), transport varchar(255), ACCOMPAGNATEUR_ID int8, primary key (id))
+create table VOYAGE_ACCOMPAGNATEUR (VOYAGE_ID int8 not null, ACCOMPAGNATEUR_ID int8 not null)
+create table Voyage (id int8 not null, dateVoyage date, heureArrivee time, heureDepart time, lieuArrivee varchar(255), lieuDepart varchar(255), lieuRendezVous varchar(255), nomPersonneAReception varchar(255), telephonePersonneAReception varchar(255), transport varchar(255), primary key (id))
 alter table Famille_Chambre add constraint UK_2016dhn9lku68h1d75vy1ubco  unique (chambres_id)
 alter table Chambre add constraint FK_ii7teigi7o2vw9x1e6ypbvgaw foreign key (famille_id) references Famille
 alter table Enfant add constraint FK_evct0xayck0q16x5dglh6jnar foreign key (familleAccueil_id) references FamilleAccueil
@@ -43,5 +44,6 @@ alter table Sejour add constraint FK_9goskutbmwqss0mle4mp5ps96 foreign key (fami
 alter table Sejour add constraint FK_jh4lpkravwbrqp9xoh1mdap08 foreign key (retour_id) references Voyage
 alter table Utilisateur_Groupe add constraint FK_t67b6nnekv5d7wym3u1j16poa foreign key (groupes_nom) references Groupe
 alter table Utilisateur_Groupe add constraint FK_8kb3wn07t5qwb9tgtft01bl59 foreign key (utilisateurs_login) references Utilisateur
-alter table Voyage add constraint FK_6q0kstbkpanocb9iv817gl76r foreign key (ACCOMPAGNATEUR_ID) references ACCOMPAGNATEUR
+alter table VOYAGE_ACCOMPAGNATEUR add constraint FK_d65wa5e58aucod8qaxcu1vqqj foreign key (ACCOMPAGNATEUR_ID) references ACCOMPAGNATEUR
+alter table VOYAGE_ACCOMPAGNATEUR add constraint FK_1xbim917thrw81xt8a664xf1x foreign key (VOYAGE_ID) references Voyage
 create sequence hibernate_sequence

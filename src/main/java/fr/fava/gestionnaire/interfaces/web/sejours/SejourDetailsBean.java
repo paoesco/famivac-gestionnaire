@@ -1,10 +1,8 @@
 package fr.fava.gestionnaire.interfaces.web.sejours;
 
-import fr.fava.gestionnaire.application.enfant.EnfantDTO;
-import fr.fava.gestionnaire.application.enfant.EnfantService;
-import fr.fava.gestionnaire.application.famille.FamilleDTO;
-import fr.fava.gestionnaire.application.famille.FamilleService;
 import fr.fava.gestionnaire.application.sejour.SejourService;
+import fr.fava.gestionnaire.domain.sejour.Accompagnateur;
+import fr.fava.gestionnaire.domain.sejour.AccompagnateurRepository;
 import fr.fava.gestionnaire.domain.sejour.Sejour;
 import fr.fava.gestionnaire.domain.sejour.SejourRepository;
 import fr.fava.gestionnaire.domain.sejour.StatutSejour;
@@ -32,10 +30,10 @@ public class SejourDetailsBean implements Serializable {
     private SejourService sejourService;
 
     @Inject
-    private FamilleService familleService;
+    private AccompagnateurRepository accompagnateurRepository;
 
-    @Inject
-    private EnfantService enfantService;
+    private Accompagnateur ajoutAccompagnateurAller;
+    private Accompagnateur ajoutAccompagnateurRetour;
 
     private Long id;
 
@@ -46,6 +44,8 @@ public class SejourDetailsBean implements Serializable {
      */
     public void init() {
         this.sejour = sejourRepository.get(id);
+        this.ajoutAccompagnateurAller = new Accompagnateur();
+        this.ajoutAccompagnateurRetour = new Accompagnateur();
     }
 
     public void update() {
@@ -53,18 +53,37 @@ public class SejourDetailsBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informations sauvées", ""));
     }
 
-    public List<FamilleDTO> completeFamille(String query) {
-        if (query == null || query.isEmpty()) {
-            return familleService.rechercher("%", "%");
-        }
-        return familleService.rechercher(query, "%");
+    public void ajouterAccompagnateurAller() {
+        sejour.getAller().getAccompagnateurs().add(ajoutAccompagnateurAller);
+        sejourService.update(sejour);
+        ajoutAccompagnateurAller = new Accompagnateur();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Accompagnateur ajouté", ""));
     }
 
-    public List<EnfantDTO> completeEnfant(String query) {
+    public void retirerAccompagnateurAller(Accompagnateur accompagnateur) {
+        sejour.getAller().getAccompagnateurs().remove(accompagnateur);
+        sejourService.update(sejour);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'accompagnateur a été retiré", ""));
+    }
+
+    public void ajouterAccompagnateurRetour() {
+        sejour.getRetour().getAccompagnateurs().add(ajoutAccompagnateurRetour);
+        sejourService.update(sejour);
+        ajoutAccompagnateurRetour = null;
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Accompagnateur ajouté", ""));
+    }
+
+    public void retirerAccompagnateurRetour(Accompagnateur accompagnateur) {
+        sejour.getRetour().getAccompagnateurs().remove(accompagnateur);
+        sejourService.update(sejour);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'accompagnateur a été retiré", ""));
+    }
+
+    public List<Accompagnateur> completeAccompagnateur(String query) {
         if (query == null || query.isEmpty()) {
-            return enfantService.retrieve("%", "%");
+            return accompagnateurRepository.get();
         }
-        return enfantService.retrieve(query, "%");
+        return accompagnateurRepository.rechercher(query, query);
     }
 
     public void terminerSejour() {
@@ -77,8 +96,8 @@ public class SejourDetailsBean implements Serializable {
         sejourService.update(sejour);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Le séjour a été annulé.", ""));
     }
-    
-    public void reactiverSejour(){
+
+    public void reactiverSejour() {
         sejour.setDateAnnulation(null);
         sejour.setDateFinReelle(null);
         sejour.setMotifAnnulation(null);
@@ -109,6 +128,22 @@ public class SejourDetailsBean implements Serializable {
             return "";
         }
         return ostatut.get().name();
+    }
+
+    public Accompagnateur getAjoutAccompagnateurAller() {
+        return ajoutAccompagnateurAller;
+    }
+
+    public void setAjoutAccompagnateurAller(Accompagnateur ajoutAccompagnateurAller) {
+        this.ajoutAccompagnateurAller = ajoutAccompagnateurAller;
+    }
+
+    public Accompagnateur getAjoutAccompagnateurRetour() {
+        return ajoutAccompagnateurRetour;
+    }
+
+    public void setAjoutAccompagnateurRetour(Accompagnateur ajoutAccompagnateurRetour) {
+        this.ajoutAccompagnateurRetour = ajoutAccompagnateurRetour;
     }
 
 }
