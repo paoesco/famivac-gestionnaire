@@ -24,9 +24,13 @@ public class AccompagnateurRepository {
     public List<Accompagnateur> rechercher(String nom, String prenom) {
         if (nom == null || nom.isEmpty()) {
             nom = "%";
+        } else {
+            nom = nom + "%";
         }
         if (prenom == null || prenom.isEmpty()) {
             prenom = "%";
+        } else {
+            prenom = prenom + "%";
         }
         return entityManager
                 .createNamedQuery(Accompagnateur.QUERY_RECHERCHER, Accompagnateur.class)
