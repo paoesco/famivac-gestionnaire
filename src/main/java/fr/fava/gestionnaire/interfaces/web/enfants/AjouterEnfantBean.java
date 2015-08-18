@@ -46,7 +46,7 @@ public class AjouterEnfantBean implements Serializable {
 
     public String ajouter() {
         Long id = enfantService.create(form);
-        return "/enfant/details.xhtml?id=" + id + "&faces-redirect=true";
+        return "/enfants/details.xhtml?id=" + id + "&faces-redirect=true";
     }
 
     public List<Commune> completeCommune(String query) {
