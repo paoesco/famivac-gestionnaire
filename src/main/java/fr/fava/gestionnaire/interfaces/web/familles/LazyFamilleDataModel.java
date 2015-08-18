@@ -1,7 +1,9 @@
 package fr.fava.gestionnaire.interfaces.web.familles;
 
 import fr.fava.gestionnaire.application.famille.FamilleDTO;
+import fr.fava.gestionnaire.interfaces.web.utils.LazySorter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import org.primefaces.model.LazyDataModel;
@@ -35,8 +37,12 @@ public class LazyFamilleDataModel extends LazyDataModel<FamilleDTO> {
 
     @Override
     public List<FamilleDTO> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-        int max = first + pageSize > datasource.size() ? datasource.size() : first + pageSize;
         setRowCount(datasource.size());
+        //sort
+        if (sortField != null) {
+            Collections.sort(datasource, new LazySorter<>(FamilleDTO.class, sortField, sortOrder));
+        }
+        int max = first + pageSize > datasource.size() ? datasource.size() : first + pageSize;
         return datasource.subList(first, max);
     }
 

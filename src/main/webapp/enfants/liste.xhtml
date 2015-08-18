@@ -67,12 +67,13 @@
                                     paginator="true"
                                     rowKey="#{bean.id}"
                                     rows="20"
-                                    lazy="true">
+                                    lazy="true"
+                                    sortBy="#{bean.nomEnfant}">
 
-                                    <p:column headerText="Nom enfant">
+                                    <p:column headerText="Nom enfant" sortBy="#{bean.nomEnfant}">
                                         <h:outputText value="#{bean.nomEnfant}"></h:outputText>
                                     </p:column>
-                                    <p:column headerText="Prénom enfant">
+                                    <p:column headerText="Prénom enfant" sortBy="#{bean.prenomEnfant}">
                                         <h:outputText value="#{bean.prenomEnfant}"></h:outputText>
                                     </p:column>
 
