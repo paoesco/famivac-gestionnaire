@@ -19,6 +19,8 @@ public class RechercherSejoursForm implements Serializable {
 
     private String prenomEnfant;
 
+    private boolean enCours;
+
     public String getNomReferent() {
         return nomReferent;
     }
@@ -49,6 +51,14 @@ public class RechercherSejoursForm implements Serializable {
 
     public void setPrenomEnfant(String prenomEnfant) {
         this.prenomEnfant = prenomEnfant;
+    }
+
+    public boolean isEnCours() {
+        return enCours;
+    }
+
+    public void setEnCours(boolean enCours) {
+        this.enCours = enCours;
     }
 
 }

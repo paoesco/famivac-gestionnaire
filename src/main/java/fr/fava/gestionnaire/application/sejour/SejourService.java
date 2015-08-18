@@ -3,8 +3,10 @@ package fr.fava.gestionnaire.application.sejour;
 import fr.fava.gestionnaire.domain.enfant.Enfant;
 import fr.fava.gestionnaire.domain.famille.Famille;
 import fr.fava.gestionnaire.domain.sejour.Sejour;
+import fr.fava.gestionnaire.domain.sejour.StatutSejour;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
@@ -42,29 +44,25 @@ public class SejourService {
                 .collect(Collectors.toList());
     }
 
-    public List<SejourDTO> rechercher(String nomReferent, String prenomReferent, String nomEnfant, String prenomEnfant) {
+    public List<SejourDTO> rechercher(String nomReferent, String prenomReferent, String nomEnfant, String prenomEnfant, StatutSejour statutSejour) {
         if (nomReferent == null || nomReferent.isEmpty()) {
             nomReferent = "%";
-        }
-        else {
+        } else {
             nomReferent = "%" + nomReferent + "%";
         }
         if (prenomReferent == null || prenomReferent.isEmpty()) {
             prenomReferent = "%";
-        }
-        else {
+        } else {
             prenomReferent = "%" + prenomReferent + "%";
         }
         if (nomEnfant == null || nomEnfant.isEmpty()) {
             nomEnfant = "%";
-        }
-        else {
+        } else {
             nomEnfant = "%" + nomEnfant + "%";
         }
         if (prenomEnfant == null || prenomEnfant.isEmpty()) {
             prenomEnfant = "%";
-        }
-        else {
+        } else {
             prenomEnfant = "%" + prenomEnfant + "%";
         }
         List<Sejour> entities = entityManager
@@ -74,8 +72,14 @@ public class SejourService {
                 .setParameter("nomEnfant", nomEnfant.trim().toLowerCase())
                 .setParameter("prenomEnfant", prenomEnfant.trim().toLowerCase())
                 .getResultList();
-        return entities
-                .stream()
+
+        Stream<Sejour> stream = entities.stream();
+        if (statutSejour != null) {
+            stream = stream.filter((Sejour s) -> {
+                return statutSejour.equals(s.statutDuJour());
+            });
+        }
+        return stream
                 .map((Sejour s) -> {
                     return new SejourDTO(s);
                 })
@@ -90,5 +94,5 @@ public class SejourService {
         Sejour sejour = entityManager.find(Sejour.class, id);
         entityManager.remove(sejour);
     }
-    
+
 }

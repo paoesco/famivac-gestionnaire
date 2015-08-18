@@ -8,7 +8,6 @@ import fr.fava.gestionnaire.application.sejour.AjouterSejourDTO;
 import fr.fava.gestionnaire.application.sejour.SejourService;
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -37,7 +36,7 @@ public class AjouterSejourBean implements Serializable {
 
     public String ajouter() {
         long sejourId = sejourService.create(form);
-        return "/sejour/details.xhtml?id=" + sejourId + "&faces-redirect=true";
+        return "/sejours/details.xhtml?id=" + sejourId + "&faces-redirect=true";
     }
 
     public List<FamilleDTO> completeFamille(String query) {
