@@ -1,6 +1,8 @@
 package fr.fava.gestionnaire.application.enfant;
 
 import fr.fava.gestionnaire.domain.inscripteur.TypeInscripteur;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author paoesco
@@ -16,6 +18,8 @@ public class RetrieveInscripteursResponseDTO {
     private String organisme;
 
     private TypeInscripteur type;
+
+    private String libelle;
 
     public Long getId() {
         return id;
@@ -63,6 +67,17 @@ public class RetrieveInscripteursResponseDTO {
 
     public boolean isTypeServiceSocialOuAutre() {
         return TypeInscripteur.SERVICE_SOCIAL.equals(type) || TypeInscripteur.AUTRE.equals(type);
+    }
+
+    public String getLibelle() {
+        if (isParticulier()) {
+            return getPrenom() + " " + getNom();
+        } else if (isTypeServiceSocialOuAutre()) {
+            return getOrganisme();
+        } else {
+            Logger.getLogger(RetrieveInscripteursResponseDTO.class.getName()).log(Level.WARNING, "Impossible de déterminer le type inscripteur et donc son libellé");
+            return "";
+        }
     }
 
 }

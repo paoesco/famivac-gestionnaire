@@ -40,6 +40,10 @@ public class LazySorter<O> implements Comparator<O> {
                 String s1 = (String) value1;
                 String s2 = (String) value2;
                 value = alphanumComparator.compare(s1.toLowerCase(), s2.toLowerCase());
+            } else if (value1 instanceof Enum && value2 instanceof Enum) {
+                Enum e1 = (Enum) value1;
+                Enum e2 = (Enum) value2;
+                value = alphanumComparator.compare(e1.name().toLowerCase(), e2.name().toLowerCase());
             } else {
                 value = ((Comparable) value1).compareTo(value2);
             }

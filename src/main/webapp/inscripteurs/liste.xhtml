@@ -84,15 +84,14 @@
                                     paginator="true"
                                     rowKey="#{bean.id}"
                                     rows="20"
-                                    lazy="true">
+                                    lazy="true"
+                                    sortBy="#{bean.libelle}">
 
-                                    <p:column headerText="Libellé">
-                                        <h:outputText rendered="#{bean.isParticulier()}" value="#{bean.prenom} "></h:outputText> 
-                                        <h:outputText rendered="#{bean.isParticulier()}" value="#{bean.nom}"></h:outputText>
-                                        <h:outputText rendered="#{bean.isTypeServiceSocialOuAutre()}" value="#{bean.organisme}"></h:outputText>
+                                    <p:column headerText="Libellé" sortBy="#{bean.libelle}">
+                                        <h:outputText value="#{bean.libelle}"></h:outputText>
                                     </p:column>
                                     
-                                    <p:column headerText="Type" width="250">
+                                    <p:column headerText="Type" width="250" sortBy="#{bean.type}">
                                         <h:outputText value="#{bean.type}"></h:outputText>
                                     </p:column>
 
