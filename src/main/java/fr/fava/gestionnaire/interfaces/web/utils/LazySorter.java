@@ -1,7 +1,6 @@
 package fr.fava.gestionnaire.interfaces.web.utils;
 
 import fr.fava.gestionnaire.domain.utils.AlphanumComparator;
-import fr.fava.gestionnaire.interfaces.web.sejours.LazySejourDataModel;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Comparator;
 import java.util.logging.Level;
@@ -49,7 +48,7 @@ public class LazySorter<O> implements Comparator<O> {
             }
             return SortOrder.ASCENDING.equals(sortOrder) ? value : -1 * value;
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | IllegalArgumentException ex) {
-            Logger.getLogger(LazySejourDataModel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LazySorter.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex);
         }
     }

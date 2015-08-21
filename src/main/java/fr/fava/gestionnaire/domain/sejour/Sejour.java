@@ -1,7 +1,6 @@
 package fr.fava.gestionnaire.domain.sejour;
 
 import fr.fava.gestionnaire.domain.enfant.Enfant;
-import fr.fava.gestionnaire.domain.enfant.Payeur;
 import fr.fava.gestionnaire.domain.famille.Famille;
 import fr.fava.gestionnaire.domain.utils.DateUtils;
 import java.io.Serializable;

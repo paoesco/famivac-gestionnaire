@@ -6,7 +6,6 @@
         <class>fr.fava.gestionnaire.domain.common.Groupe</class>
         <class>fr.fava.gestionnaire.domain.common.Utilisateur</class>
         <class>fr.fava.gestionnaire.domain.enfant.Enfant</class>
-        <class>fr.fava.gestionnaire.domain.enfant.Payeur</class>
         <class>fr.fava.gestionnaire.domain.enfant.ResponsableLegal</class>
         <class>fr.fava.gestionnaire.domain.enfant.FamilleAccueil</class>
         <class>fr.fava.gestionnaire.domain.famille.Chambre</class>
@@ -16,6 +15,7 @@
         <class>fr.fava.gestionnaire.domain.inscripteur.Inscripteur</class>
         <class>fr.fava.gestionnaire.domain.inscripteur.ResponsableInscripteur</class>
         <class>fr.fava.gestionnaire.domain.sejour.Sejour</class>
+        <class>fr.fava.gestionnaire.domain.sejour.Payeur</class>
         <class>fr.fava.gestionnaire.domain.sejour.Voyage</class>
         <class>fr.fava.gestionnaire.domain.sejour.Accompagnateur</class>
         <properties>

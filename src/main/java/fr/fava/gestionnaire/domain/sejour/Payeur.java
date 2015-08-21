@@ -1,4 +1,4 @@
-package fr.fava.gestionnaire.domain.enfant;
+package fr.fava.gestionnaire.domain.sejour;
 
 import fr.fava.gestionnaire.domain.inscripteur.TypeInscripteur;
 import fr.fava.gestionnaire.domain.common.Adresse;
