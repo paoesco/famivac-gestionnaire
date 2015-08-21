@@ -37,7 +37,7 @@ public class AjouterInscripteurBean implements Serializable {
 
     public String ajouter() {
         Long id = inscripteurService.create(form);
-        return "/inscripteur/details.xhtml?id=" + id + "&faces-redirect=true";
+        return "/inscripteurs/details.xhtml?id=" + id + "&faces-redirect=true";
     }
 
     public List<Commune> completeCommune(String query) {

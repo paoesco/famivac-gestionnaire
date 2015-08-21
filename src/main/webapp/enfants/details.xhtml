@@ -33,14 +33,14 @@
                                     Enfant (Inscripteur : 
                                     <h:link 
                                         target="_blank"
-                                        outcome="/inscripteur/details.xhtml"
+                                        outcome="/inscripteurs/details.xhtml"
                                         rendered="#{enfantDetailsBean.form.inscripteur.isParticulier()}"
                                         value="#{enfantDetailsBean.form.inscripteur.prenom} #{enfantDetailsBean.form.inscripteur.nom}">
                                         <f:param name="id" value="#{enfantDetailsBean.form.inscripteur.id}"></f:param>    
                                     </h:link>
                                     <h:link 
                                         target="_blank"
-                                        outcome="/inscripteur/details.xhtml"
+                                        outcome="/inscripteurs/details.xhtml"
                                         rendered="#{enfantDetailsBean.form.inscripteur.isTypeServiceSocialOuAutre()}"
                                         value="#{enfantDetailsBean.form.inscripteur.organisme}">
                                         <f:param name="id" value="#{enfantDetailsBean.form.inscripteur.id}"></f:param>    
