@@ -31,7 +31,7 @@ public class AjouterFamilleBean implements Serializable, CompleteCommune {
 
     public String ajouter() {
         Long familleId = familleService.create(form);
-        return "/famille/details.xhtml?id=" + familleId + "&faces-redirect=true";
+        return "/familles/details.xhtml?id=" + familleId + "&faces-redirect=true";
     }
 
     public CreateFamilleRequestDTO getForm() {
