@@ -8,6 +8,7 @@ import fr.fava.gestionnaire.domain.famille.Famille;
 import fr.fava.gestionnaire.domain.famille.MembreFamille;
 import fr.fava.gestionnaire.domain.common.Sexe;
 import fr.fava.gestionnaire.domain.famille.InformationsHabitation;
+import fr.fava.gestionnaire.domain.famille.InformationsVehicule;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.Stateless;
@@ -57,6 +58,11 @@ public class FamilleService {
             InformationsHabitation informationsHabitation = new InformationsHabitation(famille);
             entityManager.persist(informationsHabitation);
             famille.setInformationsHabitation(informationsHabitation);
+        }
+        if (famille.getInformationsVehicule().getId() == null) {
+            InformationsVehicule informationsVehicule = new InformationsVehicule(famille);
+            entityManager.persist(informationsVehicule);
+            famille.setInformationsVehicule(informationsVehicule);
         }
         return famille;
     }
