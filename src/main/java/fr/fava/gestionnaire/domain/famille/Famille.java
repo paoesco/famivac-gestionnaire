@@ -111,6 +111,9 @@ public class Famille implements Serializable {
     @OneToOne(mappedBy = "famille", cascade = CascadeType.ALL, orphanRemoval = true)
     private InformationsHabitation informationsHabitation;
 
+    @OneToOne(mappedBy = "famille", cascade = CascadeType.ALL, orphanRemoval = true)
+    private InformationsVehicule informationsVehicule;
+
     protected Famille() {
         this.adresse = new Adresse();
         this.membres = new HashSet<>();
@@ -118,6 +121,7 @@ public class Famille implements Serializable {
         this.tranchesAges = new HashSet<>();
         this.periodesSouhaitees = new HashSet<>();
         this.informationsHabitation = new InformationsHabitation(this);
+        this.informationsVehicule = new InformationsVehicule(this);
     }
 
     public Famille(Adresse adresse, String projet) {
@@ -131,6 +135,7 @@ public class Famille implements Serializable {
         this.projet = projet;
         chambres = new HashSet<>();
         this.informationsHabitation = new InformationsHabitation(this);
+        this.informationsVehicule = new InformationsVehicule(this);
     }
 
     public void ajouterChambre(Chambre chambre) {
@@ -356,11 +361,19 @@ public class Famille implements Serializable {
     }
 
     public InformationsHabitation getInformationsHabitation() {
-        return informationsHabitation == null ? new InformationsHabitation() : informationsHabitation;
+        return informationsHabitation == null ? new InformationsHabitation(this) : informationsHabitation;
     }
 
     public void setInformationsHabitation(InformationsHabitation informationsHabitation) {
         this.informationsHabitation = informationsHabitation;
+    }
+
+    public InformationsVehicule getInformationsVehicule() {
+        return informationsVehicule == null ? new InformationsVehicule(this) : informationsVehicule;
+    }
+
+    public void setInformationsVehicule(InformationsVehicule informationsVehicule) {
+        this.informationsVehicule = informationsVehicule;
     }
 
 }

@@ -9,6 +9,7 @@ alter table Famille_Chambre drop constraint FK_3gijihmcsur0c1m7gxn5ymqk4
 alter table Famille_periodesSouhaitees drop constraint FK_kr79t281hqi7gfg6jbpsw6xs5
 alter table Famille_tranchesAges drop constraint FK_bs9s3m1cmy2mgkgfkcto7q6rr
 alter table INFORMATIONS_HABITATION drop constraint FK_d18dtqqiao27ubldu9mlnvylv
+alter table INFORMATIONS_VEHICULE drop constraint FK_e2yo1eycjsqhjy47i1tuynfje
 alter table Inscripteur drop constraint FK_2tevf3tiuj72veiqtg234d7b2
 alter table Inscripteur drop constraint FK_8vm6x3nj8aprsoutkvs46wpsx
 alter table MembreFamille drop constraint FK_2e2pegpaypxtf7vaaw42cy2cs
@@ -35,6 +36,7 @@ drop table if exists Famille_periodesSouhaitees cascade
 drop table if exists Famille_tranchesAges cascade
 drop table if exists Groupe cascade
 drop table if exists INFORMATIONS_HABITATION cascade
+drop table if exists INFORMATIONS_VEHICULE cascade
 drop table if exists Inscripteur cascade
 drop table if exists MembreFamille cascade
 drop table if exists Payeur cascade

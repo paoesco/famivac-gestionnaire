@@ -12,6 +12,7 @@
         <class>fr.fava.gestionnaire.domain.famille.Famille</class>
         <class>fr.fava.gestionnaire.domain.famille.MembreFamille</class>
         <class>fr.fava.gestionnaire.domain.famille.InformationsHabitation</class>
+        <class>fr.fava.gestionnaire.domain.famille.InformationsVehicule</class>
         <class>fr.fava.gestionnaire.domain.inscripteur.Inscripteur</class>
         <class>fr.fava.gestionnaire.domain.inscripteur.ResponsableInscripteur</class>
         <class>fr.fava.gestionnaire.domain.sejour.Sejour</class>
