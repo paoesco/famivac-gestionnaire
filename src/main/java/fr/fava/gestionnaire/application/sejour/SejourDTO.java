@@ -18,6 +18,9 @@ public class SejourDTO {
     private Date dateFin;
     private String statut;
 
+    public SejourDTO() {
+    }
+
     public SejourDTO(Sejour bean) {
         this.id = bean.getId();
 
