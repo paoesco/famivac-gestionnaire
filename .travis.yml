@@ -2,7 +2,7 @@ language: java
 jdk:
 - oraclejdk8
 after_success:
-- mvn clean test surefire:test jacoco:report coveralls:report
+- mvn clean test -P arquillian-wildfly-embedded jacoco:report coveralls:report
 - git config --global user.email "travis@localhost.localdomain"
 - git config --global user.name "Travis CI"
 - git add --all
