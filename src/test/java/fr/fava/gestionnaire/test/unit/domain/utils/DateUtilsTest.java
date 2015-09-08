@@ -1,5 +1,6 @@
-package fr.fava.gestionnaire.domain.utils;
+package fr.fava.gestionnaire.test.unit.domain.utils;
 
+import fr.fava.gestionnaire.domain.utils.DateUtils;
 import static fr.fava.gestionnaire.domain.utils.DateUtils.between;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

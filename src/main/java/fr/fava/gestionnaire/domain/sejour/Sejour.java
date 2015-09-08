@@ -87,7 +87,7 @@ public class Sejour implements Serializable {
         this.payeurs = new HashSet<>();
     }
 
-    protected Sejour(Date dateDebut, Date dateFin) {
+    public Sejour(Date dateDebut, Date dateFin) {
         if (Objects.isNull(dateDebut) || Objects.isNull(dateFin)) {
             throw new IllegalArgumentException("Tous les paramètres sont obligatoires !");
         }

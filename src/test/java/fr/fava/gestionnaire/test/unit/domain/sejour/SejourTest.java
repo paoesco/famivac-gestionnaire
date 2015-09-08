@@ -1,5 +1,7 @@
-package fr.fava.gestionnaire.domain.sejour;
+package fr.fava.gestionnaire.test.unit.domain.sejour;
 
+import fr.fava.gestionnaire.domain.sejour.Sejour;
+import fr.fava.gestionnaire.domain.sejour.StatutSejour;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

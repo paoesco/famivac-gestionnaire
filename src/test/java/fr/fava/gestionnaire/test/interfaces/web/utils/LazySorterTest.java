@@ -1,9 +1,10 @@
-package fr.fava.gestionnaire.interfaces.web.utils;
+package fr.fava.gestionnaire.test.interfaces.web.utils;
 
 import fr.fava.gestionnaire.application.sejour.SejourDTO;
 import fr.fava.gestionnaire.domain.inscripteur.Inscripteur;
 import fr.fava.gestionnaire.domain.inscripteur.TypeInscripteur;
-import fr.fava.gestionnaire.domain.utils.DateUtilsTest;
+import fr.fava.gestionnaire.interfaces.web.utils.LazySorter;
+import fr.fava.gestionnaire.test.unit.domain.utils.DateUtilsTest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

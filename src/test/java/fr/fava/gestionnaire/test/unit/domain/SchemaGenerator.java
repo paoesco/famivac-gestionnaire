@@ -1,4 +1,4 @@
-package fr.fava.gestionnaire.domain;
+package fr.fava.gestionnaire.test.unit.domain;
 
 import javax.persistence.Persistence;
 

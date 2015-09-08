@@ -1,5 +1,6 @@
-package fr.fava.gestionnaire.domain.utils;
+package fr.fava.gestionnaire.test.unit.domain.utils;
 
+import fr.fava.gestionnaire.domain.utils.AlphanumComparator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
