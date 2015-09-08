@@ -172,6 +172,21 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <executions>
+                    <execution>
+                        <id>run-unit-tests</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${skipUnitTests}</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- Coveralls -->
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
@@ -286,8 +301,16 @@
                     <plugin>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <version>2.18.1</version>
-                        <configuration>
-                            <!-- Fork every test because it will launch a separate AS instance -->
+                        <executions>
+                            <execution>
+                                <id>run-integration-tests</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <configuration>
+                                    <skip>${skipIntegrationTests}</skip>
+                                    <!-- Fork every test because it will launch a separate AS instance -->
                             <forkMode>always</forkMode>
                             <systemPropertyVariables>
                                 <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
@@ -295,7 +318,9 @@
                                 <module.path>${project.basedir}/target/wildfly-8.2.0.Final/modules</module.path>
                             </systemPropertyVariables>
                             <redirectTestOutputToFile>false</redirectTestOutputToFile>
-                        </configuration>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                     <plugin>
                         <artifactId>maven-dependency-plugin</artifactId>
