@@ -37,5 +37,31 @@ public class UtilisateurServiceIT extends AbstractIntegrationTest {
         Assert.assertEquals("Prénom", utilisateur.getPrenom());
         Assert.assertNotNull(utilisateur.getPassword());
     }
+    
+    @Test
+    public void testLockAndUnlock() {
+        String login = "login2";
+        
+        AjouterUtilisateurDTO request = new AjouterUtilisateurDTO();
+        request.setEmail("email@domain.com");
+        request.setLogin(login);
+        request.setNom("Nom");
+        request.setPrenom("Prénom");
+        request.setGroupes(Collections.EMPTY_LIST);
+        String password = utilisateurService.create(request);
+        Assert.assertNotNull(password);
+        
+        utilisateurService.lock(login);
+        Utilisateur utilisateurDisabled = utilisateurService.retrieve(login);
+        Assert.assertNotNull(utilisateurDisabled);
+        Assert.assertFalse(utilisateurDisabled.isEnabled());
+        
+        utilisateurService.unlock(login);
+        Utilisateur utilisateurEnabled = utilisateurService.retrieve(login);
+        Assert.assertNotNull(utilisateurEnabled);
+        Assert.assertTrue(utilisateurEnabled.isEnabled());
+        
+        
+    }
 
 }
