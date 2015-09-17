@@ -328,7 +328,7 @@
             </dependencies>
             <build>
                 <plugins>
-                    <!--                    <plugin>
+                    <plugin>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <version>${maven-failsafe-plugin.version}</version>
                         <executions>
@@ -343,47 +343,6 @@
                                 </configuration>
                             </execution>
                         </executions>
-                    </plugin>-->
-                    <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${maven-surefire-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>run-integration-tests</id>
-                                <goals>
-                                    <goal>test</goal>
-                                </goals>
-                                <configuration>
-                                    <skip>${skipIntegrationTests}</skip>
-                                </configuration>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <includes>
-                                <include>**/*IT.java</include>
-                            </includes>
-                        </configuration>
-                        <!--                <executions>
-                            <execution>
-                                <id>run-unit-tests</id>
-                                <goals>
-                                    <goal>test</goal>
-                                </goals>
-                                <configuration>
-                                    <skip>${skipUnitTests}</skip>
-                                </configuration>
-                            </execution>
-                             <execution>
-                                        <id>run-integration-tests</id>
-                                        <goals>
-                                            <goal>integration-test</goal>
-                                            <goal>verify</goal>
-                                        </goals>
-                                        <configuration>
-                                            <skip>${skipIntegrationTests}</skip>
-                                        </configuration>
-                                    </execution>
-                        </executions>-->
                     </plugin>
                     <plugin>
                         <artifactId>maven-dependency-plugin</artifactId>
