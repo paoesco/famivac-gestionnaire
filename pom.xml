@@ -351,8 +351,7 @@
                             <execution>
                                 <id>run-integration-tests</id>
                                 <goals>
-                                    <goal>integration-test</goal>
-                                    <goal>verify</goal>
+                                    <goal>test</goal>
                                 </goals>
                                 <configuration>
                                     <skip>${skipIntegrationTests}</skip>
