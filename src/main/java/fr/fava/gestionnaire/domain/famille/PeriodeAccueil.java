@@ -6,6 +6,6 @@ package fr.fava.gestionnaire.domain.famille;
  */
 public enum PeriodeAccueil {
 
-    HIVER, PRINTEMPS, JUILLET, AOUT, TOUSSAINT;
+    HIVER, PRINTEMPS, JUILLET, AOUT, TOUSSAINT, NOEL;
 
 }
