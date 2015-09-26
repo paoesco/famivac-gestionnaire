@@ -9,7 +9,9 @@ import fr.fava.gestionnaire.domain.famille.MembreFamille;
 import fr.fava.gestionnaire.domain.common.Sexe;
 import fr.fava.gestionnaire.domain.famille.InformationsHabitation;
 import fr.fava.gestionnaire.domain.famille.InformationsVehicule;
+import fr.fava.gestionnaire.domain.famille.PeriodeAccueil;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -67,8 +69,14 @@ public class FamilleService {
         return famille;
     }
 
-    public List<FamilleDTO> rechercher(String nomReferent, String prenomReferent) {
-        List<Famille> beans = repository.retrieve(nomReferent, prenomReferent);
+    public List<FamilleDTO> rechercher(String nomReferent, String prenomReferent, List<String> periodesAccueil) {
+        Set<PeriodeAccueil> periodes = periodesAccueil
+                .stream()
+                .map(periode -> {
+                    return PeriodeAccueil.valueOf(periode);
+                })
+                .collect(Collectors.toSet());
+        List<Famille> beans = repository.retrieve(nomReferent, prenomReferent, periodes);
         List<FamilleDTO> dtos = beans.stream().map((Famille f) -> {
             return new FamilleDTO(f);
         }).collect(Collectors.toList());

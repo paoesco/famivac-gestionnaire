@@ -65,6 +65,17 @@
                                     styleClass="btn-default" 
                                     value="Ajouter"
                                     icon="ui-icon-plus"/>
+                                <h:form styleClass="pull-right">
+                                    <p:selectManyButton value="#{rechercherFamillesForm.periodesAccueil}">
+                                        <p:ajax event="change" update=":datatable" listener="#{famillesListeBean.rechercher()}"></p:ajax>
+                                        <f:selectItem itemLabel="Hiver" itemValue="HIVER" />
+                                        <f:selectItem itemLabel="Printemps" itemValue="PRINTEMPS" />
+                                        <f:selectItem itemLabel="Juillet" itemValue="JUILLET" />
+                                        <f:selectItem itemLabel="Août" itemValue="AOUT" />
+                                        <f:selectItem itemLabel="Toussaint" itemValue="TOUSSAINT" />
+                                        <f:selectItem itemLabel="Noël" itemValue="NOEL" />
+                                    </p:selectManyButton>
+                                </h:form>
                                 <br/>
                                 <br/>
                                 <p:dataTable 

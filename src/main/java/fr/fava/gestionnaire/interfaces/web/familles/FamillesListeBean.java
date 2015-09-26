@@ -34,7 +34,7 @@ public class FamillesListeBean implements Serializable {
     }
 
     public void rechercher() {
-        lazyModel = new LazyFamilleDataModel(familleService.rechercher(rechercherForm.getNomReferent(), rechercherForm.getPrenomReferent()));
+        lazyModel = new LazyFamilleDataModel(familleService.rechercher(rechercherForm.getNomReferent(), rechercherForm.getPrenomReferent(), rechercherForm.getPeriodesAccueil()));
     }
 
     public void supprimer(Long id) {

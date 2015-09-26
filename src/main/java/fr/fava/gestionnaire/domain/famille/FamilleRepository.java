@@ -1,6 +1,7 @@
 package fr.fava.gestionnaire.domain.famille;
 
 import java.util.List;
+import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -16,13 +17,16 @@ public class FamilleRepository {
     @Inject
     private EntityManager entityManager;
 
-    public List<Famille> retrieve(String nomReferent, String prenomReferent) {
-        StringBuilder sQuery = new StringBuilder(" select distinct f from Famille f inner join f.membres m ");
+    public List<Famille> retrieve(String nomReferent, String prenomReferent, Set<PeriodeAccueil> periodesAccueil) {
+        StringBuilder sQuery = new StringBuilder(" select distinct f from Famille f join f.membres m join f.periodesSouhaitees periode ");
         if (nomReferent != null && !nomReferent.isEmpty()) {
             sQuery.append(" and lower(m.nom) like :nomReferent ");
         }
         if (prenomReferent != null && !prenomReferent.isEmpty()) {
             sQuery.append(" and lower(m.prenom) like :prenomReferent ");
+        }
+        if (periodesAccueil != null && !periodesAccueil.isEmpty()) {
+            sQuery.append(" and periode in :periodesAccueil ");
         }
 
         Query query = entityManager.createQuery(sQuery.toString().replaceFirst("and", "where"), Famille.class);
@@ -31,6 +35,9 @@ public class FamilleRepository {
         }
         if (prenomReferent != null && !prenomReferent.isEmpty()) {
             query.setParameter("prenomReferent", "%" + prenomReferent.toLowerCase() + "%");
+        }
+        if (periodesAccueil != null && !periodesAccueil.isEmpty()) {
+            query.setParameter("periodesAccueil", periodesAccueil);
         }
         return query.getResultList();
     }
