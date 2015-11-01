@@ -70,12 +70,15 @@ public class FamilleService {
     }
 
     public List<FamilleDTO> rechercher(String nomReferent, String prenomReferent, List<String> periodesAccueil) {
-        Set<PeriodeAccueil> periodes = periodesAccueil
-                .stream()
-                .map(periode -> {
-                    return PeriodeAccueil.valueOf(periode);
-                })
-                .collect(Collectors.toSet());
+        Set<PeriodeAccueil> periodes = null;
+        if (periodesAccueil != null) {
+            periodes = periodesAccueil
+                    .stream()
+                    .map(periode -> {
+                        return PeriodeAccueil.valueOf(periode);
+                    })
+                    .collect(Collectors.toSet());
+        }
         List<Famille> beans = repository.retrieve(nomReferent, prenomReferent, periodes);
         List<FamilleDTO> dtos = beans.stream().map((Famille f) -> {
             return new FamilleDTO(f);
