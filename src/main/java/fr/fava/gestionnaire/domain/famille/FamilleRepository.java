@@ -18,7 +18,10 @@ public class FamilleRepository {
     private EntityManager entityManager;
 
     public List<Famille> retrieve(String nomReferent, String prenomReferent, Set<PeriodeAccueil> periodesAccueil) {
-        StringBuilder sQuery = new StringBuilder(" select distinct f from Famille f join f.membres m join f.periodesSouhaitees periode ");
+        StringBuilder sQuery = new StringBuilder(" select distinct f from Famille f join f.membres m ");
+        if (periodesAccueil != null && !periodesAccueil.isEmpty()) {
+            sQuery.append(" join f.periodesSouhaitees periode ");
+        }
         if (nomReferent != null && !nomReferent.isEmpty()) {
             sQuery.append(" and lower(m.nom) like :nomReferent ");
         }
