@@ -3,17 +3,4 @@ jdk:
 - oraclejdk8
 after_success:
 - mvn clean verify -P arquillian-wildfly-embedded coveralls:report
-- git config --global user.email "travis@localhost.localdomain"
-- git config --global user.name "Travis CI"
-- git add --all
-- git commit -am "Travis change"
-deploy:
-  provider: openshift
-  user: pao.esco@outlook.com
-  password:
-    secure: oyhx8mwOhxY7uamTyo/rRNJsZJZvULwqSmdFN+KHRBSoKAEAiDzYiGdis2VYlGglSNAbxkwG0T8nui7Msxj5V+1MFHDz4E31JMIgdlS2AVhk1YDZfNSq2S8iLERXCu9btBuch5TNGgq4b/y4RtKABvEq1LsgJUX+E3pZcXK6qT3eTaoeysUEBMuh3qMvVgxlnCQzYxt5lIx/oDuifUFfHNK46R4fLR6jVoiTyBZWmLR3OUdC93x21S6GSF66NGhssCVHBewxBj+rXHNSIgIblsxrMNfaTU/4s+JTiWBnmh0WSD/1N9rbrOXzH5EW/xamm6jmvfEUzmtWNOXlDk0yknzEF3wrm6q1OeFmXBfZti3xG3Kc6cIywrXRuSlOzNWlI5u+YZbfzTFEPgCHlm3fgQH51kA+Bf6Rq9YkZ//6pzp9BvEAXzBNNSCfuUUmJyWjmbPwqnpG91FVCNpTGyELl1A06LyroXAL3G2ZrG0bki3LuqaEfz+hinJ2NxJtvqs5pQUQyqAE0FfpMVhXQ7dchby/P3/6D8SH1U9qFGMCA4xuUv7KehyvAvUkxncTbde1LvEVjIw3EqJ2I5rSiCJsPoig1UQkdxlhLUgkTAnYj4aH9bKAkfyBLGzqmJNCpVWpWG+xEmNKHJ9iTD8mnelijeNQNr6J/dC/X2k7EPdJHGk=
-  app: gestionnaire
-  domain: fava
-  on:
-    repo: paoesco/famivac-gestionnaire
-    tags: true
+
