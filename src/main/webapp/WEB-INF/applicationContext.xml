@@ -14,13 +14,14 @@
     <http pattern="/login.html" security="none"/>
     
     <http>
-        <intercept-url pattern="/monitoring/**" access="ROLE_MONITORING" />
-        <intercept-url pattern="/faces/parametres/**" access="ROLE_ADMIN" />
-        <intercept-url pattern="/faces/**" access="ROLE_GESTIONNAIRE,ROLE_ADMIN,ROLE_MONITORING" />
+        <intercept-url pattern="/monitoring/**" access="hasRole('ROLE_MONITORING')" />
+        <intercept-url pattern="/faces/parametres/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/faces/**" access="hasAnyRole('ROLE_GESTIONNAIRE','ROLE_ADMIN','ROLE_MONITORING')" />
         <form-login 
             login-page='/login.html'
             default-target-url='/faces/index.xhtml'/>
         <logout/>
+        <csrf disabled="true" />
     </http>
     
     <jee:jndi-lookup id="datasource" jndi-name="java:/jboss/datasources/PostgreSQLDS" expected-type="javax.sql.DataSource" />
@@ -35,7 +36,7 @@
                 authorities-by-username-query=
 		    " select utilisateurs_login,groupes_nom from Utilisateur_Groupe where utilisateurs_login = ? " />
         </authentication-provider>
-<!--        <authentication-provider>
+        <!--        <authentication-provider>
             <user-service>
                 <user name="admin" password="admin123" authorities="ROLE_GESTIONNAIRE, ROLE_ADMIN, ROLE_MONITORING" />
                 <user name="user" password="user123" authorities="ROLE_GESTIONNAIRE" />
