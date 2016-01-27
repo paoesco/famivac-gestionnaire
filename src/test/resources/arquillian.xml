@@ -7,7 +7,7 @@
     
     <container qualifier="wildfly-managed" default="true">
         <configuration>
-            <property name="jbossHome">target/wildfly-8.2.1.Final</property>
+            <property name="jbossHome">target/wildfly-9.0.2.Final</property>
         </configuration>
     </container>
 </arquillian>
