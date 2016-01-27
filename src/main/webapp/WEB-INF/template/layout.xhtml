@@ -28,8 +28,8 @@
         <h:body>
             <p:growl autoUpdate="true"></p:growl>
 
-            <nav class="navbar navbar-default navbar-static-top">
-                <div class="container">
+            <nav class="navbar navbar-inverse navbar-static-top">
+                <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
@@ -61,7 +61,7 @@
                                         <h:link rendered="#{sessionBean.connectedUser.enabled}" outcome="/moncompte/changerMotDePasse.xhtml" value="Mon compte" />
                                     </li>
                                     <li>
-                                        <h:outputLink value="#{request.contextPath}/j_spring_security_logout">Déconnexion</h:outputLink>
+                                        <h:outputLink value="#{request.contextPath}/logout">Déconnexion</h:outputLink>
                                     </li>
                                 </ul>
                             </li>
@@ -73,13 +73,13 @@
 
             <ui:insert name="content"></ui:insert>
 
-            <hr />
+            <!--<hr />-->
 
-            <footer class="footer">
+<!--            <footer class="footer">
                 <div class="container">
                     <p class="text-muted">&copy; Une famille pour les vacances - 2015 - #{maven.version['fr.famivac:gestionnaire']}</p>
                 </div>
-            </footer>
+            </footer>-->
 
             <!-- Latest compiled and minified JavaScript -->
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

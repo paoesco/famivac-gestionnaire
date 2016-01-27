@@ -1,13 +1,12 @@
 package fr.fava.gestionnaire.application.famille;
 
 import fr.fava.gestionnaire.domain.famille.Famille;
-import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  * @author paoesco
  */
-@XmlRootElement
-public class FamilleDTO {
+public class FamilleDTO implements Serializable {
 
     private Long id;
 
@@ -15,10 +14,18 @@ public class FamilleDTO {
 
     private String prenomReferent;
 
+    private String telephoneReferent;
+
+    private String emailReferent;
+
     public FamilleDTO(Famille bean) {
         this.id = bean.getId();
         this.nomReferent = bean.getMembreReferent().getNom();
         this.prenomReferent = bean.getMembreReferent().getPrenom();
+        if (bean.getMembreReferent().getCoordonnees() != null) {
+            this.telephoneReferent = bean.getMembreReferent().getCoordonnees().getTelephone1();
+            this.emailReferent = bean.getMembreReferent().getCoordonnees().getEmail();
+        }
     }
 
     public Long getId() {
@@ -43,6 +50,22 @@ public class FamilleDTO {
 
     public void setPrenomReferent(String prenomReferent) {
         this.prenomReferent = prenomReferent;
+    }
+
+    public String getTelephoneReferent() {
+        return telephoneReferent;
+    }
+
+    public void setTelephoneReferent(String telephoneReferent) {
+        this.telephoneReferent = telephoneReferent;
+    }
+
+    public String getEmailReferent() {
+        return emailReferent;
+    }
+
+    public void setEmailReferent(String emailReferent) {
+        this.emailReferent = emailReferent;
     }
 
 }

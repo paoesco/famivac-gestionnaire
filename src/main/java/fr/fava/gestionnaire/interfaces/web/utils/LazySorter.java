@@ -34,8 +34,14 @@ public class LazySorter<O> implements Comparator<O> {
             String methodName = "get" + Character.toUpperCase(this.sortField.charAt(0)) + this.sortField.substring(1);
             Object value1 = clazz.getMethod(methodName).invoke(o1);
             Object value2 = clazz.getMethod(methodName).invoke(o2);
-            int value;
-            if (value1 instanceof String && value2 instanceof String) {
+            int value = 0;
+            if (value1 != null && value2 == null) {
+                value = 1;
+            } else if (value1 == null && value2 != null) {
+                value = -1;
+            } else if (value1 == null && value2 == null) {
+                value = 0;
+            } else if (value1 instanceof String && value2 instanceof String) {
                 String s1 = (String) value1;
                 String s2 = (String) value2;
                 value = alphanumComparator.compare(s1.toLowerCase(), s2.toLowerCase());

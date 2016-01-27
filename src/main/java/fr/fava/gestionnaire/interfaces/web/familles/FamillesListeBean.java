@@ -2,6 +2,9 @@ package fr.fava.gestionnaire.interfaces.web.familles;
 
 import fr.fava.gestionnaire.application.famille.FamilleService;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,18 +26,18 @@ public class FamillesListeBean implements Serializable {
     @Inject
     private FamilleService familleService;
 
-    @Inject
-    private RechercherFamillesForm rechercherForm;
+    private List<String> periodesAccueil;
 
     /**
      * Initialisation du bean.
      */
     public void init() {
+        periodesAccueil = new ArrayList<>();
         rechercher();
     }
 
     public void rechercher() {
-        lazyModel = new LazyFamilleDataModel(familleService.rechercher(rechercherForm.getNomReferent(), rechercherForm.getPrenomReferent(), rechercherForm.getPeriodesAccueil()));
+        lazyModel = new LazyFamilleDataModel(familleService.rechercher("", "", periodesAccueil));
     }
 
     public void supprimer(Long id) {
@@ -44,6 +47,14 @@ public class FamillesListeBean implements Serializable {
 
     public LazyFamilleDataModel getLazyModel() {
         return lazyModel;
+    }
+
+    public List<String> getPeriodesAccueil() {
+        return periodesAccueil;
+    }
+
+    public void setPeriodesAccueil(List<String> periodesAccueil) {
+        this.periodesAccueil = periodesAccueil;
     }
 
 }

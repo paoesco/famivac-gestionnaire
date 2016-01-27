@@ -34,3 +34,7 @@ body {
 .ui-tabs.ui-tabs-top {
     border-bottom: none;
 }
+
+div.formaction {
+    padding-left: 15px;
+}

@@ -22,219 +22,226 @@
 
             <ui:define name="content">
 
-                <div class="container">
+                <div class="container-fluid">
 
-                    <div class="col-md-offset-1 col-md-10">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Ajouter
+                    <h:form id="form" styleClass="form-horizontal" role="form">
+                        <p:focus context="form"/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        Famille
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <p:outputLabel 
+                                                for="form_nom" 
+                                                styleClass="col-sm-3 control-label"
+                                                value="Nom" />
+                                            <div class="col-md-8">
+                                                <p:inputText 
+                                                    styleClass="form-control" 
+                                                    id="form_nom" 
+                                                    placeholder="Nom"
+                                                    required="true"
+                                                    maxlength="255"
+                                                    value="#{ajouterFamilleBean.form.membrePrincipal.nom}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
+                                                for="form_nom_de_naissance" 
+                                                styleClass="col-sm-3 control-label"
+                                                value="Nom de naissance" />
+                                            <div class="col-md-8">
+                                                <p:inputText 
+                                                    styleClass="form-control" 
+                                                    id="form_nom_de_naissance" 
+                                                    placeholder="Nom de naissance"
+                                                    maxlength="255"
+                                                    value="#{ajouterFamilleBean.form.membrePrincipal.nomDeNaissance}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
+                                                for="form_prenom" 
+                                                styleClass="col-sm-3 control-label"
+                                                value="Prénom" />
+                                            <div class="col-md-8">
+                                                <p:inputText 
+                                                    styleClass="form-control" 
+                                                    id="form_prenom" 
+                                                    placeholder="Prénom"
+                                                    required="true"
+                                                    maxlength="255"
+                                                    value="#{ajouterFamilleBean.form.membrePrincipal.prenom}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
+                                                for="form_sexe" 
+                                                styleClass="col-sm-3 control-label"
+                                                value="Sexe" />
+                                            <div class="col-md-8">
+                                                <p:selectOneMenu 
+                                                    id="form_sexe"
+                                                    required="true"
+                                                    value="#{ajouterFamilleBean.form.membrePrincipal.sexe}">
+                                                    <f:selectItem itemLabel="" itemValue="" />
+                                                    <f:selectItem itemLabel="Homme" itemValue="HOMME" />
+                                                    <f:selectItem itemLabel="Femme" itemValue="FEMME" />
+                                                </p:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
+                                                for="form_date_naissance" 
+                                                styleClass="col-sm-3 control-label"
+                                                value="Date de naissance" />
+                                            <div class="col-md-8">
+                                                <p:calendar 
+                                                    locale="fr"
+                                                    navigator="true"
+                                                    yearRange="c-100:c+0"
+                                                    pattern="dd/MM/yyyy"
+                                                    mask="99/99/9999"
+                                                    id="form_date_naissance" 
+                                                    placeholder="01/01/1990"
+                                                    required="true"
+                                                    value="#{ajouterFamilleBean.form.membrePrincipal.dateNaissance}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
+                                                for="form_commune_naissance" 
+                                                styleClass="col-sm-3 control-label"
+                                                value="Commune de naissance" />
+                                            <div class="col-md-8">
+                                                <p:autoComplete
+                                                    id="form_commune_naissance"
+                                                    required="true"
+                                                    dropdown="true"
+                                                    value="#{ajouterFamilleBean.form.membrePrincipal.communeDeNaissance}"
+                                                    converter="#{communeConverter}"
+                                                    cache="true"
+                                                    forceSelection="true"
+                                                    var="commune"
+                                                    completeMethod="#{ajouterFamilleBean.completeCommune}"
+                                                    itemLabel="#{commune.label}"
+                                                    itemValue="#{commune}">
+                                                </p:autoComplete>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
+                                                for="form_profession" 
+                                                styleClass="col-sm-3 control-label"
+                                                value="Profession" />
+                                            <div class="col-md-8">
+                                                <p:inputText 
+                                                    styleClass="form-control" 
+                                                    id="form_profession" 
+                                                    placeholder="Profession"
+                                                    maxlength="255"
+                                                    value="#{ajouterFamilleBean.form.membrePrincipal.profession}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
+                                                for="form_projet" 
+                                                styleClass="col-sm-3 control-label"
+                                                value="Projet" />
+                                            <div class="col-md-8">
+                                                <p:inputTextarea 
+                                                    styleClass="form-control" 
+                                                    id="form_projet" 
+                                                    rows="5"
+                                                    autoResize="false"
+                                                    placeholder="Projet"
+                                                    required="true"
+                                                    maxlength="2000"
+                                                    value="#{ajouterFamilleBean.form.projet}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- .panel -->
+                            </div> 
+                            <div class="col-md-6">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        Adresse
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <p:outputLabel 
+                                                for="form_la1" 
+                                                styleClass="col-sm-3 control-label"
+                                                value="Ligne adresse 1" />
+                                            <div class="col-md-8">
+                                                <p:inputText 
+                                                    styleClass="form-control" 
+                                                    id="form_la1" 
+                                                    placeholder="Ligne adresse 1"
+                                                    required="true"
+                                                    maxlength="255"
+                                                    value="#{ajouterFamilleBean.form.adresse.ligneAdresseUne}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
+                                                for="form_la2" 
+                                                styleClass="col-sm-3 control-label"
+                                                value="Ligne adresse 2" />
+                                            <div class="col-md-8">
+                                                <p:inputText 
+                                                    styleClass="form-control" 
+                                                    id="form_la2" 
+                                                    placeholder="Ligne adresse 2"
+                                                    maxlength="255"
+                                                    value="#{ajouterFamilleBean.form.adresse.ligneAdresseDeux}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
+                                                for="form_commune" 
+                                                styleClass="col-sm-3 control-label"
+                                                value="Commune" />
+                                            <div class="col-md-8">
+                                                <p:autoComplete
+                                                    id="form_commune"
+                                                    required="true"
+                                                    dropdown="true"
+                                                    value="#{ajouterFamilleBean.form.adresse.commune}"
+                                                    converter="#{communeConverter}"
+                                                    cache="true"
+                                                    forceSelection="true"
+                                                    var="commune"
+                                                    completeMethod="#{ajouterFamilleBean.completeCommune}"
+                                                    itemLabel="#{commune.label}"
+                                                    itemValue="#{commune}">
+                                                </p:autoComplete>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- .panel -->
+                            </div> 
+                        </div> <!-- .row -->
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-md-9 formaction">
+                                        <p:commandButton
+                                            styleClass="btn-primary" 
+                                            value="Ajouter"
+                                            icon="ui-icon-plus"
+                                            ajax="false"
+                                            action="#{ajouterFamilleBean.ajouter()}"/>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="panel-body">
-                                <h:form id="form" styleClass="form-horizontal" role="form">
-                                    <p:focus context="form"/>
-                                    <h4>Membre référent de la famille</h4>
-                                    <div class="form-group">
-                                        <p:outputLabel 
-                                            for="form_nom" 
-                                            styleClass="col-sm-3 control-label"
-                                            value="Nom" />
-                                        <div class="col-md-8">
-                                            <p:inputText 
-                                                styleClass="form-control" 
-                                                id="form_nom" 
-                                                placeholder="Nom"
-                                                required="true"
-                                                maxlength="255"
-                                                value="#{ajouterFamilleBean.form.membrePrincipal.nom}"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <p:outputLabel 
-                                            for="form_nom_de_naissance" 
-                                            styleClass="col-sm-3 control-label"
-                                            value="Nom de naissance" />
-                                        <div class="col-md-8">
-                                            <p:inputText 
-                                                styleClass="form-control" 
-                                                id="form_nom_de_naissance" 
-                                                placeholder="Nom de naissance"
-                                                maxlength="255"
-                                                value="#{ajouterFamilleBean.form.membrePrincipal.nomDeNaissance}"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <p:outputLabel 
-                                            for="form_prenom" 
-                                            styleClass="col-sm-3 control-label"
-                                            value="Prénom" />
-                                        <div class="col-md-8">
-                                            <p:inputText 
-                                                styleClass="form-control" 
-                                                id="form_prenom" 
-                                                placeholder="Prénom"
-                                                required="true"
-                                                maxlength="255"
-                                                value="#{ajouterFamilleBean.form.membrePrincipal.prenom}"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <p:outputLabel 
-                                            for="form_sexe" 
-                                            styleClass="col-sm-3 control-label"
-                                            value="Sexe" />
-                                        <div class="col-md-8">
-                                            <p:selectOneMenu 
-                                                id="form_sexe"
-                                                required="true"
-                                                value="#{ajouterFamilleBean.form.membrePrincipal.sexe}">
-                                                <f:selectItem itemLabel="" itemValue="" />
-                                                <f:selectItem itemLabel="Homme" itemValue="HOMME" />
-                                                <f:selectItem itemLabel="Femme" itemValue="FEMME" />
-                                            </p:selectOneMenu>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <p:outputLabel 
-                                            for="form_date_naissance" 
-                                            styleClass="col-sm-3 control-label"
-                                            value="Date de naissance" />
-                                        <div class="col-md-8">
-                                            <p:calendar 
-                                                locale="fr"
-                                                navigator="true"
-                                                yearRange="c-100:c+0"
-                                                pattern="dd/MM/yyyy"
-                                                mask="99/99/9999"
-                                                id="form_date_naissance" 
-                                                placeholder="01/01/1990"
-                                                required="true"
-                                                value="#{ajouterFamilleBean.form.membrePrincipal.dateNaissance}"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <p:outputLabel 
-                                            for="form_commune_naissance" 
-                                            styleClass="col-sm-3 control-label"
-                                            value="Commune de naissance" />
-                                        <div class="col-md-8">
-                                            <p:autoComplete
-                                                id="form_commune_naissance"
-                                                required="true"
-                                                dropdown="true"
-                                                value="#{ajouterFamilleBean.form.membrePrincipal.communeDeNaissance}"
-                                                converter="#{communeConverter}"
-                                                cache="true"
-                                                forceSelection="true"
-                                                var="commune"
-                                                completeMethod="#{ajouterFamilleBean.completeCommune}"
-                                                itemLabel="#{commune.label}"
-                                                itemValue="#{commune}">
-                                            </p:autoComplete>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <p:outputLabel 
-                                            for="form_profession" 
-                                            styleClass="col-sm-3 control-label"
-                                            value="Profession" />
-                                        <div class="col-md-8">
-                                            <p:inputText 
-                                                styleClass="form-control" 
-                                                id="form_profession" 
-                                                placeholder="Profession"
-                                                maxlength="255"
-                                                value="#{ajouterFamilleBean.form.membrePrincipal.profession}"/>
-                                        </div>
-                                    </div>
-                                    <hr/>
-                                    <h4>Informations</h4>
-                                    <div class="form-group">
-                                        <p:outputLabel 
-                                            for="form_projet" 
-                                            styleClass="col-sm-3 control-label"
-                                            value="Projet" />
-                                        <div class="col-md-8">
-                                            <p:inputTextarea 
-                                                styleClass="form-control" 
-                                                id="form_projet" 
-                                                rows="5"
-                                                autoResize="false"
-                                                placeholder="Projet"
-                                                required="true"
-                                                maxlength="2000"
-                                                value="#{ajouterFamilleBean.form.projet}"/>
-                                        </div>
-                                    </div>
-                                    <hr/>
-                                    <h4>Adresse</h4>
-                                    <div class="form-group">
-                                        <p:outputLabel 
-                                            for="form_la1" 
-                                            styleClass="col-sm-3 control-label"
-                                            value="Ligne adresse 1" />
-                                        <div class="col-md-8">
-                                            <p:inputText 
-                                                styleClass="form-control" 
-                                                id="form_la1" 
-                                                placeholder="Ligne adresse 1"
-                                                required="true"
-                                                maxlength="255"
-                                                value="#{ajouterFamilleBean.form.adresse.ligneAdresseUne}"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <p:outputLabel 
-                                            for="form_la2" 
-                                            styleClass="col-sm-3 control-label"
-                                            value="Ligne adresse 2" />
-                                        <div class="col-md-8">
-                                            <p:inputText 
-                                                styleClass="form-control" 
-                                                id="form_la2" 
-                                                placeholder="Ligne adresse 2"
-                                                maxlength="255"
-                                                value="#{ajouterFamilleBean.form.adresse.ligneAdresseDeux}"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <p:outputLabel 
-                                            for="form_commune" 
-                                            styleClass="col-sm-3 control-label"
-                                            value="Commune" />
-                                        <div class="col-md-8">
-                                            <p:autoComplete
-                                                id="form_commune"
-                                                required="true"
-                                                dropdown="true"
-                                                value="#{ajouterFamilleBean.form.adresse.commune}"
-                                                converter="#{communeConverter}"
-                                                cache="true"
-                                                forceSelection="true"
-                                                var="commune"
-                                                completeMethod="#{ajouterFamilleBean.completeCommune}"
-                                                itemLabel="#{commune.label}"
-                                                itemValue="#{commune}">
-                                            </p:autoComplete>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-11">
-                                            <p:button 
-                                                icon="ui-icon-circle-arrow-w"
-                                                outcome="/familles/liste.xhtml"
-                                                value="Retour liste"/>
-                                            <p:commandButton
-                                                styleClass="btn-primary pull-right" 
-                                                value="Ajouter"
-                                                icon="ui-icon-plus"
-                                                ajax="false"
-                                                action="#{ajouterFamilleBean.ajouter()}"/>
-                                        </div>
-                                    </div>
-                                </h:form>
-                            </div>
-                        </div>
-                    </div>
+                        </div> <!-- .row -->
+                    </h:form>
                 </div> <!-- .container -->
             </ui:define>
         </ui:composition>
