@@ -48,7 +48,7 @@
         <postgre.version>9.2-1004-jdbc41</postgre.version>
         
         <!-- Plugins versions -->
-        <maven-release-plugin.version>3.0-r1585899</maven-release-plugin.version>
+        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <maven-scm-provider-jgit.version>1.9.4</maven-scm-provider-jgit.version>
         <maven-deploy-plugin>2.8.2</maven-deploy-plugin>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
