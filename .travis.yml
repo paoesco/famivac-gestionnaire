@@ -3,4 +3,13 @@ jdk:
 - oraclejdk8
 after_success:
 - mvn clean verify -P arquillian-wildfly-embedded coveralls:report
-
+deploy:
+  provider: openshift
+  user: pao.esco@outlook.com
+  password:
+    secure: IwhnoLsVGxfKBgT5oLkCYbzstJZtCBAcQiB00Ek1KxRgwfe88MEYW1tKT7F82IwxW9e+0VuYfV8HrQtk5ygYTi9dQE7peRwkbz+1rS9x7ULbtFMDJJUh6mJA382cDF7i/pSoD6y32ZgrhdeS7aW+tEcmp/H+NKvtESUWjE/OutweLWWl2WTTWt+xc18e7p6KwUEoA+q7zHhl7vhE1UjGPiRsibYvQVjtd45WP2rqHWJTbFzURwnGqHGfkyU/qP7oczwtGXol3ZFwm09De4cmrWPlWsebgnLlmq8WMSUIUFlfA+w3urgCA6eFH/44w42riLF/dvLwvczmxRf8J75s69lbrXxxoZe4fwFlId42xAqkXHycdu4NC5X9Z8haqqu4XBdqGKA0cpDtoIJFsYl7IOEqw+/9nuLqod/FUgs9XsC5DR0eYopePX0r4pJDPzpPZfxteMJ3yXIkbRGsZKZSquGrjctaIvusAMgiMYGefpkITZicoz0D8vhSZH75LdaOa96FXM2U7KLZktObEUSm2oNjFZ85CY5WANrR8Jv6wmoFtkn7Q0oxECXVZbPG1GzIZKBawpijoGQjYqxQmMoFhHmvWI2OEdezlTFrvXEYy32V+8AIiXmCZ9WMd8X9Dia8UgHKeKmWRgm3DTKVyYpRxX/byMSNkhT0FW51qWy1Wo0=
+  app: gestionnaire
+  domain: famivac
+  on:
+    repo: paoesco/famivac-gestionnaire
+    branch: master
