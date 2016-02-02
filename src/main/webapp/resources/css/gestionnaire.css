@@ -35,6 +35,15 @@ body {
     border-bottom: none;
 }
 
+.ui-tabs.ui-tabs-left {
+    border-right: none;
+}
+
 div.formaction {
     padding-left: 15px;
+}
+
+.ui-radiobutton {
+    margin-left: 11px;
+    margin-right: 2px;
 }
