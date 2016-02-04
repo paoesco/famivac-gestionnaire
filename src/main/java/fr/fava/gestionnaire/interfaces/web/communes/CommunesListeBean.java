@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- * Backing bean des enfants.
+ * Backing bean des communes.
  *
  * @author paoesco
  */

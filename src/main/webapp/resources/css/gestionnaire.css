@@ -55,3 +55,13 @@ div.formaction {
 .ui-widget {
     font-size: 1.0em;
 }
+
+.ui-selectmanycheckbox label {
+    margin-left: 2px;
+    margin-right: 20px;
+}
+
+.ui-selectoneradio label {
+    margin-left: 2px;
+    margin-right: 20px;
+}

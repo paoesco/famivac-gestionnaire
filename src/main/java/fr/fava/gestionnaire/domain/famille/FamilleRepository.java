@@ -44,11 +44,16 @@ public class FamilleRepository {
         }
         return query.getResultList();
     }
-    
+
+    public long count() {
+        String jpql = "select count(f.id) from Famille f";
+        Query q = entityManager.createQuery(jpql);
+        return (long) q.getSingleResult();
+    }
+
 //    private String stripAccents(String s) {
 //        s = Normalizer.normalize(s, Normalizer.Form.NFD);
 //        s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
 //        return s;
 //    }
-
 }
