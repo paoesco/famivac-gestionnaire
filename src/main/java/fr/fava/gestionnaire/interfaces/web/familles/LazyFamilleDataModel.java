@@ -1,6 +1,7 @@
 package fr.fava.gestionnaire.interfaces.web.familles;
 
 import fr.fava.gestionnaire.application.famille.FamilleDTO;
+import fr.fava.gestionnaire.interfaces.web.utils.LazyFilter;
 import fr.fava.gestionnaire.interfaces.web.utils.LazySorter;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
@@ -43,37 +45,9 @@ public class LazyFamilleDataModel extends LazyDataModel<FamilleDTO> {
 
     @Override
     public List<FamilleDTO> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-        List<FamilleDTO> data = new ArrayList<>();
-
         //filter
-        for (FamilleDTO famille : datasource) {
-            boolean match = true;
-            if (filters != null) {
-                for (Iterator<String> it = filters.keySet().iterator(); it.hasNext();) {
-                    try {
-                        String filterProperty = it.next();
-                        Object filterValue = filters.get(filterProperty);
-                        String methodName = "get" + Character.toUpperCase(filterProperty.charAt(0)) + filterProperty.substring(1);
-                        String fieldValue = String.valueOf(famille.getClass().getMethod(methodName).invoke(famille));
-                        if (filterValue == null || fieldValue.toLowerCase().startsWith(filterValue.toString().toLowerCase())) {
-                            match = true;
-                        } else {
-                            match = false;
-                            break;
-                        }
-                    } catch (SecurityException | IllegalArgumentException | IllegalAccessException ex) {
-                        Logger.getLogger(LazyFamilleDataModel.class.getName()).log(Level.FINE, null, ex);
-                        match = false;
-                    } catch (NoSuchMethodException | InvocationTargetException ex) {
-                        Logger.getLogger(LazyFamilleDataModel.class.getName()).log(Level.FINE, null, ex);
-                        match = false;
-                    }
-                }
-            }
-            if (match) {
-                data.add(famille);
-            }
-        }
+        LazyFilter<FamilleDTO> lazyFilter = new LazyFilter<>(filters);
+        List<FamilleDTO> data = datasource.stream().filter(lazyFilter).collect(Collectors.toList());
 
         //sort
         if (sortField != null) {

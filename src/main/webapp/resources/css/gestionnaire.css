@@ -47,3 +47,7 @@ div.formaction {
     margin-left: 11px;
     margin-right: 2px;
 }
+
+.ui-column-filter {
+    float: right;
+}
