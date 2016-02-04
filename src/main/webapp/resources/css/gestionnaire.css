@@ -51,3 +51,7 @@ div.formaction {
 .ui-column-filter {
     float: right;
 }
+
+.ui-widget {
+    font-size: 1.0em;
+}
