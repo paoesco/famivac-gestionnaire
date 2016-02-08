@@ -18,6 +18,8 @@ public class FamilleDTO implements Serializable {
 
     private String emailReferent;
 
+    private boolean radiee;
+
     public FamilleDTO(Famille bean) {
         this.id = bean.getId();
         this.nomReferent = bean.getMembreReferent().getNom();
@@ -26,6 +28,7 @@ public class FamilleDTO implements Serializable {
             this.telephoneReferent = bean.getMembreReferent().getCoordonnees().getTelephone1();
             this.emailReferent = bean.getMembreReferent().getCoordonnees().getEmail();
         }
+        this.radiee = bean.isRadiee();
     }
 
     public Long getId() {
@@ -66,6 +69,14 @@ public class FamilleDTO implements Serializable {
 
     public void setEmailReferent(String emailReferent) {
         this.emailReferent = emailReferent;
+    }
+
+    public boolean isRadiee() {
+        return radiee;
+    }
+
+    public void setRadiee(boolean radiee) {
+        this.radiee = radiee;
     }
 
 }

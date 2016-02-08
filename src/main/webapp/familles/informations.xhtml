@@ -18,10 +18,12 @@
                     <p:outputPanel id="panel_membre_referent">
                         <h:outputText value="#{familleDetailsBean.form.membreReferent.prenom} "/>
                         <h:outputText value="#{familleDetailsBean.form.membreReferent.nom}"/>
+                        &nbsp;
+                        <h:outputText value="En cours" styleClass="label label-default" rendered="#{not familleDetailsBean.form.radiee}"/>
+                        <h:outputText value="Radiée" styleClass="label label-danger" rendered="#{familleDetailsBean.form.radiee}"/>
                     </p:outputPanel>
                 </div>
             </div>
-
             <div class="form-group">
                 <p:outputLabel 
                     for="form_la1" 

@@ -1,6 +1,7 @@
 package fr.fava.gestionnaire.domain.famille;
 
 import fr.fava.gestionnaire.domain.common.Adresse;
+import fr.fava.gestionnaire.domain.utils.DateUtils;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;
@@ -114,6 +115,10 @@ public class Famille implements Serializable {
     @OneToOne(mappedBy = "famille", cascade = CascadeType.ALL, orphanRemoval = true)
     private InformationsVehicule informationsVehicule;
 
+    @Column(name = "DATE_RADIATION")
+    @Temporal(TemporalType.DATE)
+    private Date dateRadiation;
+
     protected Famille() {
         this.adresse = new Adresse();
         this.membres = new HashSet<>();
@@ -180,6 +185,10 @@ public class Famille implements Serializable {
                 m.setReferent(false);
             }
         });
+    }
+    
+    public boolean isRadiee() {
+        return dateRadiation != null && DateUtils.after(new Date(), dateRadiation);
     }
 
     public Long getId() {
@@ -374,6 +383,14 @@ public class Famille implements Serializable {
 
     public void setInformationsVehicule(InformationsVehicule informationsVehicule) {
         this.informationsVehicule = informationsVehicule;
+    }
+
+    public Date getDateRadiation() {
+        return dateRadiation == null ? null : (Date) dateRadiation.clone();
+    }
+
+    public void setDateRadiation(Date dateRadiation) {
+        this.dateRadiation = dateRadiation == null ? null : (Date) dateRadiation.clone();
     }
 
 }

@@ -1,0 +1,1 @@
+alter table Famille add column DATE_RADIATION date;

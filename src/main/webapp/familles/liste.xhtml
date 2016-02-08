@@ -77,6 +77,11 @@
                                         sortBy="#{bean.emailReferent}">
                                         <h:outputText value="#{bean.emailReferent}"></h:outputText>
                                     </p:column>
+                                    <p:column 
+                                        headerText="Statut">
+                                        <h:outputText value="En cours" styleClass="label label-default" rendered="#{not bean.radiee}"/>
+                                        <h:outputText value="Radiée" styleClass="label label-danger" rendered="#{bean.radiee}"/>
+                                    </p:column>
 
                                     <p:column width="100">
                                         <p:button 

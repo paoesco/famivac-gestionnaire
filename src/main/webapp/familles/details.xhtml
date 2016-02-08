@@ -120,10 +120,27 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <p:outputLabel 
+                                                    for="input_date_radiation" 
+                                                    styleClass="col-sm-3 control-label"
+                                                    value="Date radiation" />
+                                                <div class="col-md-8">
+                                                    <p:calendar 
+                                                        locale="fr"
+                                                        navigator="true"
+                                                        yearRange="c-100:c+0"
+                                                        pattern="dd/MM/yyyy"
+                                                        mask="99/99/9999"
+                                                        id="input_date_radiation" 
+                                                        value="#{familleDetailsBean.form.dateRadiation}"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <div class="col-md-11">
                                                     <p:commandButton
                                                         process=":form:tabView_famille:tab_autre"
                                                         styleClass="btn-default pull-right" 
+                                                        update="panel_membre_referent"
                                                         value="Sauver"
                                                         icon="ui-icon-circle-check"
                                                         actionListener="#{familleDetailsBean.update()}"/>
