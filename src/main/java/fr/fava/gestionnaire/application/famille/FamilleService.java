@@ -34,9 +34,12 @@ public class FamilleService {
     private FamilleRepository repository;
 
     public Long create(CreateFamilleRequestDTO request) {
-        Commune communeFamille = new Commune(request.getAdresse().getCommune().getCode(), request.getAdresse().getCommune().getVille());
+        Commune communeFamille = null;
+        if (request.getAdresse().getCommune() != null) {
+            communeFamille = new Commune(request.getAdresse().getCommune().getCode(), request.getAdresse().getCommune().getVille());
+        }
         Adresse adresse = new Adresse(request.getAdresse().getLigneAdresseUne(), request.getAdresse().getLigneAdresseDeux(), communeFamille);
-        Famille entity = new Famille(adresse, request.getProjet());
+        Famille entity = new Famille(adresse, request.getProjet(), request.isCandidature());
         Commune communeMembre = request.getMembrePrincipal().getCommuneDeNaissance();
         MembreFamille membre = new MembreFamille(
                 request.getMembrePrincipal().getNom(),

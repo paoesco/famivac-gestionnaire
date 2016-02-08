@@ -25,7 +25,10 @@ public class MembreService {
         MembreFamille entity = entityManager.find(MembreFamille.class, id);
         MembreDTO dto = new MembreDTO();
         dto.setId(entity.getId());
-        Commune commune = new Commune(entity.getCommuneDeNaissance().getCode(), entity.getCommuneDeNaissance().getVille());
+        Commune commune = null;
+        if (entity.getCommuneDeNaissance() != null) {
+            commune = new Commune(entity.getCommuneDeNaissance().getCode(), entity.getCommuneDeNaissance().getVille());
+        }
         dto.setCommuneDeNaissance(commune);
         dto.setDateNaissance(entity.getDateNaissance());
         dto.setLienDeParente(entity.getLienDeParente());

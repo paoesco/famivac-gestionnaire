@@ -19,8 +19,9 @@
                         <h:outputText value="#{familleDetailsBean.form.membreReferent.prenom} "/>
                         <h:outputText value="#{familleDetailsBean.form.membreReferent.nom}"/>
                         &nbsp;
-                        <h:outputText value="En cours" styleClass="label label-default" rendered="#{not familleDetailsBean.form.radiee}"/>
+                        <h:outputText value="En cours" styleClass="label label-default" rendered="#{not familleDetailsBean.form.radiee and not familleDetailsBean.form.candidature}"/>
                         <h:outputText value="Radiée" styleClass="label label-danger" rendered="#{familleDetailsBean.form.radiee}"/>
+                        <h:outputText value="Candidature" styleClass="label label-warning" rendered="#{not familleDetailsBean.form.radiee and familleDetailsBean.form.candidature}"/>
                     </p:outputPanel>
                 </div>
             </div>

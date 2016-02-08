@@ -13,25 +13,20 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class Adresse implements Serializable {
 
-    @Column(nullable = false)
+    @Column
     private String ligneAdresseUne;
 
-    @Column(nullable = false)
+    @Column
     private String ligneAdresseDeux;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Commune commune;
 
     public Adresse() {
-
+        this.commune = new Commune();
     }
 
     public Adresse(String ligneAdresseUne, String ligneAdresseDeux, Commune commune) {
-        if (ligneAdresseUne == null
-                || ligneAdresseUne.isEmpty()
-                || commune == null) {
-            throw new IllegalArgumentException("Tous les paramètres sont obligatoires");
-        }
         this.ligneAdresseUne = ligneAdresseUne;
         this.ligneAdresseDeux = ligneAdresseDeux;
         this.commune = commune;
@@ -58,7 +53,7 @@ public class Adresse implements Serializable {
     }
 
     public void setCommune(Commune commune) {
-        if (commune.getCode() == null || commune.getCode().isEmpty()) {
+        if (commune != null && (commune.getCode() == null || commune.getCode().isEmpty())) {
             throw new IllegalArgumentException("Le code commune est obligatoire");
         }
         this.commune = commune;

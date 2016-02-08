@@ -64,7 +64,7 @@ public class Famille implements Serializable {
 
     private String precisionsSejoursNonComplets;
 
-    @Column(nullable = false, length = 2000)
+    @Column(length = 2000)
     private String projet;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -119,6 +119,9 @@ public class Famille implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateRadiation;
 
+    @Column(name = "CANDIDATURE")
+    private boolean candidature;
+
     protected Famille() {
         this.adresse = new Adresse();
         this.membres = new HashSet<>();
@@ -129,18 +132,14 @@ public class Famille implements Serializable {
         this.informationsVehicule = new InformationsVehicule(this);
     }
 
-    public Famille(Adresse adresse, String projet) {
-        if (adresse == null
-                || projet == null
-                || projet.isEmpty()) {
-            throw new IllegalArgumentException("Tous les paramètres sont obligatoires");
-        }
+    public Famille(Adresse adresse, String projet, boolean candidature) {
         this.adresse = adresse;
         membres = new HashSet<>();
         this.projet = projet;
         chambres = new HashSet<>();
         this.informationsHabitation = new InformationsHabitation(this);
         this.informationsVehicule = new InformationsVehicule(this);
+        this.candidature = candidature;
     }
 
     public void ajouterChambre(Chambre chambre) {
@@ -186,7 +185,7 @@ public class Famille implements Serializable {
             }
         });
     }
-    
+
     public boolean isRadiee() {
         return dateRadiation != null && DateUtils.after(new Date(), dateRadiation);
     }
@@ -391,6 +390,14 @@ public class Famille implements Serializable {
 
     public void setDateRadiation(Date dateRadiation) {
         this.dateRadiation = dateRadiation == null ? null : (Date) dateRadiation.clone();
+    }
+
+    public boolean isCandidature() {
+        return candidature;
+    }
+
+    public void setCandidature(boolean candidature) {
+        this.candidature = candidature;
     }
 
 }

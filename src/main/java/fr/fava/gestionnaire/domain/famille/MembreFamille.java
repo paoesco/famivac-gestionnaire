@@ -41,7 +41,7 @@ public class MembreFamille implements Serializable {
     @Enumerated(EnumType.STRING)
     private Sexe sexe;
 
-    @Column(nullable = false)
+    @Column
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateNaissance;
 
@@ -72,16 +72,14 @@ public class MembreFamille implements Serializable {
                 || nom.isEmpty()
                 || prenom == null
                 || prenom.isEmpty()
-                || sexe == null
-                || dateNaissance == null
-                || communeDeNaissance == null) {
+                || sexe == null) {
             throw new IllegalArgumentException("Tous les paramètres sont obligatoires");
         }
         this.nom = nom;
         this.nomDeNaissance = nomDeNaissance;
         this.prenom = prenom;
         this.sexe = sexe;
-        this.dateNaissance = (Date) dateNaissance.clone();
+        setDateNaissance(dateNaissance);
         this.profession = profession;
         this.referent = referent;
         this.communeDeNaissance = communeDeNaissance;
@@ -159,10 +157,7 @@ public class MembreFamille implements Serializable {
     }
 
     public void setDateNaissance(Date dateNaissance) {
-        if (dateNaissance == null) {
-            throw new IllegalArgumentException("La date de naissance est obligatoire");
-        }
-        this.dateNaissance = (Date) dateNaissance.clone();
+        this.dateNaissance = dateNaissance == null ? null : (Date) dateNaissance.clone();
     }
 
     public void setReferent(boolean referent) {

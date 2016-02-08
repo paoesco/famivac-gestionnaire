@@ -136,6 +136,17 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <p:outputLabel 
+                                                    for="input_candidature" 
+                                                    styleClass="col-sm-3 text-right"
+                                                    value="Candidature ?" />
+                                                <div class="col-md-8">
+                                                    <p:selectBooleanCheckbox
+                                                        id="input_candidature"
+                                                        value="#{familleDetailsBean.form.candidature}"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <div class="col-md-11">
                                                     <p:commandButton
                                                         process=":form:tabView_famille:tab_autre"

@@ -35,6 +35,17 @@
                                     <div class="panel-body">
                                         <div class="form-group">
                                             <p:outputLabel 
+                                                for="input_candidature" 
+                                                styleClass="col-sm-3 text-right"
+                                                value="Candidature ?" />
+                                            <div class="col-md-8">
+                                                <p:selectBooleanCheckbox
+                                                    id="input_candidature"
+                                                    value="#{ajouterFamilleBean.form.candidature}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
                                                 for="form_nom" 
                                                 styleClass="col-sm-3 control-label"
                                                 value="Nom" />
@@ -107,7 +118,6 @@
                                                     mask="99/99/9999"
                                                     id="form_date_naissance" 
                                                     placeholder="01/01/1990"
-                                                    required="true"
                                                     value="#{ajouterFamilleBean.form.membrePrincipal.dateNaissance}"/>
                                             </div>
                                         </div>
@@ -119,7 +129,6 @@
                                             <div class="col-md-8">
                                                 <p:autoComplete
                                                     id="form_commune_naissance"
-                                                    required="true"
                                                     dropdown="true"
                                                     value="#{ajouterFamilleBean.form.membrePrincipal.communeDeNaissance}"
                                                     converter="#{communeConverter}"
@@ -158,7 +167,6 @@
                                                     rows="5"
                                                     autoResize="false"
                                                     placeholder="Projet"
-                                                    required="true"
                                                     maxlength="2000"
                                                     value="#{ajouterFamilleBean.form.projet}"/>
                                             </div>
@@ -182,7 +190,6 @@
                                                     styleClass="form-control" 
                                                     id="form_la1" 
                                                     placeholder="Ligne adresse 1"
-                                                    required="true"
                                                     maxlength="255"
                                                     value="#{ajouterFamilleBean.form.adresse.ligneAdresseUne}"/>
                                             </div>
@@ -209,7 +216,6 @@
                                             <div class="col-md-8">
                                                 <p:autoComplete
                                                     id="form_commune"
-                                                    required="true"
                                                     dropdown="true"
                                                     value="#{ajouterFamilleBean.form.adresse.commune}"
                                                     converter="#{communeConverter}"
