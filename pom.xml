@@ -39,7 +39,7 @@
         <additionalparam>-Xdoclint:none</additionalparam>
         
         <!-- Dependencies versions -->
-        <jacoco.version>0.7.5.201505241946</jacoco.version>
+        <jacoco.version>0.7.6.201602180812</jacoco.version>
         <wildfly.version>9.0.2.Final</wildfly.version>
         <javaee.version>7.0</javaee.version>
         <primefaces.version>5.3</primefaces.version>
@@ -62,21 +62,21 @@
             <dependency>
                 <groupId>io.spring.platform</groupId>
                 <artifactId>platform-bom</artifactId>
-                <version>2.0.1.RELEASE</version>
+                <version>2.0.2.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.1.10.Final</version>
+                <version>1.1.11.Final</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-bom</artifactId>
-                <version>2.2.1</version>
+                <version>2.2.2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -236,6 +236,7 @@
                     </execution>
                     <execution>
                         <id>default-report</id>
+                        <phase>test</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
