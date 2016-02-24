@@ -13,3 +13,8 @@ deploy:
   on:
     repo: paoesco/famivac-gestionnaire
     branch: master
+
+before_install:
+  - pip install --user codecov
+after_success:
+  - codecov
