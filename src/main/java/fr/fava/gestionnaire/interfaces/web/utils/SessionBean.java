@@ -1,7 +1,7 @@
 package fr.fava.gestionnaire.interfaces.web.utils;
 
-import fr.fava.gestionnaire.application.UtilisateurService;
-import fr.fava.gestionnaire.domain.common.Utilisateur;
+import fr.fava.gestionnaire.application.administration.UtilisateurService;
+import fr.fava.gestionnaire.domain.administration.Utilisateur;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;

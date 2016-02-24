@@ -1,6 +1,6 @@
 package fr.fava.gestionnaire.interfaces.web.enfants;
 
-import fr.fava.gestionnaire.application.CommuneService;
+import fr.fava.gestionnaire.application.administration.CommuneService;
 import fr.fava.gestionnaire.application.enfant.EnfantService;
 import fr.fava.gestionnaire.domain.enfant.Enfant;
 import fr.fava.gestionnaire.domain.enfant.FamilleAccueil;

@@ -1,7 +1,7 @@
 package fr.fava.gestionnaire.interfaces.web.utils;
 
 import fr.fava.gestionnaire.domain.common.Commune;
-import fr.fava.gestionnaire.application.CommuneService;
+import fr.fava.gestionnaire.application.administration.CommuneService;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

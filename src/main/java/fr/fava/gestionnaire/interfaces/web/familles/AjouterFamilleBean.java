@@ -2,7 +2,7 @@ package fr.fava.gestionnaire.interfaces.web.familles;
 
 import fr.fava.gestionnaire.application.famille.FamilleService;
 import fr.fava.gestionnaire.application.famille.CreateFamilleRequestDTO;
-import fr.fava.gestionnaire.application.CommuneService;
+import fr.fava.gestionnaire.application.administration.CommuneService;
 import fr.fava.gestionnaire.interfaces.web.utils.CompleteCommune;
 import java.io.Serializable;
 import javax.faces.view.ViewScoped;

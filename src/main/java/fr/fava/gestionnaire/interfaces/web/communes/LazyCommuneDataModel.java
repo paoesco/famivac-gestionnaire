@@ -17,7 +17,7 @@ public class LazyCommuneDataModel extends LazyDataModel<Commune> {
 
     private final List<Commune> datasource;
 
-    private Comparator alphanumComparator;
+    private final Comparator alphanumComparator;
 
     public LazyCommuneDataModel(List<Commune> datasource) {
         alphanumComparator = new AlphanumComparator();
@@ -51,6 +51,13 @@ public class LazyCommuneDataModel extends LazyDataModel<Commune> {
 
     public boolean contains(Commune bean) {
         return datasource.contains(bean);
+    }
+
+    public Commune getRowData(int rowIndex) {
+        if (rowIndex > datasource.size()) {
+            throw new IllegalArgumentException();
+        }
+        return datasource.get(rowIndex);
     }
 
 }

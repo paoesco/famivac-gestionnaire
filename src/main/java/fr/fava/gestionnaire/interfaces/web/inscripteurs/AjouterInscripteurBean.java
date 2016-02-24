@@ -1,6 +1,6 @@
 package fr.fava.gestionnaire.interfaces.web.inscripteurs;
 
-import fr.fava.gestionnaire.application.CommuneService;
+import fr.fava.gestionnaire.application.administration.CommuneService;
 import fr.fava.gestionnaire.application.enfant.InscripteurService;
 import fr.fava.gestionnaire.domain.common.Commune;
 import fr.fava.gestionnaire.domain.inscripteur.Inscripteur;

@@ -1,7 +1,7 @@
 package fr.fava.gestionnaire.interfaces.web.parametres.utilisateurs;
 
-import fr.fava.gestionnaire.application.GroupeResponseDTO;
-import fr.fava.gestionnaire.application.UtilisateurService;
+import fr.fava.gestionnaire.application.administration.GroupeResponseDTO;
+import fr.fava.gestionnaire.application.administration.UtilisateurService;
 import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;

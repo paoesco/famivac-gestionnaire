@@ -1,6 +1,6 @@
 package fr.fava.gestionnaire.interfaces.web.parametres.utilisateurs;
 
-import fr.fava.gestionnaire.application.RetrieveUtilisateursDTO;
+import fr.fava.gestionnaire.application.administration.RetrieveUtilisateursDTO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

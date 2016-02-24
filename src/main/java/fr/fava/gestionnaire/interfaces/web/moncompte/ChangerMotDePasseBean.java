@@ -1,6 +1,6 @@
 package fr.fava.gestionnaire.interfaces.web.moncompte;
 
-import fr.fava.gestionnaire.application.UtilisateurService;
+import fr.fava.gestionnaire.application.administration.UtilisateurService;
 import fr.fava.gestionnaire.application.exceptions.WrongPasswordException;
 import fr.fava.gestionnaire.interfaces.web.utils.SessionBean;
 import java.util.logging.Level;

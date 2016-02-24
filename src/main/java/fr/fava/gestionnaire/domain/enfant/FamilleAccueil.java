@@ -1,7 +1,6 @@
 package fr.fava.gestionnaire.domain.enfant;
 
 import fr.fava.gestionnaire.domain.common.Adresse;
-import fr.fava.gestionnaire.domain.common.Commune;
 import fr.fava.gestionnaire.domain.common.Coordonnees;
 import java.io.Serializable;
 import javax.persistence.Entity;

@@ -1,7 +1,7 @@
 package fr.fava.gestionnaire.interfaces.facade.utilisateurs;
 
-import fr.fava.gestionnaire.application.UtilisateurService;
-import fr.fava.gestionnaire.application.AjouterUtilisateurDTO;
+import fr.fava.gestionnaire.application.administration.UtilisateurService;
+import fr.fava.gestionnaire.application.administration.AjouterUtilisateurDTO;
 import fr.fava.gestionnaire.application.mail.Mail;
 import fr.fava.gestionnaire.application.mail.MailService;
 import java.text.MessageFormat;

@@ -14,11 +14,11 @@
 
             <ui:define name="metadata">
                 <f:metadata>
-                    <f:viewAction action="#{communesListeBean.init()}"></f:viewAction>
+                    <f:viewAction action="#{communesBean.init()}"></f:viewAction>
                 </f:metadata>
             </ui:define>
 
-            <ui:define name="title">Utilisateurs</ui:define>
+            <ui:define name="title">Communes</ui:define>
 
             <ui:define name="parametres-contenu">
 
@@ -28,30 +28,44 @@
                             Communes
                         </div>
                         <div class="panel-body">
-                            <p:dataTable 
-                                id="datatable"
-                                var="bean" 
-                                value="#{communesListeBean.lazyModel}"
-                                paginator="true"
-                                rowKey="#{bean.id}"
-                                rows="20"
-                                lazy="true">
+                            <h:form id="form_datatable">
+                                <p:dataTable 
+                                    id="datatable"
+                                    var="bean" 
+                                    value="#{communesBean.lazyModel}"
+                                    paginator="true"
+                                    rowKey="#{bean.code}"
+                                    rows="20"
+                                    lazy="true"
+                                    editable="true" 
+                                    editMode="cell">
+                                    <p:ajax event="cellEdit" listener="#{communesBean.onCellEdit}" />
 
-                                <p:column headerText="Code">
-                                    <h:outputText value="#{bean.code}"></h:outputText>
-                                </p:column>
+                                    <p:column headerText="Code">
+                                        <h:outputText value="#{bean.code}"></h:outputText>
+                                    </p:column>
 
-                                <p:column headerText="Ville">
-                                    <h:outputText value="#{bean.ville}"></h:outputText>
-                                </p:column>
+                                    <p:column headerText="Ville">
+                                        <p:cellEditor>
+                                            <f:facet name="output"><h:outputText value="#{bean.ville}"></h:outputText></f:facet>
+                                            <f:facet name="input">
+                                                <p:inputText 
+                                                    styleClass="form-control" 
+                                                    id="input_ville" 
+                                                    placeholder="Ville"
+                                                    required="true"
+                                                    maxlength="255"
+                                                    value="#{bean.ville}"/>
+                                            </f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
 
-                                <p:column width="100">
-                                    <h:form styleClass="pull-right">
+                                    <p:column width="100">
                                         <p:commandButton 
                                             styleClass="btn-default"
                                             icon="ui-icon-trash"
-                                            actionListener="#{communesListeBean.delete(bean.code)}"
-                                            update=":datatable">
+                                            actionListener="#{communesBean.delete(bean.code)}"
+                                            update="@form">
                                             <p:confirm 
                                                 header="Confirmation" 
                                                 message="Êtes vous sûr de vouloir supprimer cette commune ?" 
@@ -69,10 +83,9 @@
                                                 styleClass="ui-confirmdialog-no pull-right" 
                                                 icon="ui-icon-close" />
                                         </p:confirmDialog>
-                                    </h:form>
-                                </p:column>
-
-                            </p:dataTable>
+                                    </p:column>
+                                </p:dataTable>
+                            </h:form>
                         </div>
                     </div>
                     <div class="panel panel-primary">
@@ -94,7 +107,7 @@
                                             placeholder="Code"
                                             required="true"
                                             maxlength="255"
-                                            value="#{communesListeBean.form.code}"/>
+                                            value="#{communesBean.form.code}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -109,7 +122,7 @@
                                             placeholder="Ville"
                                             required="true"
                                             maxlength="255"
-                                            value="#{communesListeBean.form.ville}"/>
+                                            value="#{communesBean.form.ville}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -117,9 +130,9 @@
                                         <p:commandButton
                                             styleClass="btn-primary pull-right" 
                                             value="Ajouter"
-                                            update="@form :datatable"
+                                            update="@form :form_datatable"
                                             icon="ui-icon-plus"
-                                            actionListener="#{communesListeBean.ajouter()}"/>
+                                            actionListener="#{communesBean.ajouter()}"/>
                                     </div>
                                 </div>
                             </h:form>

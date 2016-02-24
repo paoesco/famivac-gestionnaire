@@ -1,8 +1,8 @@
 package fr.fava.gestionnaire.test.integration.application;
 
-import fr.fava.gestionnaire.application.AjouterUtilisateurDTO;
-import fr.fava.gestionnaire.application.UtilisateurService;
-import fr.fava.gestionnaire.domain.common.Utilisateur;
+import fr.fava.gestionnaire.application.administration.AjouterUtilisateurDTO;
+import fr.fava.gestionnaire.application.administration.UtilisateurService;
+import fr.fava.gestionnaire.domain.administration.Utilisateur;
 import fr.fava.gestionnaire.test.integration.AbstractIntegrationTest;
 import java.util.Collections;
 import javax.inject.Inject;

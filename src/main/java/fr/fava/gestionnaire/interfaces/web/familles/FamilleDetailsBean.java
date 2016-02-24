@@ -5,7 +5,7 @@ import fr.fava.gestionnaire.application.famille.MembreService;
 import fr.fava.gestionnaire.application.famille.MembreDTO;
 import fr.fava.gestionnaire.domain.famille.Chambre;
 import fr.fava.gestionnaire.domain.famille.Famille;
-import fr.fava.gestionnaire.application.CommuneService;
+import fr.fava.gestionnaire.application.administration.CommuneService;
 import fr.fava.gestionnaire.domain.sejour.Sejour;
 import fr.fava.gestionnaire.domain.sejour.SejourRepository;
 import fr.fava.gestionnaire.interfaces.web.utils.CompleteCommune;

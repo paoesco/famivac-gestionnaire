@@ -1,13 +1,19 @@
 package fr.fava.gestionnaire.interfaces.web.communes;
 
 import fr.fava.gestionnaire.domain.common.Commune;
-import fr.fava.gestionnaire.application.CommuneService;
+import fr.fava.gestionnaire.application.administration.CommuneService;
+import fr.fava.gestionnaire.application.administration.RetrieveUtilisateursDTO;
+import fr.fava.gestionnaire.domain.administration.Groupe;
+import fr.fava.gestionnaire.domain.administration.Utilisateur;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.primefaces.event.CellEditEvent;
 
 /**
  * Backing bean des communes.
@@ -16,7 +22,7 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class CommunesListeBean implements Serializable {
+public class CommunesBean implements Serializable {
 
     /**
      * Liste des utilistaeurs.
@@ -48,6 +54,18 @@ public class CommunesListeBean implements Serializable {
         }
         communeService.create(form);
         init();
+    }
+
+    public void onCellEdit(CellEditEvent event) {
+        Commune bean = lazyModel.getRowData(event.getRowIndex());
+        String oldValue = (String) event.getOldValue();
+        String newValue = (String) event.getNewValue();
+
+        if (newValue != null && !newValue.equals(oldValue)) {
+            communeService.update(bean);
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "La commune a été mise à jour", null);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
     }
 
     public LazyCommuneDataModel getLazyModel() {
