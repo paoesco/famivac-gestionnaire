@@ -65,4 +65,12 @@ public class ResponsableInscripteur implements Serializable {
         this.coordonnees = coordonnees;
     }
 
+    public Inscripteur getInscripteur() {
+        return inscripteur;
+    }
+
+    public void setInscripteur(Inscripteur inscripteur) {
+        this.inscripteur = inscripteur;
+    }
+
 }

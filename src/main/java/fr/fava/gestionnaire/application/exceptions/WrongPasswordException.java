@@ -6,8 +6,4 @@ package fr.fava.gestionnaire.application.exceptions;
  */
 public class WrongPasswordException extends Exception {
 
-    public WrongPasswordException() {
-        super();
-    }
-
 }

@@ -1,13 +1,6 @@
 package fr.fava.gestionnaire.application.mail;
 
 import fr.fava.gestionnaire.application.mail.exceptions.MailException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
 //import javax.mail.Message;
 //import javax.mail.MessagingException;

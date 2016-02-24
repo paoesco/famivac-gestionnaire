@@ -4,19 +4,14 @@ import fr.fava.gestionnaire.domain.inscripteur.Inscripteur;
 import fr.fava.gestionnaire.domain.inscripteur.TypeInscripteur;
 import fr.fava.gestionnaire.domain.common.Adresse;
 import fr.fava.gestionnaire.domain.common.Coordonnees;
-import fr.fava.gestionnaire.domain.utils.Email;
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 /**
  *

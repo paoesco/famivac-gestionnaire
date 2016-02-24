@@ -2,7 +2,6 @@ package fr.fava.gestionnaire.application.famille;
 
 import fr.fava.gestionnaire.domain.common.Commune;
 import fr.fava.gestionnaire.domain.common.Coordonnees;
-import fr.fava.gestionnaire.domain.utils.Email;
 import java.util.Date;
 import java.util.Objects;
 

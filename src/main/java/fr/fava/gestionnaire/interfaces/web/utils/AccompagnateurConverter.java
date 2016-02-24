@@ -1,9 +1,6 @@
 package fr.fava.gestionnaire.interfaces.web.utils;
 
 import fr.fava.gestionnaire.application.accompagnateur.AccompagnateurService;
-import fr.fava.gestionnaire.application.famille.FamilleService;
-import fr.fava.gestionnaire.application.famille.FamilleDTO;
-import fr.fava.gestionnaire.domain.famille.Famille;
 import fr.fava.gestionnaire.domain.sejour.Accompagnateur;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.component.UIComponent;

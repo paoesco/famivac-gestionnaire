@@ -1,6 +1,5 @@
 package fr.fava.gestionnaire.interfaces.web.parametres.utilisateurs;
 
-import fr.fava.gestionnaire.application.administration.GroupeResponseDTO;
 import fr.fava.gestionnaire.application.administration.UtilisateurService;
 import java.io.Serializable;
 import java.util.List;
@@ -23,8 +22,8 @@ public class UtilisateurDetailsBean implements Serializable {
 
     private DetailsUtilisateurForm form;
 
-    @Inject
-    private UtilisateurService utilisateurService;
+//    @Inject
+//    private UtilisateurService utilisateurService;
 
     private List<String> groupes;
 

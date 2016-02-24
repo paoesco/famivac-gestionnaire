@@ -19,8 +19,6 @@ public class RetrieveInscripteursResponseDTO {
 
     private TypeInscripteur type;
 
-    private String libelle;
-
     public Long getId() {
         return id;
     }

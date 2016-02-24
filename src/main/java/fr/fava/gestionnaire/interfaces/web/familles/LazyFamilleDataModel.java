@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
@@ -17,7 +16,7 @@ import org.primefaces.model.SortOrder;
  */
 public class LazyFamilleDataModel extends LazyDataModel<FamilleDTO> {
 
-    private static final Logger logger = Logger.getLogger(LazyFamilleDataModel.class.getName());
+//    private static final Logger logger = Logger.getLogger(LazyFamilleDataModel.class.getName());
 
     private final List<FamilleDTO> datasource;
 

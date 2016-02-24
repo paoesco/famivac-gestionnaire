@@ -42,10 +42,7 @@ public abstract class Entity {
             return false;
         }
         final Entity other = (Entity) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.id, other.id);
     }
 
 }
