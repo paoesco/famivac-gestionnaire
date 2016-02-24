@@ -2,7 +2,7 @@ language: java
 jdk:
 - oraclejdk8
 after_success:
-- mvn clean verify -P arquillian-wildfly-embedded coveralls:report codecov
+- mvn clean verify -P arquillian-wildfly-embedded coveralls:report
 deploy:
   provider: openshift
   user: pao.esco@outlook.com
@@ -13,6 +13,3 @@ deploy:
   on:
     repo: paoesco/famivac-gestionnaire
     branch: master
-
-before_install:
-  - pip install --user codecov
