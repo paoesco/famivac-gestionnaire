@@ -65,3 +65,11 @@ body {
     margin-left: 2px;
     margin-right: 20px;
 }
+
+.navbar-brand {
+    padding: 0 !important;
+}
+
+.navbar-brand img {
+    height: 50px;
+}

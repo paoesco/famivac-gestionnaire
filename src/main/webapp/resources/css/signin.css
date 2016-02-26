@@ -38,3 +38,11 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.login {
+    background-image: url("http://famivac.fr/wp-content/uploads/2015/04/background3.jpg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: scroll;
+}
+
