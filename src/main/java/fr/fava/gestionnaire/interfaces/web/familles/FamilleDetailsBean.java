@@ -35,6 +35,7 @@ public class FamilleDetailsBean implements Serializable, CompleteCommune {
     private MembreDTO selectedMembre;
 
     private MembreDTO membreForm;
+    private boolean nouveauMembre;
 
     private List<Chambre> chambres;
 
@@ -55,6 +56,8 @@ public class FamilleDetailsBean implements Serializable, CompleteCommune {
      * Initialisation du bean.
      */
     public void init() {
+        selectedMembre = null;
+        nouveauMembre = false;
         form = familleService.get(id);
         membres = new ArrayList<>();
         membreForm = new MembreDTO();
@@ -83,10 +86,12 @@ public class FamilleDetailsBean implements Serializable, CompleteCommune {
     public void initAjouterMembre() {
         membreForm = new MembreDTO();
         selectedMembre = null;
+        nouveauMembre = true;
     }
 
     public void selectMembre() {
         membreForm = selectedMembre;
+        nouveauMembre = false;
     }
 
     public void updateMembre() {
@@ -198,6 +203,10 @@ public class FamilleDetailsBean implements Serializable, CompleteCommune {
 
     public List<Sejour> getSejours() {
         return sejours;
+    }
+
+    public boolean isNouveauMembre() {
+        return nouveauMembre;
     }
 
 }

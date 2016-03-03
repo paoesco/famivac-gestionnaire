@@ -22,7 +22,7 @@
             <ui:define name="title">Détails</ui:define>
 
             <ui:define name="content">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="col-md-12">
                         <div class="panel panel-primary">
                             <div class="panel-heading">Famille</div>
@@ -162,12 +162,8 @@
                                 </h:form>
                             </div>
                         </div>
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">Membres</div>
-                            <div class="panel-body">
-                                <ui:include src="membres.xhtml"></ui:include>
-                            </div>
-                        </div>
+                        
+                        <ui:include src="membres.xhtml"></ui:include>
                     </div>
                 </div> <!-- .container -->
             </ui:define>
