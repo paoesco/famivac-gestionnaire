@@ -1,4 +1,4 @@
-package fr.famivac.gestionnaire.commons.entity.utils;
+package fr.famivac.gestionnaire.commons.utils;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;

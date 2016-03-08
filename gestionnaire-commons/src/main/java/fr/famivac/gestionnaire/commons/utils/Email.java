@@ -1,4 +1,4 @@
-package fr.famivac.gestionnaire.commons.entity.utils;
+package fr.famivac.gestionnaire.commons.utils;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

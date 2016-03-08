@@ -1,7 +1,7 @@
 package fr.famivac.gestionnaire.familles.entity;
 
 import fr.famivac.gestionnaire.commons.entity.Adresse;
-import fr.famivac.gestionnaire.commons.entity.utils.DateUtils;
+import fr.famivac.gestionnaire.commons.utils.DateUtils;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;

@@ -1,6 +1,6 @@
 package fr.famivac.gestionnaire.interfaces.web.parametres.utilisateurs;
 
-import fr.famivac.gestionnaire.commons.entity.utils.Email;
+import fr.famivac.gestionnaire.commons.utils.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;

@@ -1,7 +1,7 @@
 package fr.famivac.gestionnaire.administration.control;
 
 import fr.famivac.gestionnaire.administration.entity.Groupe;
-import fr.famivac.gestionnaire.commons.entity.utils.Email;
+import fr.famivac.gestionnaire.commons.utils.Email;
 import java.util.List;
 
 /**

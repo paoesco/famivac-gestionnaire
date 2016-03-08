@@ -1,6 +1,6 @@
 package fr.famivac.gestionnaire.interfaces.web.utils;
 
-import fr.famivac.gestionnaire.commons.entity.utils.AlphanumComparator;
+import fr.famivac.gestionnaire.commons.utils.AlphanumComparator;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Comparator;
 import java.util.logging.Level;

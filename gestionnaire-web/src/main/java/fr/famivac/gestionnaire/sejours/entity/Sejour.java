@@ -2,7 +2,7 @@ package fr.famivac.gestionnaire.sejours.entity;
 
 import fr.famivac.gestionnaire.enfants.entity.Enfant;
 import fr.famivac.gestionnaire.familles.entity.Famille;
-import fr.famivac.gestionnaire.commons.entity.utils.DateUtils;
+import fr.famivac.gestionnaire.commons.utils.DateUtils;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

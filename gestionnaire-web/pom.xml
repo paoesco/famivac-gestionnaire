@@ -9,7 +9,7 @@
     </parent>
     
     <groupId>fr.famivac.gestionnaire</groupId>
-    <artifactId>web</artifactId>
+    <artifactId>gestionnaire-web</artifactId>
     <packaging>war</packaging>
 
     <name>gestionnaire-web</name>
@@ -69,7 +69,12 @@
     <dependencies>
         <dependency>
             <groupId>fr.famivac.gestionnaire</groupId>
-            <artifactId>familles</artifactId>
+            <artifactId>gestionnaire-commons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.famivac.gestionnaire</groupId>
+            <artifactId>gestionnaire-familles</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

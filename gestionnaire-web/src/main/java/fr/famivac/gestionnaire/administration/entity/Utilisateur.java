@@ -1,6 +1,6 @@
 package fr.famivac.gestionnaire.administration.entity;
 
-import fr.famivac.gestionnaire.commons.entity.utils.Email;
+import fr.famivac.gestionnaire.commons.utils.Email;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;

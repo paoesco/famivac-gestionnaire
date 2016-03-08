@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-IT</actionName>
+            <displayName>IT</displayName>
+            <goals>
+                <goal>integration-test</goal>
+                
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>arquillian-wildfly-embedded</activatedProfile>
+            </activatedProfiles>
+        </action>
+    </actions>

@@ -7,15 +7,13 @@
         <version>1.0.18-SNAPSHOT</version>
     </parent>
     <groupId>fr.famivac.gestionnaire</groupId>
-    <artifactId>familles</artifactId>
+    <artifactId>gestionnaire-familles</artifactId>
     <packaging>jar</packaging>
-    
-    <name>gestionnaire-familles</name>
     
     <dependencies>
         <dependency>
             <groupId>fr.famivac.gestionnaire</groupId>
-            <artifactId>commons</artifactId>
+            <artifactId>gestionnaire-commons</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -27,4 +25,5 @@
             <artifactId>javamelody-core</artifactId>
         </dependency>
     </dependencies>
+    <name>gestionnaire-familles</name>
 </project>

@@ -1,6 +1,11 @@
 package fr.famivac.gestionnaire.test.integration;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -21,16 +26,28 @@ public abstract class AbstractIntegrationTest {
      */
     @Deployment
     public static WebArchive createDeployment() {
-        File[] libs = Maven.resolver().loadPomFromFile("pom.xml").importCompileAndRuntimeDependencies().resolve().withTransitivity().asFile();
+        File[] allLibs = Maven.resolver().loadPomFromFile("pom.xml").importCompileAndRuntimeDependencies().resolve().withTransitivity().asFile();
+        List<File> files = Arrays.asList(allLibs).stream().filter((File f) -> !f.getName().startsWith("gestionnaire")).collect(Collectors.toList());
+        files.forEach((File t) -> {
+            System.out.println(t.getName());
+        });
+        File[] libs = new File[files.size()];
         return ShrinkWrap.create(WebArchive.class)
                 .addPackages(true, "fr.famivac.gestionnaire")
+                //                .addPackages(true, "fr.famivac.gestionnaire.dashboard")
+                //                .addPackages(true, "fr.famivac.gestionnaire.email")
+                //                .addPackages(true, "fr.famivac.gestionnaire.enfants")
+                //                .addPackages(true, "fr.famivac.gestionnaire.interfaces")
+                //                .addPackages(true, "fr.famivac.gestionnaire.sejours")
+                //                .addPackages(true, "fr.famivac.gestionnaire.familles.entity")
+                //                .addPackages(true, "fr.famivac.gestionnaire.commons.entity")
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/beans.xml"), "beans.xml")
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/web.xml"), "web.xml")
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/applicationContext.xml"), "applicationContext.xml")
                 .addAsResource(new File("src/main/resources/ValidationMessages_fr.properties"), "ValidationMessages_fr.properties")
                 .addAsResource(new File("src/test/resources/arquillian/persistence.xml"), "META-INF/persistence.xml")
                 .addAsWebInfResource(new File("src/test/resources/arquillian/wildfly-ds.xml"), "wildfly-ds.xml")
-                .addAsLibraries(libs);
+                .addAsLibraries(files.toArray(libs));
     }
 
 }

@@ -1,4 +1,4 @@
-package fr.famivac.gestionnaire.commons.entity.utils;
+package fr.famivac.gestionnaire.commons.utils;
 
 /*
  * The Alphanum Algorithm is an improved sorting algorithm for strings

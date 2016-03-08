@@ -1,7 +1,7 @@
 package fr.famivac.gestionnaire.interfaces.web.communes;
 
 import fr.famivac.gestionnaire.commons.entity.Commune;
-import fr.famivac.gestionnaire.commons.entity.utils.AlphanumComparator;
+import fr.famivac.gestionnaire.commons.utils.AlphanumComparator;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

@@ -1,7 +1,7 @@
 package fr.famivac.gestionnaire.sejours.entity;
 
 import fr.famivac.gestionnaire.commons.entity.Entity;
-import fr.famivac.gestionnaire.commons.entity.utils.Email;
+import fr.famivac.gestionnaire.commons.utils.Email;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.NamedQueries;

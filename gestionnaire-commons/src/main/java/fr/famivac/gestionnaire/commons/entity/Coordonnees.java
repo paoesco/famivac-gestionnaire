@@ -1,6 +1,6 @@
 package fr.famivac.gestionnaire.commons.entity;
 
-import fr.famivac.gestionnaire.commons.entity.utils.Email;
+import fr.famivac.gestionnaire.commons.utils.Email;
 import java.io.Serializable;
 import javax.persistence.Embeddable;
 
