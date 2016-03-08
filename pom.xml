@@ -217,7 +217,7 @@
                 </configuration>
                 -->
             </plugin>
-            <plugin>
+<!--            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.5.201505241946</version>
@@ -235,7 +235,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -393,9 +393,14 @@
 
     <repositories>
         <repository>
+            <url>http://central.maven.org/maven2/</url>
+            <id>Central</id>
+            <layout>default</layout>
+            <name>Central</name>
+        </repository>
+        <repository>
             <url>http://repository.primefaces.org/</url>
             <id>PrimeFaces-maven-lib</id>
-            <layout>default</layout>
             <name>Repository for library PrimeFaces-maven-lib</name>
         </repository>
         <repository>
