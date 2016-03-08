@@ -9,3 +9,6 @@
 .DS_Store
 /gestionnaire.iml
 /deployments
+/gestionnaire-web/target/
+/gestionnaire-commons/target/
+/gestionnaire-familles/target/
