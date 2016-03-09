@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+        http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd" version="2.1">
+    
+    <entity class="fr.famivac.gestionnaire.familles.entity.Chambre"/>
+    <entity class="fr.famivac.gestionnaire.familles.entity.Famille"/>
+    <entity class="fr.famivac.gestionnaire.familles.entity.InformationsHabitation"/>
+    <entity class="fr.famivac.gestionnaire.familles.entity.InformationsVehicule"/>
+    <entity class="fr.famivac.gestionnaire.familles.entity.MembreFamille"/>
+    
+</entity-mappings>
