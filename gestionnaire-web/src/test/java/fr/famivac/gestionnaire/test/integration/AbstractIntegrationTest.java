@@ -31,7 +31,6 @@ public abstract class AbstractIntegrationTest {
                 .addPackages(true, "fr.famivac.gestionnaire.administration")
                 .addPackages(true, "fr.famivac.gestionnaire.dashboard")
                 .addPackages(true, "fr.famivac.gestionnaire.email")
-                .addPackages(true, "fr.famivac.gestionnaire.enfants")
                 .addPackages(true, "fr.famivac.gestionnaire.interfaces")
                 .addPackages(true, "fr.famivac.gestionnaire.sejours")
                 .addPackages(true, "fr.famivac.gestionnaire.test") // ???

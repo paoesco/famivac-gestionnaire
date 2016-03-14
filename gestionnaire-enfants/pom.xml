@@ -7,7 +7,7 @@
         <version>1.0.18-SNAPSHOT</version>
     </parent>
     <groupId>fr.famivac.gestionnaire</groupId>
-    <artifactId>gestionnaire-familles</artifactId>
+    <artifactId>gestionnaire-enfants</artifactId>
     <packaging>jar</packaging>
     
     <dependencies>

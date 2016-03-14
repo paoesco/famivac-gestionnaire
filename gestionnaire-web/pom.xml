@@ -78,6 +78,11 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>fr.famivac.gestionnaire</groupId>
+            <artifactId>gestionnaire-enfants</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
         </dependency>
@@ -208,7 +213,7 @@
     </build>
     
     <profiles>
-<!--        <profile>
+        <!--        <profile>
             <id>sonar</id>
             <properties> 
                 <sonar.jdbc.url>jdbc:mysql://localhost:5123/sonar</sonar.jdbc.url> 
