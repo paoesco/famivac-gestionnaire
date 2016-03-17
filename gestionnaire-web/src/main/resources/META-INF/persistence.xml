@@ -14,5 +14,6 @@
         <mapping-file>META-INF/orm-commons.xml</mapping-file>
         <mapping-file>META-INF/orm-familles.xml</mapping-file>
         <mapping-file>META-INF/orm-enfants.xml</mapping-file>
+        <mapping-file>META-INF/orm-administration.xml</mapping-file>
     </persistence-unit>
 </persistence>

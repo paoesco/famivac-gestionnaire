@@ -1,11 +1,6 @@
 package fr.famivac.gestionnaire.test.integration;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -28,7 +23,6 @@ public abstract class AbstractIntegrationTest {
     public static WebArchive createDeployment() {
         File[] libs = Maven.resolver().loadPomFromFile("pom.xml").importCompileAndRuntimeDependencies().resolve().withTransitivity().asFile();
         return ShrinkWrap.create(WebArchive.class)
-                .addPackages(true, "fr.famivac.gestionnaire.administration")
                 .addPackages(true, "fr.famivac.gestionnaire.dashboard")
                 .addPackages(true, "fr.famivac.gestionnaire.email")
                 .addPackages(true, "fr.famivac.gestionnaire.interfaces")
