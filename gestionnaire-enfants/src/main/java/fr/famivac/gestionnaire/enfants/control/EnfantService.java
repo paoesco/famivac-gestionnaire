@@ -1,11 +1,13 @@
 package fr.famivac.gestionnaire.enfants.control;
 
+import fr.famivac.gestionnaire.commons.events.UpdateEnfantEvent;
 import fr.famivac.gestionnaire.enfants.entity.EnfantRepository;
 import fr.famivac.gestionnaire.enfants.entity.Enfant;
 import fr.famivac.gestionnaire.enfants.entity.ResponsableLegal;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
@@ -25,6 +27,9 @@ public class EnfantService {
 
     @Inject
     private EnfantRepository enfantRepository;
+
+    @Inject
+    Event<UpdateEnfantEvent> updateEnfantEvent;
 
     public Long create(Enfant enfant) {
         if (enfant.isInscripteurEstResponsableLegal()) {
@@ -50,6 +55,13 @@ public class EnfantService {
             enfant.getResponsableLegal().setType(enfant.getInscripteur().getType());
         }
         entityManager.merge(enfant);
+        
+        // Publish message
+        UpdateEnfantEvent event = new UpdateEnfantEvent();
+        event.setId(enfant.getId());
+        event.setNom(enfant.getNom());
+        event.setPrenom(enfant.getPrenom());
+        updateEnfantEvent.fire(event);
     }
 
     public List<EnfantDTO> retrieve(String nomEnfant, String prenomEnfant) {

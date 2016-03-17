@@ -58,6 +58,7 @@
         <module>gestionnaire-commons</module>
         <module>gestionnaire-enfants</module>
         <module>gestionnaire-administration</module>
+        <module>gestionnaire-sejours</module>
     </modules>
     
     <dependencyManagement>

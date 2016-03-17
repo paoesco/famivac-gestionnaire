@@ -3,7 +3,9 @@ package fr.famivac.gestionnaire.familles.control;
 import fr.famivac.gestionnaire.commons.entity.Commune;
 import fr.famivac.gestionnaire.familles.entity.MembreFamille;
 import fr.famivac.gestionnaire.commons.entity.Sexe;
+import fr.famivac.gestionnaire.commons.events.UpdateFamilleEvent;
 import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
@@ -17,10 +19,13 @@ import net.bull.javamelody.MonitoringInterceptor;
 @Stateless
 @Interceptors({MonitoringInterceptor.class})
 public class MembreService {
-
+    
     @Inject
     private EntityManager entityManager;
-
+    
+    @Inject
+    Event<UpdateFamilleEvent> updateFamilleEvent;
+    
     public MembreDTO retrieve(@PathParam("id") long id) {
         MembreFamille entity = entityManager.find(MembreFamille.class, id);
         MembreDTO dto = new MembreDTO();
@@ -40,10 +45,10 @@ public class MembreService {
         dto.setSexe(entity.getSexe().name());
         dto.setCoordonnees(entity.getCoordonnees());
         return dto;
-
+        
     }
-
-    public void update(MembreDTO request) {
+    
+    public void update(Long familleId, MembreDTO request) {
         MembreFamille entity = entityManager.find(MembreFamille.class, request.getId());
         Commune commune = new Commune(request.getCommuneDeNaissance().getCode(), request.getCommuneDeNaissance().getVille());
         entity.setCommuneDeNaissance(commune);
@@ -57,6 +62,14 @@ public class MembreService {
         entity.setSexe(Sexe.valueOf(request.getSexe()));
         entity.setCoordonnees(request.getCoordonnees());
         entityManager.merge(entity);
-    }
 
+        // Publish message
+        UpdateFamilleEvent event = new UpdateFamilleEvent();
+        event.setId(familleId);
+        event.setNom(entity.getNom());
+        event.setPrenom(entity.getPrenom());
+        event.setReferent(entity.isReferent());
+        updateFamilleEvent.fire(event);
+    }
+    
 }

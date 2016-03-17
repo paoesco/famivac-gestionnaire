@@ -91,6 +91,7 @@ public class FamilleService {
 
     public void update(Famille entity) {
         entityManager.merge(entity);
+
     }
 
     public void delete(long id) {

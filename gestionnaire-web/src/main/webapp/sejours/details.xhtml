@@ -36,8 +36,8 @@
                                                     <h:link
                                                         outcome="/familles/details.xhtml"
                                                         target="_blank"
-                                                        value="#{sejourDetailsBean.sejour.famille.membreReferent.prenom} #{sejourDetailsBean.sejour.famille.membreReferent.nom}">
-                                                        <f:param name="id" value="#{sejourDetailsBean.sejour.famille.id}"></f:param>
+                                                        value="#{sejourDetailsBean.sejour.famillePrenom} #{sejourDetailsBean.sejour.familleNom}">
+                                                        <f:param name="id" value="#{sejourDetailsBean.sejour.familleId}"></f:param>
                                                     </h:link>
                                                 </p>
                                             </div>
@@ -49,8 +49,8 @@
                                                     <h:link
                                                         outcome="/enfants/details.xhtml"
                                                         target="_blank"
-                                                        value="#{sejourDetailsBean.sejour.enfant.prenom} #{sejourDetailsBean.sejour.enfant.nom}">
-                                                        <f:param name="id" value="#{sejourDetailsBean.sejour.enfant.id}"></f:param>
+                                                        value="#{sejourDetailsBean.sejour.enfantPrenom} #{sejourDetailsBean.sejour.enfantNom}">
+                                                        <f:param name="id" value="#{sejourDetailsBean.sejour.enfantId}"></f:param>
                                                     </h:link>
                                                 </p>
                                             </div>

@@ -1,8 +1,6 @@
 package fr.famivac.gestionnaire.sejours.entity;
 
-import fr.famivac.gestionnaire.enfants.entity.TypeInscripteur;
 import fr.famivac.gestionnaire.commons.entity.Adresse;
-import fr.famivac.gestionnaire.sejours.entity.Sejour;
 import java.io.Serializable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -24,7 +22,7 @@ public class Payeur implements Serializable {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private TypeInscripteur type;
+    private TypePayeur type;
 
     private String nom;
 
@@ -44,11 +42,11 @@ public class Payeur implements Serializable {
         return id;
     }
 
-    public TypeInscripteur getType() {
+    public TypePayeur getType() {
         return type;
     }
 
-    public void setType(TypeInscripteur type) {
+    public void setType(TypePayeur type) {
         this.type = type;
     }
 

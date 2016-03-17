@@ -1,7 +1,5 @@
 package fr.famivac.gestionnaire.sejours.entity;
 
-import fr.famivac.gestionnaire.enfants.entity.Enfant;
-import fr.famivac.gestionnaire.familles.entity.Famille;
 import fr.famivac.gestionnaire.commons.utils.DateUtils;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -18,7 +16,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -33,13 +30,15 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_LA_FAMILLE, query = "select s from Sejour s where s.famille.id = :familleId order by s.dateDebut"),
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_LA_FAMILLE, query = "select s from Sejour s where s.familleId = :familleId order by s.dateDebut"),
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_L_ENFANT, query = "select s from Sejour s where s.enfantId = :enfantId order by s.dateDebut"),
     @NamedQuery(name = Sejour.QUERY_SEJOURS_RETRIEVE, query = "select s from Sejour s order by s.dateDebut, s.dateFin"),
-    @NamedQuery(name = Sejour.QUERY_SEJOURS_RECHERCHER, query = "select s from Sejour s join s.famille f join f.membres m where lower(s.enfant.nom) like :nomEnfant and lower(s.enfant.prenom) like :prenomEnfant and lower(m.nom) like :nomReferent and lower(m.prenom) like :prenomReferent and m.referent = true  order by s.dateDebut, s.dateFin")
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_RECHERCHER, query = "select s from Sejour s where lower(s.enfantNom) like :nomEnfant and lower(s.enfantPrenom) like :prenomEnfant and lower(s.familleNom) like :nomReferent and lower(s.famillePrenom) like :prenomReferent order by s.dateDebut, s.dateFin")
 })
 public class Sejour implements Serializable {
 
     public static final String QUERY_SEJOURS_DE_LA_FAMILLE = "querySejoursDeLaFamille";
+    public static final String QUERY_SEJOURS_DE_L_ENFANT = "querySejoursDeLEnfant";
     public static final String QUERY_SEJOURS_RETRIEVE = "querySejoursRetrieve";
     public static final String QUERY_SEJOURS_RECHERCHER = "querySejoursRechercher";
 
@@ -47,13 +46,25 @@ public class Sejour implements Serializable {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
+    @Column(name = "famille_id", nullable = false)
     @NotNull
-    private Famille famille;
+    private Long familleId;
 
-    @ManyToOne
+    @Column(name = "FAMILLE_NOM", nullable = false)
+    private String familleNom;
+
+    @Column(name = "FAMILLE_PRENOM", nullable = false)
+    private String famillePrenom;
+
+    @Column(name = "enfant_id", nullable = false)
     @NotNull
-    private Enfant enfant;
+    private Long enfantId;
+
+    @Column(name = "ENFANT_NOM", nullable = false)
+    private String enfantNom;
+
+    @Column(name = "ENFANT_PRENOM", nullable = false)
+    private String enfantPrenom;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private Voyage aller;
@@ -97,12 +108,30 @@ public class Sejour implements Serializable {
         this.payeurs = new HashSet<>();
     }
 
-    public Sejour(Famille famille, Enfant enfant, Date dateDebut, Date dateFin) {
-        if (Objects.isNull(famille) || Objects.isNull(enfant) || Objects.isNull(dateDebut) || Objects.isNull(dateFin)) {
+    public Sejour(Long familleId,
+            String familleNom,
+            String famillePrenom,
+            Long enfantId,
+            String enfantNom,
+            String enfantPrenom,
+            Date dateDebut,
+            Date dateFin) {
+        if (Objects.isNull(familleId)
+                || Objects.isNull(familleNom)
+                || Objects.isNull(famillePrenom)
+                || Objects.isNull(enfantId)
+                || Objects.isNull(enfantNom)
+                || Objects.isNull(enfantPrenom)
+                || Objects.isNull(dateDebut)
+                || Objects.isNull(dateFin)) {
             throw new IllegalArgumentException("Tous les paramètres sont obligatoires !");
         }
-        this.famille = famille;
-        this.enfant = enfant;
+        this.familleId = familleId;
+        this.familleNom = familleNom;
+        this.famillePrenom = famillePrenom;
+        this.enfantId = enfantId;
+        this.enfantNom = enfantNom;
+        this.enfantPrenom = enfantPrenom;
         this.aller = new Voyage();
         this.retour = new Voyage();
         this.dateDebut = (Date) dateDebut.clone();
@@ -125,12 +154,44 @@ public class Sejour implements Serializable {
         return id;
     }
 
-    public Famille getFamille() {
-        return famille;
+    public Long getFamilleId() {
+        return familleId;
     }
 
-    public Enfant getEnfant() {
-        return enfant;
+    public String getFamilleNom() {
+        return familleNom;
+    }
+
+    public void setFamilleNom(String familleNom) {
+        this.familleNom = familleNom;
+    }
+
+    public String getFamillePrenom() {
+        return famillePrenom;
+    }
+
+    public void setFamillePrenom(String famillePrenom) {
+        this.famillePrenom = famillePrenom;
+    }
+
+    public Long getEnfantId() {
+        return enfantId;
+    }
+
+    public String getEnfantNom() {
+        return enfantNom;
+    }
+
+    public void setEnfantNom(String enfantNom) {
+        this.enfantNom = enfantNom;
+    }
+
+    public String getEnfantPrenom() {
+        return enfantPrenom;
+    }
+
+    public void setEnfantPrenom(String enfantPrenom) {
+        this.enfantPrenom = enfantPrenom;
     }
 
     public Voyage getAller() {
@@ -244,7 +305,7 @@ public class Sejour implements Serializable {
         }
         return Optional.empty();
     }
-    
+
     public StatutSejour statutDuJour() {
         return statut(new Date()).get();
     }

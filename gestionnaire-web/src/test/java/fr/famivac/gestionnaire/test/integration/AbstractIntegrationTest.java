@@ -26,7 +26,6 @@ public abstract class AbstractIntegrationTest {
                 .addPackages(true, "fr.famivac.gestionnaire.dashboard")
                 .addPackages(true, "fr.famivac.gestionnaire.email")
                 .addPackages(true, "fr.famivac.gestionnaire.interfaces")
-                .addPackages(true, "fr.famivac.gestionnaire.sejours")
                 .addPackages(true, "fr.famivac.gestionnaire.test") // ???
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/beans.xml"), "beans.xml")
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/web.xml"), "web.xml")

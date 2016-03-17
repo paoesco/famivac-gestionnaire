@@ -23,11 +23,10 @@ public class SejourDTO {
 
     public SejourDTO(Sejour bean) {
         this.id = bean.getId();
-
-        this.famille = bean.getFamille().getMembreReferent().getPrenom() + " " + bean.getFamille().getMembreReferent().getNom();
-        this.familleId = bean.getFamille().getId();
-        this.enfant = bean.getEnfant().getPrenom() + " " + bean.getEnfant().getNom();
-        this.enfantId = bean.getEnfant().getId();
+        this.famille = bean.getFamillePrenom() + " " + bean.getFamilleNom();
+        this.familleId = bean.getFamilleId();
+        this.enfant = bean.getEnfantPrenom() + " " + bean.getEnfantNom();
+        this.enfantId = bean.getEnfantId();
         this.dateDebut = bean.getDateDebut();
         this.dateFin = bean.getDateFinEffective();
         this.statut = bean.statutDuJour().name();

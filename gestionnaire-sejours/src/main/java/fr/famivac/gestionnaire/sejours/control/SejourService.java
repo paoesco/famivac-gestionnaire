@@ -1,13 +1,15 @@
 package fr.famivac.gestionnaire.sejours.control;
 
-import fr.famivac.gestionnaire.enfants.entity.Enfant;
-import fr.famivac.gestionnaire.familles.entity.Famille;
+import fr.famivac.gestionnaire.commons.events.UpdateEnfantEvent;
+import fr.famivac.gestionnaire.commons.events.UpdateFamilleEvent;
 import fr.famivac.gestionnaire.sejours.entity.Sejour;
 import fr.famivac.gestionnaire.sejours.entity.StatutSejour;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
@@ -25,9 +27,14 @@ public class SejourService {
     private EntityManager entityManager;
 
     public long create(AjouterSejourDTO dto) {
-        Famille famille = entityManager.find(Famille.class, dto.getFamille().getId());
-        Enfant enfant = entityManager.find(Enfant.class, dto.getEnfant().getId());
-        Sejour sejour = new Sejour(famille, enfant, dto.getDateDebut(), dto.getDateFin());
+        Sejour sejour = new Sejour(dto.getFamilleId(),
+                dto.getFamilleNom(),
+                dto.getFamillePrenom(),
+                dto.getEnfantId(),
+                dto.getEnfantNom(),
+                dto.getEnfantPrenom(),
+                dto.getDateDebut(),
+                dto.getDateFin());
         entityManager.persist(sejour);
         return sejour.getId();
     }
@@ -93,6 +100,42 @@ public class SejourService {
     public void delete(long id) {
         Sejour sejour = entityManager.find(Sejour.class, id);
         entityManager.remove(sejour);
+    }
+
+    /**
+     * Listen to message coming from enfants.
+     *
+     * @param event
+     */
+    @Asynchronous
+    public void updateEnfant(@Observes UpdateEnfantEvent event) {
+        List<Sejour> sejours = entityManager.createNamedQuery(Sejour.QUERY_SEJOURS_DE_L_ENFANT, Sejour.class)
+                .setParameter("enfantId", event.getId())
+                .getResultList();
+        sejours.forEach(s -> {
+            s.setEnfantNom(event.getNom());
+            s.setEnfantPrenom(event.getPrenom());
+        });
+
+    }
+
+    /**
+     * Listen to message coming from familles.
+     *
+     * @param event
+     */
+    @Asynchronous
+    public void updateFamille(@Observes UpdateFamilleEvent event) {
+        if (event.isReferent()) { // Update only if the event concerns a referent
+            List<Sejour> sejours = entityManager.createNamedQuery(Sejour.QUERY_SEJOURS_DE_LA_FAMILLE, Sejour.class)
+                    .setParameter("familleId", event.getId())
+                    .getResultList();
+            sejours.forEach(s -> {
+                s.setFamilleNom(event.getNom());
+                s.setFamillePrenom(event.getPrenom());
+            });
+        }
+
     }
 
 }
