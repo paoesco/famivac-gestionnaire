@@ -13,36 +13,9 @@
     <packaging>war</packaging>
 
     <name>gestionnaire-web</name>
-    
-    <developers>
-        <developer>
-            <id>paoesco</id>
-            <name>Paolo Escobar</name>
-            <email>pao.esco@outlook.com</email>
-            <url>https://hubesco.com</url>
-        </developer>
-    </developers>
-    
-    <url>https://gestionnaire.famivac.fr</url>
-    
-    <inceptionYear>2015</inceptionYear>
-    
-    <scm>
-        <connection>scm:git:ssh://git@github.com/paoesco/famivac-gestionnaire.git</connection>
-        <url>https://github.com/paoesco/famivac-gestionnaire</url>
-        <developerConnection>scm:git:ssh://git@github.com/paoesco/famivac-gestionnaire.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
+      
 
     <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <!--<maven.compiler.executable>${env.OPENSHIFT_WILDFLY_DIR}usr/lib/jvm/jdk1.8.0_05/bin/javac</maven.compiler.executable>-->
-        <maven.compiler.fork>true</maven.compiler.fork>
-        <additionalparam>-Xdoclint:none</additionalparam>
-        
         <!-- Dependencies versions -->
         <jacoco.version>0.7.6.201602180812</jacoco.version>
         <wildfly.version>9.0.2.Final</wildfly.version>
@@ -51,15 +24,8 @@
         <primefaces.bootstrap.version>1.0.10</primefaces.bootstrap.version>
         <javamelody.version>1.58.0</javamelody.version>
         <postgre.version>9.2-1004-jdbc41</postgre.version>
-        
     </properties>
-    
-    <dependencyManagement>
-        <dependencies>
-
-        </dependencies>
-    </dependencyManagement>
-    
+        
     <dependencies>
         <dependency>
             <groupId>fr.famivac.gestionnaire</groupId>
