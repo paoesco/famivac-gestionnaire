@@ -32,6 +32,7 @@ public abstract class AbstractIntegrationTest {
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/applicationContext.xml"), "applicationContext.xml")
                 .addAsResource(new File("src/main/resources/ValidationMessages_fr.properties"), "ValidationMessages_fr.properties")
                 .addAsResource(new File("src/test/resources/arquillian/persistence.xml"), "META-INF/persistence.xml")
+                .addAsResource(new File("src/test/resources/arquillian/db.changelog.xml"), "db.changelog.xml")
                 .addAsWebInfResource(new File("src/test/resources/arquillian/wildfly-ds.xml"), "wildfly-ds.xml")
                 .addAsLibraries(libs);
     }
