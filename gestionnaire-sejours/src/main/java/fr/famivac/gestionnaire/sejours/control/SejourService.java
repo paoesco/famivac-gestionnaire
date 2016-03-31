@@ -105,7 +105,7 @@ public class SejourService {
     /**
      * Listen to message coming from enfants.
      *
-     * @param event
+     * @param pEvent
      */
     @Asynchronous
     public void updateEnfant(@Observes UpdateEnfantEvent pEvent) {

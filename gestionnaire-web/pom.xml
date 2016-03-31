@@ -18,7 +18,7 @@
     <properties>
         <!-- Dependencies versions -->
         <jacoco.version>0.7.6.201602180812</jacoco.version>
-        <wildfly.version>9.0.2.Final</wildfly.version>
+        <wildfly.version>9.0.1.Final</wildfly.version>
         <javaee.version>7.0</javaee.version>
         <primefaces.version>5.3</primefaces.version>
         <primefaces.bootstrap.version>1.0.10</primefaces.bootstrap.version>
