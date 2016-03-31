@@ -108,7 +108,8 @@ public class SejourService {
      * @param event
      */
     @Asynchronous
-    public void updateEnfant(@Observes UpdateEnfantEvent event) {
+    public void updateEnfant(@Observes UpdateEnfantEvent pEvent) {
+        UpdateEnfantEvent event = pEvent; // FIX https://issues.jboss.org/browse/WELD-2019
         List<Sejour> sejours = entityManager.createNamedQuery(Sejour.QUERY_SEJOURS_DE_L_ENFANT, Sejour.class)
                 .setParameter("enfantId", event.getId())
                 .getResultList();
@@ -122,10 +123,11 @@ public class SejourService {
     /**
      * Listen to message coming from familles.
      *
-     * @param event
+     * @param pEvent
      */
     @Asynchronous
-    public void updateFamille(@Observes UpdateFamilleEvent event) {
+    public void updateFamille(@Observes UpdateFamilleEvent pEvent) {
+        UpdateFamilleEvent event = pEvent; // FIX https://issues.jboss.org/browse/WELD-2019
         if (event.isReferent()) { // Update only if the event concerns a referent
             List<Sejour> sejours = entityManager.createNamedQuery(Sejour.QUERY_SEJOURS_DE_LA_FAMILLE, Sejour.class)
                     .setParameter("familleId", event.getId())
