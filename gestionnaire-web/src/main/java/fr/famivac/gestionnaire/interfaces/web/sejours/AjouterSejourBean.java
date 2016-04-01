@@ -2,7 +2,6 @@ package fr.famivac.gestionnaire.interfaces.web.sejours;
 
 import fr.famivac.gestionnaire.familles.control.FamilleDTO;
 import fr.famivac.gestionnaire.familles.control.FamilleService;
-import fr.famivac.gestionnaire.sejours.control.AjouterSejourDTO;
 import fr.famivac.gestionnaire.sejours.control.SejourService;
 import fr.famivac.gestionnaire.enfants.control.EnfantDTO;
 import fr.famivac.gestionnaire.enfants.control.EnfantService;
@@ -28,14 +27,21 @@ public class AjouterSejourBean implements Serializable {
     @Inject
     private SejourService sejourService;
 
-    private AjouterSejourDTO form;
+    private AjouterSejourForm form;
 
     public void init() {
-        form = new AjouterSejourDTO();
+        form = new AjouterSejourForm();
     }
 
     public String ajouter() {
-        long sejourId = sejourService.create(form);
+        long sejourId = sejourService.create(form.getFamille().getId(),
+                form.getFamille().getNomReferent(),
+                form.getFamille().getPrenomReferent(),
+                form.getEnfant().getId(),
+                form.getEnfant().getNomEnfant(),
+                form.getEnfant().getPrenomEnfant(),
+                form.getDateDebut(),
+                form.getDateFin());
         return "/sejours/details.xhtml?id=" + sejourId + "&faces-redirect=true";
     }
 
@@ -53,11 +59,11 @@ public class AjouterSejourBean implements Serializable {
         return enfantService.retrieve(query, "%");
     }
 
-    public AjouterSejourDTO getForm() {
+    public AjouterSejourForm getForm() {
         return form;
     }
 
-    public void setForm(AjouterSejourDTO form) {
+    public void setForm(AjouterSejourForm form) {
         this.form = form;
     }
 

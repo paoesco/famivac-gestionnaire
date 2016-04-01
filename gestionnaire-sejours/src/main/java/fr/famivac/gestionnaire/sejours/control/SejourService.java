@@ -4,6 +4,7 @@ import fr.famivac.gestionnaire.commons.events.UpdateEnfantEvent;
 import fr.famivac.gestionnaire.commons.events.UpdateFamilleEvent;
 import fr.famivac.gestionnaire.sejours.entity.Sejour;
 import fr.famivac.gestionnaire.sejours.entity.StatutSejour;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -26,15 +27,22 @@ public class SejourService {
     @Inject
     private EntityManager entityManager;
 
-    public long create(AjouterSejourDTO dto) {
-        Sejour sejour = new Sejour(dto.getFamilleId(),
-                dto.getFamilleNom(),
-                dto.getFamillePrenom(),
-                dto.getEnfantId(),
-                dto.getEnfantNom(),
-                dto.getEnfantPrenom(),
-                dto.getDateDebut(),
-                dto.getDateFin());
+    public long create(Long familleId,
+            String familleNom,
+            String famillePrenom,
+            Long enfantId,
+            String enfantNom,
+            String enfantPrenom,
+            Date dateDebut,
+            Date dateFin) {
+        Sejour sejour = new Sejour(familleId,
+                familleNom,
+                famillePrenom,
+                enfantId,
+                enfantNom,
+                enfantPrenom,
+                dateDebut,
+                dateFin);
         entityManager.persist(sejour);
         return sejour.getId();
     }
