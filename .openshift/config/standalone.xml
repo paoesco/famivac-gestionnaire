@@ -383,6 +383,9 @@
             <mail-session name="default" jndi-name="java:jboss/mail/Default">
                 <smtp-server outbound-socket-binding-ref="mail-smtp"/>
             </mail-session>
+            <mail-session name="famivacMail" jndi-name="java:jboss/mail/famivac">
+                <smtp-server outbound-socket-binding-ref="famivac-mail-smtp" ssl="true" username="${MAIL_SERVER_USERNAME}" password="${MAIL_SERVER_PASSWORD}"/>
+            </mail-session>
         </subsystem>
         <!--
         <subsystem xmlns="urn:jboss:domain:messaging:3.0">
@@ -451,21 +454,21 @@
                         <entries>
                             <entry name="java:/JmsXA"/>
                             
-                            <entry name="java:jboss/DefaultJMSConnectionFactory"/>
-                        </entries>
-                    </pooled-connection-factory>
-                </jms-connection-factories>
-                <jms-destinations>
-                    <jms-queue name="ExpiryQueue">
-                        <entry name="java:/jms/queue/ExpiryQueue"/>
-                    </jms-queue>
-                    <jms-queue name="DLQ">
-                        <entry name="java:/jms/queue/DLQ"/>
-                    </jms-queue>
-                </jms-destinations>
-            </hornetq-server>
-        </subsystem>
-    -->
+                                <entry name="java:jboss/DefaultJMSConnectionFactory"/>
+                            </entries>
+                        </pooled-connection-factory>
+                    </jms-connection-factories>
+                    <jms-destinations>
+                        <jms-queue name="ExpiryQueue">
+                            <entry name="java:/jms/queue/ExpiryQueue"/>
+                        </jms-queue>
+                        <jms-queue name="DLQ">
+                            <entry name="java:/jms/queue/DLQ"/>
+                        </jms-queue>
+                    </jms-destinations>
+                </hornetq-server>
+            </subsystem>
+        -->
         <subsystem xmlns="urn:jboss:domain:naming:2.0">
             <remote-naming/>
         </subsystem>
@@ -560,9 +563,9 @@
         <!-- TODO - only show this if the jacorb subsystem is added  -->
         <interface name="unsecure">
             <!--
-              ~  Used for IIOP sockets in the standard configuration.
-              ~                  To secure JacORB you need to setup SSL 
-              -->
+            ~  Used for IIOP sockets in the standard configuration.
+            ~                  To secure JacORB you need to setup SSL 
+            -->
             <loopback-address value="${env.OPENSHIFT_WILDFLY_IP}"/>
         </interface>
     </interfaces>
@@ -579,6 +582,9 @@
         <socket-binding name="txn-status-manager" port="4713"/>
         <outbound-socket-binding name="mail-smtp">
             <remote-destination host="localhost" port="25"/>
+        </outbound-socket-binding>
+        <outbound-socket-binding name="famivac-mail-smtp">
+            <remote-destination host="ssl0.ovh.net" port="465"/>
         </outbound-socket-binding>
     </socket-binding-group>
 </server>

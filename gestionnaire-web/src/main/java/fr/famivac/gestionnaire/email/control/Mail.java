@@ -1,72 +1,70 @@
 package fr.famivac.gestionnaire.email.control;
 
-import java.io.InputStream;
-
 /**
  * @author paoesco
  */
 public class Mail {
 
-    private final String destinataire;
+    private final String recipient;
 
-    private final String source;
+    private final String from;
 
-    private final String sujet;
+    private final String subject;
 
-    private final String message;
+    private final String body;
 
-    private final String nomPieceJointe;
+//    private final String nomPieceJointe;
 
-    private final InputStream pieceJointe;
+//    private final InputStream pieceJointe;
 
-    private final String mimeTypePieceJointe;
+//    private final String mimeTypePieceJointe;
 
     public Mail(String destinataire, String sujet, String message) {
-        this.destinataire = destinataire;
-        this.source = "no-reply@vacancesespritfamille.fr";
-        this.sujet = sujet;
-        this.message = message;
-        this.nomPieceJointe = null;
-        this.pieceJointe = null;
-        this.mimeTypePieceJointe = null;
+        this.recipient = destinataire;
+        this.from = "no-reply@famivac.fr";
+        this.subject = sujet;
+        this.body = message;
+//        this.nomPieceJointe = null;
+//        this.pieceJointe = null;
+//        this.mimeTypePieceJointe = null;
     }
 
-    public Mail(String destinataire, String sujet, String message, String nomPieceJointe, InputStream pieceJointe, String mimeTypePieceJointe) {
-        this.destinataire = destinataire;
-        this.source = "no-reply@vacancesespritfamille.fr";
-        this.sujet = sujet;
-        this.message = message;
-        this.nomPieceJointe = nomPieceJointe;
-        this.pieceJointe = pieceJointe;
-        this.mimeTypePieceJointe = mimeTypePieceJointe;
+//    public Mail(String destinataire, String sujet, String message, String nomPieceJointe, InputStream pieceJointe, String mimeTypePieceJointe) {
+//        this.recipient = destinataire;
+//        this.from = "no-reply@famivac.fr";
+//        this.subject = sujet;
+//        this.body = message;
+//        this.nomPieceJointe = nomPieceJointe;
+//        this.pieceJointe = pieceJointe;
+//        this.mimeTypePieceJointe = mimeTypePieceJointe;
+//    }
+
+    public String getRecipient() {
+        return recipient;
     }
 
-    public String getDestinataire() {
-        return destinataire;
+    public String getFrom() {
+        return from;
     }
 
-    public String getSource() {
-        return source;
+    public String getSubject() {
+        return subject;
     }
 
-    public String getSujet() {
-        return sujet;
+    public String getBody() {
+        return body;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public String getNomPieceJointe() {
-        return nomPieceJointe;
-    }
-
-    public InputStream getPieceJointe() {
-        return pieceJointe;
-    }
-
-    public String getMimeTypePieceJointe() {
-        return mimeTypePieceJointe;
-    }
+//    public String getNomPieceJointe() {
+//        return nomPieceJointe;
+//    }
+//
+//    public InputStream getPieceJointe() {
+//        return pieceJointe;
+//    }
+//
+//    public String getMimeTypePieceJointe() {
+//        return mimeTypePieceJointe;
+//    }
 
 }

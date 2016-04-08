@@ -6,3 +6,12 @@
 The OpenShift `jbossas` cartridge documentation can be found at:
 
 https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-jbossas/README.md
+
+## Startup
+
+- VM Options : -Xms128m -Xmx512m
+
+## OpenShift deployment
+
+- Add environment variable for mail server : rhc env set MAIL_SERVER_USERNAME="<Value>" MAIL_SERVER_PASSWORD="<Value2>" -a gestionnaire
+

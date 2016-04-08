@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head></h:head>
+
+    <h:body>
+
+        <ui:composition template="/WEB-INF/template/layoutParametres.xhtml">
+
+            <ui:define name="metadata">
+                <f:metadata>
+                    <f:viewAction action="#{utilisateursBean.init()}"></f:viewAction>
+                </f:metadata>
+            </ui:define>
+
+            <ui:define name="title">E-mail</ui:define>
+
+            <ui:define name="parametres-contenu">
+
+                <div class="col-md-9">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Envoyer e-mail
+                        </div>
+                        <div class="panel-body">
+                            <h:form id="form" styleClass="form-horizontal" role="form">
+                                <p:focus context="form"/>
+                                <div class="form-group">
+                                    <p:outputLabel 
+                                        for="form_recipient" 
+                                        styleClass="col-sm-2 control-label"
+                                        value="Destinataire" />
+                                    <div class="col-md-10">
+                                        <p:inputText 
+                                            styleClass="form-control" 
+                                            id="form_recipient" 
+                                            placeholder="example@organization.org"
+                                            required="true"
+                                            value="#{emailForm.recipient}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <p:outputLabel 
+                                        for="form_subject" 
+                                        styleClass="col-sm-2 control-label"
+                                        value="Sujet" />
+                                    <div class="col-md-10">
+                                        <p:inputText 
+                                            styleClass="form-control" 
+                                            id="form_subject" 
+                                            placeholder="Sujet"
+                                            required="true"
+                                            value="#{emailForm.subject}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <p:outputLabel 
+                                        for="form_body" 
+                                        styleClass="col-sm-2 control-label"
+                                        value="Message" />
+                                    <div class="col-md-10">
+                                        <p:inputTextarea 
+                                            id="form_body"
+                                            value="#{emailForm.body}"
+                                            cols="104"
+                                            rows="8"/>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <p:commandButton
+                                            styleClass="btn-primary pull-right" 
+                                            value="Envoyer e-mail"
+                                            action="#{emailsBean.send()}"
+                                            icon="ui-icon-mail-closed"
+                                            update="@form"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

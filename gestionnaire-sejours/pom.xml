@@ -18,7 +18,7 @@
         </dependency>
         <dependency>
             <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
+            <artifactId>javaee-api</artifactId>
         </dependency>
         <dependency>
             <groupId>net.bull.javamelody</groupId>
