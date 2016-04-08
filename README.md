@@ -9,7 +9,7 @@ https://github.com/openshift/origin-server/tree/master/cartridges/openshift-orig
 
 ## Startup
 
-- VM Options : -Xms128m -Xmx512m
+- VM Options : -Xms128m -Xmx512m -DMAIL_SERVER_USERNAME="username" -DMAIL_SERVER_PASSWORD="password"
 
 ## OpenShift deployment
 
