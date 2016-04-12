@@ -78,7 +78,7 @@
                                             update="@form"
                                             process="@this"
                                             title="Verrouiller"
-                                            actionListener="#{utilisateursBean.bloquer(bean)}"
+                                            actionListener="#{utilisateursBean.lock(bean)}"
                                             rendered="#{bean.enabled}"/>
                                         <p:commandButton 
                                             styleClass="btn-default"
@@ -86,7 +86,7 @@
                                             update="@form"
                                             process="@this"
                                             title="Déverouiller"
-                                            actionListener="#{utilisateursBean.debloquer(bean)}"
+                                            actionListener="#{utilisateursBean.unlock(bean)}"
                                             rendered="#{not bean.enabled}"/>
                                         <p:commandButton 
                                             styleClass="btn-default"
@@ -100,7 +100,7 @@
                                             icon="ui-icon-trash"
                                             title="Supprimer"
                                             process="@this"
-                                            actionListener="#{utilisateursBean.supprimer(bean)}"
+                                            actionListener="#{utilisateursBean.delete(bean)}"
                                             update="@form">
                                             <p:confirm 
                                                 header="Confirmation" 
@@ -221,7 +221,7 @@
                                             value="Ajouter"
                                             icon="ui-icon-plus"
                                             update=":form_datatable @form"
-                                            action="#{utilisateursBean.ajouter()}"/>
+                                            action="#{utilisateursBean.add()}"/>
                                     </div>
                                 </div>
                             </h:form>

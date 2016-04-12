@@ -3,6 +3,8 @@ package fr.famivac.gestionnaire.email.control;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.ejb.Asynchronous;
+import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -14,13 +16,14 @@ import javax.mail.internet.MimeMessage;
 /**
  * @author paoesco
  */
-@ApplicationScoped
+@Stateless
 public class MailService {
 
     @Resource(name = "java:jboss/mail/famivac")
     private Session mailSession;
 
-    public void send(Mail mail) throws MailException {
+    @Asynchronous
+    public void send(Mail mail) {
         try {
             Message msg = new MimeMessage(mailSession);
             msg.setFrom(new InternetAddress(mail.getFrom()));
@@ -29,8 +32,7 @@ public class MailService {
             msg.setText(mail.getBody());
             Transport.send(msg);
         } catch (MessagingException ex) {
-            Logger.getLogger(MailService.class.getName()).log(Level.SEVERE, null, ex);
-            throw new MailException(ex);
+            Logger.getLogger(MailService.class.getName()).log(Level.WARNING, null, ex);
         }
 
     }

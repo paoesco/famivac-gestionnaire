@@ -73,16 +73,19 @@ public class UtilisateursBean implements Serializable {
                 ).collect(Collectors.toList());
     }
 
-    public void ajouter() {
-        String password = utilisateurServiceFacade.create(form);
+    public void add() {
+        String password = null;
+        password = utilisateurServiceFacade.create(form);
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "L'utilisateur a été ajouté", null);
         FacesContext.getCurrentInstance().addMessage(null, message);
         FacesMessage displayPass = new FacesMessage(FacesMessage.SEVERITY_INFO, MessageFormat.format("Le mot de passe généré est : {0}", password), null);
         FacesContext.getCurrentInstance().addMessage(null, displayPass);
+        FacesMessage messageEmail = new FacesMessage(FacesMessage.SEVERITY_INFO, "Un e-mail a été envoyé à l'utilisateur", null);
+        FacesContext.getCurrentInstance().addMessage(null, messageEmail);
         init();
     }
 
-    public void supprimer(RetrieveUtilisateursDTO user) {
+    public void delete(RetrieveUtilisateursDTO user) {
         utilisateurService.delete(user.getLogin());
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "L'utilisateur a été supprimé", null);
         FacesContext.getCurrentInstance().addMessage(null, message);
@@ -93,20 +96,26 @@ public class UtilisateursBean implements Serializable {
         String password = utilisateurServiceFacade.reinitPassword(user.getLogin(), user.getEmail());
         FacesMessage displayPass = new FacesMessage(FacesMessage.SEVERITY_INFO, MessageFormat.format("Le mot de passe a été réinitialisé : {0}", password), null);
         FacesContext.getCurrentInstance().addMessage(null, displayPass);
+        FacesMessage messageEmail = new FacesMessage(FacesMessage.SEVERITY_INFO, "Un e-mail a été envoyé à l'utilisateur", null);
+        FacesContext.getCurrentInstance().addMessage(null, messageEmail);
     }
 
-    public void bloquer(RetrieveUtilisateursDTO user) {
-        utilisateurService.lock(user.getLogin());
+    public void lock(RetrieveUtilisateursDTO user) {
+        utilisateurServiceFacade.lock(user.getLogin(), user.getEmail());
         user.setEnabled(false);
         FacesMessage lockMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, MessageFormat.format("L''utilisateur {0} {1} a été verrouillé et ne pourra plus se connecter", user.getPrenom(), user.getNom()), null);
         FacesContext.getCurrentInstance().addMessage(null, lockMessage);
+        FacesMessage messageEmail = new FacesMessage(FacesMessage.SEVERITY_INFO, "Un e-mail a été envoyé à l'utilisateur", null);
+        FacesContext.getCurrentInstance().addMessage(null, messageEmail);
     }
 
-    public void debloquer(RetrieveUtilisateursDTO user) {
-        utilisateurService.unlock(user.getLogin());
+    public void unlock(RetrieveUtilisateursDTO user) {
+        utilisateurServiceFacade.unlock(user.getLogin(), user.getEmail());
         user.setEnabled(true);
         FacesMessage unlockMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, MessageFormat.format("L''utilisateur {0} {1} a été déverrouillé et peut à nouveau se connecter", user.getPrenom(), user.getNom()), null);
         FacesContext.getCurrentInstance().addMessage(null, unlockMessage);
+        FacesMessage messageEmail = new FacesMessage(FacesMessage.SEVERITY_INFO, "Un e-mail a été envoyé à l'utilisateur", null);
+        FacesContext.getCurrentInstance().addMessage(null, messageEmail);
     }
 
     public void onCellEdit(CellEditEvent event) {
