@@ -29,7 +29,7 @@ public class MailService {
             msg.setFrom(new InternetAddress(mail.getFrom()));
             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(mail.getRecipient()));
             msg.setSubject(mail.getSubject());
-            msg.setText(mail.getBody());
+            msg.setContent(mail.getBody(), "text/html; charset=utf-8");
             Transport.send(msg);
         } catch (MessagingException ex) {
             Logger.getLogger(MailService.class.getName()).log(Level.WARNING, null, ex);

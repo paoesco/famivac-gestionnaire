@@ -31,6 +31,12 @@
                             <h:form id="form" styleClass="form-horizontal" role="form">
                                 <p:focus context="form"/>
                                 <div class="form-group">
+                                    <label class="col-sm-2 control-label">Enfant</label>
+                                    <div class="col-md-10">
+                                        <p class="form-control-static">contact@famivac.fr</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <p:outputLabel 
                                         for="form_recipient" 
                                         styleClass="col-sm-2 control-label"
@@ -64,11 +70,9 @@
                                         styleClass="col-sm-2 control-label"
                                         value="Message" />
                                     <div class="col-md-10">
-                                        <p:inputTextarea 
+                                        <p:editor
                                             id="form_body"
-                                            value="#{emailForm.body}"
-                                            cols="104"
-                                            rows="8"/>
+                                            value="#{emailForm.body}"/>
                                     </div>
 
                                 </div>

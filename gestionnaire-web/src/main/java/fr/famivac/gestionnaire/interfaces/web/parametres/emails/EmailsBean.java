@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.famivac.gestionnaire.interfaces.web.parametres.emails;
 
 import fr.famivac.gestionnaire.email.control.Mail;
@@ -33,12 +28,7 @@ public class EmailsBean implements Serializable {
 
     public void send() {
         Mail mail = new Mail(emailForm.getRecipient(), emailForm.getSubject(), emailForm.getBody());
-        try {
-            mailService.send(mail);
-        } catch (MailException ex) {
-            Logger.getLogger(EmailsBean.class.getName()).log(Level.WARNING, null, ex);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Impossible d'envoyer l'email. Erreur interne.", ""));
-        }
+        mailService.send(mail);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "E-mail envoyé !", ""));
         emailForm.init();
     }

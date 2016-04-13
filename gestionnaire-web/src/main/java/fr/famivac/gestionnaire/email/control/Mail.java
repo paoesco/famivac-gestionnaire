@@ -21,7 +21,7 @@ public class Mail {
 
     public Mail(String destinataire, String sujet, String message) {
         this.recipient = destinataire;
-        this.from = "no-reply@famivac.fr";
+        this.from = "contact@famivac.fr";
         this.subject = sujet;
         this.body = message;
 //        this.nomPieceJointe = null;

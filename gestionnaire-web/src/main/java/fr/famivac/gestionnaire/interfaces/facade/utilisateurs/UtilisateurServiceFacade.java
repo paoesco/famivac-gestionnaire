@@ -27,7 +27,7 @@ public class UtilisateurServiceFacade {
         Mail mail = new Mail(
                 dto.getEmail(),
                 "[FAMIVAC] Création d'un compte",
-                MessageFormat.format("Un administrateur vous a créé un compte sur l''interface https://gestionnaire.famivac.fr\n Login : {0} \n Mot de passe généré : {1} \n Veuillez le changer à la première connexion.", dto.getLogin(), password));
+                MessageFormat.format("Un administrateur vous a créé un compte sur l''interface https://gestionnaire.famivac.fr<br/> Login : {0} \n Mot de passe généré : {1} \n Veuillez le changer à la première connexion.", dto.getLogin(), password));
         mailService.send(mail);
         return password;
     }
@@ -37,7 +37,7 @@ public class UtilisateurServiceFacade {
         Mail mail = new Mail(
                 email,
                 "[FAMIVAC] Réinitialisation mot de passe",
-                MessageFormat.format("Un administrateur a réinitialisé votre mot de passe sur le site https://gestionnaire.famivac.fr\n Nouveau mot de passe : {0}", password));
+                MessageFormat.format("Un administrateur a réinitialisé votre mot de passe sur le site https://gestionnaire.famivac.fr<br/> Nouveau mot de passe : {0}", password));
         mailService.send(mail);
         return password;
     }
@@ -47,7 +47,7 @@ public class UtilisateurServiceFacade {
         Mail mail = new Mail(
                 email,
                 "[FAMIVAC] Compte verrouillé",
-                "Un administrateur a verrouillé votre compte sur le site https://gestionnaire.famivac.fr\n Veuillez envoyer un e-mail à contact@famivac.fr pour plus d'informations.");
+                "Un administrateur a verrouillé votre compte sur le site https://gestionnaire.famivac.fr<br/> Veuillez envoyer un e-mail à contact@famivac.fr pour plus d'informations.");
         mailService.send(mail);
     }
 
@@ -56,7 +56,7 @@ public class UtilisateurServiceFacade {
         Mail mail = new Mail(
                 email,
                 "[FAMIVAC] Compte accessible",
-                "Un administrateur a rendu accessible votre compte sur le site https://gestionnaire.famivac.fr\n Vous pouvez à nouveau vous connecter.");
+                "Un administrateur a rendu accessible votre compte sur le site https://gestionnaire.famivac.fr<br/> Vous pouvez à nouveau vous connecter.");
         mailService.send(mail);
     }
 
