@@ -15,7 +15,7 @@
     </servlet-mapping>
     <context-param>
         <param-name>primefaces.THEME</param-name>
-        <param-value>bootstrap</param-value>
+        <param-value>omega</param-value>
     </context-param>
     <session-config>
         <session-timeout>90</session-timeout>
@@ -51,7 +51,7 @@
         <param-value>java:/jboss/datasources/PostgreSQLDS</param-value>
     </context-param>
 
-<!--    <context-param>
+    <!--    <context-param>
         <param-name>liquibase.host.includes</param-name>
         <param-value>production1.example.com, production2.example.com</param-value>
     </context-param>-->
