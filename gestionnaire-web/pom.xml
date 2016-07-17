@@ -15,17 +15,6 @@
     <name>gestionnaire-web</name>
       
 
-    <properties>
-        <!-- Dependencies versions -->
-        <jacoco.version>0.7.7.201606060606</jacoco.version>
-        <wildfly.version>9.0.1.Final</wildfly.version>
-        <javaee.version>7.0</javaee.version>
-        <primefaces.version>6.0</primefaces.version>
-        <primefaces.bootstrap.version>1.0.10</primefaces.bootstrap.version>
-        <javamelody.version>1.60.0</javamelody.version>
-        <postgre.version>9.2-1004-jdbc41</postgre.version>
-    </properties>
-        
     <dependencies>
         <dependency>
             <groupId>fr.famivac.gestionnaire</groupId>
@@ -59,12 +48,6 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>${primefaces.version}</version>
-        </dependency>
-        <dependency>  
-            <groupId>org.primefaces.themes</groupId>  
-            <artifactId>bootstrap</artifactId>  
-            <version>${primefaces.bootstrap.version}</version>  
         </dependency>
         <dependency>
             <groupId>net.bull.javamelody</groupId>
@@ -85,15 +68,11 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>${postgre.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>de.chkal.jsf</groupId>
             <artifactId>jsf-maven-util</artifactId>
-            <version>1.1</version>
         </dependency>
-        
         <!-- Test -->
         <dependency>  
             <groupId>junit</groupId>  
@@ -128,7 +107,6 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <!--<version>3.2.2</version>-->
         </dependency>
         <dependency>
             <groupId>org.yaml</groupId>
@@ -194,7 +172,7 @@
                 <dependency>
                     <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-container-managed</artifactId>
-                    <version>2.0.0.Final</version>
+                    <version>${wildfly-arquillian-container-managed.version}</version>
                 </dependency>
                 <!-- this is the wildfly emb.container - BUT eventually it is not a fully blown emb.container-->
                 <dependency>
@@ -206,7 +184,7 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.extension</groupId>
                     <artifactId>arquillian-jacoco</artifactId>
-                    <version>1.0.0.Alpha8</version>
+                    <version>${arquillian-jacoco.version}</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>

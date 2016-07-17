@@ -39,7 +39,7 @@
         
         <!-- Plugins versions -->
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version> <!-- Keep this version for Openshift build -->
-        <maven-scm-provider-jgit.version>1.9.4</maven-scm-provider-jgit.version>
+        <maven-scm-provider-jgit.version>1.9.5</maven-scm-provider-jgit.version>
         <maven-deploy-plugin>2.8.2</maven-deploy-plugin>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <coveralls-maven-plugin.version>4.2.0</coveralls-maven-plugin.version>
@@ -49,7 +49,15 @@
         <!-- Dependencies versions -->
         <javaee.version>7.0</javaee.version>
         <javamelody.version>1.60.0</javamelody.version>
-        
+        <javaee.version>7.0</javaee.version>
+        <primefaces.version>6.0</primefaces.version>
+        <javamelody.version>1.60.0</javamelody.version>
+        <postgre.version>9.2-1004-jdbc41</postgre.version>
+        <!-- Arquillian -->
+        <wildfly.version>9.0.1.Final</wildfly.version>
+        <wildfly-arquillian-container-managed.version>2.0.0.Final</wildfly-arquillian-container-managed.version>
+        <arquillian-jacoco.version>1.0.0.Alpha8</arquillian-jacoco.version>
+        <jacoco.version>0.7.7.201606060606</jacoco.version>
     </properties>
     
     <modules>
@@ -94,6 +102,22 @@
                 <version>2.0.5.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.primefaces</groupId>
+                <artifactId>primefaces</artifactId>
+                <version>${primefaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgre.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>de.chkal.jsf</groupId>
+                <artifactId>jsf-maven-util</artifactId>
+                <version>1.1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -145,14 +169,14 @@
                         </dependency>
                     </dependencies>
                 </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>${maven-deploy-plugin}</version>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven-deploy-plugin}</version>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
                 <!-- Coveralls -->
                 <plugin>
                     <groupId>org.eluder.coveralls</groupId>
