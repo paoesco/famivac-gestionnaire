@@ -7,6 +7,7 @@ import fr.famivac.gestionnaire.commons.entity.Commune;
 import fr.famivac.gestionnaire.familles.entity.Famille;
 import fr.famivac.gestionnaire.familles.entity.MembreFamille;
 import fr.famivac.gestionnaire.commons.entity.Sexe;
+import fr.famivac.gestionnaire.commons.utils.AlphanumComparator;
 import fr.famivac.gestionnaire.familles.entity.InformationsHabitation;
 import fr.famivac.gestionnaire.familles.entity.InformationsVehicule;
 import fr.famivac.gestionnaire.familles.entity.PeriodeAccueil;
@@ -82,9 +83,16 @@ public class FamilleService {
                     })
                     .collect(Collectors.toSet());
         }
+        AlphanumComparator comparator = new AlphanumComparator();
         List<Famille> beans = repository.retrieve(nomReferent, prenomReferent, periodes);
         List<FamilleDTO> dtos = beans.stream().map((Famille f) -> {
             return new FamilleDTO(f);
+        }).sorted((f1, f2) -> {
+            int resultNomReferent = comparator.compare(f1.getNomReferent(), f2.getNomReferent());
+            if (resultNomReferent != 0) {
+                return resultNomReferent;
+            }
+            return comparator.compare(f1.getPrenomReferent(), f2.getPrenomReferent());
         }).collect(Collectors.toList());
         return dtos;
     }

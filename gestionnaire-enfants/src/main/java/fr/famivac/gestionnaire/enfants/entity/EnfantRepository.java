@@ -24,6 +24,7 @@ public class EnfantRepository {
         if (prenomEnfant != null && !prenomEnfant.isEmpty()) {
             sQuery.append(" and lower(e.prenom) like :prenomEnfant ");
         }
+        sQuery.append(" order by e.nom, e.prenom ");
 
         Query query = entityManager.createQuery(sQuery.toString().replaceFirst("and", "where"), Enfant.class);
         if (nomEnfant != null && !nomEnfant.isEmpty()) {

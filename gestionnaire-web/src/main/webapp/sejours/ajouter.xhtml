@@ -79,10 +79,11 @@
                                                 cache="true"
                                                 forceSelection="true"
                                                 var="famille"
+                                                scrollHeight="400"
                                                 completeMethod="#{ajouterSejourBean.completeFamille}"
                                                 converter="#{familleConverter}"
                                                 itemValue="#{famille}"
-                                                itemLabel="#{famille.prenomReferent} #{famille.nomReferent}">
+                                                itemLabel="#{famille.nomReferent} #{famille.prenomReferent}">
                                             </p:autoComplete>
                                         </div>
                                     </div>
@@ -100,10 +101,11 @@
                                                 cache="true"
                                                 forceSelection="true"
                                                 var="enfant"
+                                                scrollHeight="400"
                                                 completeMethod="#{ajouterSejourBean.completeEnfant}"
                                                 converter="#{enfantConverter}"
                                                 itemValue="#{enfant}"
-                                                itemLabel="#{enfant.prenomEnfant} #{enfant.nomEnfant}">
+                                                itemLabel="#{enfant.nomEnfant} #{enfant.prenomEnfant}">
                                             </p:autoComplete>
                                         </div>
                                     </div>

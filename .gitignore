@@ -15,3 +15,5 @@
 /gestionnaire-enfants/target/
 /gestionnaire-administration/target/
 /gestionnaire-sejours/target/
+/development/wildfly-9.0.1.Final/standalone/deployment/
+development/wildfly-9.0.1.Final/standalone/tmp/

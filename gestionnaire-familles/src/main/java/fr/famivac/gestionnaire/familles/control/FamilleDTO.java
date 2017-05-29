@@ -89,5 +89,5 @@ public class FamilleDTO implements Serializable {
     public void setCandidature(boolean candidature) {
         this.candidature = candidature;
     }
-
+    
 }
