@@ -23,15 +23,15 @@
         <extension module="org.jboss.as.sar"/>
         <extension module="org.jboss.as.security"/>
         <extension module="org.jboss.as.transactions"/>
-        <extension module="org.jboss.as.webservices"/>
+        <!--<extension module="org.jboss.as.webservices"/>-->
         <extension module="org.jboss.as.weld"/>
-        <extension module="org.wildfly.extension.batch"/>
+        <!--<extension module="org.wildfly.extension.batch"/>-->
         <extension module="org.wildfly.extension.bean-validation"/>
         <extension module="org.wildfly.extension.io"/>
         <extension module="org.wildfly.extension.request-controller"/>
         <extension module="org.wildfly.extension.security.manager"/>
         <extension module="org.wildfly.extension.undertow"/>
-        <extension module="org.wildfly.iiop-openjdk"/>
+        <!--<extension module="org.wildfly.iiop-openjdk"/>-->
     </extensions>
     <management>
         <security-realms>
@@ -132,7 +132,7 @@
                 <pattern-formatter pattern="%K{level}%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n"/>
             </formatter>
         </subsystem>
-        <subsystem xmlns="urn:jboss:domain:batch:1.0">
+<!--        <subsystem xmlns="urn:jboss:domain:batch:1.0">
             <job-repository>
                 <in-memory/>
             </job-repository>
@@ -140,7 +140,7 @@
                 <max-threads count="10"/>
                 <keepalive-time time="30" unit="seconds"/>
             </thread-pool>
-        </subsystem>
+        </subsystem>-->
         <subsystem xmlns="urn:jboss:domain:bean-validation:1.0"/>
         <subsystem xmlns="urn:jboss:domain:datasources:3.0">
             <datasources>
@@ -307,10 +307,10 @@
                 </replicated-cache>
             </cache-container>
         </subsystem>
-        <subsystem xmlns="urn:jboss:domain:iiop-openjdk:1.0">
+<!--        <subsystem xmlns="urn:jboss:domain:iiop-openjdk:1.0">
             <orb socket-binding="iiop" ssl-socket-binding="iiop-ssl"/>
             <initializers transactions="spec" security="identity"/>
-        </subsystem>
+        </subsystem>-->
         <subsystem xmlns="urn:jboss:domain:jaxrs:1.0"/>
         <subsystem xmlns="urn:jboss:domain:jca:3.0">
             <archive-validation enabled="true" fail-on-error="true" fail-on-warn="false"/>
@@ -541,7 +541,7 @@
                 <response-header name="x-powered-by-header" header-name="X-Powered-By" header-value="Undertow/1"/>
             </filters>
         </subsystem>
-        <subsystem xmlns="urn:jboss:domain:webservices:2.0">
+<!--        <subsystem xmlns="urn:jboss:domain:webservices:2.0">
             <wsdl-host>${jboss.bind.address:127.0.0.1}</wsdl-host>
             <endpoint-config name="Standard-Endpoint-Config"/>
             <endpoint-config name="Recording-Endpoint-Config">
@@ -550,7 +550,7 @@
                 </pre-handler-chain>
             </endpoint-config>
             <client-config name="Standard-Client-Config"/>
-        </subsystem>
+        </subsystem>-->
         <subsystem xmlns="urn:jboss:domain:weld:2.0"/>
     </profile>
     <interfaces>
@@ -561,13 +561,13 @@
             <loopback-address value="${env.OPENSHIFT_WILDFLY_IP}"/>
         </interface>
         <!-- TODO - only show this if the jacorb subsystem is added  -->
-        <interface name="unsecure">
+        <!--<interface name="unsecure">-->
             <!--
             ~  Used for IIOP sockets in the standard configuration.
             ~                  To secure JacORB you need to setup SSL 
             -->
-            <loopback-address value="${env.OPENSHIFT_WILDFLY_IP}"/>
-        </interface>
+            <!--<loopback-address value="${env.OPENSHIFT_WILDFLY_IP}"/>-->
+        <!--</interface>-->
     </interfaces>
     <socket-binding-group name="standard-sockets" default-interface="public" port-offset="${jboss.socket.binding.port-offset:0}">
         <socket-binding name="management-http" interface="management" port="${jboss.management.http.port:9990}"/>
@@ -576,8 +576,8 @@
         <socket-binding name="ajp" port="${jboss.ajp.port:8009}"/>
         <socket-binding name="http" port="${jboss.http.port:8080}"/>
         <socket-binding name="https" port="${jboss.https.port:443}"/>
-        <socket-binding name="iiop" interface="unsecure" port="3528"/>
-        <socket-binding name="iiop-ssl" interface="unsecure" port="3529"/>
+        <!--<socket-binding name="iiop" interface="unsecure" port="3528"/>-->
+        <!--<socket-binding name="iiop-ssl" interface="unsecure" port="3529"/>-->
         <socket-binding name="txn-recovery-environment" port="4712"/>
         <socket-binding name="txn-status-manager" port="4713"/>
         <outbound-socket-binding name="mail-smtp">
