@@ -2,6 +2,7 @@ package fr.famivac.gestionnaire.sejours.control;
 
 import fr.famivac.gestionnaire.commons.events.UpdateEnfantEvent;
 import fr.famivac.gestionnaire.commons.events.UpdateFamilleEvent;
+import fr.famivac.gestionnaire.sejours.entity.PeriodeJournee;
 import fr.famivac.gestionnaire.sejours.entity.Sejour;
 import fr.famivac.gestionnaire.sejours.entity.StatutSejour;
 import java.util.Date;
@@ -34,6 +35,7 @@ public class SejourService {
             String enfantNom,
             String enfantPrenom,
             Date dateDebut,
+            PeriodeJournee periodeJourneeDebut,
             Date dateFin) {
         Sejour sejour = new Sejour(familleId,
                 familleNom,
@@ -42,6 +44,7 @@ public class SejourService {
                 enfantNom,
                 enfantPrenom,
                 dateDebut,
+                periodeJourneeDebut,
                 dateFin);
         entityManager.persist(sejour);
         return sejour.getId();

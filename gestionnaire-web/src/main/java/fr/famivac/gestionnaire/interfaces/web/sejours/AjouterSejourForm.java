@@ -2,6 +2,7 @@ package fr.famivac.gestionnaire.interfaces.web.sejours;
 
 import fr.famivac.gestionnaire.enfants.control.EnfantDTO;
 import fr.famivac.gestionnaire.familles.control.FamilleDTO;
+import fr.famivac.gestionnaire.sejours.entity.PeriodeJournee;
 import java.util.Date;
 import javax.validation.constraints.NotNull;
 
@@ -18,6 +19,9 @@ public class AjouterSejourForm {
 
     @NotNull
     private Date dateDebut;
+
+    @NotNull
+    private String periodeJourneeDebut;
 
     @NotNull
     private Date dateFin;
@@ -44,6 +48,14 @@ public class AjouterSejourForm {
 
     public void setDateDebut(Date dateDebut) {
         this.dateDebut = dateDebut;
+    }
+
+    public String getPeriodeJourneeDebut() {
+        return periodeJourneeDebut;
+    }
+
+    public void setPeriodeJourneeDebut(String periodeJourneeDebut) {
+        this.periodeJourneeDebut = periodeJourneeDebut;
     }
 
     public Date getDateFin() {

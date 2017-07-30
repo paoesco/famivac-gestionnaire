@@ -30,7 +30,7 @@
                                 <div class="panel-body">
                                     <h:form styleClass="form-horizontal" role="form" id="informationsForm">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">Famille</label>
+                                            <label class="col-sm-4 control-label">Famille</label>
                                             <div class="col-md-4">
                                                 <p class="form-control-static">
                                                     <h:link
@@ -43,7 +43,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">Enfant</label>
+                                            <label class="col-sm-4 control-label">Enfant</label>
                                             <div class="col-md-8">
                                                 <p class="form-control-static">
                                                     <h:link
@@ -58,7 +58,7 @@
                                         <div class="form-group">
                                             <p:outputLabel 
                                                 for="input_date_debut" 
-                                                styleClass="col-sm-3 control-label"
+                                                styleClass="col-sm-4 control-label"
                                                 value="Date début" />
                                             <div class="col-md-8">
                                                 <p:calendar 
@@ -74,8 +74,25 @@
                                         </div>
                                         <div class="form-group">
                                             <p:outputLabel 
+                                                for="form_periodes"
+                                                styleClass="col-sm-4 control-label"
+                                                value="Période journée début" />
+                                            <div class="col-md-7">
+                                                <p:selectOneRadio
+                                                    id="form_periodes"
+                                                    columns="2"
+                                                    layout="grid"
+                                                    required="true"
+                                                    value="#{sejourDetailsBean.sejour.periodeJourneeDateDebut}">
+                                                    <f:selectItem itemLabel="Matin" itemValue="MATIN" />
+                                                    <f:selectItem itemLabel="Apres-Midi" itemValue="APRES_MIDI" />
+                                                </p:selectOneRadio>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
                                                 for="input_date_fin" 
-                                                styleClass="col-sm-3 control-label"
+                                                styleClass="col-sm-4 control-label"
                                                 value="Date fin" />
                                             <div class="col-md-8">
                                                 <p:calendar 
@@ -90,7 +107,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">Nombre jours</label>
+                                            <label class="col-sm-4 control-label">Nombre jours</label>
                                             <div class="col-md-4">
                                                 <p class="form-control-static">
                                                     <h:outputText styleClass="badge" value="#{sejourDetailsBean.sejour.nombreJours()}"/>
@@ -98,7 +115,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">Statut</label>
+                                            <label class="col-sm-4 control-label">Statut</label>
                                             <div class="col-md-8">
                                                 <p class="form-control-static">
                                                     <h:outputText styleClass="label label-default" value="A venir" rendered="#{sejourDetailsBean.statut.equals('A_VENIR')}"/>
@@ -113,7 +130,7 @@
                                             <p:outputLabel 
                                                 for="input_tarif" 
                                                 value="Tarif"
-                                                styleClass="col-sm-3 control-label"/> 
+                                                styleClass="col-sm-4 control-label"/> 
                                             <div class="col-md-2">
                                                 <p:inputText
                                                     id="input_tarif"

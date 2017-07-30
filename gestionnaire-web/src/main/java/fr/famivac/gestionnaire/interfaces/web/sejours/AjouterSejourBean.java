@@ -5,6 +5,7 @@ import fr.famivac.gestionnaire.familles.control.FamilleService;
 import fr.famivac.gestionnaire.sejours.control.SejourService;
 import fr.famivac.gestionnaire.enfants.control.EnfantDTO;
 import fr.famivac.gestionnaire.enfants.control.EnfantService;
+import fr.famivac.gestionnaire.sejours.entity.PeriodeJournee;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.view.ViewScoped;
@@ -41,6 +42,7 @@ public class AjouterSejourBean implements Serializable {
                 form.getEnfant().getNomEnfant(),
                 form.getEnfant().getPrenomEnfant(),
                 form.getDateDebut(),
+                PeriodeJournee.valueOf(form.getPeriodeJourneeDebut()),
                 form.getDateFin());
         return "/sejours/details.xhtml?id=" + sejourId + "&faces-redirect=true";
     }

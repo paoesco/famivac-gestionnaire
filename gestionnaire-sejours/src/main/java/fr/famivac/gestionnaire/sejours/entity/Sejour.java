@@ -3,6 +3,7 @@ package fr.famivac.gestionnaire.sejours.entity;
 import fr.famivac.gestionnaire.commons.utils.DateUtils;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.Date;
@@ -13,6 +14,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -30,9 +33,12 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_LA_FAMILLE, query = "select s from Sejour s where s.familleId = :familleId order by s.dateDebut"),
-    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_L_ENFANT, query = "select s from Sejour s where s.enfantId = :enfantId order by s.dateDebut"),
-    @NamedQuery(name = Sejour.QUERY_SEJOURS_RETRIEVE, query = "select s from Sejour s order by s.dateDebut, s.dateFin"),
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_LA_FAMILLE, query = "select s from Sejour s where s.familleId = :familleId order by s.dateDebut")
+    ,
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_L_ENFANT, query = "select s from Sejour s where s.enfantId = :enfantId order by s.dateDebut")
+    ,
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_RETRIEVE, query = "select s from Sejour s order by s.dateDebut, s.dateFin")
+    ,
     @NamedQuery(name = Sejour.QUERY_SEJOURS_RECHERCHER, query = "select s from Sejour s where lower(s.enfantNom) like :nomEnfant and lower(s.enfantPrenom) like :prenomEnfant and lower(s.familleNom) like :nomReferent and lower(s.famillePrenom) like :prenomReferent order by s.dateDebut, s.dateFin")
 })
 public class Sejour implements Serializable {
@@ -75,6 +81,11 @@ public class Sejour implements Serializable {
     @Temporal(TemporalType.DATE)
     @NotNull
     private Date dateDebut;
+
+    @Column(name = "PERIODE_JOURNEE_DATE_DEBUT")
+    @Enumerated(EnumType.STRING)
+    private PeriodeJournee periodeJourneeDateDebut;
+
     @Temporal(TemporalType.DATE)
     @NotNull
     private Date dateFin;
@@ -98,11 +109,14 @@ public class Sejour implements Serializable {
         this.payeurs = new HashSet<>();
     }
 
-    public Sejour(Date dateDebut, Date dateFin) {
-        if (Objects.isNull(dateDebut) || Objects.isNull(dateFin)) {
+    public Sejour(Date dateDebut, PeriodeJournee periodeJourneeDebut, Date dateFin) {
+        if (Objects.isNull(dateDebut)
+                || Objects.isNull(periodeJourneeDebut)
+                || Objects.isNull(dateFin)) {
             throw new IllegalArgumentException("Tous les paramètres sont obligatoires !");
         }
         this.dateDebut = (Date) dateDebut.clone();
+        this.periodeJourneeDateDebut = periodeJourneeDebut;
         this.dateFin = (Date) dateFin.clone();
         this.tarif = 0;
         this.payeurs = new HashSet<>();
@@ -115,6 +129,7 @@ public class Sejour implements Serializable {
             String enfantNom,
             String enfantPrenom,
             Date dateDebut,
+            PeriodeJournee periodeJourneeDebut,
             Date dateFin) {
         if (Objects.isNull(familleId)
                 || Objects.isNull(familleNom)
@@ -123,6 +138,7 @@ public class Sejour implements Serializable {
                 || Objects.isNull(enfantNom)
                 || Objects.isNull(enfantPrenom)
                 || Objects.isNull(dateDebut)
+                || Objects.isNull(periodeJourneeDebut)
                 || Objects.isNull(dateFin)) {
             throw new IllegalArgumentException("Tous les paramètres sont obligatoires !");
         }
@@ -135,6 +151,7 @@ public class Sejour implements Serializable {
         this.aller = new Voyage();
         this.retour = new Voyage();
         this.dateDebut = (Date) dateDebut.clone();
+        this.periodeJourneeDateDebut = periodeJourneeDebut;
         this.dateFin = (Date) dateFin.clone();
         this.tarif = 0;
         this.payeurs = new HashSet<>();
@@ -146,8 +163,13 @@ public class Sejour implements Serializable {
         }
         LocalDate lDateDebut = DateUtils.toLocalDate(getDateDebut());
         LocalDate lDateFin = DateUtils.toLocalDate(getDateFinEffective());
-        return (int) ChronoUnit.DAYS.between(lDateDebut, lDateFin);
-        //return Period.between(lDateDebut, lDateFin).getDays();
+        int between = (int) ChronoUnit.DAYS.between(lDateDebut, lDateFin);
+        int avecJourDeFin = between + 1; // Le jour de fin est toujours compté
+        if (PeriodeJournee.APRES_MIDI.equals(getPeriodeJourneeDateDebut())) {
+            // Si le séjour commence l'apres-midi, la premiere journée n'est pas comptée.
+            return avecJourDeFin - 1;
+        }
+        return avecJourDeFin;
     }
 
     public Long getId() {
@@ -211,6 +233,17 @@ public class Sejour implements Serializable {
             throw new IllegalArgumentException("La date de début est obligatoire");
         }
         this.dateDebut = (Date) dateDebut.clone();
+    }
+
+    public PeriodeJournee getPeriodeJourneeDateDebut() {
+        return periodeJourneeDateDebut;
+    }
+
+    public void setPeriodeJourneeDateDebut(PeriodeJournee periodeJourneeDateDebut) {
+        if (Objects.isNull(periodeJourneeDateDebut)) {
+            throw new IllegalArgumentException("La période de journée de début est obligatoire");
+        }
+        this.periodeJourneeDateDebut = periodeJourneeDateDebut;
     }
 
     public Date getDateFin() {

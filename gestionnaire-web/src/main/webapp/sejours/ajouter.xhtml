@@ -34,7 +34,7 @@
                                     <div class="form-group">
                                         <p:outputLabel 
                                             for="input_date_debut" 
-                                            styleClass="col-sm-3 control-label"
+                                            styleClass="col-sm-4 control-label"
                                             value="Date début" />
                                         <div class="col-md-8">
                                             <p:calendar 
@@ -50,8 +50,25 @@
                                     </div>
                                     <div class="form-group">
                                         <p:outputLabel 
+                                            for="form_periodes"
+                                            styleClass="col-sm-4 control-label"
+                                            value="Période journée début" />
+                                        <div class="col-md-7">
+                                            <p:selectOneRadio
+                                                id="form_periodes"
+                                                columns="2"
+                                                layout="grid"
+                                                required="true"
+                                                value="#{ajouterSejourBean.form.periodeJourneeDebut}">
+                                                <f:selectItem itemLabel="Matin" itemValue="MATIN" />
+                                                <f:selectItem itemLabel="Apres-Midi" itemValue="APRES_MIDI" />
+                                            </p:selectOneRadio>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:outputLabel 
                                             for="input_date_fin" 
-                                            styleClass="col-sm-3 control-label"
+                                            styleClass="col-sm-4 control-label"
                                             value="Date fin" />
                                         <div class="col-md-8">
                                             <p:calendar 
@@ -69,7 +86,7 @@
                                         <p:outputLabel 
                                             for="input_famille" 
                                             value="Famille" 
-                                            styleClass="col-sm-3 control-label" />
+                                            styleClass="col-sm-4 control-label" />
                                         <div class="col-md-8">
                                             <p:autoComplete
                                                 id="input_famille"
@@ -91,7 +108,7 @@
                                         <p:outputLabel 
                                             for="input_enfant" 
                                             value="Enfant" 
-                                            styleClass="col-sm-3 control-label" />
+                                            styleClass="col-sm-4 control-label" />
                                         <div class="col-md-8">
                                             <p:autoComplete
                                                 id="input_enfant"
