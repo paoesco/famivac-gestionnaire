@@ -7,23 +7,36 @@
 
 ## Contribute
 
-- Use Wildfly server located in ./development/wildfly-*
+- Java 8
+- Java EE 7
+- Wildfly Swarm
 - Create postgresql database with user `gestionnaire`, password `gestionnaire`, database `gestionnaire`
 - See Startup section for any environment variables
 
 ## Startup
 
-- VM Options : -Xms128m -Xmx512m -DMAIL_SERVER_USERNAME="username" -DMAIL_SERVER_PASSWORD="password"
+Environment properties :
 
-## OpenShift deployment
+- MAIL_SERVER_USERNAME
+- MAIL_SERVER_PASSWORD
+- swarm.ds.name
+- swarm.ds.connection.url
+- swarm.ds.username
+- swarm.ds.password
 
-- Add environment variable for mail server : rhc env set MAIL_SERVER_USERNAME="<Value>" MAIL_SERVER_PASSWORD="<Value2>" -a gestionnaire
+Startup line
+
+-Xms128m -Xmx512m -DMAIL_SERVER_USERNAME="username" -DMAIL_SERVER_PASSWORD="password" -Dswarm.ds.name=PostgreSQLDS -Dswarm.ds.connection.url=jdbc:postgresql://localhost:5432/gestionnaire -Dswarm.ds.username=gestionnaire -Dswarm.ds.password=gestionnaire
+
+## Heroku deployment
+
+- Add environment variables
 
 ## License
 
 The MIT License (MIT)
 
-Copyright (c) 2015-2017 Paolo Escobar
+Copyright (c) 2015-2017 Hubesco https://hubesco.com/blog
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
