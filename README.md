@@ -17,16 +17,37 @@
 
 Environment properties :
 
-- MAIL_SERVER_USERNAME
-- MAIL_SERVER_PASSWORD
+- swarm.mail.smtp.host
+- swarm.mail.smtp.port
+- swarm.mail.mail-sessions.famivac.smtp-server.username
+- swarm.mail.mail-sessions.famivac.smtp-server.password
+- swarm.mail.mail-sessions.famivac.smtp-server.ssl
 - swarm.ds.name
 - swarm.ds.connection.url
 - swarm.ds.username
 - swarm.ds.password
+- swarm.https.only
 
 Startup line
 
--Xms128m -Xmx512m -DMAIL_SERVER_USERNAME="username" -DMAIL_SERVER_PASSWORD="password" -Dswarm.ds.name=PostgreSQLDS -Dswarm.ds.connection.url=jdbc:postgresql://localhost:5432/gestionnaire -Dswarm.ds.username=gestionnaire -Dswarm.ds.password=gestionnaire
+java 
+    -Xms340m 
+    -Xmx340m 
+    -Xss512k 
+    -XX:+UseCompressedOops 
+    -XX:MaxMetaspaceSize=128m 
+    -Dswarm.ds.name=PostgreSQLDS 
+    -Dswarm.ds.connection.url=$JDBC_DATABASE_URL 
+    -Dswarm.ds.username=$JDBC_DATABASE_USERNAME 
+    -Dswarm.ds.password=$JDBC_DATABASE_PASSWORD 
+    -Djavamelody.datasources=java:jboss/datasources/PostgreSQLDS 
+    -Dswarm.mail.smtp.host=$MAIL_SERVER_SMTP_HOST 
+    -Dswarm.mail.smtp.port=$MAIL_SERVER_SMTP_PORT 
+    -Dswarm.mail.mail-sessions.famivac.smtp-server.username=$MAIL_SERVER_SMTP_USERNAME 
+    -Dswarm.mail.mail-sessions.famivac.smtp-server.password=$MAIL_SERVER_SMTP_PASSWORD 
+    -Dswarm.mail.mail-sessions.famivac.smtp-server.ssl=true
+    -Dswarm.http.port=$PORT 
+    -jar gestionnaire-web/target/gestionnaire-web-*-swarm.jar
 
 ## Heroku deployment
 
