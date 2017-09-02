@@ -5,6 +5,8 @@ import fr.famivac.gestionnaire.commons.events.UpdateFamilleEvent;
 import fr.famivac.gestionnaire.sejours.entity.PeriodeJournee;
 import fr.famivac.gestionnaire.sejours.entity.Sejour;
 import fr.famivac.gestionnaire.sejours.entity.StatutSejour;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -60,6 +62,15 @@ public class SejourService {
                     return new SejourDTO(s);
                 })
                 .collect(Collectors.toList());
+    }
+
+    public List<VoyageDTO> getVoyages() {
+        List<VoyageDTO> results = new ArrayList<>();
+        VoyageDTO voyageDTO = new VoyageDTO();
+        voyageDTO.setEnfant("Test");
+        voyageDTO.setDate(new Date());
+        results.add(voyageDTO);
+        return results;
     }
 
     public List<SejourDTO> rechercher(String nomReferent, String prenomReferent, String nomEnfant, String prenomEnfant, StatutSejour statutSejour) {

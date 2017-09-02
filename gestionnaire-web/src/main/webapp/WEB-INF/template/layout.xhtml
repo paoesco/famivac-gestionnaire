@@ -22,7 +22,7 @@
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
             <!-- Custom CSS -->
             <h:outputStylesheet library="css" name="gestionnaire.css"/>
-            
+
             <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
             <!--[if lt IE 9]>
               <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -48,12 +48,19 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="#{view.viewId.startsWith('/famille') ? 'active' : ''}"><h:link outcome="/familles/liste.xhtml" value="Familles"/></li>
-                            <li class="#{view.viewId.startsWith('/enfant') ? 'active' : ''}"><h:link outcome="/enfants/liste.xhtml" value="Enfants" /></li>
-                            <li class="#{view.viewId.startsWith('/inscripteur') ? 'active' : ''}"><h:link outcome="/inscripteurs/liste.xhtml" value="Inscripteurs" /></li>
-                            <li class="#{view.viewId.startsWith('/sejour') ? 'active' : ''}"><h:link outcome="/sejours/liste.xhtml" value="Séjours" /></li>
-                            <li class="#{view.viewId.startsWith('/accompagnateur') ? 'active' : ''}"><h:link outcome="/accompagnateurs/liste.xhtml" value="Accompagnateurs" /></li>
-                            <li class="#{view.viewId.startsWith('/parametre') ? 'active' : ''}"><h:link rendered="#{request.isUserInRole('ROLE_ADMIN')}" outcome="/parametres/communes.xhtml" value="Paramètres"/></li>
+                            <li class="#{view.viewId.startsWith('/familles') ? 'active' : ''}"><h:link outcome="/familles/liste.xhtml" value="Familles"/></li>
+                            <li class="#{view.viewId.startsWith('/enfants') ? 'active' : ''}"><h:link outcome="/enfants/liste.xhtml" value="Enfants" /></li>
+                            <li class="#{view.viewId.startsWith('/inscripteurs') ? 'active' : ''}"><h:link outcome="/inscripteurs/liste.xhtml" value="Inscripteurs" /></li>
+                            <li class="#{view.viewId.startsWith('/sejours') ? 'active' : ''}"></li>
+                            <li class="dropdown #{view.viewId.startsWith('/sejour') ? 'active' : ''}">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Séjours <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><h:link outcome="/sejours/liste.xhtml" value="Liste" /></li>
+                                    <li><h:link outcome="/sejours/voyages.xhtml" value="Voyages" /></li>
+                                </ul>
+                            </li>
+                            <li class="#{view.viewId.startsWith('/accompagnateurs') ? 'active' : ''}"><h:link outcome="/accompagnateurs/liste.xhtml" value="Accompagnateurs" /></li>
+                            <li class="#{view.viewId.startsWith('/parametres') ? 'active' : ''}"><h:link rendered="#{request.isUserInRole('ROLE_ADMIN')}" outcome="/parametres/communes.xhtml" value="Paramètres"/></li>
                             <li class="#{view.viewId.startsWith('/monitoring') ? 'active' : ''}"><h:outputLink value="#{request.contextPath}/monitoring" target="_blank" rendered="#{request.isUserInRole('ROLE_MONITORING')}">Monitoring</h:outputLink></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -82,11 +89,11 @@
 
             <!--<hr />-->
 
-<!--            <footer class="footer">
-                <div class="container">
-                    <p class="text-muted">&copy; Une famille pour les vacances - 2015 - #{maven.version['fr.famivac:gestionnaire']}</p>
-                </div>
-            </footer>-->
+            <!--            <footer class="footer">
+                            <div class="container">
+                                <p class="text-muted">&copy; Une famille pour les vacances - 2015 - #{maven.version['fr.famivac:gestionnaire']}</p>
+                            </div>
+                        </footer>-->
 
             <!-- Latest compiled and minified JavaScript -->
             <h:outputScript library="primefaces" name="jquery/jquery.js"/>

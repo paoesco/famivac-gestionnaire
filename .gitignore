@@ -5,7 +5,7 @@
 /.metadata
 /Users
 /nb-configuration.xml
-/nb-actions.xml
+nbactions.xml
 /.DS_Store
 .DS_Store
 /gestionnaire.iml

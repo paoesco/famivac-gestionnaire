@@ -1,4 +1,4 @@
-package fr.famivac.gestionnaire.interfaces.web.index;
+package fr.famivac.gestionnaire.interfaces.web.home;
 
 import fr.famivac.gestionnaire.dashboard.control.DashboardDTO;
 import fr.famivac.gestionnaire.dashboard.control.DashboardService;
@@ -14,7 +14,7 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class IndexBean implements Serializable {
+public class HomePageBean implements Serializable {
 
     private long nombreFamilles;
     private long nombreEnfants;
