@@ -51,7 +51,7 @@
         <param-value>java:/jboss/datasources/PostgreSQLDS</param-value>
     </context-param>
 
-<!--    <context-param>
+    <!--    <context-param>
         <param-name>liquibase.host.includes</param-name>
         <param-value>production1.example.com, production2.example.com</param-value>
     </context-param>-->
@@ -79,25 +79,10 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    <!--    <security-constraint>
-        <display-name>Restrict raw XHTML Documents</display-name>
-        <web-resource-collection>
-            <web-resource-name>XHTML</web-resource-name>
-            <url-pattern>*.xhtml</url-pattern>
-        </web-resource-collection>
-        <auth-constraint />
-    </security-constraint>-->
-    <!--    <security-constraint>
-        <display-name>SSL</display-name>
-        <web-resource-collection>
-            <web-resource-name>All</web-resource-name>
-            <description/>
-            <url-pattern>/*</url-pattern>
-        </web-resource-collection>
-        <user-data-constraint>
-            <description/>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
-    </security-constraint>-->
+    
+    <mime-mapping>
+        <extension>map</extension>
+        <mime-type>application/json</mime-type>
+    </mime-mapping>
     
 </web-app>
