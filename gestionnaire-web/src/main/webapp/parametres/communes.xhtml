@@ -35,7 +35,7 @@
                                     value="#{communesBean.lazyModel}"
                                     paginator="true"
                                     rowKey="#{bean.code}"
-                                    rows="20"
+                                    rows="10"
                                     lazy="true"
                                     editable="true" 
                                     editMode="cell">
@@ -94,7 +94,6 @@
                         </div>
                         <div class="panel-body">
                             <h:form id="form" styleClass="form-horizontal" role="form">
-                                <p:focus for="form"></p:focus>
                                 <div class="form-group">
                                     <p:outputLabel 
                                         for="form_code" 
