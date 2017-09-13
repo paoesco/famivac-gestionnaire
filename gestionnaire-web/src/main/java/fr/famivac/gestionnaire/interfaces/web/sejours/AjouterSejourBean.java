@@ -43,7 +43,8 @@ public class AjouterSejourBean implements Serializable {
                 form.getEnfant().getPrenomEnfant(),
                 form.getDateDebut(),
                 PeriodeJournee.valueOf(form.getPeriodeJourneeDebut()),
-                form.getDateFin());
+                form.getDateFin(),
+                PeriodeJournee.valueOf(form.getPeriodeJourneeFin()));
         return "/sejours/details.xhtml?id=" + sejourId + "&faces-redirect=true";
     }
 

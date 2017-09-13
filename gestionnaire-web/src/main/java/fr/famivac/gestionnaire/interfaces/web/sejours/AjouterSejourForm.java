@@ -26,6 +26,13 @@ public class AjouterSejourForm {
     @NotNull
     private Date dateFin;
 
+    @NotNull
+    private String periodeJourneeFin;
+
+    public AjouterSejourForm() {
+        periodeJourneeFin = PeriodeJournee.APRES_MIDI.name();
+    }
+
     public FamilleDTO getFamille() {
         return famille;
     }
@@ -64,6 +71,14 @@ public class AjouterSejourForm {
 
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
+    }
+
+    public String getPeriodeJourneeFin() {
+        return periodeJourneeFin;
+    }
+
+    public void setPeriodeJourneeFin(String periodeJourneeFin) {
+        this.periodeJourneeFin = periodeJourneeFin;
     }
 
 }

@@ -38,7 +38,8 @@ public class SejourService {
             String enfantPrenom,
             Date dateDebut,
             PeriodeJournee periodeJourneeDebut,
-            Date dateFin) {
+            Date dateFin,
+            PeriodeJournee periodeJourneeFin) {
         Sejour sejour = new Sejour(familleId,
                 familleNom,
                 famillePrenom,
@@ -47,7 +48,8 @@ public class SejourService {
                 enfantPrenom,
                 dateDebut,
                 periodeJourneeDebut,
-                dateFin);
+                dateFin,
+                periodeJourneeFin);
         entityManager.persist(sejour);
         return sejour.getId();
     }

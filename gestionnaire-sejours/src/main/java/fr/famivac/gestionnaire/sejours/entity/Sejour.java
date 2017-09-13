@@ -84,13 +84,21 @@ public class Sejour implements Serializable {
 
     @Column(name = "PERIODE_JOURNEE_DATE_DEBUT")
     @Enumerated(EnumType.STRING)
+    @NotNull
     private PeriodeJournee periodeJourneeDateDebut;
 
     @Temporal(TemporalType.DATE)
     @NotNull
     private Date dateFin;
+
     @Temporal(TemporalType.DATE)
     private Date dateFinReelle;
+
+    @Column(name = "PERIODE_JOURNEE_DATE_FIN")
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private PeriodeJournee periodeJourneeDateFin;
+
     private int tarif;
 
     @Temporal(TemporalType.DATE)
@@ -109,15 +117,17 @@ public class Sejour implements Serializable {
         this.payeurs = new HashSet<>();
     }
 
-    public Sejour(Date dateDebut, PeriodeJournee periodeJourneeDebut, Date dateFin) {
+    public Sejour(Date dateDebut, PeriodeJournee periodeJourneeDebut, Date dateFin, PeriodeJournee periodeJourneeFin) {
         if (Objects.isNull(dateDebut)
                 || Objects.isNull(periodeJourneeDebut)
-                || Objects.isNull(dateFin)) {
+                || Objects.isNull(dateFin)
+                || Objects.isNull(periodeJourneeFin)) {
             throw new IllegalArgumentException("Tous les paramètres sont obligatoires !");
         }
         this.dateDebut = (Date) dateDebut.clone();
         this.periodeJourneeDateDebut = periodeJourneeDebut;
         this.dateFin = (Date) dateFin.clone();
+        this.periodeJourneeDateFin = periodeJourneeFin;
         this.tarif = 0;
         this.payeurs = new HashSet<>();
     }
@@ -130,7 +140,8 @@ public class Sejour implements Serializable {
             String enfantPrenom,
             Date dateDebut,
             PeriodeJournee periodeJourneeDebut,
-            Date dateFin) {
+            Date dateFin,
+            PeriodeJournee periodeJourneeFin) {
         if (Objects.isNull(familleId)
                 || Objects.isNull(familleNom)
                 || Objects.isNull(famillePrenom)
@@ -139,7 +150,8 @@ public class Sejour implements Serializable {
                 || Objects.isNull(enfantPrenom)
                 || Objects.isNull(dateDebut)
                 || Objects.isNull(periodeJourneeDebut)
-                || Objects.isNull(dateFin)) {
+                || Objects.isNull(dateFin)
+                || Objects.isNull(periodeJourneeFin)) {
             throw new IllegalArgumentException("Tous les paramètres sont obligatoires !");
         }
         this.familleId = familleId;
@@ -153,6 +165,7 @@ public class Sejour implements Serializable {
         this.dateDebut = (Date) dateDebut.clone();
         this.periodeJourneeDateDebut = periodeJourneeDebut;
         this.dateFin = (Date) dateFin.clone();
+        this.periodeJourneeDateFin = periodeJourneeFin;
         this.tarif = 0;
         this.payeurs = new HashSet<>();
     }
@@ -163,13 +176,15 @@ public class Sejour implements Serializable {
         }
         LocalDate lDateDebut = DateUtils.toLocalDate(getDateDebut());
         LocalDate lDateFin = DateUtils.toLocalDate(getDateFinEffective());
-        int between = (int) ChronoUnit.DAYS.between(lDateDebut, lDateFin);
-        int avecJourDeFin = between + 1; // Le jour de fin est toujours compté
+        int between = (int) ChronoUnit.DAYS.between(lDateDebut, lDateFin); // date fin exclusive
+        if (PeriodeJournee.APRES_MIDI.equals(getPeriodeJourneeDateFin())) {
+            between++; // Le jour de fin est comptée si terminé l'apres-midi.
+        }
         if (PeriodeJournee.APRES_MIDI.equals(getPeriodeJourneeDateDebut())) {
             // Si le séjour commence l'apres-midi, la premiere journée n'est pas comptée.
-            return avecJourDeFin - 1;
+            between--;
         }
-        return avecJourDeFin;
+        return between;
     }
 
     public Long getId() {
@@ -263,6 +278,14 @@ public class Sejour implements Serializable {
 
     public void setDateFinReelle(Date dateFinReelle) {
         this.dateFinReelle = Objects.isNull(dateFinReelle) ? null : (Date) dateFinReelle.clone();
+    }
+
+    public PeriodeJournee getPeriodeJourneeDateFin() {
+        return periodeJourneeDateFin;
+    }
+
+    public void setPeriodeJourneeDateFin(PeriodeJournee periodeJourneeDateFin) {
+        this.periodeJourneeDateFin = periodeJourneeDateFin;
     }
 
     public int getTarif() {

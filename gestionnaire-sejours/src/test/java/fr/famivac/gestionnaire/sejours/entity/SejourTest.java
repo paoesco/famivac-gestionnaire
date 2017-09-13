@@ -8,7 +8,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- *
  * @author paoesco
  */
 public class SejourTest {
@@ -22,54 +21,68 @@ public class SejourTest {
         return null;
     }
 
+    // Tests sur le nombre de jours
     @Test
-    public void testNombreJoursDebutMatinEtDateFin() {
-        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"));
+    public void testNombreJoursDebutMatinEtFinApresMidi() {
+        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"), PeriodeJournee.APRES_MIDI);
         Assert.assertEquals(10, sejour.nombreJours());
     }
 
     @Test
-    public void testNombreJoursDebutApresMidiEtDateFin() {
-        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.APRES_MIDI, toDate("10/01/2015"));
+    public void testNombreJoursDebutMatinEtFinMatin() {
+        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"), PeriodeJournee.MATIN);
         Assert.assertEquals(9, sejour.nombreJours());
     }
 
     @Test
-    public void testNombreJoursDebutMatinDateFinMoisDifferents() {
-        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("02/02/2015"));
+    public void testNombreJoursDebutApresMidiEtFinApresMidi() {
+        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.APRES_MIDI, toDate("10/01/2015"), PeriodeJournee.APRES_MIDI);
+        Assert.assertEquals(9, sejour.nombreJours());
+    }
+
+    @Test
+    public void testNombreJoursDebutApresMidiEtFinMatin() {
+        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.APRES_MIDI, toDate("10/01/2015"), PeriodeJournee.MATIN);
+        Assert.assertEquals(8, sejour.nombreJours());
+    }
+
+    @Test
+    public void testNombreJoursDebutMatinEtFinApresMidiMoisDifferents() {
+        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("02/02/2015"), PeriodeJournee.APRES_MIDI);
         Assert.assertEquals(33, sejour.nombreJours());
     }
 
     @Test
-    public void testNombreJoursDebutApresMidiEtDateFinMoisDifferents() {
-        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.APRES_MIDI, toDate("02/02/2015"));
+    public void testNombreJoursDebutApresMidiEtFinApresMidiMoisDifferents() {
+        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.APRES_MIDI, toDate("02/02/2015"), PeriodeJournee.APRES_MIDI);
         Assert.assertEquals(32, sejour.nombreJours());
     }
 
     @Test
-    public void testNombreJoursDebutMatinEtDateFinReelle() {
-        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"));
+    public void testNombreJoursDebutMatinEtFinReelleApresMidi() {
+        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"), PeriodeJournee.APRES_MIDI);
         sejour.setDateFinReelle(toDate("08/01/2015"));
         Assert.assertEquals(8, sejour.nombreJours());
     }
 
     @Test
-    public void testNombreJoursDebutApresMidiEtDateFinReelle() {
-        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.APRES_MIDI, toDate("10/01/2015"));
+    public void testNombreJoursDebutApresMidiEtFinReelleApresMidi() {
+        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.APRES_MIDI, toDate("10/01/2015"), PeriodeJournee.APRES_MIDI);
         sejour.setDateFinReelle(toDate("08/01/2015"));
         Assert.assertEquals(7, sejour.nombreJours());
     }
 
     @Test
-    public void testNombreJoursAnnule() {
-        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"));
+    public void testNombreJoursAnnuleDebutMatinFinApresMidi() {
+        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"), PeriodeJournee.APRES_MIDI);
         sejour.setDateAnnulation(toDate("31/12/2015"));
         Assert.assertEquals(0, sejour.nombreJours());
     }
 
+    // Tests sur le status
     @Test
     public void testStatutAVenir() {
-        Sejour sejour = new Sejour(toDate("02/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"));
+        Sejour sejour = new Sejour(toDate("02/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"), PeriodeJournee.APRES_MIDI);
         Date dateDuJour = toDate("01/01/2015");
         Optional statut = sejour.statut(dateDuJour);
         Assert.assertTrue(statut.isPresent());
@@ -79,7 +92,7 @@ public class SejourTest {
     @Test
     public void testStatutAnnule() {
         Date dateDuJour = toDate("01/01/2015");
-        Sejour sejour = new Sejour(toDate("02/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"));
+        Sejour sejour = new Sejour(toDate("02/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"), PeriodeJournee.APRES_MIDI);
         sejour.setDateAnnulation(toDate("31/12/2014"));
         Optional statut = sejour.statut(dateDuJour);
         Assert.assertTrue(statut.isPresent());
@@ -89,7 +102,7 @@ public class SejourTest {
     @Test
     public void testStatutEnCours() {
         Date dateDuJour = toDate("01/01/2015");
-        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"));
+        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"), PeriodeJournee.APRES_MIDI);
         Optional statut = sejour.statut(dateDuJour);
         Assert.assertTrue(statut.isPresent());
         Assert.assertEquals(StatutSejour.EN_COURS, statut.get());
@@ -98,7 +111,7 @@ public class SejourTest {
     @Test
     public void testStatutTermine() {
         Date dateDuJour = toDate("10/01/2015");
-        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"));
+        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"), PeriodeJournee.APRES_MIDI);
         Optional statut = sejour.statut(dateDuJour);
         Assert.assertTrue(statut.isPresent());
         Assert.assertEquals(StatutSejour.TERMINE, statut.get());
@@ -107,7 +120,7 @@ public class SejourTest {
     @Test
     public void testStatutTerminePrematurement() {
         Date dateDuJour = toDate("09/01/2015");
-        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"));
+        Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"), PeriodeJournee.APRES_MIDI);
         sejour.setDateFinReelle(toDate("08/01/2015"));
         Optional statut = sejour.statut(dateDuJour);
         Assert.assertTrue(statut.isPresent());
