@@ -80,10 +80,11 @@
                                     value="Ajouter"
                                     icon="ui-icon-plus"/>
                                 <h:form styleClass="pull-right">
-                                    <p:selectOneButton value="#{rechercherSejoursForm.enCours}">
+                                    <p:selectOneButton value="#{rechercherSejoursForm.statutSejour}">
                                         <p:ajax event="change" update=":datatable" listener="#{sejoursBean.rechercher()}"></p:ajax>
-                                        <f:selectItem itemLabel="En cours" itemValue="true" />
-                                        <f:selectItem itemLabel="Tous" itemValue="false" />
+                                        <f:selectItem itemLabel="En cours" itemValue="EN_COURS" />
+                                        <f:selectItem itemLabel="A venir" itemValue="A_VENIR" />
+                                        <f:selectItem itemLabel="Tous" itemValue="" />
                                     </p:selectOneButton>
                                 </h:form>
                                 <br/>

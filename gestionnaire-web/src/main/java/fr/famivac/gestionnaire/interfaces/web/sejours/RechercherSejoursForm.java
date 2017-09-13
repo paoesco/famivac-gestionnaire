@@ -1,5 +1,6 @@
 package fr.famivac.gestionnaire.interfaces.web.sejours;
 
+import fr.famivac.gestionnaire.sejours.entity.StatutSejour;
 import java.io.Serializable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -19,7 +20,7 @@ public class RechercherSejoursForm implements Serializable {
 
     private String prenomEnfant;
 
-    private boolean enCours;
+    private String statutSejour;
 
     public String getNomReferent() {
         return nomReferent;
@@ -53,12 +54,12 @@ public class RechercherSejoursForm implements Serializable {
         this.prenomEnfant = prenomEnfant;
     }
 
-    public boolean isEnCours() {
-        return enCours;
+    public String getStatutSejour() {
+        return statutSejour;
     }
 
-    public void setEnCours(boolean enCours) {
-        this.enCours = enCours;
+    public void setStatutSejour(String statutSejour) {
+        this.statutSejour = statutSejour;
     }
 
 }

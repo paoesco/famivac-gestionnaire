@@ -5,9 +5,11 @@ import fr.famivac.gestionnaire.sejours.control.SejourService;
 import fr.famivac.gestionnaire.sejours.entity.StatutSejour;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import liquibase.util.StringUtils;
 
 /**
  *
@@ -29,7 +31,7 @@ public class SejoursBean implements Serializable {
     private RechercherSejoursForm rechercherForm;
 
     public void init() {
-        rechercherForm.setEnCours(true);
+        rechercherForm.setStatutSejour(StatutSejour.EN_COURS.name());
         rechercher();
     }
 
@@ -40,8 +42,8 @@ public class SejoursBean implements Serializable {
 
     public void rechercher() {
         StatutSejour statut = null;
-        if (rechercherForm.isEnCours()) {
-            statut = StatutSejour.EN_COURS;
+        if (StringUtils.isNotEmpty(rechercherForm.getStatutSejour())) {
+            statut = StatutSejour.valueOf(rechercherForm.getStatutSejour());
         }
         List<SejourDTO> sejours = sejourService.rechercher(rechercherForm.getNomReferent(), rechercherForm.getPrenomReferent(), rechercherForm.getNomEnfant(), rechercherForm.getPrenomEnfant(), statut);
         lazyModel = new LazySejourDataModel(sejours);
