@@ -30,7 +30,7 @@ public class DashboardService {
     
     public DashboardDTO getDefault() {
         DashboardDTO dashboardDTO = new DashboardDTO();
-        dashboardDTO.setNombreFamilles(familleRepository.count());
+        dashboardDTO.setNombreFamilles(familleRepository.countActives());
         dashboardDTO.setNombreEnfants(enfantRepository.count());
         dashboardDTO.setNombreInscripteurs(inscripteurRepository.count());
         dashboardDTO.setNombreSejoursEnCours(sejourRepository.countActifs());
