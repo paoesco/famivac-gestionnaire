@@ -30,7 +30,7 @@ public class SejourRepository {
     }
 
     public long countActifs() {
-        String jpql = "select count(s.id) from Sejour s where s.dateDebut <= :date and :date <= s.dateFin";
+        String jpql = "select count(s.id) from Sejour s where s.dateDebut <= :date and :date < s.dateFin";
         Query q = entityManager.createQuery(jpql);
         q.setParameter("date", new Date(), TemporalType.DATE);
         return (long) q.getSingleResult();
