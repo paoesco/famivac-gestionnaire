@@ -14,6 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -22,12 +25,20 @@ import javax.persistence.TemporalType;
  * @author paoesco
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = Voyage.QUERY_VOYAGES_PROCHAINS, query = "select v from Voyage v where v.dateVoyage >= :date order by v.dateVoyage")
+})
 public class Voyage implements Serializable {
+
+    public static final String QUERY_VOYAGES_PROCHAINS = "queryVoyagesProchains";
 
     @Id
     @GeneratedValue
     private Long id;
-
+    @OneToOne(mappedBy = "aller")
+    private Sejour sejourAller;
+    @OneToOne(mappedBy = "retour")
+    private Sejour sejourRetour;
     @Temporal(TemporalType.DATE)
     private Date dateVoyage;
     @Temporal(TemporalType.TIME)
@@ -131,6 +142,14 @@ public class Voyage implements Serializable {
 
     public void setAccompagnateurs(Set<Accompagnateur> accompagnateurs) {
         this.accompagnateurs = accompagnateurs;
+    }
+
+    public Sejour getSejour() {
+        return sejourRetour == null ? sejourAller : sejourRetour;
+    }
+
+    public boolean isRetour() {
+        return sejourRetour != null;
     }
 
 }

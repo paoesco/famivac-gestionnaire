@@ -32,20 +32,36 @@
                             paginator="true"
                             paginatorPosition="bottom"
                             rowKey="#{bean.id}"
+                            sortBy="#{bean.dateVoyage}"
                             rows="20"
                             lazy="true">
-
+                            <p:column 
+                                headerText="Date" 
+                                sortBy="#{bean.dateVoyage}">
+                                <h:outputText value="#{bean.dateVoyage}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </p:column>
                             <p:column 
                                 headerText="Enfant" 
-                                sortBy="#{bean.enfant}"
-                                filterBy="#{bean.enfant}">
+                                sortBy="#{bean.enfant}">
                                 <h:outputText value="#{bean.enfant}"></h:outputText>
                             </p:column>
                             <p:column 
-                                headerText="Date" 
-                                sortBy="#{bean.date}"
-                                filterBy="#{bean.date}">
-                                <h:outputText value="#{bean.date}"></h:outputText>
+                                headerText="Famille" 
+                                sortBy="#{bean.famille}">
+                                <h:outputText value="#{bean.famille}"></h:outputText>
+                            </p:column>
+                            <p:column 
+                                headerText="Lieu" 
+                                sortBy="#{bean.lieu}">
+                                <h:outputText value="#{bean.lieu}"></h:outputText>
+                            </p:column>
+                            <p:column 
+                                headerText="Heure Transport">
+                                <h:outputText value="#{bean.heureTransport}">
+                                    <f:convertDateTime pattern="HH:mm" />
+                                </h:outputText>
                             </p:column>
                         </p:dataTable>
                     </div>

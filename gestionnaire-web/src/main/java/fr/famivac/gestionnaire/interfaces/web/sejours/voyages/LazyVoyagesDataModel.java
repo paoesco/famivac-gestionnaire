@@ -23,7 +23,7 @@ public class LazyVoyagesDataModel extends LazyDataModel<VoyageDTO> {
     @Override
     public VoyageDTO getRowData(String rowKey) {
         for (VoyageDTO bean : datasource) {
-            if (Long.valueOf(rowKey).equals(bean.getSejourId())) {
+            if (Long.valueOf(rowKey).equals(bean.getVoyageId())) {
                 return bean;
             }
         }
@@ -32,7 +32,7 @@ public class LazyVoyagesDataModel extends LazyDataModel<VoyageDTO> {
 
     @Override
     public Object getRowKey(VoyageDTO bean) {
-        return bean.getSejourId();
+        return bean.getVoyageId();
     }
 
     @Override

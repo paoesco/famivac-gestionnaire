@@ -5,8 +5,8 @@ import fr.famivac.gestionnaire.commons.events.UpdateFamilleEvent;
 import fr.famivac.gestionnaire.sejours.entity.PeriodeJournee;
 import fr.famivac.gestionnaire.sejours.entity.Sejour;
 import fr.famivac.gestionnaire.sejours.entity.StatutSejour;
+import fr.famivac.gestionnaire.sejours.entity.VoyageRepository;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,10 +26,13 @@ import net.bull.javamelody.MonitoringInterceptor;
 @Stateless
 @Interceptors({MonitoringInterceptor.class})
 public class SejourService {
-
+    
     @Inject
     private EntityManager entityManager;
-
+    
+    @Inject
+    private VoyageRepository voyageRepository;
+    
     public long create(Long familleId,
             String familleNom,
             String famillePrenom,
@@ -53,7 +56,7 @@ public class SejourService {
         entityManager.persist(sejour);
         return sejour.getId();
     }
-
+    
     public List<SejourDTO> get() {
         List<Sejour> entities = entityManager
                 .createNamedQuery(Sejour.QUERY_SEJOURS_RETRIEVE, Sejour.class)
@@ -65,16 +68,7 @@ public class SejourService {
                 })
                 .collect(Collectors.toList());
     }
-
-    public List<VoyageDTO> getVoyages() {
-        List<VoyageDTO> results = new ArrayList<>();
-        VoyageDTO voyageDTO = new VoyageDTO();
-        voyageDTO.setEnfant("Test");
-        voyageDTO.setDate(new Date());
-        results.add(voyageDTO);
-        return results;
-    }
-
+    
     public List<SejourDTO> rechercher(String nomReferent, String prenomReferent, String nomEnfant, String prenomEnfant, StatutSejour statutSejour) {
         if (nomReferent == null || nomReferent.isEmpty()) {
             nomReferent = "%";
@@ -103,7 +97,7 @@ public class SejourService {
                 .setParameter("nomEnfant", nomEnfant.trim().toLowerCase())
                 .setParameter("prenomEnfant", prenomEnfant.trim().toLowerCase())
                 .getResultList();
-
+        
         Stream<Sejour> stream = entities.stream();
         if (statutSejour != null) {
             stream = stream.filter((Sejour s) -> {
@@ -116,11 +110,11 @@ public class SejourService {
                 })
                 .collect(Collectors.toList());
     }
-
+    
     public void update(Sejour sejour) {
         entityManager.merge(sejour);
     }
-
+    
     public void delete(long id) {
         Sejour sejour = entityManager.find(Sejour.class, id);
         entityManager.remove(sejour);
@@ -141,7 +135,7 @@ public class SejourService {
             s.setEnfantNom(event.getNom());
             s.setEnfantPrenom(event.getPrenom());
         });
-
+        
     }
 
     /**
@@ -161,7 +155,32 @@ public class SejourService {
                 s.setFamillePrenom(event.getPrenom());
             });
         }
-
+        
     }
-
+    
+    public List<VoyageDTO> prochainsVoyages(Date date) {
+        return voyageRepository.prochainsVoyages(date)
+                .stream()
+                .map(voyage -> {
+                    VoyageDTO dto = new VoyageDTO();
+                    //dto.setAccompagnateur(voyage.get);
+                    //dto.setContactEnfant(voyage.get);
+                    dto.setDateVoyage(voyage.getDateVoyage());
+                    dto.setEnfant(voyage.getSejour().getEnfantNom() + " " + voyage.getSejour().getEnfantPrenom());
+                    dto.setFamille(voyage.getSejour().getFamilleNom() + " " + voyage.getSejour().getFamillePrenom());
+                    //dto.setHeureRendezVous(heureRendezVous);
+                    dto.setHeureTransport(voyage.getHeureDepart());
+                    dto.setRetour(voyage.isRetour());
+                    dto.setLieu(voyage.getLieuDepart());
+                    //dto.setNumeroTransport(voyage.get);
+                    //dto.setTelephoneAccompagnateur(voyage.);
+                    //dto.setTelephoneContactEnfant(telephoneContactEnfant);
+                    //dto.setTelephoneFamille(telephoneFamille);
+                    //dto.setValidationAccompagnateur(validationAccompagnateur);
+                    dto.setVoyageId(voyage.getId());
+                    return dto;
+                })
+                .collect(Collectors.toList());
+    }
+    
 }

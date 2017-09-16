@@ -3,7 +3,6 @@ package fr.famivac.gestionnaire.sejours.entity;
 import fr.famivac.gestionnaire.commons.utils.DateUtils;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.Date;
