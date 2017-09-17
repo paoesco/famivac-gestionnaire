@@ -101,4 +101,20 @@ public class DateUtilsTest {
         Assert.assertEquals("2015-01-31", result.format(DateTimeFormatter.ISO_DATE));
     }
 
+    @Test
+    public void testSumTimeToDateAdd() {
+        Date toTest = toDate("31/01/2015 01:00");
+        Date result = DateUtils.sumTimeToDate(toTest, 1, 30, 5);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Assert.assertEquals("31/01/2015 02:30:05", sdf.format(result));
+    }
+
+    @Test
+    public void testSumTimeToDateSubstract() {
+        Date toTest = toDate("31/01/2015 02:00");
+        Date result = DateUtils.sumTimeToDate(toTest, -1, -30, -5);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Assert.assertEquals("31/01/2015 00:29:55", sdf.format(result));
+    }
+
 }

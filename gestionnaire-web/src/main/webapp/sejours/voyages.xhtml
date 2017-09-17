@@ -23,7 +23,7 @@
             <ui:define name="content">
 
                 <div class="container-fluid">
-                    <div class="col-md-offset-1 col-md-10">
+                    <div class="col-md-12">
                         <h3>Voyages</h3>
                         <p:dataTable 
                             id="datatable"
@@ -45,12 +45,30 @@
                             <p:column 
                                 headerText="Enfant" 
                                 sortBy="#{bean.enfant}">
-                                <h:outputText value="#{bean.enfant}"></h:outputText>
+                                <h:link
+                                    outcome="/enfants/details.xhtml"
+                                    target="_blank"
+                                    value="#{bean.enfant}"
+                                    style="color:#337ab7;">
+                                    <f:param name="id" value="#{bean.enfantId}"></f:param>
+                                </h:link>
                             </p:column>
                             <p:column 
                                 headerText="Famille" 
                                 sortBy="#{bean.famille}">
-                                <h:outputText value="#{bean.famille}"></h:outputText>
+                                <h:link
+                                    outcome="/familles/details.xhtml"
+                                    target="_blank"
+                                    value="#{bean.famille}"
+                                    style="color:#337ab7;">
+                                    <f:param name="id" value="#{bean.familleId}"></f:param>
+                                </h:link>
+                            </p:column>
+                            <p:column 
+                                headerText="Heure RDV">
+                                <h:outputText value="#{bean.heureRendezVous}">
+                                    <f:convertDateTime pattern="HH:mm" />
+                                </h:outputText>
                             </p:column>
                             <p:column 
                                 headerText="Lieu" 
@@ -62,6 +80,23 @@
                                 <h:outputText value="#{bean.heureTransport}">
                                     <f:convertDateTime pattern="HH:mm" />
                                 </h:outputText>
+                            </p:column>
+                            <p:column 
+                                headerText="Accomp.">
+                                <h:outputText value="#{bean.accompagnateur}"></h:outputText>
+                            </p:column>
+                            <p:column 
+                                headerText="Accomp. Téléphones">
+                                <h:outputText value="#{bean.telephoneAccompagnateur}"></h:outputText>
+                            </p:column>
+                            <p:column width="50">
+                                <p:button 
+                                    outcome="/sejours/details.xhtml"
+                                    styleClass="btn-default" 
+                                    icon="ui-icon-pencil"
+                                    target="_blank">
+                                    <f:param name="id" value="#{bean.sejourId}"></f:param>
+                                </p:button>
                             </p:column>
                         </p:dataTable>
                     </div>

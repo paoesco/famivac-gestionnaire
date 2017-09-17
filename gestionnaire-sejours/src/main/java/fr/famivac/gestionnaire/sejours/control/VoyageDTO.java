@@ -9,13 +9,19 @@ public class VoyageDTO {
 
     private Long voyageId;
 
+    private Long sejourId;
+
     private Date dateVoyage;
 
     private boolean retour;
 
     private String enfant;
 
+    private Long enfantId;
+
     private String famille;
+
+    private Long familleId;
 
     private String telephoneFamille;
 
@@ -45,6 +51,14 @@ public class VoyageDTO {
         this.voyageId = voyageId;
     }
 
+    public Long getSejourId() {
+        return sejourId;
+    }
+
+    public void setSejourId(Long sejourId) {
+        this.sejourId = sejourId;
+    }
+
     public Date getDateVoyage() {
         return dateVoyage;
     }
@@ -69,12 +83,28 @@ public class VoyageDTO {
         this.enfant = enfant;
     }
 
+    public Long getEnfantId() {
+        return enfantId;
+    }
+
+    public void setEnfantId(Long enfantId) {
+        this.enfantId = enfantId;
+    }
+
     public String getFamille() {
         return famille;
     }
 
     public void setFamille(String famille) {
         this.famille = famille;
+    }
+
+    public Long getFamilleId() {
+        return familleId;
+    }
+
+    public void setFamilleId(Long familleId) {
+        this.familleId = familleId;
     }
 
     public String getTelephoneFamille() {

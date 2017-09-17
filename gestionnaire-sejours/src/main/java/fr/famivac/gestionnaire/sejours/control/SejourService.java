@@ -2,6 +2,8 @@ package fr.famivac.gestionnaire.sejours.control;
 
 import fr.famivac.gestionnaire.commons.events.UpdateEnfantEvent;
 import fr.famivac.gestionnaire.commons.events.UpdateFamilleEvent;
+import fr.famivac.gestionnaire.commons.utils.DateUtils;
+import fr.famivac.gestionnaire.enfants.control.EnfantService;
 import fr.famivac.gestionnaire.sejours.entity.PeriodeJournee;
 import fr.famivac.gestionnaire.sejours.entity.Sejour;
 import fr.famivac.gestionnaire.sejours.entity.StatutSejour;
@@ -32,6 +34,9 @@ public class SejourService {
     
     @Inject
     private VoyageRepository voyageRepository;
+    
+    @Inject
+    private EnfantService enfantService;
     
     public long create(Long familleId,
             String familleNom,
@@ -163,20 +168,38 @@ public class SejourService {
                 .stream()
                 .map(voyage -> {
                     VoyageDTO dto = new VoyageDTO();
-                    //dto.setAccompagnateur(voyage.get);
+                    String accompagnateurs = voyage
+                            .getAccompagnateurs()
+                            .stream()
+                            .map(acc -> {
+                                return acc.getPrenom() + " " + acc.getNom();
+                            })
+                            .collect(Collectors.joining(","));
+                    dto.setAccompagnateur(accompagnateurs);
                     //dto.setContactEnfant(voyage.get);
                     dto.setDateVoyage(voyage.getDateVoyage());
                     dto.setEnfant(voyage.getSejour().getEnfantNom() + " " + voyage.getSejour().getEnfantPrenom());
+                    dto.setEnfantId(voyage.getSejour().getEnfantId());
                     dto.setFamille(voyage.getSejour().getFamilleNom() + " " + voyage.getSejour().getFamillePrenom());
-                    //dto.setHeureRendezVous(heureRendezVous);
+                    dto.setFamilleId(voyage.getSejour().getFamilleId());
+                    // Heure rdv est automatiquement calculée 30 minutes avant l'heure officielle de départ du transport
+                    dto.setHeureRendezVous(DateUtils.sumTimeToDate(voyage.getHeureDepart(), 0, -30, 0));
                     dto.setHeureTransport(voyage.getHeureDepart());
                     dto.setRetour(voyage.isRetour());
                     dto.setLieu(voyage.getLieuDepart());
                     //dto.setNumeroTransport(voyage.get);
-                    //dto.setTelephoneAccompagnateur(voyage.);
+                    String accompagnateursTelephones = voyage
+                            .getAccompagnateurs()
+                            .stream()
+                            .map(acc -> {
+                                return acc.getTelephone();
+                            })
+                            .collect(Collectors.joining(","));
+                    dto.setTelephoneAccompagnateur(accompagnateursTelephones);
                     //dto.setTelephoneContactEnfant(telephoneContactEnfant);
                     //dto.setTelephoneFamille(telephoneFamille);
                     //dto.setValidationAccompagnateur(validationAccompagnateur);
+                    dto.setSejourId(voyage.getSejour().getId());
                     dto.setVoyageId(voyage.getId());
                     return dto;
                 })

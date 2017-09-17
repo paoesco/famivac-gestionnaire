@@ -12,9 +12,13 @@ import java.util.Date;
  */
 public final class DateUtils {
 
+    private static final long ONE_HOUR_IN_MS = 3600000;
+    private static final long ONE_MIN_IN_MS = 60000;
+    private static final long ONE_SEC_IN_MS = 1000;
+
     private DateUtils() {
     }
-    
+
     /**
      * Indique si une date est comprise entre deux dates.
      * <ul>
@@ -80,6 +84,13 @@ public final class DateUtils {
             return ((java.sql.Date) date).toLocalDate();
         }
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    public static Date sumTimeToDate(Date date, int hours, int mins, int secs) {
+        long hoursToAddInMs = hours * ONE_HOUR_IN_MS;
+        long minsToAddInMs = mins * ONE_MIN_IN_MS;
+        long secsToAddInMs = secs * ONE_SEC_IN_MS;
+        return new Date(date.getTime() + hoursToAddInMs + minsToAddInMs + secsToAddInMs);
     }
 
     /**
