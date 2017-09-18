@@ -1,5 +1,7 @@
 package fr.famivac.gestionnaire.interfaces.web.sejours.voyages;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.PageSize;
 import fr.famivac.gestionnaire.sejours.control.SejourService;
 import fr.famivac.gestionnaire.sejours.control.VoyageDTO;
 import java.io.Serializable;
@@ -28,6 +30,12 @@ public class VoyagesPageBean implements Serializable {
 
     public LazyVoyagesDataModel getLazyModel() {
         return lazyModel;
+    }
+
+    public void preProcessPDF(Object document) {
+        Document pdf = (Document) document;
+        pdf.setPageSize(PageSize.A4.rotate());
+        pdf.open();
     }
 
 }
