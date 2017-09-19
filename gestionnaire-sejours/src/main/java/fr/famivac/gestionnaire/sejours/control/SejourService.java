@@ -8,7 +8,6 @@ import fr.famivac.gestionnaire.sejours.entity.PeriodeJournee;
 import fr.famivac.gestionnaire.sejours.entity.Sejour;
 import fr.famivac.gestionnaire.sejours.entity.StatutSejour;
 import fr.famivac.gestionnaire.sejours.entity.VoyageRepository;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;

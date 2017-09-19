@@ -21,7 +21,7 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class SejourDetailsBean implements Serializable {
+public class SejoursDetailsBean implements Serializable {
 
     @Inject
     private SejourRepository sejourRepository;

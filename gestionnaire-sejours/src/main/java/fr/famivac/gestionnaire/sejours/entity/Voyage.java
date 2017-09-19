@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -44,6 +45,10 @@ public class Voyage implements Serializable {
     @Temporal(TemporalType.TIME)
     private Date heureDepart;
     private String lieuDepart;
+    @Column(name = "NOM_PERSONNE_DEPART")
+    private String nomPersonneDepart;
+    @Column(name = "TELEPHONE_PERSONNE_DEPART")
+    private String telephonePersonneDepart;
     @Enumerated(EnumType.STRING)
     private Transport transport;
     private String lieuRendezVous;
@@ -146,6 +151,22 @@ public class Voyage implements Serializable {
 
     public Sejour getSejour() {
         return sejourRetour == null ? sejourAller : sejourRetour;
+    }
+
+    public String getNomPersonneDepart() {
+        return nomPersonneDepart;
+    }
+
+    public void setNomPersonneDepart(String nomPersonneDepart) {
+        this.nomPersonneDepart = nomPersonneDepart;
+    }
+
+    public String getTelephonePersonneDepart() {
+        return telephonePersonneDepart;
+    }
+
+    public void setTelephonePersonneDepart(String telephonePersonneDepart) {
+        this.telephonePersonneDepart = telephonePersonneDepart;
     }
 
     public boolean isRetour() {
