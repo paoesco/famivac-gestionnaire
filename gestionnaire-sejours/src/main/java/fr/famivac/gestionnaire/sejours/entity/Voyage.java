@@ -60,6 +60,8 @@ public class Voyage implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "VOYAGE_ACCOMPAGNATEUR", joinColumns = @JoinColumn(name = "VOYAGE_ID"), inverseJoinColumns = @JoinColumn(name = "ACCOMPAGNATEUR_ID"))
     private Set<Accompagnateur> accompagnateurs;
+    @Column(name = "NUMERO_TRAIN")
+    private String numeroTrain;
 
     public Voyage() {
         this.accompagnateurs = new HashSet<>();
@@ -167,6 +169,14 @@ public class Voyage implements Serializable {
 
     public void setTelephonePersonneDepart(String telephonePersonneDepart) {
         this.telephonePersonneDepart = telephonePersonneDepart;
+    }
+
+    public String getNumeroTrain() {
+        return numeroTrain;
+    }
+
+    public void setNumeroTrain(String numeroTrain) {
+        this.numeroTrain = numeroTrain;
     }
 
     public boolean isRetour() {
