@@ -117,4 +117,10 @@ public class DateUtilsTest {
         Assert.assertEquals("31/01/2015 00:29:55", sdf.format(result));
     }
 
+    @Test
+    public void testSumTimeToDateNull() {
+        Date result = DateUtils.sumTimeToDate(null, -1, -30, -5);
+        Assert.assertNull(result);
+    }
+
 }

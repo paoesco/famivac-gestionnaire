@@ -175,7 +175,7 @@ public class SejourService {
                             })
                             .collect(Collectors.joining(","));
                     dto.setAccompagnateur(accompagnateurs);
-                    //dto.setContactEnfant(voyage.get);
+                    dto.setContactEnfant(voyage.getNomPersonneDepart());
                     dto.setDateVoyage(voyage.getDateVoyage());
                     dto.setEnfant(voyage.getSejour().getEnfantNom() + " " + voyage.getSejour().getEnfantPrenom());
                     dto.setEnfantId(voyage.getSejour().getEnfantId());
@@ -186,7 +186,7 @@ public class SejourService {
                     dto.setHeureTransport(voyage.getHeureDepart());
                     dto.setRetour(voyage.isRetour());
                     dto.setLieu(voyage.getLieuDepart());
-                    //dto.setNumeroTransport(voyage.get);
+                    dto.setNumeroTransport(voyage.getNumeroTrain());
                     String accompagnateursTelephones = voyage
                             .getAccompagnateurs()
                             .stream()
@@ -195,7 +195,7 @@ public class SejourService {
                             })
                             .collect(Collectors.joining(","));
                     dto.setTelephoneAccompagnateur(accompagnateursTelephones);
-                    //dto.setTelephoneContactEnfant(telephoneContactEnfant);
+                    dto.setTelephoneContactEnfant(voyage.getTelephonePersonneDepart());
                     //dto.setTelephoneFamille(telephoneFamille);
                     //dto.setValidationAccompagnateur(validationAccompagnateur);
                     dto.setSejourId(voyage.getSejour().getId());

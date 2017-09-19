@@ -86,7 +86,7 @@
                                     </h:outputText>
                                 </p:column>
                                 <p:column 
-                                    headerText="Lieu" 
+                                    headerText="Lieu départ" 
                                     sortBy="#{bean.lieu}">
                                     <h:outputText value="#{bean.lieu}"></h:outputText>
                                 </p:column>
@@ -95,6 +95,18 @@
                                     <h:outputText value="#{bean.heureTransport}">
                                         <f:convertDateTime pattern="HH:mm" />
                                     </h:outputText>
+                                </p:column>
+                                <p:column 
+                                    headerText="Numéro train">
+                                    <h:outputText value="#{bean.numeroTransport}"></h:outputText>
+                                </p:column>
+                                <p:column 
+                                    headerText="Personne au départ">
+                                    <h:outputText value="#{bean.contactEnfant}"></h:outputText>
+                                </p:column>
+                                <p:column 
+                                    headerText="Tel pers. au départ">
+                                    <h:outputText value="#{bean.telephoneContactEnfant}"></h:outputText>
                                 </p:column>
                                 <p:column 
                                     headerText="Accomp.">

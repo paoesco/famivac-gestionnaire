@@ -87,6 +87,9 @@ public final class DateUtils {
     }
 
     public static Date sumTimeToDate(Date date, int hours, int mins, int secs) {
+        if (date == null) {
+            return null;
+        }
         long hoursToAddInMs = hours * ONE_HOUR_IN_MS;
         long minsToAddInMs = mins * ONE_MIN_IN_MS;
         long secsToAddInMs = secs * ONE_SEC_IN_MS;
