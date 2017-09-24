@@ -38,6 +38,7 @@ public class AjouterSejourBean implements Serializable {
         long sejourId = sejourService.create(form.getFamille().getId(),
                 form.getFamille().getNomReferent(),
                 form.getFamille().getPrenomReferent(),
+                form.getFamille().getTelephoneReferent(),
                 form.getEnfant().getId(),
                 form.getEnfant().getNomEnfant(),
                 form.getEnfant().getPrenomEnfant(),

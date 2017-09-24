@@ -27,19 +27,20 @@ import net.bull.javamelody.MonitoringInterceptor;
 @Stateless
 @Interceptors({MonitoringInterceptor.class})
 public class SejourService {
-    
+
     @Inject
     private EntityManager entityManager;
-    
+
     @Inject
     private VoyageRepository voyageRepository;
-    
+
     @Inject
     private EnfantService enfantService;
-    
+
     public long create(Long familleId,
             String familleNom,
             String famillePrenom,
+            String familleTelephone,
             Long enfantId,
             String enfantNom,
             String enfantPrenom,
@@ -57,10 +58,14 @@ public class SejourService {
                 periodeJourneeDebut,
                 dateFin,
                 periodeJourneeFin);
+        sejour.getAller().setNomPersonneAReception(famillePrenom + " " + familleNom);
+        sejour.getAller().setTelephonePersonneAReception(familleTelephone);
+        sejour.getRetour().setNomPersonneDepart(famillePrenom + " " + familleNom);
+        sejour.getRetour().setTelephonePersonneDepart(familleTelephone);
         entityManager.persist(sejour);
         return sejour.getId();
     }
-    
+
     public List<SejourDTO> get() {
         List<Sejour> entities = entityManager
                 .createNamedQuery(Sejour.QUERY_SEJOURS_RETRIEVE, Sejour.class)
@@ -72,7 +77,7 @@ public class SejourService {
                 })
                 .collect(Collectors.toList());
     }
-    
+
     public List<SejourDTO> rechercher(String nomReferent, String prenomReferent, String nomEnfant, String prenomEnfant, StatutSejour statutSejour) {
         if (nomReferent == null || nomReferent.isEmpty()) {
             nomReferent = "%";
@@ -101,7 +106,7 @@ public class SejourService {
                 .setParameter("nomEnfant", nomEnfant.trim().toLowerCase())
                 .setParameter("prenomEnfant", prenomEnfant.trim().toLowerCase())
                 .getResultList();
-        
+
         Stream<Sejour> stream = entities.stream();
         if (statutSejour != null) {
             stream = stream.filter((Sejour s) -> {
@@ -114,11 +119,11 @@ public class SejourService {
                 })
                 .collect(Collectors.toList());
     }
-    
+
     public void update(Sejour sejour) {
         entityManager.merge(sejour);
     }
-    
+
     public void delete(long id) {
         Sejour sejour = entityManager.find(Sejour.class, id);
         entityManager.remove(sejour);
@@ -139,7 +144,7 @@ public class SejourService {
             s.setEnfantNom(event.getNom());
             s.setEnfantPrenom(event.getPrenom());
         });
-        
+
     }
 
     /**
@@ -157,11 +162,13 @@ public class SejourService {
             sejours.forEach(s -> {
                 s.setFamilleNom(event.getNom());
                 s.setFamillePrenom(event.getPrenom());
+                s.getAller().setTelephonePersonneAReception(event.getTelephone());
+                s.getRetour().setTelephonePersonneDepart(event.getTelephone());
             });
         }
-        
+
     }
-    
+
     public List<VoyageDTO> prochainsVoyages(Date date) {
         return voyageRepository.prochainsVoyages(date)
                 .stream()
@@ -204,5 +211,5 @@ public class SejourService {
                 })
                 .collect(Collectors.toList());
     }
-    
+
 }

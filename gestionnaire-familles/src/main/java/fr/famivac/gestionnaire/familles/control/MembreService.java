@@ -68,6 +68,7 @@ public class MembreService {
         event.setId(familleId);
         event.setNom(entity.getNom());
         event.setPrenom(entity.getPrenom());
+        event.setTelephone(entity.getCoordonnees().getTelephone1());
         event.setReferent(entity.isReferent());
         updateFamilleEvent.fire(event);
     }
