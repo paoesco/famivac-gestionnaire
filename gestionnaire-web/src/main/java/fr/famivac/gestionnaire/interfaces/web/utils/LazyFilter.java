@@ -1,6 +1,5 @@
 package fr.famivac.gestionnaire.interfaces.web.utils;
 
-import fr.famivac.gestionnaire.interfaces.web.familles.LazyFamilleDataModel;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.Map;
@@ -30,17 +29,17 @@ public class LazyFilter<T> implements Predicate<T> {
                     Object filterValue = filters.get(filterProperty);
                     String methodName = "get" + Character.toUpperCase(filterProperty.charAt(0)) + filterProperty.substring(1);
                     String fieldValue = String.valueOf(t.getClass().getMethod(methodName).invoke(t));
-                    if (filterValue == null || fieldValue.toLowerCase().startsWith(filterValue.toString().toLowerCase())) {
+                    if (filterValue == null || fieldValue.toLowerCase().contains(filterValue.toString().toLowerCase())) {
                         match = true;
                     } else {
                         match = false;
                         break;
                     }
                 } catch (SecurityException | IllegalArgumentException | IllegalAccessException ex) {
-                    Logger.getLogger(LazyFamilleDataModel.class.getName()).log(Level.FINE, null, ex);
+                    Logger.getLogger(LazyFilter.class.getName()).log(Level.FINE, null, ex);
                     match = false;
                 } catch (NoSuchMethodException | InvocationTargetException ex) {
-                    Logger.getLogger(LazyFamilleDataModel.class.getName()).log(Level.FINE, null, ex);
+                    Logger.getLogger(LazyFilter.class.getName()).log(Level.FINE, null, ex);
                     match = false;
                 }
             }

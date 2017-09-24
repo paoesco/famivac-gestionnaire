@@ -1,11 +1,13 @@
 package fr.famivac.gestionnaire.interfaces.web.sejours.voyages;
 
+import fr.famivac.gestionnaire.interfaces.web.utils.LazyFilter;
 import fr.famivac.gestionnaire.interfaces.web.utils.LazySorter;
 import fr.famivac.gestionnaire.sejours.control.VoyageDTO;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
@@ -37,13 +39,29 @@ public class LazyVoyagesDataModel extends LazyDataModel<VoyageDTO> {
 
     @Override
     public List<VoyageDTO> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-        setRowCount(datasource.size());
+        //filter
+        LazyFilter<VoyageDTO> lazyFilter = new LazyFilter<>(filters);
+        List<VoyageDTO> data = datasource.stream().filter(lazyFilter).collect(Collectors.toList());
+
         //sort
         if (sortField != null) {
-            Collections.sort(datasource, new LazySorter<>(VoyageDTO.class, sortField, sortOrder));
+            Collections.sort(data, new LazySorter<>(VoyageDTO.class, sortField, sortOrder));
         }
-        int max = first + pageSize > datasource.size() ? datasource.size() : first + pageSize;
-        return datasource.subList(first, max);
+
+        //rowCount
+        int dataSize = data.size();
+        this.setRowCount(dataSize);
+
+        //paginate
+        if (dataSize > pageSize) {
+            try {
+                return data.subList(first, first + pageSize);
+            } catch (IndexOutOfBoundsException e) {
+                return data.subList(first, first + (dataSize % pageSize));
+            }
+        } else {
+            return data;
+        }
     }
 
 }
