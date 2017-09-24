@@ -67,8 +67,12 @@ public class VoyageDTO {
         this.dateVoyage = dateVoyage;
     }
 
-    public boolean isRetour() {
+    public boolean getRetour() {
         return retour;
+    }
+    
+    public String getRetourLibelle() {
+        return getRetour() ? "R" : "A";
     }
 
     public void setRetour(boolean retour) {

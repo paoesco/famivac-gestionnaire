@@ -51,6 +51,15 @@
 
                                 </f:facet>
                                 <p:column 
+                                    width="50"
+                                    exportable="false"
+                                    headerText="A/R"
+                                    sortBy="#{bean.retourLibelle}">
+                                    <div style="text-align: center;">
+                                        <h:outputText value="#{bean.retour ? 'R' : 'A'}"></h:outputText>
+                                    </div>
+                                </p:column>
+                                <p:column 
                                     headerText="Date" 
                                     sortBy="#{bean.dateVoyage}">
                                     <h:outputText value="#{bean.dateVoyage}">
