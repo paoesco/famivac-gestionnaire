@@ -282,4 +282,37 @@
         </pluginManagement>
     </build>
     
+    <repositories>
+        <repository>
+            <url>http://central.maven.org/maven2/</url>
+            <id>Central</id>
+            <layout>default</layout>
+            <name>Central</name>
+        </repository>
+        <repository>
+            <url>http://repository.primefaces.org/</url>
+            <id>PrimeFaces-maven-lib</id>
+            <name>Repository for library PrimeFaces-maven-lib</name>
+        </repository>
+        <repository>
+            <id>jsf-maven-util-repo</id>
+            <name>jsf-maven-util Repository</name>
+            <url>http://chkal.github.com/jsf-maven-util/repository/</url>
+        </repository>
+        <repository>  
+            <id>jboss-public-repository-group</id>  
+            <name>JBoss Public Maven Repository Group</name>  
+            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>  
+            <layout>default</layout>  
+            <releases>  
+                <enabled>true</enabled>  
+                <updatePolicy>never</updatePolicy>  
+            </releases>  
+            <snapshots>  
+                <enabled>true</enabled>  
+                <updatePolicy>never</updatePolicy>  
+            </snapshots>  
+        </repository>  
+    </repositories>
+    
 </project>
