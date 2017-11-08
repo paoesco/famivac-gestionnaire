@@ -1,4 +1,4 @@
-package fr.famivac.gestionnaire.administration.control;
+package fr.famivac.gestionnaire.administration.authentication.control;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

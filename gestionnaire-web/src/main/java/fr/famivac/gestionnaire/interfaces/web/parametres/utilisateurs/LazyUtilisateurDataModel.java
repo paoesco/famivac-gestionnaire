@@ -1,6 +1,6 @@
 package fr.famivac.gestionnaire.interfaces.web.parametres.utilisateurs;
 
-import fr.famivac.gestionnaire.administration.control.RetrieveUtilisateursDTO;
+import fr.famivac.gestionnaire.administration.authentication.control.RetrieveUtilisateursDTO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

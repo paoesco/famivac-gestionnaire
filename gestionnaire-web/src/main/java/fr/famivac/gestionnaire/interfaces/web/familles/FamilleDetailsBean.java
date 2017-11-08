@@ -1,6 +1,6 @@
 package fr.famivac.gestionnaire.interfaces.web.familles;
 
-import fr.famivac.gestionnaire.administration.control.CommuneService;
+import fr.famivac.gestionnaire.administration.authentication.control.CommuneService;
 import fr.famivac.gestionnaire.familles.control.FamilleService;
 import fr.famivac.gestionnaire.familles.control.MembreDTO;
 import fr.famivac.gestionnaire.familles.control.MembreService;

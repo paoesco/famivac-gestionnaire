@@ -1,4 +1,4 @@
-package fr.famivac.gestionnaire.administration.entity;
+package fr.famivac.gestionnaire.administration.authentication.entity;
 
 import java.io.Serializable;
 import java.util.Collections;

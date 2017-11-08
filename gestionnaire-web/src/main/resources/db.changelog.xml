@@ -15,4 +15,7 @@
     <changeSet author="paoesco" id="1.1.14_1">
         <sqlFile path="sql/1.1.14_1.sql"/>
     </changeSet>
+    <changeSet author="paoesco" id="1.4.0">
+        <sqlFile path="sql/1.4.0.sql"/>
+    </changeSet>
 </databaseChangeLog>

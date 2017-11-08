@@ -1,7 +1,7 @@
 package fr.famivac.gestionnaire.interfaces.web.utils;
 
-import fr.famivac.gestionnaire.administration.control.GroupeService;
-import fr.famivac.gestionnaire.administration.entity.Groupe;
+import fr.famivac.gestionnaire.administration.authentication.control.GroupeService;
+import fr.famivac.gestionnaire.administration.authentication.entity.Groupe;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

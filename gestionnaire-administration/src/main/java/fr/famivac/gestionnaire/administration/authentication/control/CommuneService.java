@@ -1,4 +1,4 @@
-package fr.famivac.gestionnaire.administration.control;
+package fr.famivac.gestionnaire.administration.authentication.control;
 
 import fr.famivac.gestionnaire.commons.entity.Commune;
 import java.util.List;

@@ -1,6 +1,6 @@
 package fr.famivac.gestionnaire.interfaces.web.utils;
 
-import fr.famivac.gestionnaire.administration.control.CommuneService;
+import fr.famivac.gestionnaire.administration.authentication.control.CommuneService;
 import fr.famivac.gestionnaire.commons.entity.Commune;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.component.UIComponent;

@@ -1,8 +1,8 @@
-package fr.famivac.gestionnaire.administration.control;
+package fr.famivac.gestionnaire.administration.authentication.control;
 
+import fr.famivac.gestionnaire.administration.authentication.entity.Groupe;
+import fr.famivac.gestionnaire.administration.authentication.entity.Utilisateur;
 import fr.famivac.gestionnaire.commons.control.WrongPasswordException;
-import fr.famivac.gestionnaire.administration.entity.Groupe;
-import fr.famivac.gestionnaire.administration.entity.Utilisateur;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

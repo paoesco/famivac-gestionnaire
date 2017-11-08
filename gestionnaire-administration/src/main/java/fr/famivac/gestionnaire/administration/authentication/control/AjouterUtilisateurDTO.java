@@ -1,6 +1,6 @@
-package fr.famivac.gestionnaire.administration.control;
+package fr.famivac.gestionnaire.administration.authentication.control;
 
-import fr.famivac.gestionnaire.administration.entity.Groupe;
+import fr.famivac.gestionnaire.administration.authentication.entity.Groupe;
 import fr.famivac.gestionnaire.commons.utils.Email;
 import java.util.List;
 

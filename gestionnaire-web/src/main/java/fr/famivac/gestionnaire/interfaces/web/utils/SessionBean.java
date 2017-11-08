@@ -1,7 +1,7 @@
 package fr.famivac.gestionnaire.interfaces.web.utils;
 
-import fr.famivac.gestionnaire.administration.control.UtilisateurService;
-import fr.famivac.gestionnaire.administration.entity.Utilisateur;
+import fr.famivac.gestionnaire.administration.authentication.control.UtilisateurService;
+import fr.famivac.gestionnaire.administration.authentication.entity.Utilisateur;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;

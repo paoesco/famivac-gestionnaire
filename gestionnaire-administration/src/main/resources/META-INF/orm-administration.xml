@@ -4,7 +4,7 @@
                  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
         http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd" version="2.1">
     
-    <entity class="fr.famivac.gestionnaire.administration.entity.Groupe"/>
-    <entity class="fr.famivac.gestionnaire.administration.entity.Utilisateur"/>
-    
+    <entity class="fr.famivac.gestionnaire.administration.authentication.entity.Groupe"/>
+    <entity class="fr.famivac.gestionnaire.administration.authentication.entity.Utilisateur"/>
+    <entity class="fr.famivac.gestionnaire.administration.parametres.entity.Tarif"/>
 </entity-mappings>

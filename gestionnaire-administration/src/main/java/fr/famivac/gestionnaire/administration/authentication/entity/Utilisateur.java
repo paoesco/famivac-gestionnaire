@@ -1,4 +1,4 @@
-package fr.famivac.gestionnaire.administration.entity;
+package fr.famivac.gestionnaire.administration.authentication.entity;
 
 import fr.famivac.gestionnaire.commons.utils.Email;
 import java.io.Serializable;

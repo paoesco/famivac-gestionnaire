@@ -1,11 +1,11 @@
 package fr.famivac.gestionnaire.interfaces.web.parametres.utilisateurs;
 
-import fr.famivac.gestionnaire.administration.control.AjouterUtilisateurDTO;
-import fr.famivac.gestionnaire.administration.control.GroupeService;
-import fr.famivac.gestionnaire.administration.control.RetrieveUtilisateursDTO;
-import fr.famivac.gestionnaire.administration.control.UtilisateurService;
-import fr.famivac.gestionnaire.administration.entity.Groupe;
-import fr.famivac.gestionnaire.administration.entity.Utilisateur;
+import fr.famivac.gestionnaire.administration.authentication.control.AjouterUtilisateurDTO;
+import fr.famivac.gestionnaire.administration.authentication.control.GroupeService;
+import fr.famivac.gestionnaire.administration.authentication.control.RetrieveUtilisateursDTO;
+import fr.famivac.gestionnaire.administration.authentication.control.UtilisateurService;
+import fr.famivac.gestionnaire.administration.authentication.entity.Groupe;
+import fr.famivac.gestionnaire.administration.authentication.entity.Utilisateur;
 import fr.famivac.gestionnaire.interfaces.facade.utilisateurs.UtilisateurServiceFacade;
 import java.io.Serializable;
 import java.text.MessageFormat;

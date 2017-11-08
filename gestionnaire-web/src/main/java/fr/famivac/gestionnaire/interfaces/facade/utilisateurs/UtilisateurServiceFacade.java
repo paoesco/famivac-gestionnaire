@@ -1,7 +1,7 @@
 package fr.famivac.gestionnaire.interfaces.facade.utilisateurs;
 
-import fr.famivac.gestionnaire.administration.control.AjouterUtilisateurDTO;
-import fr.famivac.gestionnaire.administration.control.UtilisateurService;
+import fr.famivac.gestionnaire.administration.authentication.control.AjouterUtilisateurDTO;
+import fr.famivac.gestionnaire.administration.authentication.control.UtilisateurService;
 import fr.famivac.gestionnaire.email.control.Mail;
 import fr.famivac.gestionnaire.email.control.MailException;
 import fr.famivac.gestionnaire.email.control.MailService;
