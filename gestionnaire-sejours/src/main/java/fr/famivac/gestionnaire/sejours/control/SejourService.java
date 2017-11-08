@@ -191,6 +191,7 @@ public class SejourService {
                     // Heure rdv est automatiquement calculée 30 minutes avant l'heure officielle de départ du transport
                     dto.setHeureRendezVous(DateUtils.sumTimeToDate(voyage.getHeureDepart(), 0, -30, 0));
                     dto.setHeureTransport(voyage.getHeureDepart());
+                    dto.setHeureArrivee(voyage.getHeureArrivee());
                     dto.setRetour(voyage.isRetour());
                     dto.setLieu(voyage.getLieuDepart());
                     dto.setNumeroTransport(voyage.getNumeroTrain());

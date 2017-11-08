@@ -31,6 +31,8 @@ public class VoyageDTO {
 
     private Date heureTransport;
 
+    private Date heureArrivee;
+
     private String numeroTransport;
 
     private String accompagnateur;
@@ -70,7 +72,7 @@ public class VoyageDTO {
     public boolean getRetour() {
         return retour;
     }
-    
+
     public String getRetourLibelle() {
         return getRetour() ? "R" : "A";
     }
@@ -141,6 +143,14 @@ public class VoyageDTO {
 
     public void setHeureTransport(Date heureTransport) {
         this.heureTransport = heureTransport;
+    }
+
+    public Date getHeureArrivee() {
+        return heureArrivee;
+    }
+
+    public void setHeureArrivee(Date heureArrivee) {
+        this.heureArrivee = heureArrivee;
     }
 
     public String getNumeroTransport() {

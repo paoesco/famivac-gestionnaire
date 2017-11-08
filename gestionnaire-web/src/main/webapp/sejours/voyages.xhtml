@@ -106,6 +106,12 @@
                                     </h:outputText>
                                 </p:column>
                                 <p:column 
+                                    headerText="Heure Arrivée">
+                                    <h:outputText value="#{bean.heureArrivee}">
+                                        <f:convertDateTime pattern="HH:mm" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column 
                                     headerText="Numéro train">
                                     <h:outputText value="#{bean.numeroTransport}"></h:outputText>
                                 </p:column>
