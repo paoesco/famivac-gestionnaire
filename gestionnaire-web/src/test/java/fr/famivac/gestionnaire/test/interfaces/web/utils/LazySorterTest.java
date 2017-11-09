@@ -4,7 +4,6 @@ import fr.famivac.gestionnaire.sejours.control.SejourDTO;
 import fr.famivac.gestionnaire.enfants.entity.Inscripteur;
 import fr.famivac.gestionnaire.enfants.entity.TypeInscripteur;
 import fr.famivac.gestionnaire.interfaces.web.utils.LazySorter;
-import fr.famivac.gestionnaire.test.unit.commons.DateUtilsTest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class LazySorterTest {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             return sdf.parse(s);
         } catch (ParseException ex) {
-            Logger.getLogger(DateUtilsTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LazySorterTest.class.getName()).log(Level.SEVERE, null, ex);
             Assert.fail();
             return null;
         }

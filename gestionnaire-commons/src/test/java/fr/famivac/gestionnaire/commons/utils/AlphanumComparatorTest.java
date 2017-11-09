@@ -1,6 +1,5 @@
-package fr.famivac.gestionnaire.test.unit.commons;
+package fr.famivac.gestionnaire.commons.utils;
 
-import fr.famivac.gestionnaire.commons.utils.AlphanumComparator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

@@ -28,47 +28,172 @@
                             Tarifs
                         </div>
                         <div class="panel-body">
-                            <h:form id="form" styleClass="form-horizontal" role="form">
-                                <p:focus context="form" />
-                                <div class="form-group">
-                                    <p:outputLabel 
-                                        for="form_frais_dossier" 
-                                        styleClass="col-sm-2 control-label"
-                                        value="Frais dossier" />
-                                    <div class="col-md-2">
-                                        <p:inputText 
-                                            styleClass="form-control" 
-                                            id="form_frais_dossier" 
-                                            value="#{tarifsForm.fraisDossier}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <p:outputLabel 
-                                        for="form_tarif_prix_journee" 
-                                        styleClass="col-sm-2 control-label"
-                                        value="Prix journalier" />
-                                    <div class="col-md-2">
-                                        <p:inputText 
-                                            styleClass="form-control"
-                                            id="form_tarif_prix_journee" 
-                                            value="#{tarifsForm.prixJournalier}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
+                            <h:form id="form_datatable">
+                                <p:dataTable 
+                                    id="datatable"
+                                    var="bean" 
+                                    value="#{tarifsBean.lazyModel}"
+                                    paginator="true"
+                                    rowKey="#{bean.id}"
+                                    rows="20"
+                                    lazy="true"
+                                    editable="true">
+                                    <p:ajax event="rowEdit" listener="#{tarifsBean.onRowEdit}" />
+
+                                    <p:column headerText="Montant">
+                                        <h:outputText value="#{bean.montant}"></h:outputText>
+                                    </p:column>
+
+                                    <p:column headerText="Date début validité">
+                                        <p:cellEditor>
+                                            <f:facet name="output">
+                                                <h:outputText value="#{bean.dateDebutValidite}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                </h:outputText>
+                                            </f:facet>
+                                            <f:facet name="input">
+                                                <p:calendar 
+                                                    locale="fr"
+                                                    pattern="dd/MM/yyyy"
+                                                    mask="99/99/9999"
+                                                    id="input_date_debut_validite"
+                                                    navigator="true"
+                                                    yearRange="c-10:c+10"
+                                                    required="true"
+                                                    value="#{bean.dateDebutValidite}"/>
+                                            </f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="Date fin validité">
+                                        <p:cellEditor>
+                                            <f:facet name="output">
+                                                <h:outputText value="#{bean.dateFinValidite}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                </h:outputText>
+                                            </f:facet>
+                                            <f:facet name="input">
+                                                <p:calendar 
+                                                    locale="fr"
+                                                    pattern="dd/MM/yyyy"
+                                                    mask="99/99/9999"
+                                                    id="input_date_fin_validite"
+                                                    navigator="true"
+                                                    yearRange="c-10:c+10"
+                                                    required="true"
+                                                    value="#{bean.dateFinValidite}"/>
+                                            </f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column width="70">
+                                        <p:rowEditor />
+                                    </p:column>
+
+                                    <p:column width="50">
                                         <p:commandButton 
-                                            icon="ui-icon-circle-check"
-                                            styleClass="btn-primary"
-                                            ajax="false"
-                                            action="#{tarifsBean.sauver()}"
-                                            value="Sauver"/>
+                                            styleClass="btn-default"
+                                            icon="ui-icon-trash"
+                                            actionListener="#{tarifsBean.supprimer(bean.id)}"
+                                            update="datatable">
+                                            <p:confirm 
+                                                header="Confirmation" 
+                                                message="Êtes vous sûr de vouloir supprimer ce tarif ?" 
+                                                icon="ui-icon-alert" />
+                                        </p:commandButton>
+                                        <p:confirmDialog global="true">
+                                            <p:commandButton 
+                                                value="Oui" 
+                                                type="button" 
+                                                process="@this"
+                                                styleClass="ui-confirmdialog-yes pull-right" 
+                                                icon="ui-icon-check" />
+                                            <p:commandButton 
+                                                value="Non" 
+                                                type="button"
+                                                styleClass="ui-confirmdialog-no pull-right" 
+                                                icon="ui-icon-close" />
+                                        </p:confirmDialog>
+                                    </p:column>
+
+                                </p:dataTable>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-offset-3 col-md-9">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Ajouter tarif
+                        </div>
+                        <div class="panel-body">
+                            <h:form id="form" styleClass="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <p:outputLabel 
+                                        for="input_montant" 
+                                        styleClass="col-sm-3 control-label"
+                                        value="Montant" />
+                                    <div class="col-md-9">
+                                        <p:inputNumber 
+                                            id="input_montant" 
+                                            value="#{tarifsBean.form.montant}" 
+                                            symbol=" EUR" 
+                                            symbolPosition="s" 
+                                            decimalSeparator="," 
+                                            thousandSeparator="." 
+                                            decimalPlaces="2">  
+                                        </p:inputNumber>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <p:outputLabel 
+                                        for="input_date_debut_validite" 
+                                        styleClass="col-sm-3 control-label"
+                                        value="Date début validité" />
+                                    <div class="col-md-9">
+                                        <p:calendar 
+                                            locale="fr"
+                                            pattern="dd/MM/yyyy"
+                                            mask="99/99/9999"
+                                            id="input_date_debut_validite"
+                                            navigator="true"
+                                            yearRange="c-10:c+10"
+                                            required="true"
+                                            value="#{tarifsBean.form.dateDebutValidite}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <p:outputLabel 
+                                        for="input_date_fin_validite" 
+                                        styleClass="col-sm-3 control-label"
+                                        value="Date fin validité" />
+                                    <div class="col-md-9">
+                                        <p:calendar 
+                                            locale="fr"
+                                            pattern="dd/MM/yyyy"
+                                            mask="99/99/9999"
+                                            id="input_date_fin_validite"
+                                            navigator="true"
+                                            yearRange="c-10:c+10"
+                                            required="true"
+                                            value="#{tarifsBean.form.dateFinValidite}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <p:commandButton
+                                            styleClass="btn-primary pull-right" 
+                                            value="Ajouter"
+                                            icon="ui-icon-plus"
+                                            update=":form_datatable @form"
+                                            action="#{tarifsBean.newTarif()}"/>
                                     </div>
                                 </div>
                             </h:form>
                         </div>
                     </div>
                 </div>
-
 
             </ui:define>
         </ui:composition>

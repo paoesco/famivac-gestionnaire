@@ -1,6 +1,5 @@
-package fr.famivac.gestionnaire.test.unit.commons;
+package fr.famivac.gestionnaire.commons.utils;
 
-import fr.famivac.gestionnaire.commons.utils.DateUtils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
