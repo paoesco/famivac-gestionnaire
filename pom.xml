@@ -48,11 +48,11 @@
         
         <!-- Java EE dependencies -->
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <wildfly-swarm.version>2017.9.4</wildfly-swarm.version>
+        <wildfly-swarm.version>2017.12.1</wildfly-swarm.version>
         <javaee.version>7.0</javaee.version>
         
         <!-- Dependencies versions -->
-        <javamelody.version>1.69.0</javamelody.version>
+        <javamelody.version>1.70.0</javamelody.version>
         <primefaces.version>6.1</primefaces.version>
         <bootstrap.version>3.3.7-1</bootstrap.version>
         <metismenu.version>2.4.0</metismenu.version>
@@ -85,7 +85,7 @@
             </dependency>
             <dependency>
                 <groupId>org.wildfly.swarm</groupId>
-                <artifactId>bom-all</artifactId>
+                <artifactId>bom</artifactId>
                 <version>${wildfly-swarm.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
