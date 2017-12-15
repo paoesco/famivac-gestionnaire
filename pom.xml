@@ -48,7 +48,7 @@
         
         <!-- Java EE dependencies -->
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <wildfly-swarm.version>2017.12.1</wildfly-swarm.version>
+        <wildfly-swarm.version>2017.11.0</wildfly-swarm.version>
         <javaee.version>7.0</javaee.version>
         
         <!-- Dependencies versions -->
