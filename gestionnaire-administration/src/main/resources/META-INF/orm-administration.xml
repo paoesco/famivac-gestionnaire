@@ -6,5 +6,5 @@
     
     <entity class="fr.famivac.gestionnaire.administration.authentication.entity.Groupe"/>
     <entity class="fr.famivac.gestionnaire.administration.authentication.entity.Utilisateur"/>
-    <entity class="fr.famivac.gestionnaire.administration.parametres.entity.Tarif"/>
+    <entity class="fr.famivac.gestionnaire.administration.parametres.entity.FraisSejourJournalier"/>
 </entity-mappings>

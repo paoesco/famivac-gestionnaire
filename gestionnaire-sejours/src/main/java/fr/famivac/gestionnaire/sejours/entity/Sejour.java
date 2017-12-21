@@ -2,6 +2,7 @@ package fr.famivac.gestionnaire.sejours.entity;
 
 import fr.famivac.gestionnaire.commons.utils.DateUtils;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
@@ -98,7 +99,8 @@ public class Sejour implements Serializable {
     @NotNull
     private PeriodeJournee periodeJourneeDateFin;
 
-    private int tarif;
+    @Column(name = "FRAIS_SEJOUR_JOURNALIER")
+    private BigDecimal fraisSejourJournalier;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "DATE_ANNULATION")
@@ -112,7 +114,7 @@ public class Sejour implements Serializable {
     private Set<Payeur> payeurs;
 
     protected Sejour() {
-        this.tarif = 0;
+        this.fraisSejourJournalier = BigDecimal.ZERO;
         this.payeurs = new HashSet<>();
     }
 
@@ -127,8 +129,8 @@ public class Sejour implements Serializable {
         this.periodeJourneeDateDebut = periodeJourneeDebut;
         this.dateFin = (Date) dateFin.clone();
         this.periodeJourneeDateFin = periodeJourneeFin;
-        this.tarif = 0;
         this.payeurs = new HashSet<>();
+        this.fraisSejourJournalier = BigDecimal.ZERO;
     }
 
     public Sejour(Long familleId,
@@ -140,7 +142,8 @@ public class Sejour implements Serializable {
             Date dateDebut,
             PeriodeJournee periodeJourneeDebut,
             Date dateFin,
-            PeriodeJournee periodeJourneeFin) {
+            PeriodeJournee periodeJourneeFin,
+            BigDecimal fraisSejourJournalier) {
         if (Objects.isNull(familleId)
                 || Objects.isNull(familleNom)
                 || Objects.isNull(famillePrenom)
@@ -165,7 +168,7 @@ public class Sejour implements Serializable {
         this.periodeJourneeDateDebut = periodeJourneeDebut;
         this.dateFin = (Date) dateFin.clone();
         this.periodeJourneeDateFin = periodeJourneeFin;
-        this.tarif = 0;
+        this.fraisSejourJournalier = fraisSejourJournalier;
         this.payeurs = new HashSet<>();
     }
 
@@ -287,12 +290,12 @@ public class Sejour implements Serializable {
         this.periodeJourneeDateFin = periodeJourneeDateFin;
     }
 
-    public int getTarif() {
-        return tarif;
+    public BigDecimal getFraisSejourJournalier() {
+        return fraisSejourJournalier;
     }
 
-    public void setTarif(int tarif) {
-        this.tarif = tarif;
+    public void setFraisSejourJournalier(BigDecimal fraisSejourJournalier) {
+        this.fraisSejourJournalier = fraisSejourJournalier;
     }
 
     public Date getDateFinEffective() {

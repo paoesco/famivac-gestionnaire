@@ -19,13 +19,19 @@ import javax.persistence.TemporalType;
  * @author paoesco
  */
 @Entity
-@Table(name = "TARIF")
+@Table(name = "FRAIS_SEJOUR_JOURNALIER")
 @NamedQueries({
-    @NamedQuery(name = Tarif.QUERY_LISTE_ALL, query = "select t from Tarif t")
+    @NamedQuery(name = FraisSejourJournalier.QUERY_LISTE_ALL, query = "select f from FraisSejourJournalier f")
+    ,
+    @NamedQuery(name = FraisSejourJournalier.QUERY_GET_CURRENT, query = "select f from FraisSejourJournalier f where f.dateDebutValidite <= :date and :date <= f.dateFinValidite")
 })
-public class Tarif {
+public class FraisSejourJournalier {
 
-    public static final String QUERY_LISTE_ALL = "getTarifs";
+    public static final String QUERY_LISTE_ALL = "getFraisSejourJournaliers";
+
+    public static final String QUERY_GET_CURRENT = "getFraisSejourJournalierActif";
+
+    public static final FraisSejourJournalier DEFAULT_TARIF = new FraisSejourJournalier();
 
     @Id
     @GeneratedValue
@@ -43,7 +49,7 @@ public class Tarif {
     @Temporal(TemporalType.DATE)
     private Date dateFinValidite;
 
-    public Tarif() {
+    public FraisSejourJournalier() {
         montant = new BigDecimal(BigInteger.ZERO);
     }
 

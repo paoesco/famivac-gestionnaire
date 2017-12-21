@@ -18,4 +18,7 @@
     <changeSet author="paoesco" id="1.4.0">
         <sqlFile path="sql/1.4.0.sql"/>
     </changeSet>
+    <changeSet author="paoesco" id="1.6.0">
+        <sqlFile path="sql/1.6.0.sql"/>
+    </changeSet>
 </databaseChangeLog>

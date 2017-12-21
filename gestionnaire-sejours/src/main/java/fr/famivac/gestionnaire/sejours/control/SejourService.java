@@ -3,11 +3,11 @@ package fr.famivac.gestionnaire.sejours.control;
 import fr.famivac.gestionnaire.commons.events.UpdateEnfantEvent;
 import fr.famivac.gestionnaire.commons.events.UpdateFamilleEvent;
 import fr.famivac.gestionnaire.commons.utils.DateUtils;
-import fr.famivac.gestionnaire.enfants.control.EnfantService;
 import fr.famivac.gestionnaire.sejours.entity.PeriodeJournee;
 import fr.famivac.gestionnaire.sejours.entity.Sejour;
 import fr.famivac.gestionnaire.sejours.entity.StatutSejour;
 import fr.famivac.gestionnaire.sejours.entity.VoyageRepository;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,9 +34,6 @@ public class SejourService {
     @Inject
     private VoyageRepository voyageRepository;
 
-    @Inject
-    private EnfantService enfantService;
-
     public long create(Long familleId,
             String familleNom,
             String famillePrenom,
@@ -47,7 +44,8 @@ public class SejourService {
             Date dateDebut,
             PeriodeJournee periodeJourneeDebut,
             Date dateFin,
-            PeriodeJournee periodeJourneeFin) {
+            PeriodeJournee periodeJourneeFin,
+            BigDecimal fraisSejourJournalier) {
         Sejour sejour = new Sejour(familleId,
                 familleNom,
                 famillePrenom,
@@ -57,7 +55,8 @@ public class SejourService {
                 dateDebut,
                 periodeJourneeDebut,
                 dateFin,
-                periodeJourneeFin);
+                periodeJourneeFin,
+                fraisSejourJournalier);
         sejour.getAller().setNomPersonneAReception(famillePrenom + " " + familleNom);
         sejour.getAller().setTelephonePersonneAReception(familleTelephone);
         sejour.getRetour().setNomPersonneDepart(famillePrenom + " " + familleNom);
