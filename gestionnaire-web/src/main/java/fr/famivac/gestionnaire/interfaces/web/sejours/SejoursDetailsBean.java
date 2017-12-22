@@ -38,12 +38,14 @@ public class SejoursDetailsBean implements Serializable {
     private Long id;
 
     private Sejour sejour;
+    private BilanSejour bilan;
 
     /**
      * Initialisation du bean.
      */
     public void init() {
         this.sejour = sejourRepository.get(id);
+        this.bilan = new BilanSejour(sejour);
         this.ajoutAccompagnateurAller = new Accompagnateur();
         this.ajoutAccompagnateurRetour = new Accompagnateur();
     }
@@ -144,6 +146,10 @@ public class SejoursDetailsBean implements Serializable {
 
     public void setAjoutAccompagnateurRetour(Accompagnateur ajoutAccompagnateurRetour) {
         this.ajoutAccompagnateurRetour = ajoutAccompagnateurRetour;
+    }
+
+    public BilanSejour getBilan() {
+        return bilan;
     }
 
 }
