@@ -181,7 +181,6 @@ public class SejourService {
                             })
                             .collect(Collectors.joining(","));
                     dto.setAccompagnateur(accompagnateurs);
-                    dto.setContactEnfant(voyage.getNomPersonneDepart());
                     dto.setDateVoyage(voyage.getDateVoyage());
                     dto.setEnfant(voyage.getSejour().getEnfantNom() + " " + voyage.getSejour().getEnfantPrenom());
                     dto.setEnfantId(voyage.getSejour().getEnfantId());
@@ -202,9 +201,13 @@ public class SejourService {
                             })
                             .collect(Collectors.joining(","));
                     dto.setTelephoneAccompagnateur(accompagnateursTelephones);
-                    dto.setTelephoneContactEnfant(voyage.getTelephonePersonneDepart());
-                    //dto.setTelephoneFamille(telephoneFamille);
-                    //dto.setValidationAccompagnateur(validationAccompagnateur);
+                    if (voyage.isRetour()) {
+                        dto.setContactParis(voyage.getNomPersonneAReception());
+                        dto.setTelephoneContactParis(voyage.getTelephonePersonneAReception());
+                    } else {
+                        dto.setContactParis(voyage.getNomPersonneDepart());
+                        dto.setTelephoneContactParis(voyage.getTelephonePersonneDepart());
+                    }
                     dto.setSejourId(voyage.getSejour().getId());
                     dto.setVoyageId(voyage.getId());
                     return dto;

@@ -41,9 +41,9 @@ public class VoyageDTO {
 
     private String validationAccompagnateur;
 
-    private String contactEnfant;
+    private String contactParis;
 
-    private String telephoneContactEnfant;
+    private String telephoneContactParis;
 
     public Long getVoyageId() {
         return voyageId;
@@ -185,20 +185,20 @@ public class VoyageDTO {
         this.validationAccompagnateur = validationAccompagnateur;
     }
 
-    public String getContactEnfant() {
-        return contactEnfant;
+    public String getContactParis() {
+        return contactParis;
     }
 
-    public void setContactEnfant(String contactEnfant) {
-        this.contactEnfant = contactEnfant;
+    public void setContactParis(String contactParis) {
+        this.contactParis = contactParis;
     }
 
-    public String getTelephoneContactEnfant() {
-        return telephoneContactEnfant;
+    public String getTelephoneContactParis() {
+        return telephoneContactParis;
     }
 
-    public void setTelephoneContactEnfant(String telephoneContactEnfant) {
-        this.telephoneContactEnfant = telephoneContactEnfant;
+    public void setTelephoneContactParis(String telephoneContactParis) {
+        this.telephoneContactParis = telephoneContactParis;
     }
 
 }
