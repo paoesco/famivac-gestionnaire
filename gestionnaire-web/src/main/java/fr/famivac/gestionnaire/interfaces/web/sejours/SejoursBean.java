@@ -5,7 +5,6 @@ import fr.famivac.gestionnaire.sejours.control.SejourService;
 import fr.famivac.gestionnaire.sejours.entity.StatutSejour;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;

@@ -29,6 +29,14 @@ public class SejourRepository {
         return entityManager.find(Sejour.class, id);
     }
 
+    public List<Sejour> getSejoursTerminesDansLaPeriode(Date dateDebut, Date dateFin) {
+        return entityManager
+                .createNamedQuery(Sejour.QUERY_SEJOURS_TERMINES_DANS_LA_PERIODE, Sejour.class)
+                .setParameter("dateDebut", dateDebut, TemporalType.DATE)
+                .setParameter("dateFin", dateFin, TemporalType.DATE)
+                .getResultList();
+    }
+
     public long countActifs() {
         String jpql = "select count(s.id) from Sejour s where s.dateDebut <= :date and :date < s.dateFin";
         Query q = entityManager.createQuery(jpql);

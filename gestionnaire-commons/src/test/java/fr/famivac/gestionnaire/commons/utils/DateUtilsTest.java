@@ -3,6 +3,7 @@ package fr.famivac.gestionnaire.commons.utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.logging.Level;
@@ -120,6 +121,22 @@ public class DateUtilsTest {
     public void testSumTimeToDateNull() {
         Date result = DateUtils.sumTimeToDate(null, -1, -30, -5);
         Assert.assertNull(result);
+    }
+
+    @Test
+    public void testFirstDay() {
+        LocalDate localDate = LocalDate.of(2017, Month.MARCH, 15);
+        Date result = DateUtils.firstDay(localDate);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Assert.assertEquals("01/03/2017", sdf.format(result));
+    }
+
+    @Test
+    public void testLastDay() {
+        LocalDate localDate = LocalDate.of(2017, Month.MARCH, 15);
+        Date result = DateUtils.lastDay(localDate);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Assert.assertEquals("31/03/2017", sdf.format(result));
     }
 
 }

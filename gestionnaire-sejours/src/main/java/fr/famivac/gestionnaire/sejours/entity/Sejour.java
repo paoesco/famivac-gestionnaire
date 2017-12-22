@@ -33,13 +33,11 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_LA_FAMILLE, query = "select s from Sejour s where s.familleId = :familleId order by s.dateDebut")
-    ,
-    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_L_ENFANT, query = "select s from Sejour s where s.enfantId = :enfantId order by s.dateDebut")
-    ,
-    @NamedQuery(name = Sejour.QUERY_SEJOURS_RETRIEVE, query = "select s from Sejour s order by s.dateDebut, s.dateFin")
-    ,
-    @NamedQuery(name = Sejour.QUERY_SEJOURS_RECHERCHER, query = "select s from Sejour s where lower(s.enfantNom) like :nomEnfant and lower(s.enfantPrenom) like :prenomEnfant and lower(s.familleNom) like :nomReferent and lower(s.famillePrenom) like :prenomReferent order by s.dateDebut, s.dateFin")
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_LA_FAMILLE, query = "select s from Sejour s where s.familleId = :familleId order by s.dateDebut"),
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_L_ENFANT, query = "select s from Sejour s where s.enfantId = :enfantId order by s.dateDebut"),
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_RETRIEVE, query = "select s from Sejour s order by s.dateDebut, s.dateFin"),
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_RECHERCHER, query = "select s from Sejour s where lower(s.enfantNom) like :nomEnfant and lower(s.enfantPrenom) like :prenomEnfant and lower(s.familleNom) like :nomReferent and lower(s.famillePrenom) like :prenomReferent order by s.dateDebut, s.dateFin"),
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_TERMINES_DANS_LA_PERIODE, query = "select s from Sejour s where :dateDebut <= s.dateFin and s.dateFin <= :dateFin")
 })
 public class Sejour implements Serializable {
 
@@ -47,6 +45,7 @@ public class Sejour implements Serializable {
     public static final String QUERY_SEJOURS_DE_L_ENFANT = "querySejoursDeLEnfant";
     public static final String QUERY_SEJOURS_RETRIEVE = "querySejoursRetrieve";
     public static final String QUERY_SEJOURS_RECHERCHER = "querySejoursRechercher";
+    public static final String QUERY_SEJOURS_TERMINES_DANS_LA_PERIODE = "querySejoursTerminesDansLaPeriode";
 
     @Id
     @GeneratedValue

@@ -2,8 +2,11 @@ package fr.famivac.gestionnaire.commons.utils;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import static java.time.temporal.TemporalAdjusters.firstDayOfMonth;
+import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Classe utilitaire de manipulation des dates.
@@ -86,6 +89,13 @@ public final class DateUtils {
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
+    private static Date toDate(LocalDate localDate) {
+        if (Objects.isNull(localDate)) {
+            return null;
+        }
+        return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    }
+
     public static Date sumTimeToDate(Date date, int hours, int mins, int secs) {
         if (date == null) {
             return null;
@@ -110,6 +120,14 @@ public final class DateUtils {
         cal.set(Calendar.SECOND, 0);
         cal.set(Calendar.MILLISECOND, 0);
         return cal.getTime();
+    }
+
+    public static Date firstDay(LocalDate date) {
+        return toDate(date.with(firstDayOfMonth()));
+    }
+
+    public static Date lastDay(LocalDate date) {
+        return toDate(date.with(lastDayOfMonth()));
     }
 
 }
