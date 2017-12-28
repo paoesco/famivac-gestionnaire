@@ -293,6 +293,14 @@
                                                 </p>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Frais voyage</label>
+                                            <div class="col-md-4">
+                                                <p class="form-control-static">
+                                                    <h:outputText styleClass="badge" value="#{sejoursDetailsBean.bilan.fraisVoyage()}" converter="#{montantConverter}"/>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </h:form>
                                 </div>
                             </div>

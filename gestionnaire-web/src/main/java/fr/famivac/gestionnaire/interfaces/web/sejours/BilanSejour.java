@@ -22,4 +22,8 @@ public class BilanSejour {
         return sejour.getFraisDossier();
     }
 
+    public BigDecimal fraisVoyage() {
+        return sejour.getFraisVoyage();
+    }
+
 }
