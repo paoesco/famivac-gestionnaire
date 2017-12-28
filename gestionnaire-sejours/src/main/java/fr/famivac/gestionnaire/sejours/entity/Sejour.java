@@ -33,10 +33,14 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_LA_FAMILLE, query = "select s from Sejour s where s.familleId = :familleId order by s.dateDebut"),
-    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_L_ENFANT, query = "select s from Sejour s where s.enfantId = :enfantId order by s.dateDebut"),
-    @NamedQuery(name = Sejour.QUERY_SEJOURS_RETRIEVE, query = "select s from Sejour s order by s.dateDebut, s.dateFin"),
-    @NamedQuery(name = Sejour.QUERY_SEJOURS_RECHERCHER, query = "select s from Sejour s where lower(s.enfantNom) like :nomEnfant and lower(s.enfantPrenom) like :prenomEnfant and lower(s.familleNom) like :nomReferent and lower(s.famillePrenom) like :prenomReferent order by s.dateDebut, s.dateFin"),
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_LA_FAMILLE, query = "select s from Sejour s where s.familleId = :familleId order by s.dateDebut")
+    ,
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_DE_L_ENFANT, query = "select s from Sejour s where s.enfantId = :enfantId order by s.dateDebut")
+    ,
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_RETRIEVE, query = "select s from Sejour s order by s.dateDebut, s.dateFin")
+    ,
+    @NamedQuery(name = Sejour.QUERY_SEJOURS_RECHERCHER, query = "select s from Sejour s where lower(s.enfantNom) like :nomEnfant and lower(s.enfantPrenom) like :prenomEnfant and lower(s.familleNom) like :nomReferent and lower(s.famillePrenom) like :prenomReferent order by s.dateDebut, s.dateFin")
+    ,
     @NamedQuery(name = Sejour.QUERY_SEJOURS_TERMINES_DANS_LA_PERIODE, query = "select s from Sejour s where :dateDebut <= s.dateFin and s.dateFin <= :dateFin")
 })
 public class Sejour implements Serializable {
@@ -101,6 +105,9 @@ public class Sejour implements Serializable {
     @Column(name = "FRAIS_SEJOUR_JOURNALIER")
     private BigDecimal fraisSejourJournalier;
 
+    @Column(name = "FRAIS_DOSSIER")
+    private BigDecimal fraisDossier;
+
     @Temporal(TemporalType.DATE)
     @Column(name = "DATE_ANNULATION")
     private Date dateAnnulation;
@@ -114,10 +121,12 @@ public class Sejour implements Serializable {
 
     protected Sejour() {
         this.fraisSejourJournalier = BigDecimal.ZERO;
+        this.fraisDossier = BigDecimal.ZERO;
         this.payeurs = new HashSet<>();
     }
 
     public Sejour(Date dateDebut, PeriodeJournee periodeJourneeDebut, Date dateFin, PeriodeJournee periodeJourneeFin) {
+        this();
         if (Objects.isNull(dateDebut)
                 || Objects.isNull(periodeJourneeDebut)
                 || Objects.isNull(dateFin)
@@ -128,8 +137,6 @@ public class Sejour implements Serializable {
         this.periodeJourneeDateDebut = periodeJourneeDebut;
         this.dateFin = (Date) dateFin.clone();
         this.periodeJourneeDateFin = periodeJourneeFin;
-        this.payeurs = new HashSet<>();
-        this.fraisSejourJournalier = BigDecimal.ZERO;
     }
 
     public Sejour(Long familleId,
@@ -141,8 +148,7 @@ public class Sejour implements Serializable {
             Date dateDebut,
             PeriodeJournee periodeJourneeDebut,
             Date dateFin,
-            PeriodeJournee periodeJourneeFin,
-            BigDecimal fraisSejourJournalier) {
+            PeriodeJournee periodeJourneeFin) {
         if (Objects.isNull(familleId)
                 || Objects.isNull(familleNom)
                 || Objects.isNull(famillePrenom)
@@ -167,8 +173,17 @@ public class Sejour implements Serializable {
         this.periodeJourneeDateDebut = periodeJourneeDebut;
         this.dateFin = (Date) dateFin.clone();
         this.periodeJourneeDateFin = periodeJourneeFin;
-        this.fraisSejourJournalier = fraisSejourJournalier;
         this.payeurs = new HashSet<>();
+    }
+
+    public Sejour withFraisSejourJournalier(BigDecimal fraisSejourJournalier) {
+        this.fraisSejourJournalier = fraisSejourJournalier;
+        return this;
+    }
+
+    public Sejour withFraisDossier(BigDecimal fraisDossier) {
+        this.fraisDossier = fraisDossier;
+        return this;
     }
 
     public int nombreJours() {
@@ -295,6 +310,14 @@ public class Sejour implements Serializable {
 
     public void setFraisSejourJournalier(BigDecimal fraisSejourJournalier) {
         this.fraisSejourJournalier = fraisSejourJournalier;
+    }
+
+    public BigDecimal getFraisDossier() {
+        return fraisDossier;
+    }
+
+    public void setFraisDossier(BigDecimal fraisDossier) {
+        this.fraisDossier = fraisDossier;
     }
 
     public Date getDateFinEffective() {

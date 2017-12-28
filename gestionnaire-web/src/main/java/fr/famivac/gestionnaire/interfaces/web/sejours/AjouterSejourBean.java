@@ -1,5 +1,6 @@
 package fr.famivac.gestionnaire.interfaces.web.sejours;
 
+import fr.famivac.gestionnaire.administration.parametres.control.FraisDossierService;
 import fr.famivac.gestionnaire.administration.parametres.control.FraisSejourJournalierService;
 import fr.famivac.gestionnaire.familles.control.FamilleDTO;
 import fr.famivac.gestionnaire.familles.control.FamilleService;
@@ -20,27 +21,33 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class AjouterSejourBean implements Serializable {
-    
+
     @Inject
     private FamilleService familleService;
-    
+
     @Inject
     private EnfantService enfantService;
-    
+
     @Inject
     private SejourService sejourService;
-    
+
     @Inject
     private FraisSejourJournalierService fraisDeSejourJournalierService;
-    
+
+    @Inject
+    private FraisDossierService fraisDossierService;
+
     private AjouterSejourForm form;
-    
+
     public void init() {
         form = new AjouterSejourForm();
     }
-    
+
     public String ajouter() {
         BigDecimal fraisSejourJournalier = fraisDeSejourJournalierService
+                .getCurrentMontant(form.getDateDebut())
+                .orElse(BigDecimal.ZERO);
+        BigDecimal fraisDossier = fraisDossierService
                 .getCurrentMontant(form.getDateDebut())
                 .orElse(BigDecimal.ZERO);
         System.out.println(fraisSejourJournalier);
@@ -55,30 +62,31 @@ public class AjouterSejourBean implements Serializable {
                 PeriodeJournee.valueOf(form.getPeriodeJourneeDebut()),
                 form.getDateFin(),
                 PeriodeJournee.valueOf(form.getPeriodeJourneeFin()),
-                fraisSejourJournalier);
+                fraisSejourJournalier,
+                fraisDossier);
         return "/sejours/details.xhtml?id=" + sejourId + "&faces-redirect=true";
     }
-    
+
     public List<FamilleDTO> completeFamille(String query) {
         if (query == null || query.isEmpty()) {
             return familleService.rechercher("%", "%", null);
         }
         return familleService.rechercher(query, "%", null);
     }
-    
+
     public List<EnfantDTO> completeEnfant(String query) {
         if (query == null || query.isEmpty()) {
             return enfantService.retrieve("%", "%");
         }
         return enfantService.retrieve(query, "%");
     }
-    
+
     public AjouterSejourForm getForm() {
         return form;
     }
-    
+
     public void setForm(AjouterSejourForm form) {
         this.form = form;
     }
-    
+
 }
