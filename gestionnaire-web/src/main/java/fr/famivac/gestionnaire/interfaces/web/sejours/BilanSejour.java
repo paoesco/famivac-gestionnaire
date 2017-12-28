@@ -4,7 +4,6 @@ import fr.famivac.gestionnaire.sejours.entity.Sejour;
 import java.math.BigDecimal;
 
 /**
- *
  * @author paoesco
  */
 public class BilanSejour {
@@ -17,6 +16,10 @@ public class BilanSejour {
 
     public BigDecimal fraisSejour() {
         return new BigDecimal(sejour.nombreJours()).multiply(sejour.getFraisSejourJournalier());
+    }
+
+    public BigDecimal fraisDossier() {
+        return sejour.getFraisDossier();
     }
 
 }
