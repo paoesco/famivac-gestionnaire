@@ -38,20 +38,20 @@ public class FraisDossierPageBean implements Serializable {
     public void onRowEdit(RowEditEvent event) {
         FraisDossier entity = (FraisDossier) event.getObject();
         service.update(entity);
-        FacesMessage msg = new FacesMessage("Le tarif a été modifié");
+        FacesMessage msg = new FacesMessage("Le frais dossier a été modifié");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public void create() {
         service.create(form);
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Le tarif a été ajouté", null);
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Le frais dossier a été ajouté", null);
         FacesContext.getCurrentInstance().addMessage(null, message);
         init();
     }
 
     public void supprimer(Long id) {
         service.delete(id);
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Le tarif a été supprimé", null);
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Le frais dossier a été supprimé", null);
         FacesContext.getCurrentInstance().addMessage(null, message);
         init();
     }
