@@ -23,23 +23,23 @@ import org.mockito.runners.MockitoJUnitRunner;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class SejourServiceTest {
-
+    
     @Mock
     private SejourRepository repository;
-
+    
     @InjectMocks
     private SejourService service;
-
+    
     @Test
     public void testGetBilanSurLaPeriode() {
         // GIVEN
         Date dateDebut = toDate("01/01/2018");
         Date dateFin = toDate("31/01/2018");
         initSejours();
-        
+
         // WHEN
         BilanDTO bilan = service.getBilanSurLaPeriode(dateDebut, dateFin);
-        
+
         // THEN
         Assert.assertEquals(dateDebut, bilan.getDateDebut());
         Assert.assertEquals(dateFin, bilan.getDateFin());
@@ -47,8 +47,9 @@ public class SejourServiceTest {
         Assert.assertEquals(50, bilan.getTotalFraisDossier().intValue());
         Assert.assertEquals(2170, bilan.getTotalFraisSejour().intValue());
         Assert.assertEquals(90, bilan.getTotalFraisVoyage().intValue());
+        Assert.assertEquals(93, bilan.getTotalFraisPensionFamille().intValue());
     }
-
+    
     private void initSejours() {
         List<Sejour> sejours = new ArrayList<>();
         Sejour sejour1 = new Sejour(
@@ -58,7 +59,8 @@ public class SejourServiceTest {
                 PeriodeJournee.APRES_MIDI)
                 .withFraisDossier(BigDecimal.valueOf(10))
                 .withFraisSejourJournalier(BigDecimal.valueOf(20))
-                .withFraisVoyage(BigDecimal.valueOf(30));
+                .withFraisVoyage(BigDecimal.valueOf(30))
+                .withFraisPensionFamilleJournalier(BigDecimal.valueOf(1));
         sejours.add(sejour1);
         Sejour sejour2 = new Sejour(
                 toDate("01/01/2018"),
@@ -67,11 +69,12 @@ public class SejourServiceTest {
                 PeriodeJournee.APRES_MIDI)
                 .withFraisDossier(BigDecimal.valueOf(40))
                 .withFraisSejourJournalier(BigDecimal.valueOf(50))
-                .withFraisVoyage(BigDecimal.valueOf(60));
+                .withFraisVoyage(BigDecimal.valueOf(60))
+                .withFraisPensionFamilleJournalier(BigDecimal.valueOf(2));
         sejours.add(sejour2);
         Mockito.when(repository.getSejoursTerminesDansLaPeriode(Mockito.any(Date.class), Mockito.any(Date.class))).thenReturn(sejours);
     }
-
+    
     private Date toDate(String source) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -81,5 +84,5 @@ public class SejourServiceTest {
             return null;
         }
     }
-
+    
 }

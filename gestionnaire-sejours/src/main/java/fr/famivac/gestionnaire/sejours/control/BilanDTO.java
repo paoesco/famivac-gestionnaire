@@ -15,6 +15,7 @@ public class BilanDTO {
     private BigDecimal totalFraisSejour;
     private BigDecimal totalFraisDossier;
     private BigDecimal totalFraisVoyage;
+    private BigDecimal totalFraisPensionFamille;
 
     public Date getDateDebut() {
         return dateDebut;
@@ -62,6 +63,14 @@ public class BilanDTO {
 
     public void setTotalFraisVoyage(BigDecimal totalFraisVoyage) {
         this.totalFraisVoyage = totalFraisVoyage;
+    }
+
+    public BigDecimal getTotalFraisPensionFamille() {
+        return totalFraisPensionFamille;
+    }
+
+    public void setTotalFraisPensionFamille(BigDecimal totalFraisPensionFamille) {
+        this.totalFraisPensionFamille = totalFraisPensionFamille;
     }
 
 }
