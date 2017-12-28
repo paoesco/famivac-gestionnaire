@@ -106,8 +106,8 @@ public class SejourService {
         }
         List<Sejour> entities = entityManager
                 .createNamedQuery(Sejour.QUERY_SEJOURS_RECHERCHER, Sejour.class)
-                .setParameter("nomReferent", nomReferent)
-                .setParameter("prenomReferent", prenomReferent)
+                .setParameter("nomReferent", nomReferent.toLowerCase())
+                .setParameter("prenomReferent", prenomReferent.toLowerCase())
                 .setParameter("nomEnfant", nomEnfant.trim().toLowerCase())
                 .setParameter("prenomEnfant", prenomEnfant.trim().toLowerCase())
                 .getResultList();
