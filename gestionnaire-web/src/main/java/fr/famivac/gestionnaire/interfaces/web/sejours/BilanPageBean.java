@@ -2,7 +2,7 @@ package fr.famivac.gestionnaire.interfaces.web.sejours;
 
 import fr.famivac.gestionnaire.commons.utils.DateUtils;
 import fr.famivac.gestionnaire.sejours.control.BilanDTO;
-import fr.famivac.gestionnaire.sejours.control.BilanService;
+import fr.famivac.gestionnaire.sejours.control.SejourService;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
@@ -19,7 +19,7 @@ import javax.inject.Named;
 public class BilanPageBean implements Serializable {
 
     @Inject
-    private BilanService bilanService;
+    private SejourService sejourService;
 
     private BilanDTO bilan;
 
@@ -39,7 +39,7 @@ public class BilanPageBean implements Serializable {
     }
 
     private BilanDTO rechercher(Date dateDebut, Date dateFin) {
-        return bilanService.getBilan(dateDebut, dateFin);
+        return sejourService.getBilanSurLaPeriode(dateDebut, dateFin);
     }
 
     public BilanDTO getBilan() {

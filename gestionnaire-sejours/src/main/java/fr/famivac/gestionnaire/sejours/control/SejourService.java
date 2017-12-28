@@ -5,6 +5,7 @@ import fr.famivac.gestionnaire.commons.events.UpdateFamilleEvent;
 import fr.famivac.gestionnaire.commons.utils.DateUtils;
 import fr.famivac.gestionnaire.sejours.entity.PeriodeJournee;
 import fr.famivac.gestionnaire.sejours.entity.Sejour;
+import fr.famivac.gestionnaire.sejours.entity.SejourRepository;
 import fr.famivac.gestionnaire.sejours.entity.StatutSejour;
 import fr.famivac.gestionnaire.sejours.entity.VoyageRepository;
 import java.math.BigDecimal;
@@ -33,6 +34,9 @@ public class SejourService {
 
     @Inject
     private VoyageRepository voyageRepository;
+
+    @Inject
+    private SejourRepository sejourRepository;
 
     public long create(Long familleId,
             String familleNom,
@@ -215,6 +219,26 @@ public class SejourService {
                     return dto;
                 })
                 .collect(Collectors.toList());
+    }
+
+    public BilanDTO getBilanSurLaPeriode(Date dateDebut, Date dateFin) {
+        List<Sejour> sejours = sejourRepository.getSejoursTerminesDansLaPeriode(dateDebut, dateFin);
+        BigDecimal totalFraisSejour = BigDecimal.ZERO;
+        BigDecimal totalFraisDossier = BigDecimal.ZERO;
+        Integer totalNombreJourneesVacances = 0;
+        for (Sejour sejour : sejours) {
+            int nombreJourneesVacancesSejour = sejour.nombreJours();
+            totalNombreJourneesVacances += nombreJourneesVacancesSejour;
+            totalFraisSejour = totalFraisSejour.add(new BigDecimal(nombreJourneesVacancesSejour).multiply(sejour.getFraisSejourJournalier()));
+            totalFraisDossier = totalFraisDossier.add(sejour.getFraisDossier());
+        }
+        BilanDTO result = new BilanDTO();
+        result.setDateDebut(dateDebut);
+        result.setDateFin(dateFin);
+        result.setTotalFraisSejour(totalFraisSejour);
+        result.setTotalFraisDossier(totalFraisDossier);
+        result.setTotalNombreJourneesVacances(totalNombreJourneesVacances);
+        return result;
     }
 
 }
