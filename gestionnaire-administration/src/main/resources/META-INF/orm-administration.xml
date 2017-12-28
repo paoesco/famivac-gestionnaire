@@ -9,4 +9,5 @@
     <entity class="fr.famivac.gestionnaire.administration.parametres.entity.FraisSejourJournalier"/>
     <entity class="fr.famivac.gestionnaire.administration.parametres.entity.FraisDossier"/>
     <entity class="fr.famivac.gestionnaire.administration.parametres.entity.FraisVoyage"/>
+    <entity class="fr.famivac.gestionnaire.administration.parametres.entity.FraisPensionFamilleJournalier"/>
 </entity-mappings>

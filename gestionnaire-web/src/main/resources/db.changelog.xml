@@ -30,4 +30,7 @@
     <changeSet author="paoesco" id="1.8.0">
         <sqlFile path="sql/1.8.0.sql"/>
     </changeSet>
+    <changeSet author="paoesco" id="1.9.0">
+        <sqlFile path="sql/1.9.0.sql"/>
+    </changeSet>
 </databaseChangeLog>
