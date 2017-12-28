@@ -50,7 +50,8 @@ public class SejourService {
             Date dateFin,
             PeriodeJournee periodeJourneeFin,
             BigDecimal fraisSejourJournalier,
-            BigDecimal fraisDossier) {
+            BigDecimal fraisDossier,
+            BigDecimal fraisVoyage) {
         Sejour sejour = new Sejour(familleId,
                 familleNom,
                 famillePrenom,
@@ -62,7 +63,8 @@ public class SejourService {
                 dateFin,
                 periodeJourneeFin)
                 .withFraisSejourJournalier(fraisSejourJournalier)
-                .withFraisDossier(fraisDossier);
+                .withFraisDossier(fraisDossier)
+                .withFraisVoyage(fraisVoyage);
         sejour.getAller().setNomPersonneAReception(famillePrenom + " " + familleNom);
         sejour.getAller().setTelephonePersonneAReception(familleTelephone);
         sejour.getRetour().setNomPersonneDepart(famillePrenom + " " + familleNom);

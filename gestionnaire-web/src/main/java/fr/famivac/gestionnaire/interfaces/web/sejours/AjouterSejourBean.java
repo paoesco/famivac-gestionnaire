@@ -2,6 +2,7 @@ package fr.famivac.gestionnaire.interfaces.web.sejours;
 
 import fr.famivac.gestionnaire.administration.parametres.control.FraisDossierService;
 import fr.famivac.gestionnaire.administration.parametres.control.FraisSejourJournalierService;
+import fr.famivac.gestionnaire.administration.parametres.control.FraisVoyageService;
 import fr.famivac.gestionnaire.familles.control.FamilleDTO;
 import fr.famivac.gestionnaire.familles.control.FamilleService;
 import fr.famivac.gestionnaire.sejours.control.SejourService;
@@ -37,6 +38,9 @@ public class AjouterSejourBean implements Serializable {
     @Inject
     private FraisDossierService fraisDossierService;
 
+    @Inject
+    private FraisVoyageService fraisVoyageService;
+
     private AjouterSejourForm form;
 
     public void init() {
@@ -44,13 +48,15 @@ public class AjouterSejourBean implements Serializable {
     }
 
     public String ajouter() {
-        BigDecimal fraisSejourJournalier = fraisDeSejourJournalierService
+        BigDecimal montantFraisSejourJournalier = fraisDeSejourJournalierService
                 .getCurrentMontant(form.getDateDebut())
                 .orElse(BigDecimal.ZERO);
-        BigDecimal fraisDossier = fraisDossierService
+        BigDecimal montantFraisDossier = fraisDossierService
                 .getCurrentMontant(form.getDateDebut())
                 .orElse(BigDecimal.ZERO);
-        System.out.println(fraisSejourJournalier);
+        BigDecimal montantFraisVoyage = fraisVoyageService
+                .getCurrentMontant(form.getDateDebut())
+                .orElse(BigDecimal.ZERO);
         long sejourId = sejourService.create(form.getFamille().getId(),
                 form.getFamille().getNomReferent(),
                 form.getFamille().getPrenomReferent(),
@@ -62,8 +68,9 @@ public class AjouterSejourBean implements Serializable {
                 PeriodeJournee.valueOf(form.getPeriodeJourneeDebut()),
                 form.getDateFin(),
                 PeriodeJournee.valueOf(form.getPeriodeJourneeFin()),
-                fraisSejourJournalier,
-                fraisDossier);
+                montantFraisSejourJournalier,
+                montantFraisDossier,
+                montantFraisVoyage);
         return "/sejours/details.xhtml?id=" + sejourId + "&faces-redirect=true";
     }
 
