@@ -105,6 +105,9 @@ public class Sejour implements Serializable {
     @Column(name = "FRAIS_DOSSIER")
     private BigDecimal fraisDossier;
 
+    @Column(name = "FRAIS_PENSION_FAMILLE_JOURNALIER")
+    private BigDecimal fraisPensionFamilleJournalier;
+
     @Column(name = "FRAIS_VOYAGE")
     private BigDecimal fraisVoyage;
 
@@ -123,6 +126,7 @@ public class Sejour implements Serializable {
         this.fraisSejourJournalier = BigDecimal.ZERO;
         this.fraisDossier = BigDecimal.ZERO;
         this.fraisVoyage = BigDecimal.ZERO;
+        this.fraisPensionFamilleJournalier = BigDecimal.ZERO;
         this.payeurs = new HashSet<>();
     }
 
@@ -187,9 +191,14 @@ public class Sejour implements Serializable {
         this.fraisDossier = fraisDossier;
         return this;
     }
-    
+
     public Sejour withFraisVoyage(BigDecimal fraisVoyage) {
         this.fraisVoyage = fraisVoyage;
+        return this;
+    }
+
+    public Sejour withFraisPensionFamilleJournalier(BigDecimal fraisPensionFamilleJournalier) {
+        this.fraisPensionFamilleJournalier = fraisPensionFamilleJournalier;
         return this;
     }
 
@@ -317,6 +326,14 @@ public class Sejour implements Serializable {
 
     public void setFraisDossier(BigDecimal fraisDossier) {
         this.fraisDossier = fraisDossier;
+    }
+
+    public BigDecimal getFraisPensionFamilleJournalier() {
+        return fraisPensionFamilleJournalier;
+    }
+
+    public void setFraisPensionFamilleJournalier(BigDecimal fraisPensionFamilleJournalier) {
+        this.fraisPensionFamilleJournalier = fraisPensionFamilleJournalier;
     }
 
     public BigDecimal getFraisVoyage() {

@@ -247,6 +247,19 @@
                                         </div>
                                         <div class="form-group">
                                             <p:outputLabel 
+                                                for="input_frais_pension_famille_journalier" 
+                                                value="Frais pension famille journalier"
+                                                styleClass="col-sm-4 control-label"/> 
+                                            <div class="col-md-2">
+                                                <p:inputText
+                                                    id="input_frais_pension_famille_journalier"
+                                                    maxlength="255"
+                                                    styleClass="form-control"
+                                                    value="#{sejoursDetailsBean.sejour.fraisPensionFamilleJournalier}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p:outputLabel 
                                                 for="input_frais_voyage" 
                                                 value="Frais voyage"
                                                 styleClass="col-sm-4 control-label"/> 

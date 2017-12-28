@@ -1,6 +1,7 @@
 package fr.famivac.gestionnaire.interfaces.web.sejours;
 
 import fr.famivac.gestionnaire.administration.parametres.control.FraisDossierService;
+import fr.famivac.gestionnaire.administration.parametres.control.FraisPensionFamilleJournalierService;
 import fr.famivac.gestionnaire.administration.parametres.control.FraisSejourJournalierService;
 import fr.famivac.gestionnaire.administration.parametres.control.FraisVoyageService;
 import fr.famivac.gestionnaire.familles.control.FamilleDTO;
@@ -40,6 +41,9 @@ public class AjouterSejourBean implements Serializable {
 
     @Inject
     private FraisVoyageService fraisVoyageService;
+    
+    @Inject
+    private FraisPensionFamilleJournalierService fraisPensionFamilleJournalierService;
 
     private AjouterSejourForm form;
 
@@ -57,6 +61,9 @@ public class AjouterSejourBean implements Serializable {
         BigDecimal montantFraisVoyage = fraisVoyageService
                 .getCurrentMontant(form.getDateDebut())
                 .orElse(BigDecimal.ZERO);
+        BigDecimal montantFraisPensionFamilleJournalier = fraisPensionFamilleJournalierService
+                .getCurrentMontant(form.getDateDebut())
+                .orElse(BigDecimal.ZERO);
         long sejourId = sejourService.create(form.getFamille().getId(),
                 form.getFamille().getNomReferent(),
                 form.getFamille().getPrenomReferent(),
@@ -70,7 +77,8 @@ public class AjouterSejourBean implements Serializable {
                 PeriodeJournee.valueOf(form.getPeriodeJourneeFin()),
                 montantFraisSejourJournalier,
                 montantFraisDossier,
-                montantFraisVoyage);
+                montantFraisVoyage,
+                montantFraisPensionFamilleJournalier);
         return "/sejours/details.xhtml?id=" + sejourId + "&faces-redirect=true";
     }
 
