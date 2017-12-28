@@ -227,18 +227,21 @@ public class SejourService {
         List<Sejour> sejours = sejourRepository.getSejoursTerminesDansLaPeriode(dateDebut, dateFin);
         BigDecimal totalFraisSejour = BigDecimal.ZERO;
         BigDecimal totalFraisDossier = BigDecimal.ZERO;
+        BigDecimal totalFraisVoyage = BigDecimal.ZERO;
         Integer totalNombreJourneesVacances = 0;
         for (Sejour sejour : sejours) {
             int nombreJourneesVacancesSejour = sejour.nombreJours();
             totalNombreJourneesVacances += nombreJourneesVacancesSejour;
             totalFraisSejour = totalFraisSejour.add(new BigDecimal(nombreJourneesVacancesSejour).multiply(sejour.getFraisSejourJournalier()));
             totalFraisDossier = totalFraisDossier.add(sejour.getFraisDossier());
+            totalFraisVoyage = totalFraisVoyage.add(sejour.getFraisVoyage());
         }
         BilanDTO result = new BilanDTO();
         result.setDateDebut(dateDebut);
         result.setDateFin(dateFin);
         result.setTotalFraisSejour(totalFraisSejour);
         result.setTotalFraisDossier(totalFraisDossier);
+        result.setTotalFraisVoyage(totalFraisVoyage);
         result.setTotalNombreJourneesVacances(totalNombreJourneesVacances);
         return result;
     }
