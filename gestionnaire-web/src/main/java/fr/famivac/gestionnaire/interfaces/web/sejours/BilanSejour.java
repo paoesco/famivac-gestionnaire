@@ -26,4 +26,8 @@ public class BilanSejour {
         return sejour.getFraisVoyage();
     }
 
+    public BigDecimal fraisPensionFamille() {
+        return new BigDecimal(sejour.nombreJours()).multiply(sejour.getFraisPensionFamilleJournalier());
+    }
+
 }
