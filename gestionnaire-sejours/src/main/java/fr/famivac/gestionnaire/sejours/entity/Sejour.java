@@ -94,9 +94,6 @@ public class Sejour implements Serializable {
     @NotNull
     private Date dateFin;
 
-    @Temporal(TemporalType.DATE)
-    private Date dateFinReelle;
-
     @Column(name = "PERIODE_JOURNEE_DATE_FIN")
     @Enumerated(EnumType.STRING)
     @NotNull
@@ -191,7 +188,7 @@ public class Sejour implements Serializable {
             return 0;
         }
         LocalDate lDateDebut = DateUtils.toLocalDate(getDateDebut());
-        LocalDate lDateFin = DateUtils.toLocalDate(getDateFinEffective());
+        LocalDate lDateFin = DateUtils.toLocalDate(getDateFin());
         int between = (int) ChronoUnit.DAYS.between(lDateDebut, lDateFin); // date fin exclusive
         if (PeriodeJournee.APRES_MIDI.equals(getPeriodeJourneeDateFin())) {
             between++; // Le jour de fin est comptée si terminé l'apres-midi.
@@ -288,14 +285,6 @@ public class Sejour implements Serializable {
         this.dateFin = (Date) dateFin.clone();
     }
 
-    public Date getDateFinReelle() {
-        return Objects.isNull(dateFinReelle) ? null : (Date) dateFinReelle.clone();
-    }
-
-    public void setDateFinReelle(Date dateFinReelle) {
-        this.dateFinReelle = Objects.isNull(dateFinReelle) ? null : (Date) dateFinReelle.clone();
-    }
-
     public PeriodeJournee getPeriodeJourneeDateFin() {
         return periodeJourneeDateFin;
     }
@@ -318,10 +307,6 @@ public class Sejour implements Serializable {
 
     public void setFraisDossier(BigDecimal fraisDossier) {
         this.fraisDossier = fraisDossier;
-    }
-
-    public Date getDateFinEffective() {
-        return getDateFinReelle() == null ? getDateFin() : getDateFinReelle();
     }
 
     public Set<Payeur> getPayeurs() {
@@ -377,11 +362,15 @@ public class Sejour implements Serializable {
         if (date.before(getDateDebut())) {
             return Optional.of(StatutSejour.A_VENIR);
         }
-        if (DateUtils.between(date, getDateDebut(), getDateFinEffective())) {
+        if (DateUtils.between(date, getDateDebut(), getDateFin())) {
             return Optional.of(StatutSejour.EN_COURS);
         }
-        if (DateUtils.after(date, getDateFinEffective())) {
-            return getDateFinReelle() == null ? Optional.of(StatutSejour.TERMINE) : Optional.of(StatutSejour.TERMINE_PREMATUREMENT);
+        if (DateUtils.after(date, getDateFin())) {
+            if (Objects.nonNull(motifFinSejour) && motifFinSejour.length() > 0) {
+                return Optional.of(StatutSejour.TERMINE_PREMATUREMENT);
+            } else {
+                return Optional.of(StatutSejour.TERMINE);
+            }
         }
         return Optional.empty();
     }

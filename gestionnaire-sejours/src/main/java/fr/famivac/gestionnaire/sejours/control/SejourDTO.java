@@ -28,7 +28,7 @@ public class SejourDTO {
         this.enfant = bean.getEnfantPrenom() + " " + bean.getEnfantNom();
         this.enfantId = bean.getEnfantId();
         this.dateDebut = bean.getDateDebut();
-        this.dateFin = bean.getDateFinEffective();
+        this.dateFin = bean.getDateFin();
         this.statut = bean.statutDuJour().name();
     }
 

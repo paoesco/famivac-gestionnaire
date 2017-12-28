@@ -101,7 +101,6 @@ public class SejoursDetailsBean implements Serializable {
 
     public void reactiverSejour() {
         sejour.setDateAnnulation(null);
-        sejour.setDateFinReelle(null);
         sejour.setMotifAnnulation(null);
         sejour.setMotifFinSejour(null);
         sejourService.update(sejour);

@@ -24,4 +24,7 @@
     <changeSet author="paoesco" id="1.7.0">
         <sqlFile path="sql/1.7.0.sql"/>
     </changeSet>
+    <changeSet author="paoesco" id="1.7.0_1">
+        <sqlFile path="sql/1.7.0_1.sql"/>
+    </changeSet>
 </databaseChangeLog>
