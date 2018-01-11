@@ -14,7 +14,7 @@ public class BilanSejour {
         this.sejour = sejour;
     }
 
-    public BigDecimal fraisSejour() {
+    public BigDecimal forfait() {
         return new BigDecimal(sejour.nombreJours()).multiply(sejour.getForfaitJournalier());
     }
 
@@ -24,6 +24,10 @@ public class BilanSejour {
 
     public BigDecimal fraisVoyage() {
         return sejour.getFraisVoyage();
+    }
+
+    public BigDecimal fraisSejour() {
+        return forfait().add(fraisDossier()).add(fraisVoyage());
     }
 
     public BigDecimal fraisPensionFamille() {
