@@ -65,6 +65,10 @@ public class BilanDTO {
         this.totalFraisVoyage = totalFraisVoyage;
     }
 
+    public BigDecimal getTotalFraisSejour() {
+        return getTotalForfait().add(getTotalFraisDossier()).add(getTotalFraisVoyage());
+    }
+
     public BigDecimal getTotalFraisPensionFamille() {
         return totalFraisPensionFamille;
     }
