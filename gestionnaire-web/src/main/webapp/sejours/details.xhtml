@@ -221,15 +221,15 @@
                                         </div>
                                         <div class="form-group">
                                             <p:outputLabel 
-                                                for="input_frais_sejour_journalier" 
-                                                value="Frais séjour journalier"
+                                                for="input_forfait_journalier" 
+                                                value="Forfait journalier"
                                                 styleClass="col-sm-4 control-label"/> 
                                             <div class="col-md-2">
                                                 <p:inputText
-                                                    id="input_frais_sejour_journalier"
+                                                    id="input_forfait_journalier"
                                                     maxlength="255"
                                                     styleClass="form-control"
-                                                    value="#{sejoursDetailsBean.sejour.fraisSejourJournalier}"/>
+                                                    value="#{sejoursDetailsBean.sejour.forfaitJournalier}"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -291,7 +291,7 @@
                                 <div class="panel-body">
                                     <h:form id="form_bilan" styleClass="form-horizontal">
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Frais séjour</label>
+                                            <label class="col-sm-4 control-label">Forfait sur la période</label>
                                             <div class="col-md-4">
                                                 <p class="form-control-static">
                                                     <h:outputText styleClass="badge" value="#{sejoursDetailsBean.bilan.fraisSejour()}" converter="#{montantConverter}"/>

@@ -1,7 +1,7 @@
-package fr.famivac.gestionnaire.interfaces.web.parametres.fraissejourjournalier;
+package fr.famivac.gestionnaire.interfaces.web.parametres.forfaitjournalier;
 
-import fr.famivac.gestionnaire.administration.parametres.control.FraisSejourJournalierService;
-import fr.famivac.gestionnaire.administration.parametres.entity.FraisSejourJournalier;
+import fr.famivac.gestionnaire.administration.parametres.control.ForfaitJournalierService;
+import fr.famivac.gestionnaire.administration.parametres.entity.ForfaitJournalier;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -15,56 +15,56 @@ import org.primefaces.event.RowEditEvent;
  */
 @Named
 @ViewScoped
-public class FraisSejourJournalierBean implements Serializable {
+public class ForfaitJournalierBean implements Serializable {
 
-    private FraisSejourJournalier form;
+    private ForfaitJournalier form;
 
     /**
      * Liste des tarifs.
      */
-    private LazyFraisSejourJournalierDataModel lazyModel;
+    private LazyForfaitJournalierDataModel lazyModel;
 
     @Inject
-    private FraisSejourJournalierService tarifsService;
+    private ForfaitJournalierService forfaitJournalierService;
 
     /**
      * Initialisation du bean.
      */
     public void init() {
-        lazyModel = new LazyFraisSejourJournalierDataModel(tarifsService.retrieve());
-        form = new FraisSejourJournalier();
+        lazyModel = new LazyForfaitJournalierDataModel(forfaitJournalierService.retrieve());
+        form = new ForfaitJournalier();
     }
 
     public void onRowEdit(RowEditEvent event) {
-        FraisSejourJournalier entity = (FraisSejourJournalier) event.getObject();
-        tarifsService.update(entity);
+        ForfaitJournalier entity = (ForfaitJournalier) event.getObject();
+        forfaitJournalierService.update(entity);
         FacesMessage msg = new FacesMessage("Le tarif a été modifié");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public void create() {
-        tarifsService.create(form);
+        forfaitJournalierService.create(form);
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Le tarif a été ajouté", null);
         FacesContext.getCurrentInstance().addMessage(null, message);
         init();
     }
 
     public void supprimer(Long id) {
-        tarifsService.delete(id);
+        forfaitJournalierService.delete(id);
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Le tarif a été supprimé", null);
         FacesContext.getCurrentInstance().addMessage(null, message);
         init();
     }
 
-    public LazyFraisSejourJournalierDataModel getLazyModel() {
+    public LazyForfaitJournalierDataModel getLazyModel() {
         return lazyModel;
     }
 
-    public FraisSejourJournalier getForm() {
+    public ForfaitJournalier getForm() {
         return form;
     }
 
-    public void setForm(FraisSejourJournalier form) {
+    public void setForm(ForfaitJournalier form) {
         this.form = form;
     }
 

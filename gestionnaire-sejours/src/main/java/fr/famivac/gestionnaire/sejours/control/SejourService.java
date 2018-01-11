@@ -227,7 +227,7 @@ public class SejourService {
 
     public BilanDTO getBilanSurLaPeriode(Date dateDebut, Date dateFin) {
         List<Sejour> sejours = sejourRepository.getSejoursTerminesDansLaPeriode(dateDebut, dateFin);
-        BigDecimal totalFraisSejour = BigDecimal.ZERO;
+        BigDecimal totalForfait = BigDecimal.ZERO;
         BigDecimal totalFraisDossier = BigDecimal.ZERO;
         BigDecimal totalFraisVoyage = BigDecimal.ZERO;
         BigDecimal totalFraisPensionFamille = BigDecimal.ZERO;
@@ -235,7 +235,7 @@ public class SejourService {
         for (Sejour sejour : sejours) {
             int nombreJourneesVacancesSejour = sejour.nombreJours();
             totalNombreJourneesVacances += nombreJourneesVacancesSejour;
-            totalFraisSejour = totalFraisSejour.add(new BigDecimal(nombreJourneesVacancesSejour).multiply(sejour.getFraisSejourJournalier()));
+            totalForfait = totalForfait.add(new BigDecimal(nombreJourneesVacancesSejour).multiply(sejour.getForfaitJournalier()));
             totalFraisDossier = totalFraisDossier.add(sejour.getFraisDossier());
             totalFraisVoyage = totalFraisVoyage.add(sejour.getFraisVoyage());
             totalFraisPensionFamille = totalFraisPensionFamille.add(new BigDecimal(nombreJourneesVacancesSejour).multiply(sejour.getFraisPensionFamilleJournalier()));
@@ -243,7 +243,7 @@ public class SejourService {
         BilanDTO result = new BilanDTO();
         result.setDateDebut(dateDebut);
         result.setDateFin(dateFin);
-        result.setTotalFraisSejour(totalFraisSejour);
+        result.setTotalForfait(totalForfait);
         result.setTotalFraisDossier(totalFraisDossier);
         result.setTotalFraisVoyage(totalFraisVoyage);
         result.setTotalFraisPensionFamille(totalFraisPensionFamille);

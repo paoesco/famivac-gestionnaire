@@ -1,6 +1,6 @@
-package fr.famivac.gestionnaire.interfaces.web.parametres.fraissejourjournalier;
+package fr.famivac.gestionnaire.interfaces.web.parametres.forfaitjournalier;
 
-import fr.famivac.gestionnaire.administration.parametres.entity.FraisSejourJournalier;
+import fr.famivac.gestionnaire.administration.parametres.entity.ForfaitJournalier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,17 +11,17 @@ import org.primefaces.model.SortOrder;
  *
  * @author paoesco
  */
-public class LazyFraisSejourJournalierDataModel extends LazyDataModel<FraisSejourJournalier> {
+public class LazyForfaitJournalierDataModel extends LazyDataModel<ForfaitJournalier> {
 
-    private final List<FraisSejourJournalier> datasource;
+    private final List<ForfaitJournalier> datasource;
 
-    public LazyFraisSejourJournalierDataModel(List<FraisSejourJournalier> datasource) {
+    public LazyForfaitJournalierDataModel(List<ForfaitJournalier> datasource) {
         this.datasource = new ArrayList<>(datasource);
     }
 
     @Override
-    public FraisSejourJournalier getRowData(String rowKey) {
-        for (FraisSejourJournalier entity : datasource) {
+    public ForfaitJournalier getRowData(String rowKey) {
+        for (ForfaitJournalier entity : datasource) {
             if (Long.valueOf(rowKey).equals(entity.getId())) {
                 return entity;
             }
@@ -30,18 +30,18 @@ public class LazyFraisSejourJournalierDataModel extends LazyDataModel<FraisSejou
     }
 
     @Override
-    public Object getRowKey(FraisSejourJournalier bean) {
+    public Object getRowKey(ForfaitJournalier bean) {
         return bean.getId();
     }
 
     @Override
-    public List<FraisSejourJournalier> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+    public List<ForfaitJournalier> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
         int max = first + pageSize > datasource.size() ? datasource.size() : first + pageSize;
         setRowCount(datasource.size());
         return datasource.subList(first, max);
     }
 
-    public FraisSejourJournalier getRowData(int rowIndex) {
+    public ForfaitJournalier getRowData(int rowIndex) {
         if (rowIndex > datasource.size()) {
             throw new IllegalArgumentException();
         }

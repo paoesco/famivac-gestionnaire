@@ -2,7 +2,7 @@ package fr.famivac.gestionnaire.interfaces.web.sejours;
 
 import fr.famivac.gestionnaire.administration.parametres.control.FraisDossierService;
 import fr.famivac.gestionnaire.administration.parametres.control.FraisPensionFamilleJournalierService;
-import fr.famivac.gestionnaire.administration.parametres.control.FraisSejourJournalierService;
+import fr.famivac.gestionnaire.administration.parametres.control.ForfaitJournalierService;
 import fr.famivac.gestionnaire.administration.parametres.control.FraisVoyageService;
 import fr.famivac.gestionnaire.familles.control.FamilleDTO;
 import fr.famivac.gestionnaire.familles.control.FamilleService;
@@ -34,7 +34,7 @@ public class AjouterSejourBean implements Serializable {
     private SejourService sejourService;
 
     @Inject
-    private FraisSejourJournalierService fraisDeSejourJournalierService;
+    private ForfaitJournalierService fraisDeSejourJournalierService;
 
     @Inject
     private FraisDossierService fraisDossierService;

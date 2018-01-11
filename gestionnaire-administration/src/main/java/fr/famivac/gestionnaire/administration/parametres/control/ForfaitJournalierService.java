@@ -1,7 +1,6 @@
 package fr.famivac.gestionnaire.administration.parametres.control;
 
-import fr.famivac.gestionnaire.administration.parametres.entity.FraisSejourJournalier;
-import fr.famivac.gestionnaire.commons.utils.DateUtils;
+import fr.famivac.gestionnaire.administration.parametres.entity.ForfaitJournalier;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -20,26 +19,26 @@ import net.bull.javamelody.MonitoringInterceptor;
  */
 @Stateless
 @Interceptors({MonitoringInterceptor.class})
-public class FraisSejourJournalierService {
+public class ForfaitJournalierService {
 
     @Inject
     private EntityManager entityManager;
 
-    public Long create(FraisSejourJournalier entity) {
+    public Long create(ForfaitJournalier entity) {
         entityManager.persist(entity);
         return entity.getId();
     }
 
-    public List<FraisSejourJournalier> retrieve() {
-        return entityManager.createNamedQuery(FraisSejourJournalier.QUERY_LISTE_ALL).getResultList();
+    public List<ForfaitJournalier> retrieve() {
+        return entityManager.createNamedQuery(ForfaitJournalier.QUERY_LISTE_ALL).getResultList();
     }
 
-    public void update(FraisSejourJournalier entity) {
+    public void update(ForfaitJournalier entity) {
         entityManager.merge(entity);
     }
 
     public void delete(Long id) {
-        FraisSejourJournalier entity = entityManager.find(FraisSejourJournalier.class, id);
+        ForfaitJournalier entity = entityManager.find(ForfaitJournalier.class, id);
         if (Objects.isNull(entity)) {
             throw new IllegalArgumentException("Le tarif n'existe pas");
         }
@@ -49,7 +48,7 @@ public class FraisSejourJournalierService {
     public Optional<BigDecimal> getCurrentMontant(Date date) {
         try {
             return Optional.of(entityManager
-                    .createNamedQuery(FraisSejourJournalier.QUERY_GET_CURRENT, FraisSejourJournalier.class)
+                    .createNamedQuery(ForfaitJournalier.QUERY_GET_CURRENT, ForfaitJournalier.class)
                     .setParameter("date", date)
                     .getSingleResult()
                     .getMontant());

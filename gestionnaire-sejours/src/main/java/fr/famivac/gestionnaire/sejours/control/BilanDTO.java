@@ -12,7 +12,7 @@ public class BilanDTO {
     private Date dateDebut;
     private Date dateFin;
     private Integer totalNombreJourneesVacances;
-    private BigDecimal totalFraisSejour;
+    private BigDecimal totalForfait;
     private BigDecimal totalFraisDossier;
     private BigDecimal totalFraisVoyage;
     private BigDecimal totalFraisPensionFamille;
@@ -41,12 +41,12 @@ public class BilanDTO {
         this.totalNombreJourneesVacances = totalNombreJourneesVacances;
     }
 
-    public BigDecimal getTotalFraisSejour() {
-        return totalFraisSejour;
+    public BigDecimal getTotalForfait() {
+        return totalForfait;
     }
 
-    public void setTotalFraisSejour(BigDecimal totalFraisSejour) {
-        this.totalFraisSejour = totalFraisSejour;
+    public void setTotalForfait(BigDecimal totalForfait) {
+        this.totalForfait = totalForfait;
     }
 
     public BigDecimal getTotalFraisDossier() {

@@ -19,19 +19,19 @@ import javax.persistence.TemporalType;
  * @author paoesco
  */
 @Entity
-@Table(name = "FRAIS_SEJOUR_JOURNALIER")
+@Table(name = "FORFAIT_JOURNALIER")
 @NamedQueries({
-    @NamedQuery(name = FraisSejourJournalier.QUERY_LISTE_ALL, query = "select f from FraisSejourJournalier f")
+    @NamedQuery(name = ForfaitJournalier.QUERY_LISTE_ALL, query = "select f from ForfaitJournalier f")
     ,
-    @NamedQuery(name = FraisSejourJournalier.QUERY_GET_CURRENT, query = "select f from FraisSejourJournalier f where f.dateDebutValidite <= :date and :date <= f.dateFinValidite")
+    @NamedQuery(name = ForfaitJournalier.QUERY_GET_CURRENT, query = "select f from ForfaitJournalier f where f.dateDebutValidite <= :date and :date <= f.dateFinValidite")
 })
-public class FraisSejourJournalier {
+public class ForfaitJournalier {
 
-    public static final String QUERY_LISTE_ALL = "getFraisSejourJournaliers";
+    public static final String QUERY_LISTE_ALL = "getForfaitsJournalier";
 
-    public static final String QUERY_GET_CURRENT = "getFraisSejourJournalierActif";
+    public static final String QUERY_GET_CURRENT = "getForfaitJournalierActif";
 
-    public static final FraisSejourJournalier DEFAULT_TARIF = new FraisSejourJournalier();
+    public static final ForfaitJournalier DEFAULT_TARIF = new ForfaitJournalier();
 
     @Id
     @GeneratedValue
@@ -49,7 +49,7 @@ public class FraisSejourJournalier {
     @Temporal(TemporalType.DATE)
     private Date dateFinValidite;
 
-    public FraisSejourJournalier() {
+    public ForfaitJournalier() {
         montant = new BigDecimal(BigInteger.ZERO);
     }
 

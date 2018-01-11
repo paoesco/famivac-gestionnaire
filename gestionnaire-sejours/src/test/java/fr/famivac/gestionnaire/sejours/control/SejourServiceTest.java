@@ -45,7 +45,7 @@ public class SejourServiceTest {
         Assert.assertEquals(dateFin, bilan.getDateFin());
         Assert.assertEquals(62, bilan.getTotalNombreJourneesVacances().intValue());
         Assert.assertEquals(50, bilan.getTotalFraisDossier().intValue());
-        Assert.assertEquals(2170, bilan.getTotalFraisSejour().intValue());
+        Assert.assertEquals(2170, bilan.getTotalForfait().intValue());
         Assert.assertEquals(90, bilan.getTotalFraisVoyage().intValue());
         Assert.assertEquals(93, bilan.getTotalFraisPensionFamille().intValue());
     }
