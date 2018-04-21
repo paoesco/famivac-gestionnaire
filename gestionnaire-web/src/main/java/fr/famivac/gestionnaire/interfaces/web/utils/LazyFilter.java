@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 /**
  * @author paoesco
- * @param <T>
+ * @param <T> : type de classe
  */
 public class LazyFilter<T> implements Predicate<T> {
 
@@ -35,10 +35,7 @@ public class LazyFilter<T> implements Predicate<T> {
                         match = false;
                         break;
                     }
-                } catch (SecurityException | IllegalArgumentException | IllegalAccessException ex) {
-                    Logger.getLogger(LazyFilter.class.getName()).log(Level.FINE, null, ex);
-                    match = false;
-                } catch (NoSuchMethodException | InvocationTargetException ex) {
+                } catch (SecurityException | IllegalArgumentException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
                     Logger.getLogger(LazyFilter.class.getName()).log(Level.FINE, null, ex);
                     match = false;
                 }

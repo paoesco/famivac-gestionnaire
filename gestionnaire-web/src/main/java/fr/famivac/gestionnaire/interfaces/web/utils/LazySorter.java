@@ -9,7 +9,7 @@ import org.primefaces.model.SortOrder;
 
 /**
  * @author paoesco
- * @param <O>
+ * @param <O> : type de l'objet
  */
 public class LazySorter<O> implements Comparator<O> {
 
