@@ -31,6 +31,7 @@ public class FamilleRepository {
         if (periodesAccueil != null && !periodesAccueil.isEmpty()) {
             sQuery.append(" and periode in :periodesAccueil ");
         }
+        sQuery.append(" and archivee = false ");
 
         Query query = entityManager.createQuery(sQuery.toString().replaceFirst("and", "where"), Famille.class);
         if (nomReferent != null && !nomReferent.isEmpty()) {

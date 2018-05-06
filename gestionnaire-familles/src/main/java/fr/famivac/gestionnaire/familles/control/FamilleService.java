@@ -85,9 +85,11 @@ public class FamilleService {
         }
         AlphanumComparator comparator = new AlphanumComparator();
         List<Famille> beans = repository.retrieve(nomReferent, prenomReferent, periodes);
-        List<FamilleDTO> dtos = beans.stream().map((Famille f) -> {
-            return new FamilleDTO(f);
-        }).sorted((f1, f2) -> {
+        List<FamilleDTO> dtos = beans
+                .stream()
+                .map((Famille f) -> {
+                    return new FamilleDTO(f);
+                }).sorted((f1, f2) -> {
             int resultNomReferent = comparator.compare(f1.getNomReferent(), f2.getNomReferent());
             if (resultNomReferent != 0) {
                 return resultNomReferent;
@@ -108,6 +110,15 @@ public class FamilleService {
             throw new IllegalArgumentException("La famille n'existe pas");
         }
         entityManager.remove(famille);
+    }
+
+    public void archiver(long id) {
+        Famille famille = entityManager.find(Famille.class, id);
+        if (famille == null) {
+            throw new IllegalArgumentException("La famille n'existe pas");
+        }
+        famille.setArchivee(true);
+        entityManager.merge(famille);
     }
 
     public void deleteChambre(long id) {

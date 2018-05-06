@@ -43,6 +43,11 @@ public class FamillesListeBean implements Serializable {
         familleService.delete(id);
         init(); // recharge des familles
     }
+    
+     public void archiver(Long id) {
+        familleService.archiver(id);
+        init(); // recharge des familles
+    }
 
     public LazyFamilleDataModel getLazyModel() {
         return lazyModel;

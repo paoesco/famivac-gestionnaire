@@ -122,6 +122,9 @@ public class Famille implements Serializable {
     @Column(name = "CANDIDATURE")
     private boolean candidature;
 
+    @Column(name = "ARCHIVEE")
+    private boolean archivee;
+
     protected Famille() {
         this.adresse = new Adresse();
         this.membres = new HashSet<>();
@@ -398,6 +401,14 @@ public class Famille implements Serializable {
 
     public void setCandidature(boolean candidature) {
         this.candidature = candidature;
+    }
+
+    public boolean isArchivee() {
+        return archivee;
+    }
+
+    public void setArchivee(boolean archivee) {
+        this.archivee = archivee;
     }
 
 }
