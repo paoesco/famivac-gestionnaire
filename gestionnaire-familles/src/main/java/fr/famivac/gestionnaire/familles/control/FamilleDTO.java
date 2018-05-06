@@ -22,6 +22,8 @@ public class FamilleDTO implements Serializable {
 
     private boolean candidature;
 
+    private boolean archivee;
+
     public FamilleDTO(Famille bean) {
         this.id = bean.getId();
         this.nomReferent = bean.getMembreReferent().getNom();
@@ -32,6 +34,7 @@ public class FamilleDTO implements Serializable {
         }
         this.radiee = bean.isRadiee();
         this.candidature = bean.isCandidature();
+        this.archivee = bean.isArchivee();
     }
 
     public Long getId() {
@@ -89,5 +92,13 @@ public class FamilleDTO implements Serializable {
     public void setCandidature(boolean candidature) {
         this.candidature = candidature;
     }
-    
+
+    public boolean isArchivee() {
+        return archivee;
+    }
+
+    public void setArchivee(boolean archivee) {
+        this.archivee = archivee;
+    }
+
 }

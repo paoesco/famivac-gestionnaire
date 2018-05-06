@@ -84,9 +84,9 @@ public class AjouterSejourBean implements Serializable {
 
     public List<FamilleDTO> completeFamille(String query) {
         if (query == null || query.isEmpty()) {
-            return familleService.rechercher("%", "%", null);
+            return familleService.rechercher("%", "%", null, false);
         }
-        return familleService.rechercher(query, "%", null);
+        return familleService.rechercher(query, "%", null, false);
     }
 
     public List<EnfantDTO> completeEnfant(String query) {

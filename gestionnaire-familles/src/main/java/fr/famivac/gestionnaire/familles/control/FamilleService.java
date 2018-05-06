@@ -73,7 +73,7 @@ public class FamilleService {
         return famille;
     }
 
-    public List<FamilleDTO> rechercher(String nomReferent, String prenomReferent, List<String> periodesAccueil) {
+    public List<FamilleDTO> rechercher(String nomReferent, String prenomReferent, List<String> periodesAccueil, boolean archivee) {
         Set<PeriodeAccueil> periodes = null;
         if (periodesAccueil != null) {
             periodes = periodesAccueil
@@ -84,7 +84,7 @@ public class FamilleService {
                     .collect(Collectors.toSet());
         }
         AlphanumComparator comparator = new AlphanumComparator();
-        List<Famille> beans = repository.retrieve(nomReferent, prenomReferent, periodes);
+        List<Famille> beans = repository.retrieve(nomReferent, prenomReferent, periodes, archivee);
         List<FamilleDTO> dtos = beans
                 .stream()
                 .map((Famille f) -> {

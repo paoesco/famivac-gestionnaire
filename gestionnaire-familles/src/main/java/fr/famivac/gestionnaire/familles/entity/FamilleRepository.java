@@ -17,7 +17,7 @@ public class FamilleRepository {
     @Inject
     private EntityManager entityManager;
 
-    public List<Famille> retrieve(String nomReferent, String prenomReferent, Set<PeriodeAccueil> periodesAccueil) {
+    public List<Famille> retrieve(String nomReferent, String prenomReferent, Set<PeriodeAccueil> periodesAccueil, boolean archivee) {
         StringBuilder sQuery = new StringBuilder(" select distinct f from Famille f join f.membres m ");
         if (periodesAccueil != null && !periodesAccueil.isEmpty()) {
             sQuery.append(" join f.periodesSouhaitees periode ");
@@ -31,7 +31,7 @@ public class FamilleRepository {
         if (periodesAccueil != null && !periodesAccueil.isEmpty()) {
             sQuery.append(" and periode in :periodesAccueil ");
         }
-        sQuery.append(" and archivee = false ");
+        sQuery.append(" and archivee = :archivee ");
 
         Query query = entityManager.createQuery(sQuery.toString().replaceFirst("and", "where"), Famille.class);
         if (nomReferent != null && !nomReferent.isEmpty()) {
@@ -43,6 +43,7 @@ public class FamilleRepository {
         if (periodesAccueil != null && !periodesAccueil.isEmpty()) {
             query.setParameter("periodesAccueil", periodesAccueil);
         }
+        query.setParameter("archivee", archivee);
         return query.getResultList();
     }
 

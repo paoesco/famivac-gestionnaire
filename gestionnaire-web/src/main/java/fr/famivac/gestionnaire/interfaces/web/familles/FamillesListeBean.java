@@ -27,6 +27,8 @@ public class FamillesListeBean implements Serializable {
 
     private List<String> periodesAccueil;
 
+    private boolean archivees;
+
     /**
      * Initialisation du bean.
      */
@@ -36,15 +38,15 @@ public class FamillesListeBean implements Serializable {
     }
 
     public void rechercher() {
-        lazyModel = new LazyFamilleDataModel(familleService.rechercher("", "", periodesAccueil));
+        lazyModel = new LazyFamilleDataModel(familleService.rechercher("", "", periodesAccueil, archivees));
     }
 
     public void supprimer(Long id) {
         familleService.delete(id);
         init(); // recharge des familles
     }
-    
-     public void archiver(Long id) {
+
+    public void archiver(Long id) {
         familleService.archiver(id);
         init(); // recharge des familles
     }
@@ -59,6 +61,14 @@ public class FamillesListeBean implements Serializable {
 
     public void setPeriodesAccueil(List<String> periodesAccueil) {
         this.periodesAccueil = periodesAccueil;
+    }
+
+    public boolean isArchivees() {
+        return archivees;
+    }
+
+    public void setArchivees(boolean archivees) {
+        this.archivees = archivees;
     }
 
 }

@@ -42,6 +42,14 @@
                                     <f:selectItem itemLabel="Toussaint" itemValue="TOUSSAINT" />
                                     <f:selectItem itemLabel="Noël" itemValue="NOEL" />
                                 </p:selectManyButton>
+                                
+                                <p:selectOneButton 
+                                    value="#{famillesListeBean.archivees}"
+                                    styleClass="pull-right">
+                                    <p:ajax event="change" update="datatable" listener="#{famillesListeBean.rechercher()}"></p:ajax>
+                                    <f:selectItem itemLabel="Actives" itemValue="false" />
+                                    <f:selectItem itemLabel="Archivées" itemValue="true" />
+                                </p:selectOneButton>
                                 <br/>
                                 <br/>
                                 <p:dataTable 
@@ -102,6 +110,7 @@
                                                 icon="ui-icon-alert" />
                                         </p:commandButton>
                                         <p:commandButton 
+                                            rendered="#{!bean.archivee}"
                                             styleClass="btn-default"
                                             icon="fa fa-archive"
                                             actionListener="#{famillesListeBean.archiver(bean.id)}"
