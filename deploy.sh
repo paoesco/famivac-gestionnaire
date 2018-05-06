@@ -1,6 +1,5 @@
 #!/bin/bash
 if [ "$TRAVIS_BRANCH" == "development" ]; then
-  // do the deploy
   eval "$(ssh-agent -s)" #start the ssh agent
   chmod 600 .travis/deploy.key # this key should have push access
   ssh-add .travis/deploy.key
