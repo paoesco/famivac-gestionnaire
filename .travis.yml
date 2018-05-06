@@ -8,4 +8,4 @@ before_install:
   -in .travis/deploy.key.enc -out .travis/deploy.key -d
   
 after_success:
-  - ./deploy.sh
+  - .travis/deploy.sh
