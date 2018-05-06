@@ -32,10 +32,4 @@ public class VoyagesPageBean implements Serializable {
         return lazyModel;
     }
 
-    public void preProcessPDF(Object document) {
-        Document pdf = (Document) document;
-        pdf.setPageSize(PageSize.A4.rotate());
-        pdf.open();
-    }
-
 }

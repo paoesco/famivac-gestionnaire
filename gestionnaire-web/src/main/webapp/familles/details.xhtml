@@ -55,8 +55,18 @@
                                                 paginator="true"
                                                 rowKey="#{bean.id}"
                                                 rows="20">
+                                                <f:facet name="{Exporters}">
+                                                    <h:commandLink>
+                                                        <img src="/resources/img/excel.png" width="24"/>
+                                                        <p:dataExporter type="xlsx" target="sejoursDatatable" fileName="#{familleDetailsBean.form.membreReferent.nom}-sejours" />
+                                                    </h:commandLink>
+                                                    <h:commandLink>
+                                                        <img src="/resources/img/pdf.png" width="24"/>
+                                                        <p:dataExporter type="pdf" target="sejoursDatatable" fileName="#{familleDetailsBean.form.membreReferent.nom}-sejours" preProcessor="#{PDFProcessor.preProcess}"/>
+                                                    </h:commandLink>
+                                                </f:facet>
                                                 <p:column headerText="Enfant">
-                                                    #{bean.enfant.prenom} #{bean.enfant.nom}
+                                                    #{bean.enfantPrenom} #{bean.enfantNom}
                                                 </p:column>
                                                 <p:column headerText="Début">
                                                     <h:outputText value="#{bean.dateDebut}">
@@ -162,7 +172,7 @@
                                 </h:form>
                             </div>
                         </div>
-                        
+
                         <ui:include src="membres.xhtml"></ui:include>
                     </div>
                 </div> <!-- .container -->

@@ -46,7 +46,7 @@
 
                                     <h:commandLink>
                                         <img src="/resources/img/pdf.png" width="24"/>
-                                        <p:dataExporter type="pdf" target="datatable" fileName="voyages" preProcessor="#{voyagesPageBean.preProcessPDF}"/>
+                                        <p:dataExporter type="pdf" target="datatable" fileName="voyages" preProcessor="#{PDFProcessor.preProcess}"/>
                                     </h:commandLink>
 
                                 </f:facet>

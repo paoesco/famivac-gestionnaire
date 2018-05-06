@@ -16,11 +16,11 @@
             <artifactId>gestionnaire-commons</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>fr.famivac.gestionnaire</groupId>
             <artifactId>gestionnaire-enfants</artifactId>
             <version>${project.version}</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
