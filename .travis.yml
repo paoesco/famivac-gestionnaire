@@ -14,4 +14,4 @@ after_success:
   - ssh-keyscan ns377672.ip-37-59-60.eu >> ~/.ssh/known_hosts
   - git remote add deploy dokku@37.59.60.7:famivac-gestionnaire-app-int
   - git config --global push.default simple
-  - git push deploy master
+  - git push deploy development:master

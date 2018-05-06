@@ -52,6 +52,7 @@
                                                 id="sejoursDatatable"
                                                 var="bean" 
                                                 value="#{familleDetailsBean.sejours}"
+                                                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                                 paginator="true"
                                                 rowKey="#{bean.id}"
                                                 rows="20">
@@ -85,7 +86,7 @@
                                                     <h:outputText styleClass="label label-default" value="Annulé" rendered="#{bean.statutDuJour().name().equals('ANNULE')}"/>
                                                     <h:outputText styleClass="label label-warning" value="Terminé prém." rendered="#{bean.statutDuJour().name().equals('TERMINE_PREMATUREMENT')}"/>
                                                 </p:column>
-                                                <p:column width="100">
+                                                <p:column width="100" exportable="false">
                                                     <p:button 
                                                         outcome="/sejours/details.xhtml"
                                                         styleClass="btn-default" 
