@@ -20,3 +20,5 @@ travis.log
 audit.log
 .travis/*.key
 .travis/*.key.pub
+
+node_modules/

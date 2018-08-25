@@ -1,0 +1,29 @@
+{
+  "name": "famivac-gestionnaire",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --exit --timeout 10000 tests/**/*.js",
+    "start": "nodemon --ignore 'tests/**' server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paoesco/famivac-gestionnaire.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paoesco/famivac-gestionnaire/issues"
+  },
+  "homepage": "https://github.com/paoesco/famivac-gestionnaire#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.3"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

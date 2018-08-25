@@ -1,1 +1,0 @@
-ALTER TABLE membrefamille ALTER COLUMN communedenaissance_code DROP not null;
