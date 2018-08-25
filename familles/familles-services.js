@@ -1,16 +1,14 @@
 'use strict';
 
+let Famille = require('./famille');
 
 exports.get = function (req, res) {
-	let familles = [
-	{
-		id: 1,
-    name: "Kalel"
-	},
-  {
-    id: 2,
-    name: "Jorel"
-  }
-	]
-	res.json(familles);
+
+  let kalel = new Famille(1, 'Kalel');
+  let jorel = new Famille(2, 'Jorel');
+  let familles = [
+  kalel,
+  jorel
+  ]
+  res.json(familles);
 };
