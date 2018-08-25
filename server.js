@@ -9,7 +9,7 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 const port = process.env.PORT || 3000;
 // Sets routes
-const routes = require('./routes');
+const routes = require('./config/routes');
 routes(app);
 // Starts server
 app.listen(port);
