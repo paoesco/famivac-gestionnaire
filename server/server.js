@@ -1,12 +1,15 @@
 'use strict';
 
-let express = require('express');
+const express = require('express');
+const bodyParser = require('body-parser');
 
 // Configures server
-let app = express();
-let port = process.env.PORT || 3000;
+const app = express();
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+const port = process.env.PORT || 3000;
 // Sets routes
-let routes = require('./routes');
+const routes = require('./routes');
 routes(app);
 // Starts server
 app.listen(port);

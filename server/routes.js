@@ -1,8 +1,9 @@
 'use strict';
 module.exports = function(app) {
   
-  let famillesServices = require('../familles/familles-services');
+  const famillesServices = require('../familles/familles-services');
   app.route('/familles')
-  .get(famillesServices.get);
+  .get(famillesServices.get)
+  .post(famillesServices.post);
 
 };

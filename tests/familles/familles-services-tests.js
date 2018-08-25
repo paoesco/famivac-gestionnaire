@@ -21,3 +21,19 @@ describe('GET /familles', () => {
     });
   });
 });
+
+describe('POST /familles', () => {
+  it('it should POST a new famille', (done) => {
+    let postObject = { id: 3, name: 'Clark'};
+    chai.request(server)
+    .post('/familles')
+    .set('content-type', 'application/json')
+    .send(postObject)
+    .end((err, res) => {
+      res.should.have.status(201);
+      res.body.should.be.a('object');
+      res.body.should.be.eql(postObject);
+      done();
+    })
+  })
+})
