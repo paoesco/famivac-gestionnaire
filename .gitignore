@@ -20,3 +20,4 @@ travis.log
 audit.log
 .travis/*.key
 .travis/*.key.pub
+prod.sql
