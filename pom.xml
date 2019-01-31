@@ -4,7 +4,7 @@
 
     <groupId>fr.famivac</groupId>
     <artifactId>gestionnaire</artifactId>
-    <version>1.12.0</version>
+    <version>1.14.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>gestionnaire</name>
@@ -26,7 +26,7 @@
         <connection>scm:git:ssh://git@github.com/paoesco/famivac-gestionnaire.git</connection>
         <url>https://github.com/paoesco/famivac-gestionnaire</url>
         <developerConnection>scm:git:ssh://git@github.com/paoesco/famivac-gestionnaire.git</developerConnection>
-        <tag>gestionnaire-1.12.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
@@ -48,17 +48,17 @@
         
         <!-- Java EE dependencies -->
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <wildfly-swarm.version>2017.12.1</wildfly-swarm.version>
+        <wildfly-swarm.version>2018.5.0</wildfly-swarm.version>
         <javaee.version>7.0</javaee.version>
         
         <!-- Dependencies versions -->
-        <javamelody.version>1.71.0</javamelody.version>
+        <javamelody.version>1.76.0</javamelody.version>
         <primefaces.version>6.2</primefaces.version>
         <bootstrap.version>3.3.7-1</bootstrap.version>
         <metismenu.version>2.6.1</metismenu.version>
         <sbadmin2.version>3.3.7</sbadmin2.version>
         <fontawesome.version>4.7.0</fontawesome.version>
-        <postgre.version>42.1.4</postgre.version>
+        <postgre.version>42.2.5</postgre.version>
         <spring.version>Brussels-SR3</spring.version>
         <jacoco.version>0.7.9</jacoco.version>
         <poi.version>3.17</poi.version>

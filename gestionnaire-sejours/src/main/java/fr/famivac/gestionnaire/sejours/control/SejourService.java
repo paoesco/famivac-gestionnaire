@@ -19,6 +19,8 @@ import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TemporalType;
 import net.bull.javamelody.MonitoringInterceptor;
 
 /**
@@ -88,6 +90,20 @@ public class SejourService {
     }
 
     public List<SejourDTO> rechercher(String nomReferent, String prenomReferent, String nomEnfant, String prenomEnfant, StatutSejour statutSejour) {
+        // Query
+        StringBuilder jpql = new StringBuilder(" select s ");
+        jpql.append(" from Sejour s ");
+        jpql.append( "where lower(s.enfantNom) like :nomEnfant and lower(s.enfantPrenom) like :prenomEnfant ");
+        jpql.append(" and lower(s.familleNom) like :nomReferent and lower(s.famillePrenom) like :prenomReferent ");
+        if (StatutSejour.EN_COURS.equals(statutSejour)) {
+            jpql.append(" and s.dateDebut <= :today and :today < s.dateFin ");
+        }
+        if (StatutSejour.A_VENIR.equals(statutSejour)) {
+            jpql.append(" and :today < s.dateDebut ");
+        }
+        jpql.append(" order by s.dateDebut, s.dateFin ");
+
+        // Parameters
         if (nomReferent == null || nomReferent.isEmpty()) {
             nomReferent = "%";
         } else {
@@ -108,20 +124,17 @@ public class SejourService {
         } else {
             prenomEnfant = "%" + prenomEnfant + "%";
         }
-        List<Sejour> entities = entityManager
-                .createNamedQuery(Sejour.QUERY_SEJOURS_RECHERCHER, Sejour.class)
+        Query query = entityManager
+                .createQuery(jpql.toString(), Sejour.class)
                 .setParameter("nomReferent", nomReferent.toLowerCase())
                 .setParameter("prenomReferent", prenomReferent.toLowerCase())
                 .setParameter("nomEnfant", nomEnfant.trim().toLowerCase())
-                .setParameter("prenomEnfant", prenomEnfant.trim().toLowerCase())
-                .getResultList();
-
-        Stream<Sejour> stream = entities.stream();
-        if (statutSejour != null) {
-            stream = stream.filter((Sejour s) -> {
-                return statutSejour.equals(s.statutDuJour());
-            });
+                .setParameter("prenomEnfant", prenomEnfant.trim().toLowerCase());
+        if (StatutSejour.EN_COURS.equals(statutSejour) || StatutSejour.A_VENIR.equals(statutSejour)) {
+            query.setParameter("today", new Date(), TemporalType.DATE);
         }
+        List<Sejour> entities = query.getResultList();
+        Stream<Sejour> stream = entities.stream();
         return stream
                 .map((Sejour s) -> {
                     return new SejourDTO(s);

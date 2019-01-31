@@ -39,8 +39,6 @@ import javax.validation.constraints.NotNull;
     ,
     @NamedQuery(name = Sejour.QUERY_SEJOURS_RETRIEVE, query = "select s from Sejour s order by s.dateDebut, s.dateFin")
     ,
-    @NamedQuery(name = Sejour.QUERY_SEJOURS_RECHERCHER, query = "select s from Sejour s where lower(s.enfantNom) like :nomEnfant and lower(s.enfantPrenom) like :prenomEnfant and lower(s.familleNom) like :nomReferent and lower(s.famillePrenom) like :prenomReferent order by s.dateDebut, s.dateFin")
-    ,
     @NamedQuery(name = Sejour.QUERY_SEJOURS_TERMINES_DANS_LA_PERIODE, query = "select s from Sejour s where :dateDebut <= s.dateFin and s.dateFin <= :dateFin")
 })
 public class Sejour implements Serializable {
