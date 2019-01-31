@@ -48,11 +48,11 @@
         
         <!-- Java EE dependencies -->
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <wildfly-swarm.version>2017.12.1</wildfly-swarm.version>
+        <wildfly-swarm.version>2018.5.0</wildfly-swarm.version>
         <javaee.version>7.0</javaee.version>
         
         <!-- Dependencies versions -->
-        <javamelody.version>1.71.0</javamelody.version>
+        <javamelody.version>1.76.0</javamelody.version>
         <primefaces.version>6.2</primefaces.version>
         <bootstrap.version>3.3.7-1</bootstrap.version>
         <metismenu.version>2.6.1</metismenu.version>
