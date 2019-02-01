@@ -311,7 +311,7 @@ public class Sejour implements Serializable {
     }
 
     public BigDecimal getForfaitJournalier() {
-        return forfaitJournalier;
+        return Objects.isNull(forfaitJournalier) ? BigDecimal.ZERO : forfaitJournalier;
     }
 
     public void setForfaitJournalier(BigDecimal forfaitJournalier) {
@@ -319,7 +319,7 @@ public class Sejour implements Serializable {
     }
 
     public BigDecimal getFraisDossier() {
-        return fraisDossier;
+        return Objects.isNull(fraisDossier) ? BigDecimal.ZERO : fraisDossier ;
     }
 
     public void setFraisDossier(BigDecimal fraisDossier) {
@@ -327,7 +327,7 @@ public class Sejour implements Serializable {
     }
 
     public BigDecimal getFraisPensionFamilleJournalier() {
-        return fraisPensionFamilleJournalier;
+        return Objects.isNull(fraisPensionFamilleJournalier) ? BigDecimal.ZERO : fraisPensionFamilleJournalier;
     }
 
     public void setFraisPensionFamilleJournalier(BigDecimal fraisPensionFamilleJournalier) {
@@ -335,7 +335,7 @@ public class Sejour implements Serializable {
     }
 
     public BigDecimal getFraisVoyage() {
-        return fraisVoyage;
+        return Objects.isNull(fraisVoyage) ? BigDecimal.ZERO : fraisVoyage;
     }
 
     public void setFraisVoyage(BigDecimal fraisVoyage) {
