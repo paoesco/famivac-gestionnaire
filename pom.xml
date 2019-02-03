@@ -48,7 +48,7 @@
         
         <!-- Java EE dependencies -->
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <wildfly-swarm.version>2018.5.0</wildfly-swarm.version>
+        <wildfly-swarm.version>2.1.0.Final</wildfly-swarm.version>
         <javaee.version>7.0</javaee.version>
         
         <!-- Dependencies versions -->
@@ -84,7 +84,7 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>org.wildfly.swarm</groupId>
+                <groupId>io.thorntail</groupId>
                 <artifactId>bom</artifactId>
                 <version>${wildfly-swarm.version}</version>
                 <scope>import</scope>
@@ -180,8 +180,8 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>wildfly-swarm-plugin</artifactId>
+                    <groupId>io.thorntail</groupId>
+                    <artifactId>thorntail-maven-plugin</artifactId>
                     <version>${wildfly-swarm.version}</version>
                     <configuration>
                         <properties>
