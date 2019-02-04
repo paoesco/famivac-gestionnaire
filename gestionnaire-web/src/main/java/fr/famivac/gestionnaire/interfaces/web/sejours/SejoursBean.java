@@ -8,7 +8,7 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import liquibase.util.StringUtils;
+import org.springframework.util.StringUtils;
 
 /**
  *
@@ -41,7 +41,7 @@ public class SejoursBean implements Serializable {
 
     public void rechercher() {
         StatutSejour statut = null;
-        if (StringUtils.isNotEmpty(rechercherForm.getStatutSejour())) {
+        if (!StringUtils.isEmpty(rechercherForm.getStatutSejour())) {
             statut = StatutSejour.valueOf(rechercherForm.getStatutSejour());
         }
         List<SejourDTO> sejours = sejourService.rechercher(rechercherForm.getNomReferent(), rechercherForm.getPrenomReferent(), rechercherForm.getNomEnfant(), rechercherForm.getPrenomEnfant(), statut);

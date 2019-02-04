@@ -32,19 +32,14 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.fork>true</maven.compiler.fork>
         <additionalparam>-Xdoclint:none</additionalparam>
         
         <!-- Plugins versions -->
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <maven-scm-provider-jgit.version>1.9.5</maven-scm-provider-jgit.version>
         <maven-deploy-plugin>2.8.2</maven-deploy-plugin>
-        <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <maven-war-plugin.version>3.1.0</maven-war-plugin.version>
-        <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         
         <!-- Java EE dependencies -->
         <javaee.version>8.0</javaee.version>
@@ -63,6 +58,7 @@
         <jacoco.version>0.7.9</jacoco.version>
         <poi.version>3.17</poi.version>
         <itext.version>2.1.7</itext.version>
+        <liquibase.version>3.7.0-SNAPSHOT</liquibase.version>
     </properties>
     
     <modules>
@@ -179,6 +175,47 @@
     <build>
         <pluginManagement>
             <plugins>
+                <!-- JDK 11 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.0</version>
+                    <configuration>
+                        <release>11</release>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.0</version>
+                    <configuration>
+                        <argLine>
+                            --illegal-access=permit
+                        </argLine>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>run-unit-tests</id>
+                            <goals>
+                                <goal>test</goal>
+                            </goals>
+                            <configuration>
+                                <skip>${skipUnitTests}</skip>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>2.22.0</version>
+                    <configuration>
+                        <argLine>
+                            --illegal-access=permit
+                        </argLine>
+                    </configuration>
+                </plugin>
+                <!-- Server -->
                 <plugin>
                     <groupId>io.thorntail</groupId>
                     <artifactId>thorntail-maven-plugin</artifactId>
