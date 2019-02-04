@@ -1,7 +1,6 @@
 package fr.famivac.gestionnaire.familles.control;
 
 import fr.famivac.gestionnaire.commons.entity.Adresse;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *

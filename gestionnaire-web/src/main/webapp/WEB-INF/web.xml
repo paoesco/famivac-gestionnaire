@@ -59,22 +59,11 @@
         <param-value>java:/jboss/datasources/PostgreSQLDS</param-value>
     </context-param>
 
-    <!--    <context-param>
-        <param-name>liquibase.host.includes</param-name>
-        <param-value>production1.example.com, production2.example.com</param-value>
-    </context-param>-->
-
     <context-param>
         <param-name>liquibase.onerror.fail</param-name>
         <param-value>true</param-value>
     </context-param>
 
-    <context-param>
-        <param-name>liquibase.contexts</param-name>
-        <param-value>test</param-value>
-    </context-param>
-    
-    
     <listener>
         <listener-class>liquibase.integration.servlet.LiquibaseServletListener</listener-class>
     </listener>
