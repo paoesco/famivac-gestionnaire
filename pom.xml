@@ -47,9 +47,9 @@
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         
         <!-- Java EE dependencies -->
+        <javaee.version>8.0</javaee.version>
+        <thorntail.version>2.3.0.Final</thorntail.version>
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <wildfly-swarm.version>2.1.0.Final</wildfly-swarm.version>
-        <javaee.version>7.0</javaee.version>
         
         <!-- Dependencies versions -->
         <javamelody.version>1.76.0</javamelody.version>
@@ -86,7 +86,7 @@
             <dependency>
                 <groupId>io.thorntail</groupId>
                 <artifactId>bom</artifactId>
-                <version>${wildfly-swarm.version}</version>
+                <version>${thorntail.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -182,7 +182,7 @@
                 <plugin>
                     <groupId>io.thorntail</groupId>
                     <artifactId>thorntail-maven-plugin</artifactId>
-                    <version>${wildfly-swarm.version}</version>
+                    <version>${thorntail.version}</version>
                     <configuration>
                         <properties>
                             <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
