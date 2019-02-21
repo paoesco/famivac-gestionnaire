@@ -1,12 +1,9 @@
 language: java
-
 jdk:
 - oraclejdk11
-
 before_install:
+- openssl aes-256-cbc -K $encrypted_20c4e0acc5aa_key -iv $encrypted_20c4e0acc5aa_iv
+  -in deploy.key.enc -out deploy.key -d
 - chmod +x deploy.sh
-- openssl aes-256-cbc -K $encrypted_01cb97b32830_key -iv $encrypted_01cb97b32830_iv
-  -in .travis/deploy.key.enc -out .travis/deploy.key -d
-  
 after_success:
-  - ./deploy.sh
+- "./deploy/deploy.sh"

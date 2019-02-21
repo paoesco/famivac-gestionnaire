@@ -18,6 +18,5 @@ nbactions.xml
 /gestionnaire-sejours/target/
 travis.log
 audit.log
-.travis/*.key
-.travis/*.key.pub
 prod.sql
+deploy.key
