@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-start</actionName>
+            <displayName>start</displayName>
+            <goals>
+                <goal>io.thorntail:thorntail-maven-plugin:run</goal>
+            </goals>
+            <properties>
+                <swarm.ds.name>PostgreSQLDS</swarm.ds.name>
+                <swarm.ds.connection.url>jdbc:postgresql://localhost/gestionnaire</swarm.ds.connection.url>
+                <swarm.ds.username>gestionnaire</swarm.ds.username>
+                <swarm.ds.password>gestionnaire</swarm.ds.password>
+                <javamelody.datasources>java:jboss/datasources/PostgreSQLDS</javamelody.datasources>
+            </properties>
+        </action>
+    </actions>

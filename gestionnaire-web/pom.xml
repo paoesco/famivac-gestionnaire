@@ -142,13 +142,6 @@
             <groupId>de.chkal.jsf</groupId>
             <artifactId>jsf-maven-util</artifactId>
         </dependency>
-<!--        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>${liquibase.version}</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/WEB-INF/lib/liquibase-core-3.7.0-SNAPSHOT.jar</systemPath>
-        </dependency>-->
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
