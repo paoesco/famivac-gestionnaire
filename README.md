@@ -43,6 +43,8 @@ java
     -Dswarm.http.port=$PORT 
     -jar gestionnaire-web/target/gestionnaire-web-*-swarm.jar
 
-## Heroku deployment
 
-- Add environment variables
+## Dokku
+
+- `dokku postgres:backup-auth famivac-gestionnaire-db-prod AWS_ACCESS_KEY AWS_SECRET_KEY eu-west-3`
+- cron : `0 0 * * * dokku postgres:backup famivac-gestionnaire-db-prod famivac-gestionnaire-db-prod`
