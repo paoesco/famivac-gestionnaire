@@ -26,10 +26,12 @@ Environment properties :
 - swarm.ds.username
 - swarm.ds.password
 - swarm.https.only
+- famivac.api.key
 
 Startup line
 
 java 
+    -Dfamivac.api.key=$FAMIVAC_API_KEY 
     -Dswarm.ds.name=PostgreSQLDS 
     -Dswarm.ds.connection.url=$JDBC_DATABASE_URL 
     -Dswarm.ds.username=$JDBC_DATABASE_USERNAME 

@@ -101,6 +101,10 @@
             <artifactId>cdi</artifactId>
         </dependency>
         <dependency>
+            <groupId>io.thorntail</groupId>
+            <artifactId>jaxrs</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
         </dependency>
@@ -164,6 +168,11 @@
             <plugin>
                 <groupId>io.thorntail</groupId>
                 <artifactId>thorntail-maven-plugin</artifactId>
+                <configuration>
+                    <properties>
+                        <famivac.api.key>DEVELOPMENT_KEY</famivac.api.key>
+                    </properties>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>

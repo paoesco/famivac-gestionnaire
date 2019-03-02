@@ -411,4 +411,17 @@ public class Famille implements Serializable {
         this.archivee = archivee;
     }
 
+    public Status getStatus() {
+        if (isRadiee()) {
+            return Status.RADIEE;
+        }
+        if (!isCandidature()) {
+            return Status.ACTIVE;
+        }
+        if (isCandidature()) {
+            return Status.CANDIDATURE;
+        }
+        throw new IllegalStateException("No status found");
+    }
+
 }
