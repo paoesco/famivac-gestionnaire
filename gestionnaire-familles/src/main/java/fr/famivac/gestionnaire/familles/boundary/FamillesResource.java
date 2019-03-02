@@ -31,7 +31,7 @@ public class FamillesResource {
             return Response.status(Response.Status.FORBIDDEN).build();
         }
         List<Famille> familles = entityManager.createNamedQuery(Famille.QUERY_LISTE_ALL, Famille.class).getResultList();
-        FamilleToImportDTO[] responseBody = familles
+        List<FamilleToImportDTO> responseBody = familles
                 .stream()
                 .filter(f -> {
                     return Objects.nonNull(f.getMembreReferent())
@@ -41,7 +41,7 @@ public class FamillesResource {
                 .map(f -> {
                     return new FamilleToImportDTO(f);
                 })
-                .toArray(size -> new FamilleToImportDTO[size]);
+                .collect(Collectors.toUnmodifiableList());
         return Response.ok(responseBody).build();
     }
 
