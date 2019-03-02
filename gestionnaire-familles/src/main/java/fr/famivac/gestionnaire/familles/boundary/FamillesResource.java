@@ -48,7 +48,6 @@ public class FamillesResource {
 
     private boolean verifyApiKey(String paramApiKey) {
         String apiKey = System.getProperty("famivac.api.key");
-        System.out.println(apiKey);
         return paramApiKey.equals(apiKey);
     }
 
