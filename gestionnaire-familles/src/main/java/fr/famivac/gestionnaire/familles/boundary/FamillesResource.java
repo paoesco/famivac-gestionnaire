@@ -36,6 +36,8 @@ public class FamillesResource {
                 .filter(f -> {
                     return Objects.nonNull(f.getMembreReferent())
                             && Objects.nonNull(f.getMembreReferent().getCoordonnees())
+                            && Objects.nonNull(f.getMembreReferent().getCoordonnees().getEmail())
+                            && !f.getMembreReferent().getCoordonnees().getEmail().isBlank()
                             && Status.ACTIVE.equals(f.getStatus());
                 })
                 .map(f -> {
