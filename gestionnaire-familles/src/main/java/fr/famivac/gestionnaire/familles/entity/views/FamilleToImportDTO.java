@@ -1,4 +1,4 @@
-package fr.famivac.gestionnaire.familles.boundary;
+package fr.famivac.gestionnaire.familles.entity.views;
 
 import fr.famivac.gestionnaire.familles.entity.Famille;
 
@@ -16,18 +16,15 @@ public class FamilleToImportDTO {
 
     private String emailReferent;
 
-    private String status;
-
     protected FamilleToImportDTO() {
         // JPA
     }
 
-    public FamilleToImportDTO(Famille famille) {
-        this.familleId = famille.getId();
-        this.nomReferent = famille.getMembreReferent().getNom();
-        this.prenomReferent = famille.getMembreReferent().getPrenom();
-        this.emailReferent = famille.getMembreReferent().getCoordonnees().getEmail();
-        this.status = famille.getStatus().toString();
+    public FamilleToImportDTO(Long familleId, String nomReferent, String prenomReferent, String email) {
+        this.familleId = familleId;
+        this.nomReferent = nomReferent;
+        this.prenomReferent = prenomReferent;
+        this.emailReferent = email;
     }
 
     public Long getFamilleId() {
@@ -60,14 +57,6 @@ public class FamilleToImportDTO {
 
     public void setEmailReferent(String emailReferent) {
         this.emailReferent = emailReferent;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
 }

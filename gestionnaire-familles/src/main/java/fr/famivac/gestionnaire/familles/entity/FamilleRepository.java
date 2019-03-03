@@ -1,5 +1,6 @@
 package fr.famivac.gestionnaire.familles.entity;
 
+import fr.famivac.gestionnaire.familles.entity.views.FamilleToImportDTO;
 import java.util.List;
 import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
@@ -58,4 +59,15 @@ public class FamilleRepository {
 //        s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
 //        return s;
 //    }
+    public List<FamilleToImportDTO> getFamillesToImport() {
+        return entityManager.createQuery(
+                "SELECT NEW fr.famivac.gestionnaire.familles.entity.views.FamilleToImportDTO(f.id, mr.nom, mr.prenom, mr.coordonnees.email) "
+                + " FROM Famille f INNER JOIN f.membres mr "
+                + " WHERE mr.referent IS TRUE "
+                + " AND f.dateRadiation IS NULL "
+                + " AND f.candidature IS FALSE "
+                + " AND mr.coordonnees.email IS NOT NULL "
+                + " AND TRIM(mr.coordonnees.email) != '' ",
+                FamilleToImportDTO.class).getResultList();
+    }
 }
