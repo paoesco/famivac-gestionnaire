@@ -1,5 +1,6 @@
 package fr.famivac.gestionnaire.sejours.entity;
 
+import fr.famivac.gestionnaire.sejours.entity.views.SejoursFamilleDTO;
 import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
@@ -42,6 +43,17 @@ public class SejourRepository {
         Query q = entityManager.createQuery(jpql);
         q.setParameter("date", new Date(), TemporalType.DATE);
         return (long) q.getSingleResult();
+    }
+
+    public List<SejoursFamilleDTO> getSejoursFamille(Long familleId) {
+        return entityManager.createQuery(
+                "SELECT NEW fr.famivac.gestionnaire.sejours.entity.views.SejoursFamilleDTO(s.id, s.familleId, s.famillePrenom, s.familleNom, s.enfantId, s.enfantPrenom, s.enfantNom, s.dateDebut, s.dateFin) "
+                + " FROM Sejour s "
+                + " WHERE s.familleId = :familleId "
+                + " ORDER BY s.dateDebut ",
+                SejoursFamilleDTO.class)
+                .setParameter("familleId", familleId)
+                .getResultList();
     }
 
 }

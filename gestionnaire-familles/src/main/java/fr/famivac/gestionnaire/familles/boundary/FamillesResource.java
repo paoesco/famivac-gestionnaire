@@ -1,5 +1,6 @@
 package fr.famivac.gestionnaire.familles.boundary;
 
+import fr.famivac.gestionnaire.commons.api.ApiAuthentication;
 import fr.famivac.gestionnaire.familles.entity.FamilleRepository;
 import fr.famivac.gestionnaire.familles.entity.views.FamilleToImportDTO;
 import java.util.List;
@@ -20,19 +21,17 @@ public class FamillesResource {
     @Inject
     private FamilleRepository familleRepository;
 
+    @Inject
+    private ApiAuthentication apiAuthentication;
+
     @GET
     @Path("/import")
     public Response getToImport(@HeaderParam("X-FAMIVAC-API-KEY") String paramApiKey) {
-        if (!verifyApiKey(paramApiKey)) {
+        if (!apiAuthentication.verifyApiKey(paramApiKey)) {
             return Response.status(Response.Status.FORBIDDEN).build();
         }
         List<FamilleToImportDTO> responseBody = familleRepository.getFamillesToImport();
         return Response.ok(responseBody).build();
-    }
-
-    private boolean verifyApiKey(String paramApiKey) {
-        String apiKey = System.getProperty("famivac.api.key");
-        return apiKey.equals(paramApiKey);
     }
 
 }
