@@ -49,7 +49,7 @@ public class FamilleRepository {
     }
 
     public long countActives() {
-        String jpql = "select count(f.id) from Famille f where f.dateRadiation is null and f.candidature = false";
+        String jpql = "SELECT count(f.id) FROM Famille f WHERE f.dateRadiation IS NULL AND f.candidature = false AND f.archivee = false ";
         Query q = entityManager.createQuery(jpql);
         return (long) q.getSingleResult();
     }
