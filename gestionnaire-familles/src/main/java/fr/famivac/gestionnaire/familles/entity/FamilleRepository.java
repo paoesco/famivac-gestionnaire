@@ -66,6 +66,7 @@ public class FamilleRepository {
                 + " WHERE mr.referent IS TRUE "
                 + " AND f.dateRadiation IS NULL "
                 + " AND f.candidature IS FALSE "
+                + " AND f.archivee = false "
                 + " AND mr.coordonnees.email IS NOT NULL "
                 + " AND TRIM(mr.coordonnees.email) != '' ",
                 FamilleToImportDTO.class).getResultList();
