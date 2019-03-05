@@ -1,6 +1,7 @@
 package fr.famivac.gestionnaire.commons.api;
 
 import java.io.IOException;
+import java.util.Objects;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.MediaType;
@@ -13,7 +14,7 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 public class ApiAuthenticationFilter implements ContainerRequestFilter {
-    
+
     @Override
     public void filter(ContainerRequestContext ctx) throws IOException {
         String paramApiKey = ctx.getHeaderString("X-FAMIVAC-API-KEY");
@@ -24,10 +25,13 @@ public class ApiAuthenticationFilter implements ContainerRequestFilter {
                     .build());
         }
     }
-    
+
     private boolean verifyApiKey(String paramApiKey) {
         String apiKey = System.getProperty("famivac.api.key");
+        if (Objects.isNull(apiKey) || apiKey.isBlank()) {
+            return false;
+        }
         return apiKey.equals(paramApiKey);
     }
-    
+
 }
