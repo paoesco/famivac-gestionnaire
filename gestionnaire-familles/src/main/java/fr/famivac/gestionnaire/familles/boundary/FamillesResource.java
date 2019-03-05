@@ -1,12 +1,10 @@
 package fr.famivac.gestionnaire.familles.boundary;
 
-import fr.famivac.gestionnaire.commons.api.ApiAuthenticationFilter;
 import fr.famivac.gestionnaire.familles.entity.FamilleRepository;
 import fr.famivac.gestionnaire.familles.entity.views.FamilleToImportDTO;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
@@ -21,8 +19,6 @@ public class FamillesResource {
     @Inject
     private FamilleRepository familleRepository;
 
-    @Inject
-    private ApiAuthenticationFilter apiAuthentication;
 
     @GET
     @Path("/import")
