@@ -1,4 +1,4 @@
-package fr.famivac.gestionnaire.commons.control;
+package fr.famivac.gestionnaire.commons.exceptions;
 
 /**
  *

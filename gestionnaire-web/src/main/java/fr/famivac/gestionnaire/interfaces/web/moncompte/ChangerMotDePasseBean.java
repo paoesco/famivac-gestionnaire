@@ -1,7 +1,7 @@
 package fr.famivac.gestionnaire.interfaces.web.moncompte;
 
 import fr.famivac.gestionnaire.administration.authentication.control.UtilisateurService;
-import fr.famivac.gestionnaire.commons.control.WrongPasswordException;
+import fr.famivac.gestionnaire.commons.exceptions.WrongPasswordException;
 import fr.famivac.gestionnaire.interfaces.web.utils.SessionBean;
 import java.util.logging.Level;
 import java.util.logging.Logger;
