@@ -1,7 +1,5 @@
 package fr.famivac.gestionnaire.familles.entity.views;
 
-import fr.famivac.gestionnaire.familles.entity.Famille;
-
 /**
  *
  * @author paoesco

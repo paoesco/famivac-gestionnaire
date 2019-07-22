@@ -1,6 +1,7 @@
 package fr.famivac.gestionnaire.sejours.control;
 
 import fr.famivac.gestionnaire.sejours.entity.Accompagnateur;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
@@ -28,7 +29,8 @@ public class AccompagnateurService {
     }
 
     public void delete(Long id) {
-        entityManager.remove(get(id));
+        Accompagnateur accompagnateur = entityManager.find(Accompagnateur.class, id);
+        accompagnateur.setDeletedAt(new Date());
     }
 
     public Accompagnateur get(Long id) {

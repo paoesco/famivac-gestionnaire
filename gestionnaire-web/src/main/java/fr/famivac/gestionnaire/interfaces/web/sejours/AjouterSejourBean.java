@@ -4,8 +4,8 @@ import fr.famivac.gestionnaire.administration.parametres.control.FraisDossierSer
 import fr.famivac.gestionnaire.administration.parametres.control.FraisPensionFamilleJournalierService;
 import fr.famivac.gestionnaire.administration.parametres.control.ForfaitJournalierService;
 import fr.famivac.gestionnaire.administration.parametres.control.FraisVoyageService;
-import fr.famivac.gestionnaire.familles.control.FamilleDTO;
-import fr.famivac.gestionnaire.familles.control.FamilleService;
+import fr.famivac.gestionnaire.familles.boundary.FamilleDTO;
+import fr.famivac.gestionnaire.familles.boundary.FamilleService;
 import fr.famivac.gestionnaire.sejours.control.SejourService;
 import fr.famivac.gestionnaire.enfants.control.EnfantDTO;
 import fr.famivac.gestionnaire.enfants.control.EnfantService;

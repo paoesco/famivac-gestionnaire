@@ -1,4 +1,4 @@
-package fr.famivac.gestionnaire.familles.control;
+package fr.famivac.gestionnaire.familles.boundary;
 
 import fr.famivac.gestionnaire.familles.entity.Famille;
 import java.io.Serializable;

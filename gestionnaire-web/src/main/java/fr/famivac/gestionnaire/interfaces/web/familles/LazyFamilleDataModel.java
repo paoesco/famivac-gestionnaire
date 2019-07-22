@@ -1,6 +1,6 @@
 package fr.famivac.gestionnaire.interfaces.web.familles;
 
-import fr.famivac.gestionnaire.familles.control.FamilleDTO;
+import fr.famivac.gestionnaire.familles.boundary.FamilleDTO;
 import fr.famivac.gestionnaire.interfaces.web.utils.LazyFilter;
 import fr.famivac.gestionnaire.interfaces.web.utils.LazySorter;
 import java.util.ArrayList;
