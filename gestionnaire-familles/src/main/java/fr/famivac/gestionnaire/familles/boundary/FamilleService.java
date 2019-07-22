@@ -1,4 +1,4 @@
-package fr.famivac.gestionnaire.familles.control;
+package fr.famivac.gestionnaire.familles.boundary;
 
 import fr.famivac.gestionnaire.familles.entity.FamilleRepository;
 import fr.famivac.gestionnaire.commons.entity.Adresse;
@@ -18,7 +18,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
-import javax.ws.rs.PathParam;
 import net.bull.javamelody.MonitoringInterceptor;
 
 /**
@@ -57,7 +56,7 @@ public class FamilleService {
         return entity.getId();
     }
 
-    public Famille get(@PathParam("id") long id) {
+    public Famille get(Long id) {
         Famille famille = entityManager.find(Famille.class, id);
         // Migration
         if (famille.getInformationsHabitation().getId() == null) {
@@ -104,7 +103,7 @@ public class FamilleService {
 
     }
 
-    public void delete(long id) {
+    public void delete(Long id) {
         Famille famille = entityManager.find(Famille.class, id);
         if (famille == null) {
             throw new IllegalArgumentException("La famille n'existe pas");
@@ -112,7 +111,7 @@ public class FamilleService {
         entityManager.remove(famille);
     }
 
-    public void archiver(long id) {
+    public void archiver(Long id) {
         Famille famille = entityManager.find(Famille.class, id);
         if (famille == null) {
             throw new IllegalArgumentException("La famille n'existe pas");
@@ -121,13 +120,13 @@ public class FamilleService {
         entityManager.merge(famille);
     }
 
-    public void deleteChambre(long id) {
+    public void deleteChambre(Long id) {
         Chambre entity = entityManager.find(Chambre.class, id);
         entity.getFamille().retirerChambre(entity);
         entityManager.remove(entity);
     }
 
-    public Long addMembre(long familleId, MembreDTO request) {
+    public Long addMembre(Long familleId, MembreDTO request) {
         Famille famille = entityManager.find(Famille.class, familleId);
         if (famille == null) {
             throw new IllegalArgumentException("La famille n'existe pas");
@@ -147,18 +146,18 @@ public class FamilleService {
 
     }
 
-    public void removeMembre(long familleId, long membreId) {
+    public void removeMembre(Long familleId, long membreId) {
         Famille famille = entityManager.find(Famille.class, familleId);
         MembreFamille membre = entityManager.find(MembreFamille.class, membreId);
         famille.retirerMembre(membre);
     }
 
-    public void definirReferent(long familleId, long membreId) {
+    public void definirReferent(Long familleId, long membreId) {
         Famille famille = entityManager.find(Famille.class, familleId);
         famille.definirReferent(membreId);
     }
 
-    public Chambre addChambre(long familleId, Chambre entity) {
+    public Chambre addChambre(Long familleId, Chambre entity) {
         Famille famille = entityManager.find(Famille.class, familleId);
         if (famille == null) {
             throw new IllegalArgumentException("La famille n'existe pas");

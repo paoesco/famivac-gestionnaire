@@ -1,6 +1,6 @@
 package fr.famivac.gestionnaire.interfaces.web.familles;
 
-import fr.famivac.gestionnaire.familles.control.FamilleService;
+import fr.famivac.gestionnaire.familles.boundary.FamilleService;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

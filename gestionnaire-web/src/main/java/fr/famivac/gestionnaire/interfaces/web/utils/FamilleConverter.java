@@ -1,7 +1,7 @@
 package fr.famivac.gestionnaire.interfaces.web.utils;
 
-import fr.famivac.gestionnaire.familles.control.FamilleDTO;
-import fr.famivac.gestionnaire.familles.control.FamilleService;
+import fr.famivac.gestionnaire.familles.boundary.FamilleDTO;
+import fr.famivac.gestionnaire.familles.boundary.FamilleService;
 import fr.famivac.gestionnaire.familles.entity.Famille;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.component.UIComponent;

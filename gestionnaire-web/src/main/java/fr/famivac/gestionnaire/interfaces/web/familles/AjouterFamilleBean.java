@@ -1,8 +1,8 @@
 package fr.famivac.gestionnaire.interfaces.web.familles;
 
 import fr.famivac.gestionnaire.administration.authentication.control.CommuneService;
-import fr.famivac.gestionnaire.familles.control.CreateFamilleRequestDTO;
-import fr.famivac.gestionnaire.familles.control.FamilleService;
+import fr.famivac.gestionnaire.familles.boundary.CreateFamilleRequestDTO;
+import fr.famivac.gestionnaire.familles.boundary.FamilleService;
 import fr.famivac.gestionnaire.interfaces.web.utils.CompleteCommune;
 import java.io.Serializable;
 import javax.faces.view.ViewScoped;

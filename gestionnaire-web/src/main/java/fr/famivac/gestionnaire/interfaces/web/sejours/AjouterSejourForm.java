@@ -1,7 +1,7 @@
 package fr.famivac.gestionnaire.interfaces.web.sejours;
 
 import fr.famivac.gestionnaire.enfants.control.EnfantDTO;
-import fr.famivac.gestionnaire.familles.control.FamilleDTO;
+import fr.famivac.gestionnaire.familles.boundary.FamilleDTO;
 import fr.famivac.gestionnaire.sejours.entity.PeriodeJournee;
 import java.util.Date;
 import javax.validation.constraints.NotNull;
