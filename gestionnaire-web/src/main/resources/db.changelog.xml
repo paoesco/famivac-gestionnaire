@@ -39,4 +39,7 @@
     <changeSet author="paoesco" id="1.12.0">
         <sqlFile path="sql/1.12.0.sql"/>
     </changeSet>
+    <changeSet author="paoesco" id="201907222100">
+        <sqlFile path="sql/201907222100_accompagnateur_adds_deleted_at_column.sql"/>
+    </changeSet>
 </databaseChangeLog>

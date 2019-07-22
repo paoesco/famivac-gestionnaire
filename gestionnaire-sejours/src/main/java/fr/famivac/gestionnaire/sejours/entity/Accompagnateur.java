@@ -34,7 +34,7 @@ public class Accompagnateur extends Entity implements Serializable {
     @Column(name = "EMAIL")
     @Email
     private String email;
-    @Column(name = "DELETED_AT")
+    @Column(name = "deleted_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date deleted_at;
 
