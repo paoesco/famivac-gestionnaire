@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
 @javax.persistence.Entity
 @Table(name = "ACCOMPAGNATEUR")
 @NamedQueries({
-    @NamedQuery(name = Accompagnateur.QUERY_GET_ALL, query = "select acc from Accompagnateur acc order by acc.nom, acc.prenom where acc.deletedAt is null"),
+    @NamedQuery(name = Accompagnateur.QUERY_GET_ALL, query = "select acc from Accompagnateur acc where acc.deletedAt is null order by acc.nom, acc.prenom"),
     @NamedQuery(name = Accompagnateur.QUERY_RECHERCHER, query = "select acc from Accompagnateur acc where acc.deletedAt is null and lower(acc.nom) like :nom or lower(acc.prenom) like :prenom order by acc.nom, acc.prenom")
 })
 public class Accompagnateur extends Entity implements Serializable {
@@ -36,7 +36,7 @@ public class Accompagnateur extends Entity implements Serializable {
     private String email;
     @Column(name = "deleted_at")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date deleted_at;
+    private Date deletedAt;
 
     public String getNom() {
         return nom;
@@ -71,11 +71,11 @@ public class Accompagnateur extends Entity implements Serializable {
     }
 
     public Date getDeletedAt() {
-        return deleted_at;
+        return deletedAt;
     }
 
-    public void setDeletedAt(Date deleted_at) {
-        this.deleted_at = deleted_at;
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
     }
     
     
