@@ -104,6 +104,12 @@
             <groupId>io.thorntail</groupId>
             <artifactId>jaxrs</artifactId>
         </dependency>
+<!-- https://mvnrepository.com/artifact/io.thorntail/thorntail-runner -->
+		<dependency>
+		    <groupId>io.thorntail</groupId>
+		    <artifactId>thorntail-runner</artifactId>
+		    <version>${thorntail.version}</version>
+		</dependency>
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>

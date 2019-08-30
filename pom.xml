@@ -58,7 +58,7 @@
         <jacoco.version>0.7.9</jacoco.version>
         <poi.version>3.17</poi.version>
         <itext.version>2.1.7</itext.version>
-        <liquibase.version>3.7.0-SNAPSHOT</liquibase.version>
+        <liquibase.version>3.8.0</liquibase.version>
     </properties>
     
     <modules>
