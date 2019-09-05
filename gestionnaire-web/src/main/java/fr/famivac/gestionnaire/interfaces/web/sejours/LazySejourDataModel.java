@@ -13,8 +13,8 @@ import org.primefaces.model.SortOrder;
  * @author paoesco
  */
 public class LazySejourDataModel extends LazyDataModel<SejourDTO> {
-
-    private final List<SejourDTO> datasource;
+	
+	private final List<SejourDTO> datasource;
 
     public LazySejourDataModel(List<SejourDTO> datasource) {
         this.datasource = new ArrayList<>(datasource);

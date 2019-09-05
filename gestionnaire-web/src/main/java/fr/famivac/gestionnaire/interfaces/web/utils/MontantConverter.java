@@ -11,15 +11,15 @@ import javax.faces.convert.FacesConverter;
  * @author paoesco
  */
 @FacesConverter
-public class MontantConverter implements Converter {
+public class MontantConverter implements Converter<BigDecimal> {
 
     @Override
-    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+    public BigDecimal getAsObject(FacesContext context, UIComponent component, String value) {
         return new BigDecimal(value);
     }
 
     @Override
-    public String getAsString(FacesContext context, UIComponent component, Object value) {
+    public String getAsString(FacesContext context, UIComponent component, BigDecimal value) {
         BigDecimal montant = (BigDecimal) value;
         return montant.toPlainString();
     }

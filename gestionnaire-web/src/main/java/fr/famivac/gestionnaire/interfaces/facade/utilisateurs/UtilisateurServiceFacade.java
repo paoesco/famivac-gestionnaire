@@ -3,7 +3,6 @@ package fr.famivac.gestionnaire.interfaces.facade.utilisateurs;
 import fr.famivac.gestionnaire.administration.authentication.control.AjouterUtilisateurDTO;
 import fr.famivac.gestionnaire.administration.authentication.control.UtilisateurService;
 import fr.famivac.gestionnaire.email.control.Mail;
-import fr.famivac.gestionnaire.email.control.MailException;
 import fr.famivac.gestionnaire.email.control.MailService;
 import java.text.MessageFormat;
 import javax.enterprise.context.ApplicationScoped;
@@ -44,20 +43,10 @@ public class UtilisateurServiceFacade {
 
     public void lock(String login, String email) {
         utilisateurService.lock(login);
-        Mail mail = new Mail(
-                email,
-                "[FAMIVAC] Compte verrouillé",
-                "Un administrateur a verrouillé votre compte sur le site https://gestionnaire.famivac.fr<br/> Veuillez envoyer un e-mail à contact@famivac.fr pour plus d'informations.");
-        mailService.send(mail);
     }
 
     public void unlock(String login, String email) {
         utilisateurService.unlock(login);
-        Mail mail = new Mail(
-                email,
-                "[FAMIVAC] Compte accessible",
-                "Un administrateur a rendu accessible votre compte sur le site https://gestionnaire.famivac.fr<br/> Vous pouvez à nouveau vous connecter.");
-        mailService.send(mail);
     }
 
 }

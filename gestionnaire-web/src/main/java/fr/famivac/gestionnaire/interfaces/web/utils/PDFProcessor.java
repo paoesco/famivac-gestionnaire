@@ -14,7 +14,9 @@ import javax.inject.Named;
 @ViewScoped
 public class PDFProcessor implements Serializable {
 
-    public void preProcess(Object document) {
+	private static final long serialVersionUID = -4516484884799503473L;
+
+	public void preProcess(Object document) {
         Document pdf = (Document) document;
         pdf.setPageSize(PageSize.A4.rotate());
         pdf.open();

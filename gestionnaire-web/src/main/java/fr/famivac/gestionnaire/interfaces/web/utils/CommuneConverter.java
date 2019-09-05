@@ -17,18 +17,18 @@ import javax.inject.Named;
 @Named
 @ApplicationScoped
 @FacesConverter("communeConverter")
-public class CommuneConverter implements Converter {
+public class CommuneConverter implements Converter<Commune> {
 
     @Inject
     private CommuneService communeService;
 
     @Override
-    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+    public Commune getAsObject(FacesContext context, UIComponent component, String value) {
         return communeService.retrieve(value);
     }
 
     @Override
-    public String getAsString(FacesContext context, UIComponent component, Object value) {
+    public String getAsString(FacesContext context, UIComponent component, Commune value) {
         if (value == null) {
             return null;
         }

@@ -29,10 +29,12 @@ import org.primefaces.event.CellEditEvent;
 @ViewScoped
 public class UtilisateursBean implements Serializable {
 
-    private AjouterUtilisateurDTO form;
+	private static final long serialVersionUID = 2658935844250281457L;
+
+	private AjouterUtilisateurDTO form;
 
     /**
-     * Liste des utilistaeurs.
+     * Liste des utilisateurs.
      */
     private LazyUtilisateurDataModel lazyModel;
 
@@ -105,8 +107,6 @@ public class UtilisateursBean implements Serializable {
         user.setEnabled(false);
         FacesMessage lockMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, MessageFormat.format("L''utilisateur {0} {1} a été verrouillé et ne pourra plus se connecter", user.getPrenom(), user.getNom()), null);
         FacesContext.getCurrentInstance().addMessage(null, lockMessage);
-        FacesMessage messageEmail = new FacesMessage(FacesMessage.SEVERITY_INFO, "Un e-mail a été envoyé à l'utilisateur", null);
-        FacesContext.getCurrentInstance().addMessage(null, messageEmail);
     }
 
     public void unlock(RetrieveUtilisateursDTO user) {
@@ -114,11 +114,10 @@ public class UtilisateursBean implements Serializable {
         user.setEnabled(true);
         FacesMessage unlockMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, MessageFormat.format("L''utilisateur {0} {1} a été déverrouillé et peut à nouveau se connecter", user.getPrenom(), user.getNom()), null);
         FacesContext.getCurrentInstance().addMessage(null, unlockMessage);
-        FacesMessage messageEmail = new FacesMessage(FacesMessage.SEVERITY_INFO, "Un e-mail a été envoyé à l'utilisateur", null);
-        FacesContext.getCurrentInstance().addMessage(null, messageEmail);
     }
 
-    public void onCellEdit(CellEditEvent event) {
+    @SuppressWarnings("unchecked")
+	public void onCellEdit(CellEditEvent event) {
         RetrieveUtilisateursDTO dto = lazyModel.getRowData(event.getRowIndex());
         List<Groupe> oldValue = (List<Groupe>) event.getOldValue();
         List<Groupe> newValue = (List<Groupe>) event.getNewValue();

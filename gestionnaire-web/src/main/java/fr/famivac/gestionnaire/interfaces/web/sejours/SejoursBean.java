@@ -8,7 +8,8 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.springframework.util.StringUtils;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -18,7 +19,9 @@ import org.springframework.util.StringUtils;
 @ViewScoped
 public class SejoursBean implements Serializable {
 
-    /**
+	private static final long serialVersionUID = -4128093359342288762L;
+
+	/**
      * Liste des séjours.
      */
     private LazySejourDataModel lazyModel;

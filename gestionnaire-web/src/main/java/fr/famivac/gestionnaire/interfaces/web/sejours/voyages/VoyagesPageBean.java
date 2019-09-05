@@ -1,7 +1,5 @@
 package fr.famivac.gestionnaire.interfaces.web.sejours.voyages;
 
-import com.lowagie.text.Document;
-import com.lowagie.text.PageSize;
 import fr.famivac.gestionnaire.sejours.control.SejourService;
 import fr.famivac.gestionnaire.sejours.control.VoyageDTO;
 import java.io.Serializable;
@@ -18,7 +16,9 @@ import javax.inject.Named;
 @ViewScoped
 public class VoyagesPageBean implements Serializable {
 
-    private LazyVoyagesDataModel lazyModel;
+	private static final long serialVersionUID = -4851235383383368367L;
+
+	private LazyVoyagesDataModel lazyModel;
 
     @Inject
     private SejourService sejourService;

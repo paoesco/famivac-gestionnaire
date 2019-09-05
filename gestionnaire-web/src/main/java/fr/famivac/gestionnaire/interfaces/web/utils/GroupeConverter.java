@@ -17,18 +17,18 @@ import javax.inject.Named;
 @Named
 @ApplicationScoped
 @FacesConverter("groupeConverter")
-public class GroupeConverter implements Converter {
+public class GroupeConverter implements Converter<Groupe> {
 
     @Inject
     private GroupeService groupeService;
 
     @Override
-    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+    public Groupe getAsObject(FacesContext context, UIComponent component, String value) {
         return groupeService.retrieve(value);
     }
 
     @Override
-    public String getAsString(FacesContext context, UIComponent component, Object value) {
+    public String getAsString(FacesContext context, UIComponent component, Groupe value) {
         if (value == null) {
             return null;
         }

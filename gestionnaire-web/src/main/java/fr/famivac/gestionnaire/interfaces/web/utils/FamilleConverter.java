@@ -18,13 +18,13 @@ import javax.inject.Named;
 @Named
 @ApplicationScoped
 @FacesConverter("familleConverter")
-public class FamilleConverter implements Converter {
+public class FamilleConverter implements Converter<FamilleDTO> {
 
     @Inject
     private FamilleService service;
 
     @Override
-    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+    public FamilleDTO getAsObject(FacesContext context, UIComponent component, String value) {
         if (value == null || value.isEmpty()) {
             return null;
         }
@@ -33,7 +33,7 @@ public class FamilleConverter implements Converter {
     }
 
     @Override
-    public String getAsString(FacesContext context, UIComponent component, Object value) {
+    public String getAsString(FacesContext context, UIComponent component, FamilleDTO value) {
         if (value == null) {
             return null;
         }
