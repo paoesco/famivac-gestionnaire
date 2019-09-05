@@ -1,6 +1,6 @@
 # Famivac - Gestionnaire
 
-- TravisCI : [![Build Status](https://travis-ci.org/paoesco/famivac-gestionnaire.svg)](https://travis-ci.org/paoesco/famivac-gestionnaire)
+- TravisCI : [![Build Status](https://travis-ci.org/famivac/famivac-gestionnaire.svg)](https://travis-ci.org/famivac/famivac-gestionnaire)
 - Coveralls : [![Coverage Status](https://coveralls.io/repos/paoesco/famivac-gestionnaire/badge.svg?branch=master&service=github)](https://coveralls.io/github/paoesco/famivac-gestionnaire?branch=master)
 - Codacy : [![Codacy Badge](https://api.codacy.com/project/badge/grade/14eb0f1c48d64909a87beddc0d2afb89)](https://www.codacy.com/app/pao-esco/famivac-gestionnaire)
 
