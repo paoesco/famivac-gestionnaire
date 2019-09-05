@@ -21,6 +21,8 @@ import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
+
 import net.bull.javamelody.MonitoringInterceptor;
 
 /**
@@ -124,7 +126,7 @@ public class SejourService {
         } else {
             prenomEnfant = "%" + prenomEnfant + "%";
         }
-        Query query = entityManager
+        TypedQuery<Sejour> query = entityManager
                 .createQuery(jpql.toString(), Sejour.class)
                 .setParameter("nomReferent", nomReferent.toLowerCase())
                 .setParameter("prenomReferent", prenomReferent.toLowerCase())

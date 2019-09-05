@@ -24,7 +24,9 @@ import javax.inject.Named;
 @ViewScoped
 public class AjouterSejourBean implements Serializable {
 
-    @Inject
+	private static final long serialVersionUID = 3521762625440433062L;
+
+	@Inject
     private FamilleService familleService;
 
     @Inject

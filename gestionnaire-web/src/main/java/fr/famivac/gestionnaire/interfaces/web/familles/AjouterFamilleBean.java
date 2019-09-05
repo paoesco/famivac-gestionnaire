@@ -17,7 +17,9 @@ import javax.inject.Named;
 @ViewScoped
 public class AjouterFamilleBean implements Serializable, CompleteCommune {
 
-    private CreateFamilleRequestDTO form;
+	private static final long serialVersionUID = -8761462578741880134L;
+
+	private CreateFamilleRequestDTO form;
 
     @Inject
     private FamilleService familleService;

@@ -17,13 +17,13 @@ import javax.inject.Named;
 @Named
 @ApplicationScoped
 @FacesConverter("accompagnateurConverter")
-public class AccompagnateurConverter implements Converter {
+public class AccompagnateurConverter implements Converter<Accompagnateur> {
 
     @Inject
     private AccompagnateurService service;
 
     @Override
-    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+    public Accompagnateur getAsObject(FacesContext context, UIComponent component, String value) {
         if (value == null || value.isEmpty()) {
             return null;
         }
@@ -32,7 +32,7 @@ public class AccompagnateurConverter implements Converter {
     }
 
     @Override
-    public String getAsString(FacesContext context, UIComponent component, Object value) {
+    public String getAsString(FacesContext context, UIComponent component, Accompagnateur value) {
         if (value == null || ((Accompagnateur) value).getId() == null) {
             return null;
         }

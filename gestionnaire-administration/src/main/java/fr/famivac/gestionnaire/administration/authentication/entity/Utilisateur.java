@@ -17,106 +17,100 @@ import javax.persistence.NamedQuery;
  * @author paoesco
  */
 @Entity
-@NamedQueries({
-    @NamedQuery(name = Utilisateur.QUERY_LISTE_ALL, query = "select u from Utilisateur u")
-})
+@NamedQueries({ @NamedQuery(name = Utilisateur.QUERY_LISTE_ALL, query = "select u from Utilisateur u"), })
 public class Utilisateur implements Serializable {
 
-    public static final String QUERY_LISTE_ALL = "retrieveUtilisateurs";
+	private static final long serialVersionUID = -2714545423052661888L;
 
-    public static final Utilisateur fakeUtilisateur = new Utilisateur();
+	public static final String QUERY_LISTE_ALL = "retrieveUtilisateurs";
 
-    @Id
-    private String login;
+	public static final Utilisateur fakeUtilisateur = new Utilisateur();
 
-    @Column(length = 2000, nullable = false)
-    @Email
-    private String email;
+	@Id
+	private String login;
 
-    @Column(length = 2000, nullable = false)
-    private String password;
+	@Column(length = 2000, nullable = false)
+	@Email
+	private String email;
 
-    @Column(nullable = false)
-    private String nom;
+	@Column(length = 2000, nullable = false)
+	private String password;
 
-    @Column(nullable = false)
-    private String prenom;
+	@Column(nullable = false)
+	private String nom;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Groupe> groupes;
+	@Column(nullable = false)
+	private String prenom;
 
-    private boolean enabled;
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Set<Groupe> groupes;
 
-    protected Utilisateur() {
-        groupes = new HashSet<>();
-    }
+	private boolean enabled;
 
-    public Utilisateur(
-            String login,
-            String email,
-            String password,
-            Set<Groupe> groupes,
-            String nom,
-            String prenom) {
-        this.login = login.trim().toLowerCase();
-        this.email = email.trim();
-        this.password = password;
-        this.groupes = new HashSet<>(groupes);
-        this.nom = nom;
-        this.prenom = prenom;
-        this.enabled = true;
-    }
+	protected Utilisateur() {
+		groupes = new HashSet<>();
+	}
 
-    public String getLogin() {
-        return login;
-    }
+	public Utilisateur(String login, String email, String password, Set<Groupe> groupes, String nom, String prenom) {
+		this.login = login.trim().toLowerCase();
+		this.email = email.trim();
+		this.password = password;
+		this.groupes = new HashSet<>(groupes);
+		this.nom = nom;
+		this.prenom = prenom;
+		this.enabled = true;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getLogin() {
+		return login;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public String getNom() {
-        return nom;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+	public String getNom() {
+		return nom;
+	}
 
-    public String getPrenom() {
-        return prenom;
-    }
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
+	public String getPrenom() {
+		return prenom;
+	}
 
-    public Set<Groupe> getGroupes() {
-        return Collections.unmodifiableSet(groupes);
-    }
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
 
-    public void setGroupes(Set<Groupe> groupes) {
-        this.groupes = new HashSet<>(groupes);
-    }
+	public Set<Groupe> getGroupes() {
+		return Collections.unmodifiableSet(groupes);
+	}
 
-    public boolean isEnabled() {
-        return enabled;
-    }
+	public void setGroupes(Set<Groupe> groupes) {
+		this.groupes = new HashSet<>(groupes);
+	}
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
 }

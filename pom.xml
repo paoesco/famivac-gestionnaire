@@ -43,7 +43,7 @@
         
         <!-- Java EE dependencies -->
         <javaee.version>8.0</javaee.version>
-        <thorntail.version>2.3.0.Final</thorntail.version>
+        <thorntail.version>2.5.0.Final</thorntail.version>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         
         <!-- Dependencies versions -->

@@ -2,10 +2,11 @@ package fr.famivac.gestionnaire.administration.authentication.control;
 
 import fr.famivac.gestionnaire.administration.authentication.entity.Groupe;
 import fr.famivac.gestionnaire.administration.authentication.entity.Utilisateur;
-import fr.famivac.gestionnaire.commons.exceptions.WrongPasswordException;
+import fr.famivac.gestionnaire.commons.exceptions.WrongCredentialsException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -39,14 +40,25 @@ public class UtilisateurService {
         return password;
     }
     
+    public Utilisateur login(String login, String password) throws WrongCredentialsException {
+    	Utilisateur entity = entityManager.find(Utilisateur.class, login);
+    	if (Objects.isNull(entity) || !entity.isEnabled()) {
+    		throw new WrongCredentialsException();
+    	}
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        if (!passwordEncoder.matches(password, entity.getPassword())) {
+            throw new WrongCredentialsException();
+        }
+        return entity;
+    }
+    
     public Utilisateur retrieve(String login) {
         Utilisateur entity = entityManager.find(Utilisateur.class, login);
         return entity;
     }
     
     public List<RetrieveUtilisateursDTO> retrieve() {
-        List<Utilisateur> entities = entityManager.createNamedQuery(Utilisateur.QUERY_LISTE_ALL).getResultList();
-        
+        List<Utilisateur> entities = entityManager.createNamedQuery(Utilisateur.QUERY_LISTE_ALL, Utilisateur.class).getResultList();
         return entities.stream().map(entity -> {
             RetrieveUtilisateursDTO dto = new RetrieveUtilisateursDTO();
             dto.setLogin(entity.getLogin());
@@ -68,11 +80,11 @@ public class UtilisateurService {
         entityManager.remove(bean);
     }
     
-    public void changePassword(String login, String actualPassword, String newPassword) throws WrongPasswordException {
+    public void changePassword(String login, String actualPassword, String newPassword) throws WrongCredentialsException {
         Utilisateur entity = entityManager.find(Utilisateur.class, login);
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         if (!passwordEncoder.matches(actualPassword, entity.getPassword())) {
-            throw new WrongPasswordException();
+            throw new WrongCredentialsException();
         }
         entity.setPassword(passwordEncoder.encode(newPassword));
     }
@@ -82,7 +94,6 @@ public class UtilisateurService {
         Utilisateur entity = entityManager.find(Utilisateur.class, login);
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         entity.setPassword(passwordEncoder.encode(password));
-        // TODO PES : envoyer email
         return password;
     }
     

@@ -16,7 +16,9 @@ import org.primefaces.model.SortOrder;
  */
 public class LazyVoyagesDataModel extends LazyDataModel<VoyageDTO> {
 
-    private final List<VoyageDTO> datasource;
+	private static final long serialVersionUID = 6160793949461059501L;
+	
+	private final List<VoyageDTO> datasource;
 
     public LazyVoyagesDataModel(List<VoyageDTO> datasource) {
         this.datasource = new ArrayList<>(datasource);

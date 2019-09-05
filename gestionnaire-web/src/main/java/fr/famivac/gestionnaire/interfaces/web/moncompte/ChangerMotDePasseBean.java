@@ -1,8 +1,9 @@
 package fr.famivac.gestionnaire.interfaces.web.moncompte;
 
 import fr.famivac.gestionnaire.administration.authentication.control.UtilisateurService;
-import fr.famivac.gestionnaire.commons.exceptions.WrongPasswordException;
-import fr.famivac.gestionnaire.interfaces.web.utils.SessionBean;
+import fr.famivac.gestionnaire.commons.exceptions.WrongCredentialsException;
+import fr.famivac.gestionnaire.interfaces.web.security.SessionBean;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -43,7 +44,7 @@ public class ChangerMotDePasseBean {
             confirmNewPassword = "";
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Votre mot de passe a été changé", null);
             FacesContext.getCurrentInstance().addMessage(null, message);
-        } catch (WrongPasswordException ex) {
+        } catch (WrongCredentialsException ex) {
             Logger.getLogger(ChangerMotDePasseBean.class.getName()).log(Level.FINE, null, ex);
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Le mot de passe actuel ne correspond pas", null);
             FacesContext.getCurrentInstance().addMessage(null, message);

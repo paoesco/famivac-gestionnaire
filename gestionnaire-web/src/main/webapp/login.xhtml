@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pass="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<f:view locale="fr">
+	
+		<h:head>
+	        <title>Connexion FAMIVAC</title>
+	        <h:outputStylesheet library="webjars" name="bootstrap/3.3.7-1/css/bootstrap.min-jsf.css" />
+	        <h:outputStylesheet library="webjars" name="bootstrap/3.3.7-1/css/bootstrap-theme.min-jsf.css" />
+	        <h:outputStylesheet library="css" name="signin.css"/>
+		</h:head>
+		
+		<h:body class="login">
+		
+			<div class="container">
+	            <h:form id="login" class="form-signin">
+	            	<p:messages id="messages" globalOnly="true" />
+	                <h2 class="form-signin-heading">
+	                    <img src="https://famivac.fr/wp-content/uploads/2015/04/header1.png" alt="FAMIVAC" height="49" />
+	                </h2>
+	                <p:outputLabel for="inputLogin" class="sr-only" value="Login" />
+	                <p:inputText id="inputLogin" class="form-control"  placeholder="Login" value="#{loginBean.username}" required="required" pass:autofocus="true"/>
+	                <p:outputLabel for="inputPassword" class="sr-only" value="Mot de passe" />
+	                <p:inputText type="password" id="inputPassword" class="form-control" value="#{loginBean.password}" placeholder="Mot de passe" />
+	                <p:commandButton id="submit" class="btn btn-lg btn-primary btn-block" ajax="false" value="Connexion" action="#{loginBean.submit}" />
+	            </h:form>
+	        </div>
+	        
+	        <h:outputScript library="webjars" name="bootstrap/3.3.7-1/js/bootstrap.min.js" />
+		</h:body>
+		
+	</f:view>
+
+</html>
