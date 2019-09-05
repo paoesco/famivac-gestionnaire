@@ -2,4 +2,4 @@ WAIT=30
 TIMEOUT=60
 ATTEMPTS=15
 
-/faces/login.xhtml
+/
