@@ -26,7 +26,9 @@ import javax.inject.Named;
 @ViewScoped
 public class FamilleDetailsBean implements Serializable, CompleteCommune {
 
-    private Long id;
+	private static final long serialVersionUID = 2955859885642270176L;
+
+	private Long id;
 
     private Famille form;
 
