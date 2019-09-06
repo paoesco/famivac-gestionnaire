@@ -23,7 +23,9 @@ import javax.inject.Named;
 @ViewScoped
 public class SejoursDetailsBean implements Serializable {
 
-    @Inject
+	private static final long serialVersionUID = -3713134313163227048L;
+
+	@Inject
     private SejourRepository sejourRepository;
 
     @Inject

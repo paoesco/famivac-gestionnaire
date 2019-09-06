@@ -20,7 +20,9 @@ import javax.inject.Named;
 @ViewScoped
 public class EnfantDetailsBean implements Serializable, CompleteCommune {
 
-    private long id;
+	private static final long serialVersionUID = -3744243098082552244L;
+
+	private Long id;
 
     private Enfant form;
 
@@ -52,11 +54,11 @@ public class EnfantDetailsBean implements Serializable, CompleteCommune {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informations sauvées", ""));
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
