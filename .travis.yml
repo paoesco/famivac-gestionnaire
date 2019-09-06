@@ -7,5 +7,5 @@ before_install:
 - chmod +x deploy/deploy.sh
 deploy:
   provider: script
-  script: bash ./deploy.sh
+  script: bash ./deploy/deploy.sh
   on: master
