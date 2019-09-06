@@ -6,6 +6,7 @@ before_install:
   -in deploy/deploy.key.enc -out deploy/deploy.key -d
 - chmod +x deploy/deploy.sh
 deploy:
+  skip_cleanup: true
   provider: script
   script: bash ./deploy/deploy.sh
   on: master
