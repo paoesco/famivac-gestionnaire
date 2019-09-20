@@ -53,7 +53,7 @@
         <metismenu.version>2.6.1</metismenu.version>
         <sbadmin2.version>3.3.7</sbadmin2.version>
         <fontawesome.version>4.7.0</fontawesome.version>
-        <postgre.version>42.2.5</postgre.version>
+        <postgre.version>42.2.8</postgre.version>
         <spring.version>Brussels-SR3</spring.version>
         <jacoco.version>0.7.9</jacoco.version>
         <poi.version>3.17</poi.version>
