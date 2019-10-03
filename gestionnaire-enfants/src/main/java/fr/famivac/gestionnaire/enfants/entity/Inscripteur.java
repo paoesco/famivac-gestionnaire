@@ -29,7 +29,9 @@ import javax.persistence.OneToOne;
 @NamedQuery(name = Inscripteur.QUERY_RETRIEVE_ALL, query = "select i from Inscripteur i order by i.nom,i.prenom,i.organisme")
 public class Inscripteur implements Serializable {
 
-    public static final String QUERY_RETRIEVE_ALL = "inscripteurRetrieveAll";
+	private static final long serialVersionUID = -5080832858740621543L;
+
+	public static final String QUERY_RETRIEVE_ALL = "inscripteurRetrieveAll";
 
     @Id
     @GeneratedValue
