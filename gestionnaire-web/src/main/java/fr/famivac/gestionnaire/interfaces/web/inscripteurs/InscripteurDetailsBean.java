@@ -19,7 +19,12 @@ import javax.inject.Named;
 @ViewScoped
 public class InscripteurDetailsBean implements Serializable, CompleteCommune {
 
-    private long id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2554779234643713339L;
+
+	private Long id;
 
     private Inscripteur form;
 
@@ -43,11 +48,11 @@ public class InscripteurDetailsBean implements Serializable, CompleteCommune {
         init();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -64,11 +69,11 @@ public class InscripteurDetailsBean implements Serializable, CompleteCommune {
         return communeService;
     }
 
-    public boolean isTypeInscripteurParticulier() {
+    public Boolean isTypeInscripteurParticulier() {
         return TypeInscripteur.PARTICULIER.equals(form.getType());
     }
 
-    public boolean isTypeServiceSocialOuAutre() {
+    public Boolean isTypeServiceSocialOuAutre() {
         return TypeInscripteur.SERVICE_SOCIAL.equals(form.getType())
                 || TypeInscripteur.AUTRE.equals(form.getType());
     }
