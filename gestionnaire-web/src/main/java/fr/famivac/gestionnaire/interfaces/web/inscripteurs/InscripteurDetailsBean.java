@@ -69,11 +69,11 @@ public class InscripteurDetailsBean implements Serializable, CompleteCommune {
         return communeService;
     }
 
-    public Boolean isTypeInscripteurParticulier() {
+    public Boolean getTypeInscripteurParticulier() {
         return TypeInscripteur.PARTICULIER.equals(form.getType());
     }
 
-    public Boolean isTypeServiceSocialOuAutre() {
+    public Boolean getTypeServiceSocialOuAutre() {
         return TypeInscripteur.SERVICE_SOCIAL.equals(form.getType())
                 || TypeInscripteur.AUTRE.equals(form.getType());
     }
