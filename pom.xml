@@ -42,7 +42,7 @@
         <maven-war-plugin.version>3.1.0</maven-war-plugin.version>
         
         <!-- Java EE dependencies -->
-        <javaee.version>8.0</javaee.version>
+        <javaee.version>8.0.1</javaee.version>
         <thorntail.version>2.5.0.Final</thorntail.version>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         
