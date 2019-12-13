@@ -55,7 +55,7 @@
         <fontawesome.version>5.11.2</fontawesome.version>
         <postgre.version>42.2.8</postgre.version>
         <spring.version>Brussels-SR3</spring.version>
-        <jacoco.version>0.8.4</jacoco.version>
+        <jacoco.version>0.8.5</jacoco.version>
         <poi.version>4.1.0</poi.version>
         <itext.version>2.1.7</itext.version>
         <liquibase.version>3.8.0</liquibase.version>
