@@ -25,44 +25,44 @@ public class SejourTest {
     @Test
     public void testNombreJoursDebutMatinEtFinApresMidi() {
         Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"), PeriodeJournee.APRES_MIDI);
-        Assert.assertEquals(10, sejour.nombreJours());
+        Assert.assertEquals(10, sejour.nombreJours().intValue());
     }
     
     @Test
     public void testNombreJoursDebutMatinEtFinMatin() {
         Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"), PeriodeJournee.MATIN);
-        Assert.assertEquals(9, sejour.nombreJours());
+        Assert.assertEquals(9, sejour.nombreJours().intValue());
     }
     
     @Test
     public void testNombreJoursDebutApresMidiEtFinApresMidi() {
         Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.APRES_MIDI, toDate("10/01/2015"), PeriodeJournee.APRES_MIDI);
-        Assert.assertEquals(9, sejour.nombreJours());
+        Assert.assertEquals(9, sejour.nombreJours().intValue());
     }
     
     @Test
     public void testNombreJoursDebutApresMidiEtFinMatin() {
         Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.APRES_MIDI, toDate("10/01/2015"), PeriodeJournee.MATIN);
-        Assert.assertEquals(8, sejour.nombreJours());
+        Assert.assertEquals(8, sejour.nombreJours().intValue());
     }
     
     @Test
     public void testNombreJoursDebutMatinEtFinApresMidiMoisDifferents() {
         Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("02/02/2015"), PeriodeJournee.APRES_MIDI);
-        Assert.assertEquals(33, sejour.nombreJours());
+        Assert.assertEquals(33, sejour.nombreJours().intValue());
     }
     
     @Test
     public void testNombreJoursDebutApresMidiEtFinApresMidiMoisDifferents() {
         Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.APRES_MIDI, toDate("02/02/2015"), PeriodeJournee.APRES_MIDI);
-        Assert.assertEquals(32, sejour.nombreJours());
+        Assert.assertEquals(32, sejour.nombreJours().intValue());
     }
     
     @Test
     public void testNombreJoursAnnuleDebutMatinFinApresMidi() {
         Sejour sejour = new Sejour(toDate("01/01/2015"), PeriodeJournee.MATIN, toDate("10/01/2015"), PeriodeJournee.APRES_MIDI);
         sejour.setDateAnnulation(toDate("31/12/2015"));
-        Assert.assertEquals(0, sejour.nombreJours());
+        Assert.assertEquals(0, sejour.nombreJours().intValue());
     }
 
     // Tests sur le status

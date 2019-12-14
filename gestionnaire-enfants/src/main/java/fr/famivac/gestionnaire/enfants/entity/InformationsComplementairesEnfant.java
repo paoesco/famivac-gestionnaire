@@ -9,31 +9,31 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class InformationsComplementairesEnfant implements Serializable {
 
-    private boolean attestationCMU;
+    private Boolean attestationCMU;
 
-    private boolean carteVitale;
+    private Boolean carteVitale;
 
     private String contactUrgence;
 
     private String telephoneUrgence;
 
-    private boolean enuretique;
+    private Boolean enuretique;
 
-    private boolean familleASE;
+    private Boolean familleASE;
 
-    public boolean isAttestationCMU() {
+    public Boolean getAttestationCMU() {
         return attestationCMU;
     }
 
-    public void setAttestationCMU(boolean attestationCMU) {
+    public void setAttestationCMU(Boolean attestationCMU) {
         this.attestationCMU = attestationCMU;
     }
 
-    public boolean isCarteVitale() {
+    public Boolean getCarteVitale() {
         return carteVitale;
     }
 
-    public void setCarteVitale(boolean carteVitale) {
+    public void setCarteVitale(Boolean carteVitale) {
         this.carteVitale = carteVitale;
     }
 
@@ -53,19 +53,19 @@ public class InformationsComplementairesEnfant implements Serializable {
         this.telephoneUrgence = telephoneUrgence;
     }
 
-    public boolean isEnuretique() {
+    public Boolean getEnuretique() {
         return enuretique;
     }
 
-    public void setEnuretique(boolean enuretique) {
+    public void setEnuretique(Boolean enuretique) {
         this.enuretique = enuretique;
     }
 
-    public boolean isFamilleASE() {
+    public Boolean getFamilleASE() {
         return familleASE;
     }
 
-    public void setFamilleASE(boolean familleASE) {
+    public void setFamilleASE(Boolean familleASE) {
         this.familleASE = familleASE;
     }
 

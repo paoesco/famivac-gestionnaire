@@ -60,7 +60,7 @@ public class Famille implements Serializable {
     @Enumerated(EnumType.STRING)
     private Set<PeriodeAccueil> periodesSouhaitees;
 
-    private boolean sejoursComplets;
+    private Boolean sejoursComplets;
 
     private String precisionsSejoursNonComplets;
 
@@ -81,11 +81,11 @@ public class Famille implements Serializable {
 
     private Integer nombreGarconsSouhaites;
 
-    private boolean accepteHandicap;
+    private Boolean accepteHandicap;
 
-    private boolean accepteMalade;
+    private Boolean accepteMalade;
 
-    private boolean extraitCasierJudiciaire;
+    private Boolean extraitCasierJudiciaire;
 
     @Temporal(TemporalType.DATE)
     private Date dateReceptionCasierJudiciaire;
@@ -98,7 +98,7 @@ public class Famille implements Serializable {
     @Enumerated(EnumType.STRING)
     private Avis avisRecrutement;
 
-    private boolean visiteDdcs;
+    private Boolean visiteDdcs;
 
     @Temporal(TemporalType.DATE)
     private Date dateVisiteDdcs;
@@ -120,10 +120,10 @@ public class Famille implements Serializable {
     private Date dateRadiation;
 
     @Column(name = "CANDIDATURE")
-    private boolean candidature;
+    private Boolean candidature;
 
     @Column(name = "ARCHIVEE")
-    private boolean archivee;
+    private Boolean archivee;
 
     protected Famille() {
         this.adresse = new Adresse();
@@ -133,9 +133,15 @@ public class Famille implements Serializable {
         this.periodesSouhaitees = new HashSet<>();
         this.informationsHabitation = new InformationsHabitation(this);
         this.informationsVehicule = new InformationsVehicule(this);
+        this.accepteHandicap = false;
+        this.accepteMalade = false;
+        this.extraitCasierJudiciaire = false;
+        this.visiteDdcs = false;
+        this.candidature = false;
+        this.archivee = false;
     }
 
-    public Famille(Adresse adresse, String projet, boolean candidature) {
+    public Famille(Adresse adresse, String projet, Boolean candidature) {
         this.adresse = adresse;
         membres = new HashSet<>();
         this.projet = projet;
@@ -143,6 +149,11 @@ public class Famille implements Serializable {
         this.informationsHabitation = new InformationsHabitation(this);
         this.informationsVehicule = new InformationsVehicule(this);
         this.candidature = candidature;
+        this.accepteHandicap = false;
+        this.accepteMalade = false;
+        this.extraitCasierJudiciaire = false;
+        this.visiteDdcs = false;
+        this.archivee = false;
     }
 
     public void ajouterChambre(Chambre chambre) {
@@ -175,7 +186,7 @@ public class Famille implements Serializable {
 
     public MembreFamille getMembreReferent() {
         return membres.stream().filter((MembreFamille m) -> {
-            return m.isReferent();
+            return m.getReferent();
         }).findFirst().get();
     }
 
@@ -189,7 +200,7 @@ public class Famille implements Serializable {
         });
     }
 
-    public boolean isRadiee() {
+    public Boolean getRadiee() {
         return dateRadiation != null && DateUtils.after(new Date(), dateRadiation);
     }
 
@@ -214,11 +225,11 @@ public class Famille implements Serializable {
         }
     }
 
-    public boolean isSejoursComplets() {
+    public Boolean getSejoursComplets() {
         return sejoursComplets;
     }
 
-    public void setSejoursComplets(boolean sejoursComplets) {
+    public void setSejoursComplets(Boolean sejoursComplets) {
         this.sejoursComplets = sejoursComplets;
     }
 
@@ -279,19 +290,19 @@ public class Famille implements Serializable {
         this.nombreGarconsSouhaites = nombreGarconsSouhaites;
     }
 
-    public boolean isAccepteHandicap() {
+    public Boolean getAccepteHandicap() {
         return accepteHandicap;
     }
 
-    public void setAccepteHandicap(boolean accepteHandicap) {
+    public void setAccepteHandicap(Boolean accepteHandicap) {
         this.accepteHandicap = accepteHandicap;
     }
 
-    public boolean isAccepteMalade() {
+    public Boolean getAccepteMalade() {
         return accepteMalade;
     }
 
-    public void setAccepteMalade(boolean accepteMalade) {
+    public void setAccepteMalade(Boolean accepteMalade) {
         this.accepteMalade = accepteMalade;
     }
 
@@ -299,11 +310,11 @@ public class Famille implements Serializable {
         return adresse;
     }
 
-    public boolean isExtraitCasierJudiciaire() {
+    public Boolean getExtraitCasierJudiciaire() {
         return extraitCasierJudiciaire;
     }
 
-    public void setExtraitCasierJudiciaire(boolean extraitCasierJudiciaire) {
+    public void setExtraitCasierJudiciaire(Boolean extraitCasierJudiciaire) {
         this.extraitCasierJudiciaire = extraitCasierJudiciaire;
     }
 
@@ -339,11 +350,11 @@ public class Famille implements Serializable {
         this.avisRecrutement = avisRecrutement;
     }
 
-    public boolean isVisiteDdcs() {
+    public Boolean getVisiteDdcs() {
         return visiteDdcs;
     }
 
-    public void setVisiteDdcs(boolean visiteDdcs) {
+    public void setVisiteDdcs(Boolean visiteDdcs) {
         this.visiteDdcs = visiteDdcs;
     }
 
@@ -395,30 +406,30 @@ public class Famille implements Serializable {
         this.dateRadiation = dateRadiation == null ? null : (Date) dateRadiation.clone();
     }
 
-    public boolean isCandidature() {
+    public Boolean getCandidature() {
         return candidature;
     }
 
-    public void setCandidature(boolean candidature) {
+    public void setCandidature(Boolean candidature) {
         this.candidature = candidature;
     }
 
-    public boolean isArchivee() {
+    public Boolean getArchivee() {
         return archivee;
     }
 
-    public void setArchivee(boolean archivee) {
+    public void setArchivee(Boolean archivee) {
         this.archivee = archivee;
     }
 
     public Status getStatus() {
-        if (isRadiee()) {
+        if (getRadiee()) {
             return Status.RADIEE;
         }
-        if (!isCandidature()) {
+        if (!getCandidature()) {
             return Status.ACTIVE;
         }
-        if (isCandidature()) {
+        if (getCandidature()) {
             return Status.CANDIDATURE;
         }
         throw new IllegalStateException("No status found");

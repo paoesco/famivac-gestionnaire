@@ -13,7 +13,7 @@ public class VoyageDTO {
 
     private Date dateVoyage;
 
-    private boolean retour;
+    private Boolean retour;
 
     private String enfant;
 
@@ -69,7 +69,7 @@ public class VoyageDTO {
         this.dateVoyage = dateVoyage;
     }
 
-    public boolean getRetour() {
+    public Boolean getRetour() {
         return retour;
     }
 
@@ -77,7 +77,7 @@ public class VoyageDTO {
         return getRetour() ? "R" : "A";
     }
 
-    public void setRetour(boolean retour) {
+    public void setRetour(Boolean retour) {
         this.retour = retour;
     }
 

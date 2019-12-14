@@ -32,7 +32,7 @@ public class EnfantService {
     Event<UpdateEnfantEvent> updateEnfantEvent;
 
     public Long create(Enfant enfant) {
-        if (enfant.isInscripteurEstResponsableLegal()) {
+        if (enfant.getInscripteurEstResponsableLegal()) {
             enfant.setResponsableLegal(new ResponsableLegal(enfant.getInscripteur()));
         }
         entityManager.persist(enfant);
@@ -45,7 +45,7 @@ public class EnfantService {
 
     public void update(Enfant enfant) {
         entityManager.merge(enfant.getInscripteur());
-        if (enfant.isInscripteurEstResponsableLegal()) {
+        if (enfant.getInscripteurEstResponsableLegal()) {
             enfant.getResponsableLegal().setAdresse(enfant.getInscripteur().getAdresse());
             enfant.getResponsableLegal().setCoordonnees(enfant.getInscripteur().getCoordonnees());
             //enfant.getResponsableLegal().setLienDeParente();

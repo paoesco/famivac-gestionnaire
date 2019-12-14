@@ -18,11 +18,11 @@ public class FamilleDTO implements Serializable {
 
     private String emailReferent;
 
-    private boolean radiee;
+    private Boolean radiee;
 
-    private boolean candidature;
+    private Boolean candidature;
 
-    private boolean archivee;
+    private Boolean archivee;
 
     public FamilleDTO(Famille bean) {
         this.id = bean.getId();
@@ -32,9 +32,9 @@ public class FamilleDTO implements Serializable {
             this.telephoneReferent = bean.getMembreReferent().getCoordonnees().getTelephone1();
             this.emailReferent = bean.getMembreReferent().getCoordonnees().getEmail();
         }
-        this.radiee = bean.isRadiee();
-        this.candidature = bean.isCandidature();
-        this.archivee = bean.isArchivee();
+        this.radiee = bean.getRadiee();
+        this.candidature = bean.getCandidature();
+        this.archivee = bean.getArchivee();
     }
 
     public Long getId() {
@@ -77,27 +77,27 @@ public class FamilleDTO implements Serializable {
         this.emailReferent = emailReferent;
     }
 
-    public boolean isRadiee() {
+    public Boolean getRadiee() {
         return radiee;
     }
 
-    public void setRadiee(boolean radiee) {
+    public void setRadiee(Boolean radiee) {
         this.radiee = radiee;
     }
 
-    public boolean isCandidature() {
+    public Boolean getCandidature() {
         return candidature;
     }
 
-    public void setCandidature(boolean candidature) {
+    public void setCandidature(Boolean candidature) {
         this.candidature = candidature;
     }
 
-    public boolean isArchivee() {
+    public Boolean getArchivee() {
         return archivee;
     }
 
-    public void setArchivee(boolean archivee) {
+    public void setArchivee(Boolean archivee) {
         this.archivee = archivee;
     }
 

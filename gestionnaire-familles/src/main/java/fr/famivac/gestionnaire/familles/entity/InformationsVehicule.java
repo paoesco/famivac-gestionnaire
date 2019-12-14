@@ -27,13 +27,13 @@ public class InformationsVehicule implements Serializable {
     private Famille famille;
 
     @Column(name = "NOMBRE_VEHICULES")
-    private int nombreVehicules;
+    private Integer nombreVehicules;
 
     @Column(name = "TYPE_VEHICULE_1")
     private String typeVehicule1;
 
     @Column(name = "NOMBRE_PLACES_VEHICULE_1")
-    private int nombrePlacesVehicule1;
+    private Integer nombrePlacesVehicule1;
 
     @Column(name = "CONDUCTEUR_PRINCIPAL_VEHICULE_1")
     private String conducteurPrincipalVehicule1;
@@ -42,7 +42,7 @@ public class InformationsVehicule implements Serializable {
     private String typeVehicule2;
 
     @Column(name = "NOMBRE_PLACES_VEHICULE_2")
-    private int nombrePlacesVehicule2;
+    private Integer nombrePlacesVehicule2;
 
     @Column(name = "CONDUCTEUR_PRINCIPAL_VEHICULE_2")
     private String conducteurPrincipalVehicule2;
@@ -51,10 +51,10 @@ public class InformationsVehicule implements Serializable {
     private String assurance;
 
     @Column(name = "NOMBRE_REHAUSSEURS")
-    private int nombreRehausseurs;
+    private Integer nombreRehausseurs;
 
     @Column(name = "NOMBRE_SIEGES_ATUO_BEBE")
-    private int nombreSiegesAutoBebe;
+    private Integer nombreSiegesAutoBebe;
 
     /**
      * Constructeur JPA.
@@ -79,11 +79,11 @@ public class InformationsVehicule implements Serializable {
         this.famille = famille;
     }
 
-    public int getNombreVehicules() {
+    public Integer getNombreVehicules() {
         return nombreVehicules;
     }
 
-    public void setNombreVehicules(int nombreVehicules) {
+    public void setNombreVehicules(Integer nombreVehicules) {
         this.nombreVehicules = nombreVehicules;
     }
 
@@ -95,11 +95,11 @@ public class InformationsVehicule implements Serializable {
         this.typeVehicule1 = typeVehicule1;
     }
 
-    public int getNombrePlacesVehicule1() {
+    public Integer getNombrePlacesVehicule1() {
         return nombrePlacesVehicule1;
     }
 
-    public void setNombrePlacesVehicule1(int nombrePlacesVehicule1) {
+    public void setNombrePlacesVehicule1(Integer nombrePlacesVehicule1) {
         this.nombrePlacesVehicule1 = nombrePlacesVehicule1;
     }
 
@@ -119,11 +119,11 @@ public class InformationsVehicule implements Serializable {
         this.typeVehicule2 = typeVehicule2;
     }
 
-    public int getNombrePlacesVehicule2() {
+    public Integer getNombrePlacesVehicule2() {
         return nombrePlacesVehicule2;
     }
 
-    public void setNombrePlacesVehicule2(int nombrePlacesVehicule2) {
+    public void setNombrePlacesVehicule2(Integer nombrePlacesVehicule2) {
         this.nombrePlacesVehicule2 = nombrePlacesVehicule2;
     }
 
@@ -143,19 +143,19 @@ public class InformationsVehicule implements Serializable {
         this.assurance = assurance;
     }
 
-    public int getNombreRehausseurs() {
+    public Integer getNombreRehausseurs() {
         return nombreRehausseurs;
     }
 
-    public void setNombreRehausseurs(int nombreRehausseurs) {
+    public void setNombreRehausseurs(Integer nombreRehausseurs) {
         this.nombreRehausseurs = nombreRehausseurs;
     }
 
-    public int getNombreSiegesAutoBebe() {
+    public Integer getNombreSiegesAutoBebe() {
         return nombreSiegesAutoBebe;
     }
 
-    public void setNombreSiegesAutoBebe(int nombreSiegesAutoBebe) {
+    public void setNombreSiegesAutoBebe(Integer nombreSiegesAutoBebe) {
         this.nombreSiegesAutoBebe = nombreSiegesAutoBebe;
     }
 

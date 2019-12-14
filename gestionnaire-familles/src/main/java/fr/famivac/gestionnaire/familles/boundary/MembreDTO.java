@@ -23,7 +23,7 @@ public class MembreDTO {
     
     private Date dateNaissance;
     
-    private boolean referent;
+    private Boolean referent;
     
     private Commune communeDeNaissance;
     
@@ -86,11 +86,11 @@ public class MembreDTO {
         this.dateNaissance = dateNaissance;
     }
     
-    public boolean isReferent() {
+    public Boolean getReferent() {
         return referent;
     }
     
-    public void setReferent(boolean referent) {
+    public void setReferent(Boolean referent) {
         this.referent = referent;
     }
     
