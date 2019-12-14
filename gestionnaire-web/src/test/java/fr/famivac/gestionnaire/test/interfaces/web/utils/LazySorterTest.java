@@ -3,7 +3,7 @@ package fr.famivac.gestionnaire.test.interfaces.web.utils;
 import fr.famivac.gestionnaire.sejours.control.SejourDTO;
 import fr.famivac.gestionnaire.enfants.entity.Inscripteur;
 import fr.famivac.gestionnaire.enfants.entity.TypeInscripteur;
-import fr.famivac.gestionnaire.interfaces.web.utils.LazySorter;
+import fr.famivac.gestionnaire.web.utils.LazySorter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

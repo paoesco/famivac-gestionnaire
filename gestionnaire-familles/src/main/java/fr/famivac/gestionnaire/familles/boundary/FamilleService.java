@@ -39,7 +39,7 @@ public class FamilleService {
             communeFamille = new Commune(request.getAdresse().getCommune().getCode(), request.getAdresse().getCommune().getVille());
         }
         Adresse adresse = new Adresse(request.getAdresse().getLigneAdresseUne(), request.getAdresse().getLigneAdresseDeux(), communeFamille);
-        Famille entity = new Famille(adresse, request.getProjet(), request.isCandidature());
+        Famille entity = new Famille(adresse, request.getProjet(), request.getCandidature());
         Commune communeMembre = request.getMembrePrincipal().getCommuneDeNaissance();
         MembreFamille membre = new MembreFamille(
                 request.getMembrePrincipal().getNom(),
@@ -117,6 +117,15 @@ public class FamilleService {
             throw new IllegalArgumentException("La famille n'existe pas");
         }
         famille.setArchivee(true);
+        entityManager.merge(famille);
+    }
+
+    public void desarchiver(Long id) {
+        Famille famille = entityManager.find(Famille.class, id);
+        if (famille == null) {
+            throw new IllegalArgumentException("La famille n'existe pas");
+        }
+        famille.setArchivee(false);
         entityManager.merge(famille);
     }
 

@@ -52,7 +52,6 @@
         <bootstrap.version>3.3.7-1</bootstrap.version>
         <metismenu.version>2.6.1</metismenu.version>
         <sbadmin2.version>3.3.7</sbadmin2.version>
-        <fontawesome.version>5.11.2</fontawesome.version>
         <postgre.version>42.2.8</postgre.version>
         <spring.version>Brussels-SR3</spring.version>
         <jacoco.version>0.8.5</jacoco.version>
@@ -132,11 +131,6 @@
                 <groupId>org.webjars.npm</groupId>
                 <artifactId>startbootstrap-sb-admin-2</artifactId>
                 <version>${sbadmin2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.webjars</groupId>
-                <artifactId>font-awesome</artifactId>
-                <version>${fontawesome.version}</version>
             </dependency>
             <!-- Data Exporter -->
             <dependency>

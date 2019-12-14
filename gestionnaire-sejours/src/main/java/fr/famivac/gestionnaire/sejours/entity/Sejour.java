@@ -200,7 +200,7 @@ public class Sejour implements Serializable {
         return this;
     }
 
-    public int nombreJours() {
+    public Integer nombreJours() {
         if (getDateAnnulation() != null) {
             return 0;
         }

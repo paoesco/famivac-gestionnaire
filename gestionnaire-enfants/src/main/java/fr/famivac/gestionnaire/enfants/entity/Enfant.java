@@ -31,7 +31,7 @@ public class Enfant implements Serializable {
 
     private String prenom;
 
-    private boolean inscripteurEstResponsableLegal;
+    private Boolean inscripteurEstResponsableLegal;
 
     @Enumerated(EnumType.STRING)
     private Sexe sexe;
@@ -134,11 +134,11 @@ public class Enfant implements Serializable {
         this.remarque = remarque;
     }
 
-    public boolean isInscripteurEstResponsableLegal() {
+    public Boolean getInscripteurEstResponsableLegal() {
         return inscripteurEstResponsableLegal;
     }
 
-    public void setInscripteurEstResponsableLegal(boolean inscripteurEstResponsableLegal) {
+    public void setInscripteurEstResponsableLegal(Boolean inscripteurEstResponsableLegal) {
         this.inscripteurEstResponsableLegal = inscripteurEstResponsableLegal;
     }
 

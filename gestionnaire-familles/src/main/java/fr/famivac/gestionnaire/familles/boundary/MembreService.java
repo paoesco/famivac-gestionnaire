@@ -41,7 +41,7 @@ public class MembreService {
         dto.setNomDeNaissance(entity.getNomDeNaissance());
         dto.setPrenom(entity.getPrenom());
         dto.setProfession(entity.getProfession());
-        dto.setReferent(entity.isReferent());
+        dto.setReferent(entity.getReferent());
         dto.setSexe(entity.getSexe().name());
         dto.setCoordonnees(entity.getCoordonnees());
         return dto;
@@ -58,7 +58,7 @@ public class MembreService {
         entity.setNomDeNaissance(request.getNomDeNaissance());
         entity.setPrenom(request.getPrenom());
         entity.setProfession(request.getProfession());
-        entity.setReferent(request.isReferent());
+        entity.setReferent(request.getReferent());
         entity.setSexe(Sexe.valueOf(request.getSexe()));
         entity.setCoordonnees(request.getCoordonnees());
         entityManager.merge(entity);
@@ -69,7 +69,7 @@ public class MembreService {
         event.setNom(entity.getNom());
         event.setPrenom(entity.getPrenom());
         event.setTelephone(entity.getCoordonnees().getTelephone1());
-        event.setReferent(entity.isReferent());
+        event.setReferent(entity.getReferent());
         updateFamilleEvent.fire(event);
     }
     

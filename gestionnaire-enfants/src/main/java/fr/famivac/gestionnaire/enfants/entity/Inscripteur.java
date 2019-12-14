@@ -147,11 +147,11 @@ public class Inscripteur implements Serializable {
         this.numeroSiret = numeroSiret;
     }
 
-    public boolean isParticulier() {
+    public Boolean getParticulier() {
         return TypeInscripteur.PARTICULIER.equals(type);
     }
 
-    public boolean isTypeServiceSocialOuAutre() {
+    public Boolean getTypeServiceSocialOuAutre() {
         return TypeInscripteur.SERVICE_SOCIAL.equals(type) || TypeInscripteur.AUTRE.equals(type);
     }
 

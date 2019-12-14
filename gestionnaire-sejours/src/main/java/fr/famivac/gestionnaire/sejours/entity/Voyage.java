@@ -179,7 +179,7 @@ public class Voyage implements Serializable {
         this.numeroTrain = numeroTrain;
     }
 
-    public boolean isRetour() {
+    public Boolean getRetour() {
         return sejourRetour != null;
     }
 

@@ -10,7 +10,7 @@ public class UpdateFamilleEvent {
     private String nom;
     private String prenom;
     private String telephone;
-    private boolean referent;
+    private Boolean referent;
 
     public Long getId() {
         return id;
@@ -44,11 +44,11 @@ public class UpdateFamilleEvent {
         this.telephone = telephone;
     }
 
-    public boolean isReferent() {
+    public Boolean getReferent() {
         return referent;
     }
 
-    public void setReferent(boolean referent) {
+    public void setReferent(Boolean referent) {
         this.referent = referent;
     }
 

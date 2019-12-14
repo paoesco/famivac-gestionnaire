@@ -38,19 +38,19 @@ public class InformationsHabitation implements Serializable {
     private String villeLaPlusProche;
 
     @Column(name = "JARDIN_ESCPACE_JEU")
-    private boolean jardinEspaceJeu;
+    private Boolean jardinEspaceJeu;
 
     @Column(name = "PISCINE")
-    private boolean piscine;
+    private Boolean piscine;
 
     @Column(name = "PISCINE_SECURISE")
     private Boolean piscineSecurisee;
 
     @Column(name = "NOMBRE_CHIENS")
-    private int nombreChiens;
+    private Integer nombreChiens;
 
     @Column(name = "NOMBRE_CHATS")
-    private int nombreChats;
+    private Integer nombreChats;
 
     @Column(name = "AUTRES_ANIMAUX", length = 1000)
     private String autresAnimaux;
@@ -107,19 +107,19 @@ public class InformationsHabitation implements Serializable {
         this.villeLaPlusProche = villeLaPlusProche;
     }
 
-    public boolean isJardinEspaceJeu() {
+    public Boolean getJardinEspaceJeu() {
         return jardinEspaceJeu;
     }
 
-    public void setJardinEspaceJeu(boolean jardinEspaceJeu) {
+    public void setJardinEspaceJeu(Boolean jardinEspaceJeu) {
         this.jardinEspaceJeu = jardinEspaceJeu;
     }
 
-    public boolean isPiscine() {
+    public Boolean getPiscine() {
         return piscine;
     }
 
-    public void setPiscine(boolean piscine) {
+    public void setPiscine(Boolean piscine) {
         this.piscine = piscine;
     }
 
@@ -131,19 +131,19 @@ public class InformationsHabitation implements Serializable {
         this.piscineSecurisee = piscineSecurisee;
     }
 
-    public int getNombreChiens() {
+    public Integer getNombreChiens() {
         return nombreChiens;
     }
 
-    public void setNombreChiens(int nombreChiens) {
+    public void setNombreChiens(Integer nombreChiens) {
         this.nombreChiens = nombreChiens;
     }
 
-    public int getNombreChats() {
+    public Integer getNombreChats() {
         return nombreChats;
     }
 
-    public void setNombreChats(int nombreChats) {
+    public void setNombreChats(Integer nombreChats) {
         this.nombreChats = nombreChats;
     }
 

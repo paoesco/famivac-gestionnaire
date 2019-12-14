@@ -46,7 +46,7 @@ public class MembreFamille implements Serializable {
     private Date dateNaissance;
 
     @Column(nullable = false)
-    private boolean referent;
+    private Boolean referent;
 
     @ManyToOne
     @JoinColumn
@@ -67,7 +67,7 @@ public class MembreFamille implements Serializable {
         this(nom, nomDeNaissance, prenom, sexe, dateNaissance, profession, false, communeDeNaissance, coordonnees);
     }
 
-    public MembreFamille(String nom, String nomDeNaissance, String prenom, Sexe sexe, Date dateNaissance, String profession, boolean referent, Commune communeDeNaissance, Coordonnees coordonnees) {
+    public MembreFamille(String nom, String nomDeNaissance, String prenom, Sexe sexe, Date dateNaissance, String profession, Boolean referent, Commune communeDeNaissance, Coordonnees coordonnees) {
         if (nom == null
                 || nom.isEmpty()
                 || prenom == null
@@ -115,7 +115,7 @@ public class MembreFamille implements Serializable {
         return dateNaissance == null ? null : (Date) dateNaissance.clone();
     }
 
-    public boolean isReferent() {
+    public Boolean getReferent() {
         return referent;
     }
 
@@ -160,7 +160,7 @@ public class MembreFamille implements Serializable {
         this.dateNaissance = dateNaissance == null ? null : (Date) dateNaissance.clone();
     }
 
-    public void setReferent(boolean referent) {
+    public void setReferent(Boolean referent) {
         this.referent = referent;
     }
 

@@ -1,6 +1,6 @@
 package fr.famivac.gestionnaire.test.interfaces.web.utils;
 
-import fr.famivac.gestionnaire.interfaces.web.utils.MontantConverter;
+import fr.famivac.gestionnaire.web.utils.MontantConverter;
 import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Before;

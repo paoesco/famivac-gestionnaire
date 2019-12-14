@@ -179,7 +179,7 @@ public class SejourService {
     @Asynchronous
     public void updateFamille(@Observes UpdateFamilleEvent pEvent) {
         UpdateFamilleEvent event = pEvent; // FIX https://issues.jboss.org/browse/WELD-2019
-        if (event.isReferent()) { // Update only if the event concerns a referent
+        if (event.getReferent()) { // Update only if the event concerns a referent
             List<Sejour> sejours = entityManager.createNamedQuery(Sejour.QUERY_SEJOURS_DE_LA_FAMILLE, Sejour.class)
                     .setParameter("familleId", event.getId())
                     .getResultList();
@@ -215,7 +215,7 @@ public class SejourService {
                     dto.setHeureRendezVous(DateUtils.sumTimeToDate(voyage.getHeureDepart(), 0, -30, 0));
                     dto.setHeureTransport(voyage.getHeureDepart());
                     dto.setHeureArrivee(voyage.getHeureArrivee());
-                    dto.setRetour(voyage.isRetour());
+                    dto.setRetour(voyage.getRetour());
                     dto.setLieu(voyage.getLieuDepart());
                     dto.setNumeroTransport(voyage.getNumeroTrain());
                     String accompagnateursTelephones = voyage
@@ -226,7 +226,7 @@ public class SejourService {
                             })
                             .collect(Collectors.joining(","));
                     dto.setTelephoneAccompagnateur(accompagnateursTelephones);
-                    if (voyage.isRetour()) {
+                    if (voyage.getRetour()) {
                         dto.setContactParis(voyage.getNomPersonneAReception());
                         dto.setTelephoneContactParis(voyage.getTelephonePersonneAReception());
                     } else {

@@ -30,7 +30,7 @@
                                 styleClass="btn-default pull-left" 
                                 value="Ajouter"
                                 icon="ui-icon-plus"/>
-                            <h:form>
+                            <h:form id="form">
                                 <p:selectManyButton 
                                     value="#{famillesListeBean.periodesAccueil}"
                                     styleClass="pull-right">
@@ -43,7 +43,8 @@
                                     <f:selectItem itemLabel="Noël" itemValue="NOEL" />
                                 </p:selectManyButton>
                                 
-                                <p:selectOneButton 
+                                <p:selectOneButton
+                                    id="checkbox-archivees"
                                     value="#{famillesListeBean.archivees}"
                                     styleClass="pull-right">
                                     <p:ajax event="change" update="datatable" listener="#{famillesListeBean.rechercher()}"></p:ajax>
@@ -120,11 +121,22 @@
                                                 message="Êtes vous sûr de vouloir archiver cette famille ?" 
                                                 icon="ui-icon-alert" />
                                         </p:commandButton>
+                                        <p:commandButton
+                                                rendered="#{bean.archivee}"
+                                                styleClass="btn-default"
+                                                icon="fa fa-repeat"
+                                                actionListener="#{famillesListeBean.desarchiver(bean.id)}"
+                                                update="datatable :form:checkbox-archivees">
+                                            <p:confirm
+                                                    header="Confirmation"
+                                                    message="Êtes vous sûr de vouloir désarchiver cette famille ?"
+                                                    icon="ui-icon-alert" />
+                                        </p:commandButton>
                                         <p:confirmDialog global="true">
                                             <p:commandButton 
                                                 value="Oui" 
                                                 type="button" 
-                                                process="@this"
+                                                process="@this "
                                                 styleClass="ui-confirmdialog-yes pull-right" 
                                                 icon="ui-icon-check" />
                                             <p:commandButton 

@@ -35,7 +35,7 @@ public final class DateUtils {
      * @param maxExclusive : upper bound, excluded
      * @return boolean indiquant si la date est comprise entre les deux extrémités
      */
-    public static boolean between(Date date, Date minInclusive, Date maxExclusive) {
+    public static Boolean between(Date date, Date minInclusive, Date maxExclusive) {
         Date working = removeTime(date);
         Date workingMin = removeTime(minInclusive);
         Date workingMax = removeTime(maxExclusive);

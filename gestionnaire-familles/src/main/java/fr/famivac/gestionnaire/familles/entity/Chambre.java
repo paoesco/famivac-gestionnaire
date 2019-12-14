@@ -17,7 +17,7 @@ public class Chambre implements Serializable {
     @GeneratedValue
     private long id;
 
-    private int nombreLits;
+    private Integer nombreLits;
 
     @ManyToOne
     private Famille famille;
@@ -26,7 +26,7 @@ public class Chambre implements Serializable {
         nombreLits = 0;
     }
 
-    public Chambre(int nombreLits, Famille famille) {
+    public Chambre(Integer nombreLits, Famille famille) {
         if (famille == null) {
             throw new IllegalArgumentException("Préciser la famille");
         }
@@ -34,11 +34,11 @@ public class Chambre implements Serializable {
         this.famille = famille;
     }
 
-    public int getNombreLits() {
+    public Integer getNombreLits() {
         return nombreLits;
     }
 
-    public void setNombreLits(int nombreLits) {
+    public void setNombreLits(Integer nombreLits) {
         this.nombreLits = nombreLits;
     }
 

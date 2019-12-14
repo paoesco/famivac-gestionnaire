@@ -19,7 +19,7 @@ public class RetrieveUtilisateursDTO {
 
     private String email;
 
-    private boolean enabled;
+    private Boolean enabled;
 
     private List<Groupe> groupes;
 
@@ -74,11 +74,11 @@ public class RetrieveUtilisateursDTO {
         this.email = email;
     }
 
-    public boolean isEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 

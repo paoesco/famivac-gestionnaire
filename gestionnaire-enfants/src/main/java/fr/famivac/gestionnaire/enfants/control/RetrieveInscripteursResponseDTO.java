@@ -59,18 +59,18 @@ public class RetrieveInscripteursResponseDTO {
         this.type = type;
     }
 
-    public boolean isParticulier() {
+    public Boolean getParticulier() {
         return TypeInscripteur.PARTICULIER.equals(type);
     }
 
-    public boolean isTypeServiceSocialOuAutre() {
+    public Boolean getTypeServiceSocialOuAutre() {
         return TypeInscripteur.SERVICE_SOCIAL.equals(type) || TypeInscripteur.AUTRE.equals(type);
     }
 
     public String getLibelle() {
-        if (isParticulier()) {
+        if (getParticulier()) {
             return getPrenom() + " " + getNom();
-        } else if (isTypeServiceSocialOuAutre()) {
+        } else if (getTypeServiceSocialOuAutre()) {
             return getOrganisme();
         } else {
             Logger.getLogger(RetrieveInscripteursResponseDTO.class.getName()).log(Level.WARNING, "Impossible de déterminer le type inscripteur et donc son libellé");

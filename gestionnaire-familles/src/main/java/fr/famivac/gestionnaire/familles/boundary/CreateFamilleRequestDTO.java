@@ -14,7 +14,7 @@ public class CreateFamilleRequestDTO {
 
     private MembreDTO membrePrincipal;
 
-    private boolean candidature;
+    private Boolean candidature;
 
     public CreateFamilleRequestDTO() {
         adresse = new Adresse();
@@ -45,11 +45,11 @@ public class CreateFamilleRequestDTO {
         this.membrePrincipal = membrePrincipal;
     }
 
-    public boolean isCandidature() {
+    public Boolean getCandidature() {
         return candidature;
     }
 
-    public void setCandidature(boolean candidature) {
+    public void setCandidature(Boolean candidature) {
         this.candidature = candidature;
     }
 

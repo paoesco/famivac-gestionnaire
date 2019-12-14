@@ -85,7 +85,7 @@ public class FraisDossier {
         this.dateFinValidite = dateFinValidite;
     }
 
-    public boolean isEnCours(Date date) {
+    public Boolean getEnCours(Date date) {
         return Objects.isNull(dateFinValidite) || DateUtils.after(dateFinValidite, date);
     }
 
