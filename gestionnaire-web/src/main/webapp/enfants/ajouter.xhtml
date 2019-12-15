@@ -33,14 +33,14 @@
                                     <h:link 
                                         target="_blank"
                                         outcome="/inscripteurs/details.xhtml"
-                                        rendered="#{ajouterEnfantBean.form.inscripteur.isParticulier()}"
+                                        rendered="#{ajouterEnfantBean.form.inscripteur.getParticulier()}"
                                         value="#{ajouterEnfantBean.form.inscripteur.prenom} #{ajouterEnfantBean.form.inscripteur.nom}">
                                         <f:param name="id" value="#{ajouterEnfantBean.form.inscripteur.id}"></f:param>    
                                     </h:link>
                                     <h:link 
                                         target="_blank"
                                         outcome="/inscripteurs/details.xhtml"
-                                        rendered="#{ajouterEnfantBean.form.inscripteur.isTypeServiceSocialOuAutre()}"
+                                        rendered="#{ajouterEnfantBean.form.inscripteur.getTypeServiceSocialOuAutre()}"
                                         value="#{ajouterEnfantBean.form.inscripteur.organisme}">
                                         <f:param name="id" value="#{ajouterEnfantBean.form.inscripteur.id}"></f:param>    
                                     </h:link>
