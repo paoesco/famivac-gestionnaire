@@ -1,5 +1,8 @@
 package fr.famivac.gestionnaire.commons.utils;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -8,8 +11,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  *
@@ -23,7 +24,7 @@ public class DateUtilsTest {
             return sdf.parse(s);
         } catch (ParseException ex) {
             Logger.getLogger(DateUtilsTest.class.getName()).log(Level.SEVERE, null, ex);
-            Assert.fail();
+            Assertions.fail();
             return null;
         }
     }
@@ -34,7 +35,7 @@ public class DateUtilsTest {
         Date min = toDate("01/01/2015 02:00");
         Date max = toDate("31/01/2015 23:59");
         boolean result = DateUtils.between(toTest, min, max);
-        Assert.assertTrue(result);
+        Assertions.assertTrue(result);
     }
 
     @Test
@@ -43,7 +44,7 @@ public class DateUtilsTest {
         Date min = toDate("01/01/2015 02:00");
         Date max = toDate("31/01/2015 03:59");
         boolean result = DateUtils.between(toTest, min, max);
-        Assert.assertFalse(result);
+        Assertions.assertFalse(result);
     }
 
     @Test
@@ -51,7 +52,7 @@ public class DateUtilsTest {
         Date d1 = toDate("01/01/2015 02:00");
         Date d2 = toDate("31/01/2015 03:59");
         boolean result = DateUtils.before(d1, d2);
-        Assert.assertTrue(result);
+        Assertions.assertTrue(result);
     }
 
     @Test
@@ -59,7 +60,7 @@ public class DateUtilsTest {
         Date d1 = toDate("01/01/2015 02:00");
         Date d2 = toDate("31/01/2014 03:59");
         boolean result = DateUtils.before(d1, d2);
-        Assert.assertFalse(result);
+        Assertions.assertFalse(result);
     }
 
     @Test
@@ -67,7 +68,7 @@ public class DateUtilsTest {
         Date d1 = toDate("01/01/2015 02:00");
         Date d2 = toDate("01/01/2015 03:59");
         boolean result = DateUtils.before(d1, d2);
-        Assert.assertFalse(result);
+        Assertions.assertFalse(result);
     }
 
     @Test
@@ -75,7 +76,7 @@ public class DateUtilsTest {
         Date d1 = toDate("31/01/2015 03:59");
         Date d2 = toDate("01/01/2015 02:00");
         boolean result = DateUtils.after(d1, d2);
-        Assert.assertTrue(result);
+        Assertions.assertTrue(result);
     }
 
     @Test
@@ -83,7 +84,7 @@ public class DateUtilsTest {
         Date d1 = toDate("31/01/2014 03:59");
         Date d2 = toDate("01/01/2015 02:00");
         boolean result = DateUtils.after(d1, d2);
-        Assert.assertFalse(result);
+        Assertions.assertFalse(result);
     }
 
     @Test
@@ -91,14 +92,14 @@ public class DateUtilsTest {
         Date d1 = toDate("01/01/2015 03:59");
         Date d2 = toDate("01/01/2015 02:00");
         boolean result = DateUtils.after(d1, d2);
-        Assert.assertTrue(result);
+        Assertions.assertTrue(result);
     }
 
     @Test
     public void testToLocaleDate() {
         Date toTest = toDate("31/01/2015 01:00");
         LocalDate result = DateUtils.toLocalDate(toTest);
-        Assert.assertEquals("2015-01-31", result.format(DateTimeFormatter.ISO_DATE));
+        Assertions.assertEquals("2015-01-31", result.format(DateTimeFormatter.ISO_DATE));
     }
 
     @Test
@@ -106,7 +107,7 @@ public class DateUtilsTest {
         Date toTest = toDate("31/01/2015 01:00");
         Date result = DateUtils.sumTimeToDate(toTest, 1, 30, 5);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Assert.assertEquals("31/01/2015 02:30:05", sdf.format(result));
+        Assertions.assertEquals("31/01/2015 02:30:05", sdf.format(result));
     }
 
     @Test
@@ -114,13 +115,13 @@ public class DateUtilsTest {
         Date toTest = toDate("31/01/2015 02:00");
         Date result = DateUtils.sumTimeToDate(toTest, -1, -30, -5);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Assert.assertEquals("31/01/2015 00:29:55", sdf.format(result));
+        Assertions.assertEquals("31/01/2015 00:29:55", sdf.format(result));
     }
 
     @Test
     public void testSumTimeToDateNull() {
         Date result = DateUtils.sumTimeToDate(null, -1, -30, -5);
-        Assert.assertNull(result);
+        Assertions.assertNull(result);
     }
 
     @Test
@@ -128,7 +129,7 @@ public class DateUtilsTest {
         LocalDate localDate = LocalDate.of(2017, Month.MARCH, 15);
         Date result = DateUtils.firstDay(localDate);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Assert.assertEquals("01/03/2017", sdf.format(result));
+        Assertions.assertEquals("01/03/2017", sdf.format(result));
     }
 
     @Test
@@ -136,7 +137,7 @@ public class DateUtilsTest {
         LocalDate localDate = LocalDate.of(2017, Month.MARCH, 15);
         Date result = DateUtils.lastDay(localDate);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Assert.assertEquals("31/03/2017", sdf.format(result));
+        Assertions.assertEquals("31/03/2017", sdf.format(result));
     }
 
 }
