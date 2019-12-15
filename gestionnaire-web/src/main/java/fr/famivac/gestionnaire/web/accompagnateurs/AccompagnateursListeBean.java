@@ -40,7 +40,7 @@ public class AccompagnateursListeBean implements Serializable {
 
     public void supprimer(Long id) {
         accompagnateurService.delete(id);
-        init(); // recharge des familles
+        init();
     }
 
     public LazyAccompagnateurDataModel getLazyModel() {

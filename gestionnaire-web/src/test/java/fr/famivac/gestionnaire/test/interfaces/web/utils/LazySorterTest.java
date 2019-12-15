@@ -12,8 +12,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.primefaces.model.SortOrder;
 
 /**
@@ -28,7 +29,7 @@ public class LazySorterTest {
             return sdf.parse(s);
         } catch (ParseException ex) {
             Logger.getLogger(LazySorterTest.class.getName()).log(Level.SEVERE, null, ex);
-            Assert.fail();
+            Assertions.fail();
             return null;
         }
     }
@@ -68,14 +69,14 @@ public class LazySorterTest {
         s8.setDateDebut(toDate("01/10/2015"));
         sejours.add(s8);
 
-        Assert.assertEquals("10", sejours.get(0).getFamille());
-        Assert.assertEquals("9c", sejours.get(1).getFamille());
-        Assert.assertEquals("99", sejours.get(2).getFamille());
-        Assert.assertEquals("12", sejours.get(3).getFamille());
-        Assert.assertEquals("2", sejours.get(4).getFamille());
-        Assert.assertEquals("A", sejours.get(5).getFamille());
-        Assert.assertEquals("a", sejours.get(6).getFamille());
-        Assert.assertEquals("B", sejours.get(7).getFamille());
+        Assertions.assertEquals("10", sejours.get(0).getFamille());
+        Assertions.assertEquals("9c", sejours.get(1).getFamille());
+        Assertions.assertEquals("99", sejours.get(2).getFamille());
+        Assertions.assertEquals("12", sejours.get(3).getFamille());
+        Assertions.assertEquals("2", sejours.get(4).getFamille());
+        Assertions.assertEquals("A", sejours.get(5).getFamille());
+        Assertions.assertEquals("a", sejours.get(6).getFamille());
+        Assertions.assertEquals("B", sejours.get(7).getFamille());
 
         return sejours;
     }
@@ -95,11 +96,11 @@ public class LazySorterTest {
         return inscripteurs;
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test()
     public void testTriException() {
         List<SejourDTO> sejours = getSejours();
         LazySorter<SejourDTO> lazySorter = new LazySorter<>(SejourDTO.class, "xxxx", SortOrder.ASCENDING);
-        Collections.sort(sejours, lazySorter);
+        Assertions.assertThrows(RuntimeException.class, () ->Collections.sort(sejours, lazySorter));
     }
 
     @Test
@@ -107,15 +108,15 @@ public class LazySorterTest {
         List<SejourDTO> sejours = getSejours();
         LazySorter<SejourDTO> lazySorter = new LazySorter<>(SejourDTO.class, "famille", SortOrder.ASCENDING);
         Collections.sort(sejours, lazySorter);
-        Assert.assertEquals(8, sejours.size());
-        Assert.assertEquals("2", sejours.get(0).getFamille());
-        Assert.assertEquals("9c", sejours.get(1).getFamille());
-        Assert.assertEquals("10", sejours.get(2).getFamille());
-        Assert.assertEquals("12", sejours.get(3).getFamille());
-        Assert.assertEquals("99", sejours.get(4).getFamille());
-        Assert.assertEquals("A", sejours.get(5).getFamille());
-        Assert.assertEquals("a", sejours.get(6).getFamille());
-        Assert.assertEquals("B", sejours.get(7).getFamille());
+        Assertions.assertEquals(8, sejours.size());
+        Assertions.assertEquals("2", sejours.get(0).getFamille());
+        Assertions.assertEquals("9c", sejours.get(1).getFamille());
+        Assertions.assertEquals("10", sejours.get(2).getFamille());
+        Assertions.assertEquals("12", sejours.get(3).getFamille());
+        Assertions.assertEquals("99", sejours.get(4).getFamille());
+        Assertions.assertEquals("A", sejours.get(5).getFamille());
+        Assertions.assertEquals("a", sejours.get(6).getFamille());
+        Assertions.assertEquals("B", sejours.get(7).getFamille());
 
     }
 
@@ -124,15 +125,15 @@ public class LazySorterTest {
         List<SejourDTO> sejours = getSejours();
         LazySorter<SejourDTO> lazySorter = new LazySorter<>(SejourDTO.class, "famille", SortOrder.DESCENDING);
         Collections.sort(sejours, lazySorter);
-        Assert.assertEquals(8, sejours.size());
-        Assert.assertEquals("B", sejours.get(0).getFamille());
-        Assert.assertEquals("A", sejours.get(1).getFamille());
-        Assert.assertEquals("a", sejours.get(2).getFamille());
-        Assert.assertEquals("99", sejours.get(3).getFamille());
-        Assert.assertEquals("12", sejours.get(4).getFamille());
-        Assert.assertEquals("10", sejours.get(5).getFamille());
-        Assert.assertEquals("9c", sejours.get(6).getFamille());
-        Assert.assertEquals("2", sejours.get(7).getFamille());
+        Assertions.assertEquals(8, sejours.size());
+        Assertions.assertEquals("B", sejours.get(0).getFamille());
+        Assertions.assertEquals("A", sejours.get(1).getFamille());
+        Assertions.assertEquals("a", sejours.get(2).getFamille());
+        Assertions.assertEquals("99", sejours.get(3).getFamille());
+        Assertions.assertEquals("12", sejours.get(4).getFamille());
+        Assertions.assertEquals("10", sejours.get(5).getFamille());
+        Assertions.assertEquals("9c", sejours.get(6).getFamille());
+        Assertions.assertEquals("2", sejours.get(7).getFamille());
     }
 
     @Test
@@ -140,10 +141,10 @@ public class LazySorterTest {
         List<Inscripteur> inscripteurs = getInscripteurs();
         LazySorter<Inscripteur> lazySorter = new LazySorter<>(Inscripteur.class, "type", SortOrder.ASCENDING);
         Collections.sort(inscripteurs, lazySorter);
-        Assert.assertEquals(3, inscripteurs.size());
-        Assert.assertEquals(TypeInscripteur.AUTRE, inscripteurs.get(0).getType());
-        Assert.assertEquals(TypeInscripteur.PARTICULIER, inscripteurs.get(1).getType());
-        Assert.assertEquals(TypeInscripteur.SERVICE_SOCIAL, inscripteurs.get(2).getType());
+        Assertions.assertEquals(3, inscripteurs.size());
+        Assertions.assertEquals(TypeInscripteur.AUTRE, inscripteurs.get(0).getType());
+        Assertions.assertEquals(TypeInscripteur.PARTICULIER, inscripteurs.get(1).getType());
+        Assertions.assertEquals(TypeInscripteur.SERVICE_SOCIAL, inscripteurs.get(2).getType());
     }
 
     @Test
@@ -151,10 +152,10 @@ public class LazySorterTest {
         List<Inscripteur> inscripteurs = getInscripteurs();
         LazySorter<Inscripteur> lazySorter = new LazySorter<>(Inscripteur.class, "type", SortOrder.DESCENDING);
         Collections.sort(inscripteurs, lazySorter);
-        Assert.assertEquals(3, inscripteurs.size());
-        Assert.assertEquals(TypeInscripteur.SERVICE_SOCIAL, inscripteurs.get(0).getType());
-        Assert.assertEquals(TypeInscripteur.PARTICULIER, inscripteurs.get(1).getType());
-        Assert.assertEquals(TypeInscripteur.AUTRE, inscripteurs.get(2).getType());
+        Assertions.assertEquals(3, inscripteurs.size());
+        Assertions.assertEquals(TypeInscripteur.SERVICE_SOCIAL, inscripteurs.get(0).getType());
+        Assertions.assertEquals(TypeInscripteur.PARTICULIER, inscripteurs.get(1).getType());
+        Assertions.assertEquals(TypeInscripteur.AUTRE, inscripteurs.get(2).getType());
     }
 
     @Test
@@ -162,10 +163,10 @@ public class LazySorterTest {
         List<SejourDTO> sejours = getSejours();
         LazySorter<SejourDTO> lazySorter = new LazySorter<>(SejourDTO.class, "dateDebut", SortOrder.ASCENDING);
         Collections.sort(sejours, lazySorter);
-        Assert.assertEquals(8, sejours.size());
-        Assert.assertEquals("2", sejours.get(0).getFamille());
-        Assert.assertEquals("9c", sejours.get(1).getFamille());
-        Assert.assertEquals("10", sejours.get(2).getFamille());
+        Assertions.assertEquals(8, sejours.size());
+        Assertions.assertEquals("2", sejours.get(0).getFamille());
+        Assertions.assertEquals("9c", sejours.get(1).getFamille());
+        Assertions.assertEquals("10", sejours.get(2).getFamille());
     }
 
     @Test
@@ -173,10 +174,10 @@ public class LazySorterTest {
         List<SejourDTO> sejours = getSejours();
         LazySorter<SejourDTO> lazySorter = new LazySorter<>(SejourDTO.class, "dateDebut", SortOrder.DESCENDING);
         Collections.sort(sejours, lazySorter);
-        Assert.assertEquals(8, sejours.size());
-        Assert.assertEquals("10", sejours.get(5).getFamille());
-        Assert.assertEquals("9c", sejours.get(6).getFamille());
-        Assert.assertEquals("2", sejours.get(7).getFamille());
+        Assertions.assertEquals(8, sejours.size());
+        Assertions.assertEquals("10", sejours.get(5).getFamille());
+        Assertions.assertEquals("9c", sejours.get(6).getFamille());
+        Assertions.assertEquals("2", sejours.get(7).getFamille());
     }
 
 }

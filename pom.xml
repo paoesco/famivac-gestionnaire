@@ -33,6 +33,7 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <additionalparam>-Xdoclint:none</additionalparam>
+        <skipUnitTests>false</skipUnitTests>
         
         <!-- Plugins versions -->
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
@@ -47,17 +48,19 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
         
         <!-- Dependencies versions -->
+        <springsecurity.version>5.2.1.RELEASE</springsecurity.version>
         <javamelody.version>1.80.0</javamelody.version>
         <primefaces.version>7.0</primefaces.version>
         <bootstrap.version>3.3.7-1</bootstrap.version>
         <metismenu.version>2.6.1</metismenu.version>
         <sbadmin2.version>3.3.7</sbadmin2.version>
         <postgre.version>42.2.8</postgre.version>
-        <spring.version>2.0.8.RELEASE</spring.version>
         <jacoco.version>0.8.5</jacoco.version>
         <poi.version>4.1.0</poi.version>
         <itext.version>2.1.7</itext.version>
         <liquibase.version>3.8.0</liquibase.version>
+        <junit.version>5.5.2</junit.version>
+        <mockito.version>3.2.0</mockito.version>
     </properties>
     
     <modules>
@@ -89,13 +92,6 @@
                 <groupId>net.bull.javamelody</groupId>
                 <artifactId>javamelody-core</artifactId>
                 <version>${javamelody.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.spring.platform</groupId>
-                <artifactId>platform-bom</artifactId>
-                <version>${spring.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.primefaces</groupId>
@@ -132,6 +128,11 @@
                 <artifactId>startbootstrap-sb-admin-2</artifactId>
                 <version>${sbadmin2.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-core</artifactId>
+                <version>${springsecurity.version}</version>
+            </dependency>
             <!-- Data Exporter -->
             <dependency>
                 <groupId>org.apache.poi</groupId>
@@ -163,6 +164,20 @@
                 </exclusions>
             </dependency>
             <!-- End Data Exporter -->
+            <!-- Tests -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- End Tests -->
         </dependencies>
     </dependencyManagement>
     
@@ -181,23 +196,14 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.2</version>
-                    <configuration>
-                        <argLine>
-                            --illegal-access=permit
-                        </argLine>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>run-unit-tests</id>
-                            <goals>
-                                <goal>test</goal>
-                            </goals>
-                            <configuration>
-                                <skip>${skipUnitTests}</skip>
-                            </configuration>
-                        </execution>
-                    </executions>
+                    <version>3.0.0-M4</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.junit.jupiter</groupId>
+                            <artifactId>junit-jupiter-engine</artifactId>
+                            <version>${junit.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -240,7 +246,7 @@
                     <artifactId>maven-release-plugin</artifactId>
                     <version>${maven-release-plugin.version}</version>
                     <configuration>
-                        <autoversionsubmodules>true</autoversionsubmodules>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
                     </configuration>
                 </plugin>
                 <plugin>

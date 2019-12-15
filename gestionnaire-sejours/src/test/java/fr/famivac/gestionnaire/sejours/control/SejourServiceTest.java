@@ -9,19 +9,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
  *
  * @author paoesco
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class SejourServiceTest {
     
     @Mock
@@ -41,15 +42,15 @@ public class SejourServiceTest {
         BilanDTO bilan = service.getBilanSurLaPeriode(dateDebut, dateFin);
 
         // THEN
-        Assert.assertEquals(dateDebut, bilan.getDateDebut());
-        Assert.assertEquals(dateFin, bilan.getDateFin());
-        Assert.assertEquals(62, bilan.getTotalNombreJourneesVacances().intValue());
-        Assert.assertEquals(50, bilan.getTotalFraisDossier().intValue());
-        Assert.assertEquals(2170, bilan.getTotalForfait().intValue());
-        Assert.assertEquals(90, bilan.getTotalFraisVoyage().intValue());
-        Assert.assertEquals(93, bilan.getTotalFraisPensionFamille().intValue());
+        Assertions.assertEquals(dateDebut, bilan.getDateDebut());
+        Assertions.assertEquals(dateFin, bilan.getDateFin());
+        Assertions.assertEquals(62, bilan.getTotalNombreJourneesVacances().intValue());
+        Assertions.assertEquals(50, bilan.getTotalFraisDossier().intValue());
+        Assertions.assertEquals(2170, bilan.getTotalForfait().intValue());
+        Assertions.assertEquals(90, bilan.getTotalFraisVoyage().intValue());
+        Assertions.assertEquals(93, bilan.getTotalFraisPensionFamille().intValue());
     }
-    
+
     private void initSejours() {
         List<Sejour> sejours = new ArrayList<>();
         Sejour sejour1 = new Sejour(
@@ -80,7 +81,7 @@ public class SejourServiceTest {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             return sdf.parse(source);
         } catch (ParseException ex) {
-            Assert.fail(ex.getMessage());
+            Assertions.fail(ex.getMessage());
             return null;
         }
     }
