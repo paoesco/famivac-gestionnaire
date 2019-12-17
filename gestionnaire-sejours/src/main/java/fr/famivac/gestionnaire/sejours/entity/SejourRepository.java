@@ -19,14 +19,14 @@ public class SejourRepository {
     @Inject
     private EntityManager entityManager;
 
-    public List<Sejour> sejoursFamille(long familleId) {
+    public List<Sejour> sejoursFamille(Long familleId) {
         return entityManager
                 .createNamedQuery(Sejour.QUERY_SEJOURS_DE_LA_FAMILLE, Sejour.class)
                 .setParameter("familleId", familleId)
                 .getResultList();
     }
 
-    public Sejour get(long id) {
+    public Sejour get(Long id) {
         return entityManager.find(Sejour.class, id);
     }
 
@@ -38,7 +38,7 @@ public class SejourRepository {
                 .getResultList();
     }
 
-    public long countActifs() {
+    public Long countActifs() {
         String jpql = "select count(s.id) from Sejour s where s.dateDebut <= :date and :date < s.dateFin";
         Query q = entityManager.createQuery(jpql);
         q.setParameter("date", new Date(), TemporalType.DATE);

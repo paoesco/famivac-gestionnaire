@@ -36,7 +36,7 @@ public class EnfantRepository {
         return query.getResultList();
     }
 
-    public long count() {
+    public Long count() {
         String jpql = "select count(e.id) from Enfant e";
         Query q = entityManager.createQuery(jpql);
         return (long) q.getSingleResult();

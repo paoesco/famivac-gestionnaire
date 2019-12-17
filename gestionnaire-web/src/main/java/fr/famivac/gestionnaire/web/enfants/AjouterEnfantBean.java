@@ -22,7 +22,7 @@ import javax.inject.Named;
 @ViewScoped
 public class AjouterEnfantBean implements Serializable {
 
-    private long inscripteurId;
+    private Long inscripteurId;
 
     private List<Commune> communes;
 
@@ -92,11 +92,11 @@ public class AjouterEnfantBean implements Serializable {
         this.form = form;
     }
 
-    public long getInscripteurId() {
+    public Long getInscripteurId() {
         return inscripteurId;
     }
 
-    public void setInscripteurId(long inscripteurId) {
+    public void setInscripteurId(Long inscripteurId) {
         this.inscripteurId = inscripteurId;
     }
 

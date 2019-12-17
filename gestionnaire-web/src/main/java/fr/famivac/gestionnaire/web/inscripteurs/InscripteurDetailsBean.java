@@ -43,7 +43,7 @@ public class InscripteurDetailsBean implements Serializable, CompleteCommune {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informations sauvées", ""));
     }
 
-    public void supprimerEnfant(long enfantId) {
+    public void supprimerEnfant(Long enfantId) {
         inscripteurService.retirerEnfant(enfantId);
         init();
     }

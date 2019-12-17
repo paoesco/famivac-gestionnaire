@@ -63,7 +63,7 @@ public class InscripteurRepository {
         return queryAutre.getResultList();
     }
 
-    public long count() {
+    public Long count() {
         String jpql = "select count(i.id) from Inscripteur i";
         Query q = entityManager.createQuery(jpql);
         return (long) q.getSingleResult();

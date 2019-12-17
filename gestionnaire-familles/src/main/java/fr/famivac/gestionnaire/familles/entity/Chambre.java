@@ -15,7 +15,7 @@ public class Chambre implements Serializable {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     private Integer nombreLits;
 
@@ -46,7 +46,7 @@ public class Chambre implements Serializable {
         return famille;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

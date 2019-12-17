@@ -21,6 +21,13 @@ public class InformationsComplementairesEnfant implements Serializable {
 
     private Boolean familleASE;
 
+    public InformationsComplementairesEnfant() {
+        this.attestationCMU = false;
+        this.carteVitale = false;
+        this.enuretique = false;
+        this.familleASE = false;
+    }
+
     public Boolean getAttestationCMU() {
         return attestationCMU;
     }

@@ -26,7 +26,7 @@ public class MembreService {
     @Inject
     Event<UpdateFamilleEvent> updateFamilleEvent;
     
-    public MembreDTO retrieve(@PathParam("id") long id) {
+    public MembreDTO retrieve(@PathParam("id") Long id) {
         MembreFamille entity = entityManager.find(MembreFamille.class, id);
         MembreDTO dto = new MembreDTO();
         dto.setId(entity.getId());

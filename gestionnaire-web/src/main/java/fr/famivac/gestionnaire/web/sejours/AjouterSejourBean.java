@@ -66,7 +66,7 @@ public class AjouterSejourBean implements Serializable {
         BigDecimal montantFraisPensionFamilleJournalier = fraisPensionFamilleJournalierService
                 .getCurrentMontant(form.getDateDebut())
                 .orElse(BigDecimal.ZERO);
-        long sejourId = sejourService.create(form.getFamille().getId(),
+        Long sejourId = sejourService.create(form.getFamille().getId(),
                 form.getFamille().getNomReferent(),
                 form.getFamille().getPrenomReferent(),
                 form.getFamille().getTelephoneReferent(),

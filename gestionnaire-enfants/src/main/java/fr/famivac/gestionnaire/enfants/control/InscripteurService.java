@@ -59,12 +59,12 @@ public class InscripteurService {
                 }).collect(Collectors.toList());
     }
 
-    public long create(Inscripteur entity) {
+    public Long create(Inscripteur entity) {
         entityManager.persist(entity);
         return entity.getId();
     }
 
-    public void delete(long id) {
+    public void delete(Long id) {
         Inscripteur entity = entityManager.find(Inscripteur.class, id);
         if (entity == null) {
             throw new IllegalArgumentException("L'inscripteur n'existe pas");
@@ -72,7 +72,7 @@ public class InscripteurService {
         entityManager.remove(entity);
     }
 
-    public Inscripteur retrieve(long id) {
+    public Inscripteur retrieve(Long id) {
         return entityManager.find(Inscripteur.class, id);
     }
 
@@ -80,7 +80,7 @@ public class InscripteurService {
         entityManager.merge(entity);
     }
 
-    public void retirerEnfant(long enfantId) {
+    public void retirerEnfant(Long enfantId) {
         Enfant enfant = entityManager.find(Enfant.class, enfantId);
         enfant.getInscripteur().retirerEnfant(enfant);
         entityManager.remove(enfant);
