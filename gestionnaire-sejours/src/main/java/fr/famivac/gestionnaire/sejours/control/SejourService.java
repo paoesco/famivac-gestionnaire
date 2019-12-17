@@ -42,7 +42,7 @@ public class SejourService {
     @Inject
     private SejourRepository sejourRepository;
 
-    public long create(Long familleId,
+    public Long create(Long familleId,
             String familleNom,
             String famillePrenom,
             String familleTelephone,
@@ -148,7 +148,7 @@ public class SejourService {
         entityManager.merge(sejour);
     }
 
-    public void delete(long id) {
+    public void delete(Long id) {
         Sejour sejour = entityManager.find(Sejour.class, id);
         entityManager.remove(sejour);
     }

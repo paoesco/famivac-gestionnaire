@@ -39,7 +39,7 @@ public class EnfantService {
         return enfant.getId();
     }
 
-    public Enfant retrieve(long id) {
+    public Enfant retrieve(Long id) {
         return entityManager.find(Enfant.class, id);
     }
 
@@ -71,7 +71,7 @@ public class EnfantService {
         }).collect(Collectors.toList());
     }
 
-    public void delete(@PathParam("id") long id) {
+    public void delete(@PathParam("id") Long id) {
         Enfant entity = entityManager.find(Enfant.class, id);
         if (entity == null) {
             throw new IllegalArgumentException("L'enfant n'existe pas");

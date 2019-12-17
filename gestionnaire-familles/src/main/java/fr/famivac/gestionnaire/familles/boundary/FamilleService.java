@@ -155,13 +155,13 @@ public class FamilleService {
 
     }
 
-    public void removeMembre(Long familleId, long membreId) {
+    public void removeMembre(Long familleId, Long membreId) {
         Famille famille = entityManager.find(Famille.class, familleId);
         MembreFamille membre = entityManager.find(MembreFamille.class, membreId);
         famille.retirerMembre(membre);
     }
 
-    public void definirReferent(Long familleId, long membreId) {
+    public void definirReferent(Long familleId, Long membreId) {
         Famille famille = entityManager.find(Famille.class, familleId);
         famille.definirReferent(membreId);
     }

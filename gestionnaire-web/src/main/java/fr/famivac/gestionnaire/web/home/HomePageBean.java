@@ -16,10 +16,10 @@ import javax.inject.Named;
 @ViewScoped
 public class HomePageBean implements Serializable {
 
-    private long nombreFamilles;
-    private long nombreEnfants;
-    private long nombreInscripteurs;
-    private long nombreSejoursEnCours;
+    private Long nombreFamilles;
+    private Long nombreEnfants;
+    private Long nombreInscripteurs;
+    private Long nombreSejoursEnCours;
 
     @Inject
     private DashboardService dashboardService;
@@ -32,35 +32,35 @@ public class HomePageBean implements Serializable {
         nombreSejoursEnCours = dashboardDTO.getNombreSejoursEnCours();
     }
 
-    public long getNombreFamilles() {
+    public Long getNombreFamilles() {
         return nombreFamilles;
     }
 
-    public void setNombreFamilles(long nombreFamilles) {
+    public void setNombreFamilles(Long nombreFamilles) {
         this.nombreFamilles = nombreFamilles;
     }
 
-    public long getNombreEnfants() {
+    public Long getNombreEnfants() {
         return nombreEnfants;
     }
 
-    public void setNombreEnfants(long nombreEnfants) {
+    public void setNombreEnfants(Long nombreEnfants) {
         this.nombreEnfants = nombreEnfants;
     }
 
-    public long getNombreInscripteurs() {
+    public Long getNombreInscripteurs() {
         return nombreInscripteurs;
     }
 
-    public void setNombreInscripteurs(long nombreInscripteurs) {
+    public void setNombreInscripteurs(Long nombreInscripteurs) {
         this.nombreInscripteurs = nombreInscripteurs;
     }
 
-    public long getNombreSejoursEnCours() {
+    public Long getNombreSejoursEnCours() {
         return nombreSejoursEnCours;
     }
 
-    public void setNombreSejoursEnCours(long nombreSejoursEnCours) {
+    public void setNombreSejoursEnCours(Long nombreSejoursEnCours) {
         this.nombreSejoursEnCours = nombreSejoursEnCours;
     }
 

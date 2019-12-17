@@ -8,7 +8,7 @@ import fr.famivac.gestionnaire.enfants.entity.Enfant;
  */
 public class EnfantDTO {
 
-    private long id;
+    private Long id;
 
     private String nomEnfant;
 
@@ -20,11 +20,11 @@ public class EnfantDTO {
         this.prenomEnfant = bean.getPrenom();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
