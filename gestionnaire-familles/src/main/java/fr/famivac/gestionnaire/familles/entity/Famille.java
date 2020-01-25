@@ -51,10 +51,10 @@ public class Famille implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn
-    private final Set<MembreFamille> membres;
+    private Set<MembreFamille> membres;
 
     @Embedded
-    private final Adresse adresse;
+    private Adresse adresse;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
@@ -68,7 +68,7 @@ public class Famille implements Serializable {
     private String projet;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private final Set<Chambre> chambres;
+    private Set<Chambre> chambres;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
@@ -139,21 +139,14 @@ public class Famille implements Serializable {
         this.visiteDdcs = false;
         this.candidature = false;
         this.archivee = false;
+        this.sejoursComplets = false;
     }
 
     public Famille(Adresse adresse, String projet, Boolean candidature) {
+        this();
         this.adresse = adresse;
-        membres = new HashSet<>();
         this.projet = projet;
-        chambres = new HashSet<>();
-        this.informationsHabitation = new InformationsHabitation(this);
-        this.informationsVehicule = new InformationsVehicule(this);
         this.candidature = candidature;
-        this.accepteHandicap = false;
-        this.accepteMalade = false;
-        this.extraitCasierJudiciaire = false;
-        this.visiteDdcs = false;
-        this.archivee = false;
     }
 
     public void ajouterChambre(Chambre chambre) {
