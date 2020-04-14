@@ -54,7 +54,7 @@
         <bootstrap.version>3.3.7-1</bootstrap.version>
         <metismenu.version>2.6.1</metismenu.version>
         <sbadmin2.version>3.3.7</sbadmin2.version>
-        <postgre.version>42.2.8</postgre.version>
+        <postgre.version>42.2.12</postgre.version>
         <jacoco.version>0.8.5</jacoco.version>
         <poi.version>4.1.0</poi.version>
         <itext.version>2.1.7</itext.version>
