@@ -49,7 +49,7 @@
         
         <!-- Dependencies versions -->
         <springsecurity.version>5.2.1.RELEASE</springsecurity.version>
-        <javamelody.version>1.80.0</javamelody.version>
+        <javamelody.version>1.82.0</javamelody.version>
         <primefaces.version>7.0</primefaces.version>
         <bootstrap.version>3.3.7-1</bootstrap.version>
         <metismenu.version>2.6.1</metismenu.version>
