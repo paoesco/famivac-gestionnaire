@@ -60,7 +60,7 @@
         <itext.version>2.1.7</itext.version>
         <liquibase.version>3.8.0</liquibase.version>
         <junit.version>5.5.2</junit.version>
-        <mockito.version>3.2.0</mockito.version>
+        <mockito.version>3.4.0</mockito.version>
     </properties>
     
     <modules>
