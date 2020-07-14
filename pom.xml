@@ -51,7 +51,7 @@
         <springsecurity.version>5.2.1.RELEASE</springsecurity.version>
         <javamelody.version>1.82.0</javamelody.version>
         <primefaces.version>7.0</primefaces.version>
-        <bootstrap.version>3.3.7-1</bootstrap.version>
+        <bootstrap.version>4.5.0</bootstrap.version>
         <metismenu.version>2.6.1</metismenu.version>
         <sbadmin2.version>3.3.7</sbadmin2.version>
         <postgre.version>42.2.14</postgre.version>
