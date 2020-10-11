@@ -109,9 +109,9 @@ public class FamilleService {
             famille.setPrenomReferent(membreReferent.getString("prenom"));
             famille.setArchivee(jsonNode.getBoolean("archivee"));
             famille.setCandidature(jsonNode.getBoolean("candidature"));
-            famille.setEmailReferent(coordonnees.optString("email"));
+            famille.setEmailReferent(coordonnees == null ? null : coordonnees.optString("email"));
             famille.setRadiee(jsonNode.isNull("dateRadiation") ? false : true);
-            famille.setTelephoneReferent(coordonnees.optString("telephone1"));
+            famille.setTelephoneReferent(coordonnees == null ? null : coordonnees.optString("telephone1"));
             familles.add(famille);
         });
 
