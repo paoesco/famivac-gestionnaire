@@ -80,7 +80,7 @@ public class FamilleService {
         String apiAudience = System.getProperty("AUTH0_API_AUDIENCE");
         String auth0Domain = System.getProperty("AUTH0_DOMAIN");
         try {
-            HttpResponse<JsonNode> responseAuth = responseAuth = Unirest.post(auth0Domain)
+            HttpResponse<JsonNode> responseAuth = Unirest.post(auth0Domain)
                     .header("content-type", "application/json")
                     .body("{\"client_id\":\"" + clientId + "\",\"client_secret\":\"" + clientSecret + "\",\"audience\":\"" + apiAudience + "\",\"grant_type\":\"client_credentials\"}")
                     .asJson();
