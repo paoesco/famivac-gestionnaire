@@ -104,7 +104,7 @@ public class FamilleService {
             FamilleDTO famille = new FamilleDTO();
             famille.setId(jsonNode.getLong("id"));
             JSONObject membreReferent = jsonNode.getJSONArray("membres").getJSONObject(0);
-            JSONObject coordonnees = membreReferent.getJSONObject("coordonnees");
+            JSONObject coordonnees = membreReferent.optJSONObject("coordonnees");
             famille.setNomReferent(membreReferent.getString("nom"));
             famille.setPrenomReferent(membreReferent.getString("prenom"));
             famille.setArchivee(jsonNode.getBoolean("archivee"));
