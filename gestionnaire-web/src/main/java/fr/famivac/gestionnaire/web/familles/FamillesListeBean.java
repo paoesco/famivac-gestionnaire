@@ -1,5 +1,6 @@
 package fr.famivac.gestionnaire.web.familles;
 
+import com.mashape.unirest.http.exceptions.UnirestException;
 import fr.famivac.gestionnaire.familles.boundary.FamilleService;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class FamillesListeBean implements Serializable {
     }
 
     public void rechercher() {
-        lazyModel = new LazyFamilleDataModel(familleService.rechercher("", "", periodesAccueil, archivees));
+        lazyModel = new LazyFamilleDataModel(familleService.rechercher("", "", archivees));
     }
 
     public void supprimer(Long id) {

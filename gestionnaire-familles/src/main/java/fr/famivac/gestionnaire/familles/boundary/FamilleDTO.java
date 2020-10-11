@@ -24,6 +24,10 @@ public class FamilleDTO implements Serializable {
 
     private Boolean archivee;
 
+    public FamilleDTO() {
+
+    }
+
     public FamilleDTO(Famille bean) {
         this.id = bean.getId();
         this.nomReferent = bean.getMembreReferent().getNom();
