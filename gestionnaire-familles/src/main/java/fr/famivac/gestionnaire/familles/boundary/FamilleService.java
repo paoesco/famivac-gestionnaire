@@ -1,10 +1,5 @@
 package fr.famivac.gestionnaire.familles.boundary;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mashape.unirest.request.HttpRequest;
 import fr.famivac.gestionnaire.familles.entity.FamilleRepository;
 import fr.famivac.gestionnaire.commons.entity.Adresse;
 import fr.famivac.gestionnaire.familles.entity.Chambre;
@@ -12,23 +7,20 @@ import fr.famivac.gestionnaire.commons.entity.Commune;
 import fr.famivac.gestionnaire.familles.entity.Famille;
 import fr.famivac.gestionnaire.familles.entity.MembreFamille;
 import fr.famivac.gestionnaire.commons.entity.Sexe;
-import fr.famivac.gestionnaire.commons.utils.AlphanumComparator;
 import fr.famivac.gestionnaire.familles.entity.InformationsHabitation;
 import fr.famivac.gestionnaire.familles.entity.InformationsVehicule;
-import fr.famivac.gestionnaire.familles.entity.PeriodeAccueil;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
+
+import kong.unirest.*;
+import kong.unirest.json.JSONObject;
 import net.bull.javamelody.MonitoringInterceptor;
-import org.json.JSONObject;
 
 /**
  * @author paoesco

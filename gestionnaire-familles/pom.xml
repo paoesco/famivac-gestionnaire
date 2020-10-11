@@ -25,9 +25,10 @@
             <artifactId>javamelody-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.mashape.unirest</groupId>
+            <groupId>com.konghq</groupId>
             <artifactId>unirest-java</artifactId>
-            <version>1.4.9</version>
+            <version>3.11.01</version>
+            <classifier>standalone</classifier>
         </dependency>
 
         <!-- Test -->

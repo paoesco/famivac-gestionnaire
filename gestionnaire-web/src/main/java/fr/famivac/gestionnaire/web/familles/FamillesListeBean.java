@@ -1,6 +1,5 @@
 package fr.famivac.gestionnaire.web.familles;
 
-import com.mashape.unirest.http.exceptions.UnirestException;
 import fr.famivac.gestionnaire.familles.boundary.FamilleService;
 import java.io.Serializable;
 import java.util.ArrayList;
