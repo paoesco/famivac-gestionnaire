@@ -75,10 +75,10 @@ public class FamilleService {
     }
 
     public List<FamilleDTO> rechercher(String nomReferent, String prenomReferent, boolean archivee)  {
-        String clientId = System.getProperty("AUTH0_CLIENT_ID");
-        String clientSecret = System.getProperty("AUTH0_CLIENT_SECRET");
-        String apiAudience = System.getProperty("AUTH0_API_AUDIENCE");
-        String auth0Domain = System.getProperty("AUTH0_DOMAIN");
+        String clientId = System.getProperty("auth0.client.id");
+        String clientSecret = System.getProperty("auth0.client.secret");
+        String apiAudience = System.getProperty("auth0.api.audience");
+        String auth0Domain = System.getProperty("auth0.domain");
         try {
             HttpResponse<JsonNode> responseAuth = Unirest.post(auth0Domain)
                     .header("content-type", "application/json")
