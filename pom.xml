@@ -59,7 +59,8 @@
         <poi.version>4.1.2</poi.version>
         <itext.version>2.1.7</itext.version>
         <junit.version>5.6.2</junit.version>
-        <mockito.version>3.4.0</mockito.version>
+        <mockito.version>3.5.13</mockito.version>
+        <unirest.version>3.11.01</unirest.version>
     </properties>
     
     <modules>
@@ -132,6 +133,12 @@
                 <artifactId>spring-security-core</artifactId>
                 <version>${springsecurity.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.konghq</groupId>
+                <artifactId>unirest-java</artifactId>
+                <version>${unirest.version}</version>
+                <classifier>standalone</classifier>
+            </dependency>
             <!-- Data Exporter -->
             <dependency>
                 <groupId>org.apache.poi</groupId>
@@ -173,6 +180,12 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-junit-jupiter</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-inline</artifactId>
                 <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>

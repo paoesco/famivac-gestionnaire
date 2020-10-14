@@ -80,14 +80,16 @@ public class FamilleService {
         String apiAudience = System.getProperty("auth0.api.audience");
         String auth0Domain = System.getProperty("auth0.domain");
         try {
-            HttpResponse<JsonNode> responseAuth = Unirest.post(auth0Domain)
+            HttpResponse<JsonNode> responseAuth = Unirest
+                    .post(auth0Domain)
                     .header("content-type", "application/json")
                     .body("{\"client_id\":\"" + clientId + "\",\"client_secret\":\"" + clientSecret + "\",\"audience\":\"" + apiAudience + "\",\"grant_type\":\"client_credentials\"}")
                     .asJson();
 
         String accessToken = responseAuth.getBody().getObject().getString("access_token");
 
-        HttpRequest familleRequest = Unirest.get(apiAudience + "/familles/search")
+        HttpRequest familleRequest = Unirest
+                .get(apiAudience + "/familles/search")
                 .header("authorization", "Bearer " + accessToken)
                 .queryString("archivee", archivee);
         if (nomReferent != null && !nomReferent.isBlank()) {
@@ -99,19 +101,32 @@ public class FamilleService {
 
         List<FamilleDTO> familles = new ArrayList<>();
         HttpResponse<JsonNode> response = familleRequest.asJson();
-        response.getBody().getObject().getJSONObject("_embedded").getJSONArray("familles").forEach(node -> {
+        response
+                .getBody()
+                .getObject()
+                .getJSONObject("_embedded")
+                .getJSONArray("familles")
+                .forEach(node -> {
             JSONObject jsonNode = (JSONObject) node;
             FamilleDTO famille = new FamilleDTO();
+            // Map famille
             famille.setId(jsonNode.getLong("id"));
-            JSONObject membreReferent = jsonNode.getJSONArray("membres").getJSONObject(0);
-            JSONObject coordonnees = membreReferent.optJSONObject("coordonnees");
-            famille.setNomReferent(membreReferent.getString("nom"));
-            famille.setPrenomReferent(membreReferent.getString("prenom"));
             famille.setArchivee(jsonNode.getBoolean("archivee"));
             famille.setCandidature(jsonNode.getBoolean("candidature"));
-            famille.setEmailReferent(coordonnees == null ? null : coordonnees.optString("email"));
             famille.setRadiee(jsonNode.isNull("dateRadiation") ? false : true);
-            famille.setTelephoneReferent(coordonnees == null ? null : coordonnees.optString("telephone1"));
+            // Map membre
+            JSONObject membreReferent = null;
+            for (JSONObject membre : (List<JSONObject>)jsonNode.getJSONArray("membres").toList()) {
+                if (membre.getBoolean("referent")) {
+                    membreReferent = membre;
+                }
+            }
+            famille.setNomReferent(membreReferent.getString("nom"));
+            famille.setPrenomReferent(membreReferent.getString("prenom"));
+            // Map coordonnees
+            JSONObject coordonnees = membreReferent.getJSONObject("coordonnees");
+            famille.setEmailReferent(coordonnees.optString("email"));
+            famille.setTelephoneReferent(coordonnees.optString("telephone1"));
             familles.add(famille);
         });
 
