@@ -31,7 +31,18 @@
                                 value="Ajouter"
                                 icon="ui-icon-plus"/>
                             <h:form id="form">
-
+                                <p:selectManyButton 
+                                    value="#{famillesListeBean.periodesAccueil}"
+                                    styleClass="pull-right">
+                                    <p:ajax event="change" update="datatable" listener="#{famillesListeBean.rechercher()}"></p:ajax>
+                                    <f:selectItem itemLabel="Hiver" itemValue="HIVER" />
+                                    <f:selectItem itemLabel="Printemps" itemValue="PRINTEMPS" />
+                                    <f:selectItem itemLabel="Juillet" itemValue="JUILLET" />
+                                    <f:selectItem itemLabel="Août" itemValue="AOUT" />
+                                    <f:selectItem itemLabel="Toussaint" itemValue="TOUSSAINT" />
+                                    <f:selectItem itemLabel="Noël" itemValue="NOEL" />
+                                </p:selectManyButton>
+                                
                                 <p:selectOneButton
                                     id="checkbox-archivees"
                                     value="#{famillesListeBean.archivees}"

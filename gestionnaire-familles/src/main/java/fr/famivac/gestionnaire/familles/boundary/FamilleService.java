@@ -7,19 +7,17 @@ import fr.famivac.gestionnaire.commons.entity.Commune;
 import fr.famivac.gestionnaire.familles.entity.Famille;
 import fr.famivac.gestionnaire.familles.entity.MembreFamille;
 import fr.famivac.gestionnaire.commons.entity.Sexe;
+import fr.famivac.gestionnaire.commons.utils.AlphanumComparator;
 import fr.famivac.gestionnaire.familles.entity.InformationsHabitation;
 import fr.famivac.gestionnaire.familles.entity.InformationsVehicule;
-
-import java.util.ArrayList;
-import java.util.Collections;
+import fr.famivac.gestionnaire.familles.entity.PeriodeAccueil;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
-
-import kong.unirest.*;
-import kong.unirest.json.JSONObject;
 import net.bull.javamelody.MonitoringInterceptor;
 
 /**
@@ -74,67 +72,30 @@ public class FamilleService {
         return famille;
     }
 
-    public List<FamilleDTO> rechercher(String nomReferent, String prenomReferent, boolean archivee)  {
-        String clientId = System.getProperty("auth0.client.id");
-        String clientSecret = System.getProperty("auth0.client.secret");
-        String apiAudience = System.getProperty("auth0.api.audience");
-        String auth0Domain = System.getProperty("auth0.domain");
-        try {
-            HttpResponse<JsonNode> responseAuth = Unirest
-                    .post(auth0Domain)
-                    .header("content-type", "application/json")
-                    .body("{\"client_id\":\"" + clientId + "\",\"client_secret\":\"" + clientSecret + "\",\"audience\":\"" + apiAudience + "\",\"grant_type\":\"client_credentials\"}")
-                    .asJson();
-
-        String accessToken = responseAuth.getBody().getObject().getString("access_token");
-
-        HttpRequest familleRequest = Unirest
-                .get(apiAudience + "/familles/search")
-                .header("authorization", "Bearer " + accessToken)
-                .queryString("archivee", archivee);
-        if (nomReferent != null && !nomReferent.isBlank()) {
-            familleRequest.queryString("nomReferent", nomReferent);
+    public List<FamilleDTO> rechercher(String nomReferent, String prenomReferent, List<String> periodesAccueil, boolean archivee) {
+        Set<PeriodeAccueil> periodes = null;
+        if (periodesAccueil != null) {
+            periodes = periodesAccueil
+                    .stream()
+                    .map(periode -> {
+                        return PeriodeAccueil.valueOf(periode);
+                    })
+                    .collect(Collectors.toSet());
         }
-        if (prenomReferent != null && !prenomReferent.isBlank()) {
-            familleRequest.queryString("prenomReferent", prenomReferent);
-        }
-
-        List<FamilleDTO> familles = new ArrayList<>();
-        HttpResponse<JsonNode> response = familleRequest.asJson();
-        response
-                .getBody()
-                .getObject()
-                .getJSONObject("_embedded")
-                .getJSONArray("familles")
-                .forEach(node -> {
-            JSONObject jsonNode = (JSONObject) node;
-            FamilleDTO famille = new FamilleDTO();
-            // Map famille
-            famille.setId(jsonNode.getLong("id"));
-            famille.setArchivee(jsonNode.getBoolean("archivee"));
-            famille.setCandidature(jsonNode.getBoolean("candidature"));
-            famille.setRadiee(jsonNode.isNull("dateRadiation") ? false : true);
-            // Map membre
-            JSONObject membreReferent = null;
-            for (JSONObject membre : (List<JSONObject>)jsonNode.getJSONArray("membres").toList()) {
-                if (membre.getBoolean("referent")) {
-                    membreReferent = membre;
-                }
+        AlphanumComparator comparator = new AlphanumComparator();
+        List<Famille> beans = repository.retrieve(nomReferent, prenomReferent, periodes, archivee);
+        List<FamilleDTO> dtos = beans
+                .stream()
+                .map((Famille f) -> {
+                    return new FamilleDTO(f);
+                }).sorted((f1, f2) -> {
+            int resultNomReferent = comparator.compare(f1.getNomReferent(), f2.getNomReferent());
+            if (resultNomReferent != 0) {
+                return resultNomReferent;
             }
-            famille.setNomReferent(membreReferent.getString("nom"));
-            famille.setPrenomReferent(membreReferent.getString("prenom"));
-            // Map coordonnees
-            JSONObject coordonnees = membreReferent.getJSONObject("coordonnees");
-            famille.setEmailReferent(coordonnees.optString("email"));
-            famille.setTelephoneReferent(coordonnees.optString("telephone1"));
-            familles.add(famille);
-        });
-
-            return familles;
-        } catch (UnirestException e) {
-            e.printStackTrace();
-        }
-        return Collections.emptyList();
+            return comparator.compare(f1.getPrenomReferent(), f2.getPrenomReferent());
+        }).collect(Collectors.toList());
+        return dtos;
     }
 
     public void update(Famille entity) {

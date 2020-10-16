@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    <changeSet author="paoesco" id="0_init">
+        <sqlFile path="sql/0_init.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.0.0">
+        <sqlFile path="sql/1.0.0.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.0.0-SNAPSHOT-201506014.sql">
+        <sqlFile path="sql/1.0.0-SNAPSHOT-201506014.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.0.1.sql">
+        <sqlFile path="sql/1.0.1.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.0.2.sql">
+        <sqlFile path="sql/1.0.2.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.0.4.sql">
+        <sqlFile path="sql/1.0.4.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.0.6.sql">
+        <sqlFile path="sql/1.0.6.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.0.15.sql">
+        <sqlFile path="sql/1.0.15.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.1.0">
+        <sqlFile path="sql/1.1.0.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.1.8">
+        <sqlFile path="sql/1.1.8.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.1.12">
+        <sqlFile path="sql/1.1.12.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.1.14">
+        <sqlFile path="sql/1.1.14.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.1.14_1">
+        <sqlFile path="sql/1.1.14_1.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.4.0">
+        <sqlFile path="sql/1.4.0.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.6.0">
+        <sqlFile path="sql/1.6.0.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.7.0">
+        <sqlFile path="sql/1.7.0.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.7.0_1">
+        <sqlFile path="sql/1.7.0_1.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.8.0">
+        <sqlFile path="sql/1.8.0.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.9.0">
+        <sqlFile path="sql/1.9.0.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.10.0">
+        <sqlFile path="sql/1.10.0.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="1.12.0">
+        <sqlFile path="sql/1.12.0.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="201907222100">
+        <sqlFile path="sql/201907222100_accompagnateur_adds_deleted_at_column.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="202010112200">
+        <sqlFile path="sql/202010112200_adds_index_famille.sql"/>
+    </changeSet>
+    <changeSet author="paoesco" id="202010112201">
+        <sqlFile path="sql/202010112201_adds_index_membre.sql"/>
+    </changeSet>
+    <changeSet id="202010112300_recreates_index_membre" author="paoesco">
+        <sqlFile path="sql/202010112300_recreates_index_membre.sql"/>
+    </changeSet>
+</databaseChangeLog>
