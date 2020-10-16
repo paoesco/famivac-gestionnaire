@@ -1,0 +1,1 @@
+CREATE INDEX idx_famille_archivee ON famille (archivee)
