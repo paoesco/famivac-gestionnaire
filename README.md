@@ -24,14 +24,13 @@ System properties :
 Startup line
 
 java 
-    -Dfamivac.api.key=$FAMIVAC_API_KEY 
     -Dswarm.ds.name=PostgreSQLDS 
     -Dswarm.ds.connection.url=$JDBC_DATABASE_URL 
     -Dswarm.ds.username=$JDBC_DATABASE_USERNAME 
     -Dswarm.ds.password=$JDBC_DATABASE_PASSWORD 
     -Djavamelody.datasources=java:jboss/datasources/PostgreSQLDS 
     -Dswarm.http.port=$PORT 
-    -jar gestionnaire-web/target/gestionnaire-web-*-swarm.jar
+    -jar gestionnaire-web/target/gestionnaire-web-2.0.0-thorntail.jar
 
 
 ## Dokku
