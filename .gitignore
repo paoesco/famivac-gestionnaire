@@ -18,4 +18,3 @@ travis.log
 audit.log
 prod.sql
 deploy.key
-.idea/
