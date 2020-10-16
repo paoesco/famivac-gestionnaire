@@ -26,7 +26,6 @@ Environment properties :
 - swarm.ds.username
 - swarm.ds.password
 - swarm.https.only
-- famivac.api.key
 
 Startup line
 
