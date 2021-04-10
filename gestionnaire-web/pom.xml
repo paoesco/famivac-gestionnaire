@@ -44,8 +44,8 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-api</artifactId>
 		</dependency>
 		<!-- Webjars -->
 		<dependency>
@@ -61,61 +61,13 @@
 			<artifactId>startbootstrap-sb-admin-2</artifactId>
 		</dependency>
 		<!-- Webjars end -->
-		<!-- Thorntail Fractions -->
-		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>datasources</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>mail</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>undertow</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>jsf</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>ejb</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>bean-validation</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>transactions</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>cdi</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>ee-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.thorntail</groupId>
-			<artifactId>thorntail-runner</artifactId>
-			<version>${thorntail.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 		</dependency>
-		<!-- For Thorntail -->
 		<dependency>
-			<groupId>org.yaml</groupId>
-			<artifactId>snakeyaml</artifactId>
-			<version>1.25</version>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
 		</dependency>
 		<!-- For Java Melody -->
 		<dependency>
@@ -142,10 +94,6 @@
 			<artifactId>javamelody-core</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>de.chkal.jsf</groupId>
 			<artifactId>jsf-maven-util</artifactId>
 		</dependency>
@@ -165,8 +113,37 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>io.thorntail</groupId>
-				<artifactId>thorntail-maven-plugin</artifactId>
+				<groupId>org.wildfly.plugins</groupId>
+				<artifactId>wildfly-jar-maven-plugin</artifactId>
+				<configuration>
+					<feature-packs>
+					<feature-pack>
+						<location>wildfly@maven(org.jboss.universe:community-universe)</location>
+					</feature-pack>
+					<feature-pack>
+						<groupId>org.wildfly</groupId>
+						<artifactId>wildfly-datasources-galleon-pack</artifactId>
+						<version>1.2.3.Final</version>
+					</feature-pack>
+					</feature-packs>
+					<cli-sessions>
+						<cli-session>
+							<script-files>
+								<script>./authentication.cli</script>
+							</script-files>
+						</cli-session>
+					</cli-sessions>
+					<layers>
+						<layer>jsf</layer>
+						<layer>ejb-lite</layer>
+						<layer>mail</layer>
+						<layer>ee-security</layer>
+						<layer>elytron</layer>
+						<layer>jpa</layer>
+						<layer>postgresql-datasource</layer>
+						<layer>logging</layer>
+					</layers>
+				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>

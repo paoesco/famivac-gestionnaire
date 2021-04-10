@@ -42,9 +42,7 @@
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <maven-war-plugin.version>3.1.0</maven-war-plugin.version>
         
-        <!-- Java EE dependencies -->
-        <javaee.version>8.0.1</javaee.version>
-        <thorntail.version>2.7.0.Final</thorntail.version>
+        <!-- Jakarta EE dependencies -->
         <failOnMissingWebXml>false</failOnMissingWebXml>
         
         <!-- Dependencies versions -->
@@ -54,11 +52,9 @@
         <bootstrap.version>3.3.7-1</bootstrap.version>
         <metismenu.version>2.6.1</metismenu.version>
         <sbadmin2.version>3.3.7</sbadmin2.version>
-        <postgre.version>42.2.14</postgre.version>
         <jacoco.version>0.8.5</jacoco.version>
         <poi.version>4.1.0</poi.version>
         <itext.version>2.1.7</itext.version>
-        <liquibase.version>3.8.0</liquibase.version>
         <junit.version>5.6.2</junit.version>
         <mockito.version>3.4.0</mockito.version>
     </properties>
@@ -74,19 +70,12 @@
     
     <dependencyManagement>
         <dependencies>
-            <!-- Java EE dependencies -->
+            <!-- Jakarta EE dependencies -->
             <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-api</artifactId>
-                <version>${javaee.version}</version>
+                <groupId>jakarta.platform</groupId>
+                <artifactId>jakarta.jakartaee-api</artifactId>
+                <version>8.0.0</version>
                 <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.thorntail</groupId>
-                <artifactId>bom</artifactId>
-                <version>${thorntail.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>net.bull.javamelody</groupId>
@@ -97,16 +86,6 @@
                 <groupId>org.primefaces</groupId>
                 <artifactId>primefaces</artifactId>
                 <version>${primefaces.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>${postgre.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.logmanager</groupId>
-                <artifactId>jboss-logmanager</artifactId>
-                <version>2.0.8.Final</version>
             </dependency>
             <dependency>
                 <groupId>de.chkal.jsf</groupId>
@@ -134,6 +113,11 @@
                 <version>${springsecurity.version}</version>
             </dependency>
             <!-- Data Exporter -->
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>4.3.2</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi</artifactId>
@@ -217,15 +201,9 @@
                 </plugin>
                 <!-- Server -->
                 <plugin>
-                    <groupId>io.thorntail</groupId>
-                    <artifactId>thorntail-maven-plugin</artifactId>
-                    <version>${thorntail.version}</version>
-                    <configuration>
-                        <properties>
-                            <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
-                            <java.net.preferIPv4Addresses>true</java.net.preferIPv4Addresses>
-                        </properties>
-                    </configuration>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-jar-maven-plugin</artifactId>
+                    <version>4.0.2.Final</version>
                     <executions>
                         <execution>
                             <goals>
@@ -233,10 +211,10 @@
                             </goals>
                         </execution>
                         <execution>
-                            <id>start</id>
+                            <id>dev-watch</id>
                         </execution>
                         <execution>
-                            <id>stop</id>
+                            <id>run</id>
                         </execution>
                     </executions>
                 </plugin>

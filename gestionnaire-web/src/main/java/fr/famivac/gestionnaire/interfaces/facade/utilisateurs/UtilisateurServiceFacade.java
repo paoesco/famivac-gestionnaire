@@ -22,7 +22,7 @@ public class UtilisateurServiceFacade {
     private MailService mailService;
 
     public String create(AjouterUtilisateurDTO dto) {
-        final String password = utilisateurService.create(dto);
+        String password = utilisateurService.create(dto);
         Mail mail = new Mail(
                 dto.getEmail(),
                 "[FAMIVAC] Création d'un compte",
