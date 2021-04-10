@@ -3,6 +3,9 @@ package fr.famivac.gestionnaire.web.security;
 import fr.famivac.gestionnaire.administration.authentication.control.UtilisateurService;
 import fr.famivac.gestionnaire.administration.authentication.entity.Utilisateur;
 import java.io.Serializable;
+import java.security.Principal;
+import java.util.Objects;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -10,7 +13,6 @@ import javax.inject.Named;
 import javax.security.enterprise.SecurityContext;
 
 /**
- *
  * @author paoesco
  */
 @Named
@@ -29,8 +31,10 @@ public class SessionBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		String username = securityContext.getCallerPrincipal().getName();
-		connectedUser = utilisateurService.retrieve(username);
+		Principal principal = securityContext.getCallerPrincipal();
+		if (Objects.nonNull(principal)) {
+			connectedUser = utilisateurService.retrieve(principal.getName());
+		}
 	}
 
 	public Utilisateur getConnectedUser() {

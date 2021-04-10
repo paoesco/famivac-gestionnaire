@@ -116,8 +116,7 @@ public class UtilisateursBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, unlockMessage);
     }
 
-    @SuppressWarnings("unchecked")
-	public void onCellEdit(CellEditEvent event) {
+    public void onCellEdit(CellEditEvent event) {
         RetrieveUtilisateursDTO dto = lazyModel.getRowData(event.getRowIndex());
         List<Groupe> oldValue = (List<Groupe>) event.getOldValue();
         List<Groupe> newValue = (List<Groupe>) event.getNewValue();

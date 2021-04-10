@@ -1,1 +1,1 @@
-web: java -Djavamelody.storage-directory=/storage/javamelody -Dswarm.ds.name=PostgreSQLDS -Dswarm.ds.connection.url=$JDBC_DATABASE_URL -Dswarm.ds.username=$JDBC_DATABASE_USERNAME -Dswarm.ds.password=$JDBC_DATABASE_PASSWORD -Djavamelody.datasources=java:jboss/datasources/PostgreSQLDS -Dswarm.http.port=$PORT -jar gestionnaire-web/target/gestionnaire-web-*-thorntail.jar
+web: java -Djavamelody.storage-directory=/storage/javamelody -Djavamelody.datasources=java:jboss/datasources/PostgreSQLDS -Djboss.http.port=$PORT -jar gestionnaire-web/target/gestionnaire-web-2.0.0-bootable.jar
