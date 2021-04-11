@@ -1,318 +1,272 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>gestionnaire</artifactId>
 
-    <groupId>fr.famivac</groupId>
-    <artifactId>gestionnaire</artifactId>
-    <version>2.0.0</version>
-    <packaging>pom</packaging>
-
-    <name>gestionnaire</name>
-    
-    <developers>
-        <developer>
-            <id>hubesco</id>
-            <name>Paolo Escobar</name>
-            <email>paolo.escobar@hubesco.com</email>
-            <url>https://hubesco.com/blog</url>
-        </developer>
-    </developers>
-    
-    <url>https://gestionnaire.famivac.fr</url>
-    
-    <inceptionYear>2015</inceptionYear>
-    
-    <scm>
-        <connection>scm:git:ssh://git@github.com/famivac/famivac-gestionnaire.git</connection>
-        <url>https://github.com/famivac/famivac-gestionnaire</url>
-        <developerConnection>scm:git:ssh://git@github.com/famivac/famivac-gestionnaire.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
-
-    <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <additionalparam>-Xdoclint:none</additionalparam>
-        <skipUnitTests>false</skipUnitTests>
-        
-        <!-- Plugins versions -->
-        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-        <maven-scm-provider-jgit.version>1.9.5</maven-scm-provider-jgit.version>
-        <maven-deploy-plugin>2.8.2</maven-deploy-plugin>
-        <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
-        <maven-war-plugin.version>3.1.0</maven-war-plugin.version>
-        
-        <!-- Jakarta EE dependencies -->
-        <failOnMissingWebXml>false</failOnMissingWebXml>
-        
-        <!-- Dependencies versions -->
-        <springsecurity.version>5.2.1.RELEASE</springsecurity.version>
-        <javamelody.version>1.82.0</javamelody.version>
-        <primefaces.version>7.0</primefaces.version>
-        <bootstrap.version>3.3.7-1</bootstrap.version>
-        <metismenu.version>2.6.1</metismenu.version>
-        <sbadmin2.version>3.3.7</sbadmin2.version>
-        <jacoco.version>0.8.5</jacoco.version>
-        <poi.version>4.1.0</poi.version>
-        <itext.version>2.1.7</itext.version>
-        <junit.version>5.6.2</junit.version>
-        <mockito.version>3.4.0</mockito.version>
-    </properties>
-    
-    <modules>
-        <module>gestionnaire-web</module>
-        <module>gestionnaire-familles</module>
-        <module>gestionnaire-commons</module>
-        <module>gestionnaire-enfants</module>
-        <module>gestionnaire-administration</module>
-        <module>gestionnaire-sejours</module>
-    </modules>
-    
-    <dependencyManagement>
+  <build>
+    <plugins>
+      <!-- Tests -->
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
         <dependencies>
-            <!-- Jakarta EE dependencies -->
-            <dependency>
-                <groupId>jakarta.platform</groupId>
-                <artifactId>jakarta.jakartaee-api</artifactId>
-                <version>8.0.0</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>net.bull.javamelody</groupId>
-                <artifactId>javamelody-core</artifactId>
-                <version>${javamelody.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.primefaces</groupId>
-                <artifactId>primefaces</artifactId>
-                <version>${primefaces.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>de.chkal.jsf</groupId>
-                <artifactId>jsf-maven-util</artifactId>
-                <version>1.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.webjars</groupId>
-                <artifactId>bootstrap</artifactId>
-                <version>${bootstrap.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.webjars.npm</groupId>
-                <artifactId>metismenu</artifactId>
-                <version>${metismenu.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.webjars.npm</groupId>
-                <artifactId>startbootstrap-sb-admin-2</artifactId>
-                <version>${sbadmin2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-core</artifactId>
-                <version>${springsecurity.version}</version>
-            </dependency>
-            <!-- Data Exporter -->
-            <dependency>
-                <groupId>org.liquibase</groupId>
-                <artifactId>liquibase-core</artifactId>
-                <version>4.3.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi</artifactId>
-                <version>${poi.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi-ooxml</artifactId>
-                <version>${poi.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.lowagie</groupId>
-                <artifactId>itext</artifactId>
-                <version>${itext.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>bouncycastle</groupId>
-                        <artifactId>bcmail-jdk14</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>bouncycastle</groupId>
-                        <artifactId>bcprov-jdk14</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.bouncycastle</groupId>
-                        <artifactId>bctsp-jdk14</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <!-- End Data Exporter -->
-            <!-- Tests -->
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>${junit.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-junit-jupiter</artifactId>
-                <version>${mockito.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <!-- End Tests -->
+          <dependency>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <version>5.6.2</version>
+          </dependency>
         </dependencies>
-    </dependencyManagement>
-    
-    <build>
-        <pluginManagement>
-            <plugins>
-                <!-- JDK 11 -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
-                    <configuration>
-                        <release>11</release>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M4</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.junit.jupiter</groupId>
-                            <artifactId>junit-jupiter-engine</artifactId>
-                            <version>${junit.version}</version>
-                        </dependency>
-                    </dependencies>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>2.22.2</version>
-                    <configuration>
-                        <argLine>
-                            --illegal-access=permit
-                        </argLine>
-                    </configuration>
-                </plugin>
-                <!-- Server -->
-                <plugin>
-                    <groupId>org.wildfly.plugins</groupId>
-                    <artifactId>wildfly-jar-maven-plugin</artifactId>
-                    <version>4.0.2.Final</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>package</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>dev-watch</id>
-                        </execution>
-                        <execution>
-                            <id>run</id>
-                        </execution>
-                    </executions>
-                </plugin>
-                <!-- Release -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>${maven-release-plugin.version}</version>
-                    <configuration>
-                        <autoVersionSubmodules>true</autoVersionSubmodules>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>${maven-deploy-plugin}</version>
-                    <configuration>
-                        <skip>true</skip>
-                    </configuration>
-                </plugin>
-                <!-- Coveralls -->
-                <plugin>
-                    <groupId>org.eluder.coveralls</groupId>
-                    <artifactId>coveralls-maven-plugin</artifactId>
-                    <version>${coveralls-maven-plugin.version}</version>
-                    <!-- Not needed, using Travis CI -->
-                    <!--
-                    <configuration>
-                        <repoToken>yourcoverallsprojectrepositorytoken</repoToken>
-                    </configuration>
-                    -->
-                </plugin>
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>${jacoco.version}</version>
-                    <executions>
-                        <execution>
-                            <id>default-prepare-agent</id>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>default-prepare-agent-integration</id>
-                            <goals>
-                                <goal>prepare-agent-integration</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>default-report</id>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>default-report-integration</id>
-                            <goals>
-                                <goal>report-integration</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-    
-    <repositories>
-        <repository>
-            <url>http://central.maven.org/maven2/</url>
-            <id>Central</id>
-            <layout>default</layout>
-            <name>Central</name>
-        </repository>
-        <repository>
-            <url>http://repository.primefaces.org/</url>
-            <id>PrimeFaces-maven-lib</id>
-            <name>Repository for library PrimeFaces-maven-lib</name>
-        </repository>
-        <repository>
-            <id>jsf-maven-util-repo</id>
-            <name>jsf-maven-util Repository</name>
-            <url>http://chkal.github.com/jsf-maven-util/repository/</url>
-        </repository>
-        <repository>  
-            <id>jboss-public-repository-group</id>  
-            <name>JBoss Public Maven Repository Group</name>  
-            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>  
-            <layout>default</layout>  
-            <releases>  
-                <enabled>true</enabled>  
-                <updatePolicy>never</updatePolicy>  
-            </releases>  
-            <snapshots>  
-                <enabled>true</enabled>  
-                <updatePolicy>never</updatePolicy>  
-            </snapshots>  
-        </repository>  
-    </repositories>
-    
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>3.0.0-M4</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <configuration>
+          <argLine>
+            --illegal-access=permit
+          </argLine>
+        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>2.22.2</version>
+      </plugin>
+      <!-- Server -->
+      <plugin>
+        <artifactId>wildfly-jar-maven-plugin</artifactId>
+        <configuration>
+          <cli-sessions>
+            <cli-session>
+              <script-files>
+                <script>./authentication.cli</script>
+              </script-files>
+            </cli-session>
+          </cli-sessions>
+          <feature-packs>
+            <feature-pack>
+              <location>wildfly@maven(org.jboss.universe:community-universe)
+              </location>
+            </feature-pack>
+            <feature-pack>
+              <artifactId>wildfly-datasources-galleon-pack</artifactId>
+              <groupId>org.wildfly</groupId>
+              <version>1.2.3.Final</version>
+            </feature-pack>
+          </feature-packs>
+          <layers>
+            <layer>jsf</layer>
+            <layer>ejb-lite</layer>
+            <layer>mail</layer>
+            <layer>ee-security</layer>
+            <layer>elytron</layer>
+            <layer>jpa</layer>
+            <layer>postgresql-datasource</layer>
+            <layer>logging</layer>
+          </layers>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>package</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>dev-watch</id>
+          </execution>
+          <execution>
+            <id>run</id>
+          </execution>
+        </executions>
+        <groupId>org.wildfly.plugins</groupId>
+        <version>4.0.2.Final</version>
+      </plugin>
+      <!-- Coveralls -->
+      <plugin>
+        <artifactId>coveralls-maven-plugin</artifactId>
+        <groupId>org.eluder.coveralls</groupId>
+        <version>4.3.0</version>
+        <!-- Not needed, using Travis CI -->
+        <!--
+        <configuration>
+            <repoToken>yourcoverallsprojectrepositorytoken</repoToken>
+        </configuration>
+        -->
+      </plugin>
+      <plugin>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+            <id>default-prepare-agent</id>
+          </execution>
+          <execution>
+            <goals>
+              <goal>prepare-agent-integration</goal>
+            </goals>
+            <id>default-prepare-agent-integration</id>
+          </execution>
+          <execution>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <id>default-report</id>
+          </execution>
+          <execution>
+            <goals>
+              <goal>report-integration</goal>
+            </goals>
+            <id>default-report-integration</id>
+          </execution>
+        </executions>
+        <groupId>org.jacoco</groupId>
+        <version>0.8.5</version>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <!-- Jakarta EE dependencies -->
+    <dependency>
+      <artifactId>jakarta.jakartaee-api</artifactId>
+      <groupId>jakarta.platform</groupId>
+      <scope>provided</scope>
+      <version>8.0.0</version>
+    </dependency>
+    <dependency>
+      <artifactId>javamelody-core</artifactId>
+      <groupId>net.bull.javamelody</groupId>
+      <version>1.82.0</version>
+    </dependency>
+    <dependency>
+      <artifactId>primefaces</artifactId>
+      <groupId>org.primefaces</groupId>
+      <version>7.0</version>
+    </dependency>
+    <dependency>
+      <artifactId>jsf-maven-util</artifactId>
+      <groupId>de.chkal.jsf</groupId>
+      <version>1.1</version>
+    </dependency>
+    <dependency>
+      <artifactId>bootstrap</artifactId>
+      <groupId>org.webjars</groupId>
+      <version>3.3.7-1</version>
+    </dependency>
+    <dependency>
+      <artifactId>metismenu</artifactId>
+      <groupId>org.webjars.npm</groupId>
+      <version>2.6.1</version>
+    </dependency>
+    <dependency>
+      <artifactId>startbootstrap-sb-admin-2</artifactId>
+      <groupId>org.webjars.npm</groupId>
+      <version>3.3.7</version>
+    </dependency>
+    <dependency>
+      <artifactId>spring-security-core</artifactId>
+      <groupId>org.springframework.security</groupId>
+      <version>5.2.1.RELEASE</version>
+    </dependency>
+    <!-- Data Exporter -->
+    <dependency>
+      <artifactId>liquibase-core</artifactId>
+      <groupId>org.liquibase</groupId>
+      <version>4.3.2</version>
+    </dependency>
+    <dependency>
+      <artifactId>poi</artifactId>
+      <groupId>org.apache.poi</groupId>
+      <version>4.1.0</version>
+    </dependency>
+    <dependency>
+      <artifactId>poi-ooxml</artifactId>
+      <groupId>org.apache.poi</groupId>
+      <version>4.1.0</version>
+    </dependency>
+    <dependency>
+      <artifactId>itext</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>bcmail-jdk14</artifactId>
+          <groupId>bouncycastle</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>bcprov-jdk14</artifactId>
+          <groupId>bouncycastle</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>bctsp-jdk14</artifactId>
+          <groupId>org.bouncycastle</groupId>
+        </exclusion>
+      </exclusions>
+      <groupId>com.lowagie</groupId>
+      <version>2.1.7</version>
+    </dependency>
+    <!-- End Data Exporter -->
+    <dependency>
+      <artifactId>commons-lang3</artifactId>
+      <groupId>org.apache.commons</groupId>
+      <version>3.12.0</version>
+    </dependency>
+    <!-- Tests -->
+    <dependency>
+      <artifactId>junit-jupiter-api</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <scope>test</scope>
+      <version>5.6.2</version>
+    </dependency>
+    <dependency>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <groupId>org.mockito</groupId>
+      <scope>test</scope>
+      <version>3.4.0</version>
+    </dependency>
+    <!-- End Tests -->
+  </dependencies>
+  <developers>
+    <developer>
+      <email>paolo@hubesco.com</email>
+      <id>paoesco</id>
+      <name>Paolo</name>
+      <url>https://hubesco.com/blog</url>
+    </developer>
+  </developers>
+  <groupId>fr.famivac</groupId>
+
+  <inceptionYear>2015</inceptionYear>
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>gestionnaire</name>
+  <packaging>war</packaging>
+
+  <properties>
+    <additionalparam>-Xdoclint:none</additionalparam>
+    <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+    <failOnMissingWebXml>false</failOnMissingWebXml>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <skipUnitTests>false</skipUnitTests>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>jsf-maven-util-repo</id>
+      <name>jsf-maven-util Repository</name>
+      <url>http://chkal.github.com/jsf-maven-util/repository/</url>
+    </repository>
+  </repositories>
+
+  <scm>
+    <connection>scm:git:ssh://git@github.com/famivac/famivac-gestionnaire.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/famivac/famivac-gestionnaire.git
+    </developerConnection>
+    <tag>HEAD</tag>
+    <url>https://github.com/famivac/famivac-gestionnaire</url>
+  </scm>
+
+  <url>https://gestionnaire.famivac.fr</url>
+
+  <version>2.0.0</version>
+
 </project>
