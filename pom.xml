@@ -218,7 +218,7 @@
       <artifactId>mockito-junit-jupiter</artifactId>
       <groupId>org.mockito</groupId>
       <scope>test</scope>
-      <version>3.4.0</version>
+      <version>3.9.0</version>
     </dependency>
     <!-- End Tests -->
   </dependencies>
