@@ -139,7 +139,7 @@
     <dependency>
       <artifactId>primefaces</artifactId>
       <groupId>org.primefaces</groupId>
-      <version>7.0</version>
+      <version>8.0</version>
     </dependency>
     <dependency>
       <artifactId>jsf-maven-util</artifactId>
@@ -175,12 +175,12 @@
     <dependency>
       <artifactId>poi</artifactId>
       <groupId>org.apache.poi</groupId>
-      <version>4.1.0</version>
+      <version>4.1.1</version>
     </dependency>
     <dependency>
       <artifactId>poi-ooxml</artifactId>
       <groupId>org.apache.poi</groupId>
-      <version>4.1.0</version>
+      <version>4.1.1</version>
     </dependency>
     <dependency>
       <artifactId>itext</artifactId>

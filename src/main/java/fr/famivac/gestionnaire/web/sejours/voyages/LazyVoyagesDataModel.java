@@ -1,69 +1,62 @@
 package fr.famivac.gestionnaire.web.sejours.voyages;
 
+import fr.famivac.gestionnaire.domains.sejours.control.VoyageDTO;
 import fr.famivac.gestionnaire.web.utils.LazyFilter;
 import fr.famivac.gestionnaire.web.utils.LazySorter;
-import fr.famivac.gestionnaire.domains.sejours.control.VoyageDTO;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
-/**
- * @author paoesco
- */
+/** @author paoesco */
 public class LazyVoyagesDataModel extends LazyDataModel<VoyageDTO> {
 
-	private static final long serialVersionUID = 6160793949461059501L;
-	
-	private final List<VoyageDTO> datasource;
+  private static final long serialVersionUID = 6160793949461059501L;
 
-    public LazyVoyagesDataModel(List<VoyageDTO> datasource) {
-        this.datasource = new ArrayList<>(datasource);
+  private final List<VoyageDTO> datasource;
+
+  public LazyVoyagesDataModel(List<VoyageDTO> datasource) {
+    this.datasource = new ArrayList<>(datasource);
+  }
+
+  @Override
+  public VoyageDTO getRowData(String rowKey) {
+    for (VoyageDTO bean : datasource) {
+      if (Long.valueOf(rowKey).equals(bean.getVoyageId())) {
+        return bean;
+      }
     }
+    return null;
+  }
 
-    @Override
-    public VoyageDTO getRowData(String rowKey) {
-        for (VoyageDTO bean : datasource) {
-            if (Long.valueOf(rowKey).equals(bean.getVoyageId())) {
-                return bean;
-            }
-        }
-        return null;
-    }
+  @Override
+  public Object getRowKey(VoyageDTO bean) {
+    return bean.getVoyageId();
+  }
 
-    @Override
-    public Object getRowKey(VoyageDTO bean) {
-        return bean.getVoyageId();
-    }
+  @Override
+  public List<VoyageDTO> load(
+      int first,
+      int pageSize,
+      String sortField,
+      SortOrder sortOrder,
+      Map<String, FilterMeta> filters) {
+    var filter = new LazyFilter<>(filters.values());
 
-    @Override
-    public List<VoyageDTO> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-        //filter
-        LazyFilter<VoyageDTO> lazyFilter = new LazyFilter<>(filters);
-        List<VoyageDTO> data = datasource.stream().filter(lazyFilter).collect(Collectors.toList());
+    var rowCount = datasource.stream().filter(filter).count();
+    setRowCount((int) rowCount);
 
-        //sort
-        if (sortField != null) {
-            Collections.sort(data, new LazySorter<>(VoyageDTO.class, sortField, sortOrder));
-        }
+    var data =
+        datasource.stream()
+            .filter(filter)
+            .sorted(new LazySorter<>(VoyageDTO.class, sortField, sortOrder))
+            .skip(first)
+            .limit(pageSize)
+            .collect(Collectors.toList());
 
-        //rowCount
-        int dataSize = data.size();
-        this.setRowCount(dataSize);
-
-        //paginate
-        if (dataSize > pageSize) {
-            try {
-                return data.subList(first, first + pageSize);
-            } catch (IndexOutOfBoundsException e) {
-                return data.subList(first, first + (dataSize % pageSize));
-            }
-        } else {
-            return data;
-        }
-    }
-
+    return data;
+  }
 }
