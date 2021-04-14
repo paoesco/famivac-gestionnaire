@@ -5,12 +5,12 @@
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 
   <context-param>
-    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-name>jakarta.faces.PROJECT_STAGE</param-name>
     <param-value>Production</param-value>
   </context-param>
 
   <!--  <context-param>-->
-  <!--    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>-->
+  <!--    <param-name>jakarta.faces.STATE_SAVING_METHOD</param-name>-->
   <!--    <param-value>client</param-value>-->
   <!--  </context-param>-->
   <context-param>
@@ -18,7 +18,7 @@
     <param-value>true</param-value>
   </context-param>
   <context-param>
-    <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+    <param-name>jakarta.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
     <param-value>true</param-value>
   </context-param>
   <context-param>
@@ -59,7 +59,7 @@
   <security-constraint>
     <web-resource-collection>
       <url-pattern>/faces/login.xhtml</url-pattern>
-      <url-pattern>/faces/javax.faces.resource/*</url-pattern>
+      <url-pattern>/faces/jakarta.faces.resource/*</url-pattern>
       <web-resource-name>Login page</web-resource-name>
     </web-resource-collection>
   </security-constraint>
@@ -105,7 +105,7 @@
 
   <servlet>
     <load-on-startup>1</load-on-startup>
-    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
     <servlet-name>Faces Servlet</servlet-name>
   </servlet>
 

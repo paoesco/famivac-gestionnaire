@@ -5,9 +5,9 @@ import fr.famivac.gestionnaire.domains.familles.boundary.FamilleService;
 import fr.famivac.gestionnaire.domains.parametres.CommuneService;
 import fr.famivac.gestionnaire.web.communes.CompleteCommune;
 import java.io.Serializable;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 /** @author paoesco */
 @Named

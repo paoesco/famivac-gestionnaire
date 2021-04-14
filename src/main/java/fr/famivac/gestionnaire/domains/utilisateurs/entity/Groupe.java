@@ -4,62 +4,54 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 
-/**
- * @author paoesco
- */
+/** @author paoesco */
 @Entity
-@NamedQueries({
-    @NamedQuery(name = Groupe.QUERY_LISTE_ALL, query = "select g from Groupe g")
-})
+@NamedQueries({@NamedQuery(name = Groupe.QUERY_LISTE_ALL, query = "select g from Groupe g")})
 public class Groupe implements Serializable {
 
-    public static final String QUERY_LISTE_ALL = "getGroupes";
+  public static final String QUERY_LISTE_ALL = "getGroupes";
 
-    public static final String ROLE_GESTIONNAIRE = "ROLE_GESTIONNAIRE";
+  public static final String ROLE_GESTIONNAIRE = "ROLE_GESTIONNAIRE";
+  @ManyToMany(mappedBy = "groupes")
+  private final Set<Utilisateur> utilisateurs;
+  @Id
+  @Column(nullable = false)
+  private String nom;
+  private String libelle;
 
-    @Id
-    @Column(nullable = false)
-    private String nom;
+  protected Groupe() {
+    utilisateurs = new HashSet<>();
+  }
 
-    private String libelle;
-
-    @ManyToMany(mappedBy = "groupes")
-    private final Set<Utilisateur> utilisateurs;
-
-    protected Groupe() {
-        utilisateurs = new HashSet<>();
+  public Groupe(String nom, String libelle) {
+    if (nom == null || nom.isEmpty()) {
+      throw new IllegalArgumentException("Le nom est obligatoire");
     }
+    utilisateurs = new HashSet<>();
+    this.nom = nom;
+    this.libelle = libelle;
+  }
 
-    public Groupe(String nom, String libelle) {
-        if (nom == null || nom.isEmpty()) {
-            throw new IllegalArgumentException("Le nom est obligatoire");
-        }
-        this.utilisateurs = new HashSet<>();
-        this.nom = nom;
-        this.libelle = libelle;
-    }
+  public String getNom() {
+    return nom;
+  }
 
-    public String getNom() {
-        return nom;
-    }
+  public String getLibelle() {
+    return libelle;
+  }
 
-    public String getLibelle() {
-        return libelle;
-    }
+  public void setLibelle(String libelle) {
+    this.libelle = libelle;
+  }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
-
-    public Set<Utilisateur> getUtilisateurs() {
-        return Collections.unmodifiableSet(utilisateurs);
-    }
-
+  public Set<Utilisateur> getUtilisateurs() {
+    return Collections.unmodifiableSet(utilisateurs);
+  }
 }

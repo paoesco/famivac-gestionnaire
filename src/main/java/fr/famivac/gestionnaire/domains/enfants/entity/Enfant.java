@@ -3,151 +3,133 @@ package fr.famivac.gestionnaire.domains.enfants.entity;
 import fr.famivac.gestionnaire.commons.entity.Sexe;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
-/**
- *
- * @author paoesco
- */
+/** @author paoesco */
 @Entity
 public class Enfant implements Serializable {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Embedded private final InformationsComplementairesEnfant informationsComplementairesEnfant;
+  @Id @GeneratedValue private Long id;
+  private String nom;
+  private String prenom;
+  private Boolean inscripteurEstResponsableLegal;
+  @Enumerated(EnumType.STRING)
+  private Sexe sexe;
+  @Temporal(TemporalType.DATE)
+  private Date dateNaissance;
+  private String classeFrequentee;
+  @ManyToOne private Inscripteur inscripteur;
+  @OneToOne(cascade = CascadeType.ALL)
+  private ResponsableLegal responsableLegal;
+  @OneToOne(cascade = CascadeType.ALL)
+  private FamilleAccueil familleAccueil;
 
-    private String nom;
+  @Column(length = 2000)
+  private String remarque;
 
-    private String prenom;
+  public Enfant() {
+    inscripteur = new Inscripteur();
+    responsableLegal = new ResponsableLegal();
+    informationsComplementairesEnfant = new InformationsComplementairesEnfant();
+  }
 
-    private Boolean inscripteurEstResponsableLegal;
+  public Long getId() {
+    return id;
+  }
 
-    @Enumerated(EnumType.STRING)
-    private Sexe sexe;
+  public String getNom() {
+    return nom;
+  }
 
-    @Temporal(TemporalType.DATE)
-    private Date dateNaissance;
+  public void setNom(String nom) {
+    this.nom = nom;
+  }
 
-    private String classeFrequentee;
+  public String getPrenom() {
+    return prenom;
+  }
 
-    @ManyToOne
-    private Inscripteur inscripteur;
+  public void setPrenom(String prenom) {
+    this.prenom = prenom;
+  }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private ResponsableLegal responsableLegal;
+  public Sexe getSexe() {
+    return sexe;
+  }
 
-    @Embedded
-    private final InformationsComplementairesEnfant informationsComplementairesEnfant;
+  public void setSexe(Sexe sexe) {
+    this.sexe = sexe;
+  }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private FamilleAccueil familleAccueil;
+  public Date getDateNaissance() {
+    return dateNaissance == null ? null : (Date) dateNaissance.clone();
+  }
 
-    @Column(length = 2000)
-    private String remarque;
+  public void setDateNaissance(Date dateNaissance) {
+    this.dateNaissance = (dateNaissance == null ? null : (Date) dateNaissance.clone());
+  }
 
-    public Enfant() {
-        inscripteur = new Inscripteur();
-        responsableLegal = new ResponsableLegal();
-        informationsComplementairesEnfant = new InformationsComplementairesEnfant();
-    }
+  public String getClasseFrequentee() {
+    return classeFrequentee;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public void setClasseFrequentee(String classeFrequentee) {
+    this.classeFrequentee = classeFrequentee;
+  }
 
-    public String getNom() {
-        return nom;
-    }
+  public Inscripteur getInscripteur() {
+    return inscripteur;
+  }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+  public void setInscripteur(Inscripteur inscripteur) {
+    this.inscripteur = inscripteur;
+  }
 
-    public String getPrenom() {
-        return prenom;
-    }
+  public ResponsableLegal getResponsableLegal() {
+    return responsableLegal;
+  }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
+  public void setResponsableLegal(ResponsableLegal responsableLegal) {
+    this.responsableLegal = responsableLegal;
+  }
 
-    public Sexe getSexe() {
-        return sexe;
-    }
+  public InformationsComplementairesEnfant getInformationsComplementairesEnfant() {
+    return informationsComplementairesEnfant;
+  }
 
-    public void setSexe(Sexe sexe) {
-        this.sexe = sexe;
-    }
+  public String getRemarque() {
+    return remarque;
+  }
 
-    public Date getDateNaissance() {
-        return dateNaissance == null ? null : (Date) dateNaissance.clone();
-    }
+  public void setRemarque(String remarque) {
+    this.remarque = remarque;
+  }
 
-    public void setDateNaissance(Date dateNaissance) {
-        this.dateNaissance = (dateNaissance == null ? null : (Date) dateNaissance.clone());
-    }
+  public Boolean getInscripteurEstResponsableLegal() {
+    return inscripteurEstResponsableLegal;
+  }
 
-    public String getClasseFrequentee() {
-        return classeFrequentee;
-    }
+  public void setInscripteurEstResponsableLegal(Boolean inscripteurEstResponsableLegal) {
+    this.inscripteurEstResponsableLegal = inscripteurEstResponsableLegal;
+  }
 
-    public void setClasseFrequentee(String classeFrequentee) {
-        this.classeFrequentee = classeFrequentee;
-    }
+  public FamilleAccueil getFamilleAccueil() {
+    return familleAccueil;
+  }
 
-    public Inscripteur getInscripteur() {
-        return inscripteur;
-    }
-
-    public void setInscripteur(Inscripteur inscripteur) {
-        this.inscripteur = inscripteur;
-    }
-
-    public ResponsableLegal getResponsableLegal() {
-        return responsableLegal;
-    }
-
-    public void setResponsableLegal(ResponsableLegal responsableLegal) {
-        this.responsableLegal = responsableLegal;
-    }
-
-    public InformationsComplementairesEnfant getInformationsComplementairesEnfant() {
-        return informationsComplementairesEnfant;
-    }
-
-    public String getRemarque() {
-        return remarque;
-    }
-
-    public void setRemarque(String remarque) {
-        this.remarque = remarque;
-    }
-
-    public Boolean getInscripteurEstResponsableLegal() {
-        return inscripteurEstResponsableLegal;
-    }
-
-    public void setInscripteurEstResponsableLegal(Boolean inscripteurEstResponsableLegal) {
-        this.inscripteurEstResponsableLegal = inscripteurEstResponsableLegal;
-    }
-
-    public FamilleAccueil getFamilleAccueil() {
-        return familleAccueil;
-    }
-
-    public void setFamilleAccueil(FamilleAccueil familleAccueil) {
-        this.familleAccueil = familleAccueil;
-    }
-
+  public void setFamilleAccueil(FamilleAccueil familleAccueil) {
+    this.familleAccueil = familleAccueil;
+  }
 }

@@ -14,10 +14,10 @@ import fr.famivac.gestionnaire.domains.familles.entity.PeriodeAccueil;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.interceptor.Interceptors;
-import javax.persistence.EntityManager;
+import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
+import jakarta.interceptor.Interceptors;
+import jakarta.persistence.EntityManager;
 import net.bull.javamelody.MonitoringInterceptor;
 
 @Stateless

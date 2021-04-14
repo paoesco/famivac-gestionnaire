@@ -13,9 +13,9 @@ import fr.famivac.gestionnaire.domains.sejours.entity.PeriodeJournee;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 /** @author paoesco */
 @Named

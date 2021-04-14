@@ -132,14 +132,15 @@
       <version>9.0.0</version>
     </dependency>
     <dependency>
+      <artifactId>primefaces</artifactId>
+      <classifier>jakarta</classifier>
+      <groupId>org.primefaces</groupId>
+      <version>10.0.0</version>
+    </dependency>
+    <dependency>
       <artifactId>javamelody-core</artifactId>
       <groupId>net.bull.javamelody</groupId>
       <version>1.82.0</version>
-    </dependency>
-    <dependency>
-      <artifactId>primefaces</artifactId>
-      <groupId>org.primefaces</groupId>
-      <version>10.0.0</version>
     </dependency>
     <dependency>
       <artifactId>jsf-maven-util</artifactId>

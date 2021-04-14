@@ -4,7 +4,7 @@ import fr.famivac.gestionnaire.domains.enfants.control.EnfantDTO;
 import fr.famivac.gestionnaire.domains.familles.boundary.FamilleDTO;
 import fr.famivac.gestionnaire.domains.sejours.entity.PeriodeJournee;
 import java.util.Date;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /** @author paoesco */
 public class AjouterSejourForm {

@@ -2,25 +2,21 @@ package fr.famivac.gestionnaire.domains.utilisateurs.control;
 
 import fr.famivac.gestionnaire.domains.utilisateurs.entity.Groupe;
 import java.util.List;
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
+import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
 
-/**
- * @author paoesco
- */
+/** @author paoesco */
 @Stateless
 public class GroupeService {
 
-    @Inject
-    private EntityManager entityManager;
+  @Inject private EntityManager entityManager;
 
-    public List<Groupe> retrieve() {
-        return entityManager.createNamedQuery(Groupe.QUERY_LISTE_ALL).getResultList();
-    }
+  public List<Groupe> retrieve() {
+    return entityManager.createNamedQuery(Groupe.QUERY_LISTE_ALL).getResultList();
+  }
 
-    public Groupe retrieve(String nom) {
-        return entityManager.find(Groupe.class, nom);
-    }
-
+  public Groupe retrieve(String nom) {
+    return entityManager.find(Groupe.class, nom);
+  }
 }

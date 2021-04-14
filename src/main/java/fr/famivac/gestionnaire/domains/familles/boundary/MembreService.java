@@ -4,12 +4,12 @@ import fr.famivac.gestionnaire.commons.entity.Commune;
 import fr.famivac.gestionnaire.commons.entity.Sexe;
 import fr.famivac.gestionnaire.commons.events.UpdateFamilleEvent;
 import fr.famivac.gestionnaire.domains.familles.entity.MembreFamille;
-import javax.ejb.Stateless;
-import javax.enterprise.event.Event;
-import javax.inject.Inject;
-import javax.interceptor.Interceptors;
-import javax.persistence.EntityManager;
-import javax.ws.rs.PathParam;
+import jakarta.ejb.Stateless;
+import jakarta.enterprise.event.Event;
+import jakarta.inject.Inject;
+import jakarta.interceptor.Interceptors;
+import jakarta.persistence.EntityManager;
+import jakarta.ws.rs.PathParam;
 import net.bull.javamelody.MonitoringInterceptor;
 
 /** @author paoesco */
