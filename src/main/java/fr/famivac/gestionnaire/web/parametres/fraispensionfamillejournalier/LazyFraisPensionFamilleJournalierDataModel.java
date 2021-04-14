@@ -4,11 +4,11 @@ import fr.famivac.gestionnaire.domains.parametres.entity.FraisPensionFamilleJour
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 
-/** @author paoesco */
 public class LazyFraisPensionFamilleJournalierDataModel
     extends LazyDataModel<FraisPensionFamilleJournalier> {
 
@@ -30,16 +30,15 @@ public class LazyFraisPensionFamilleJournalierDataModel
   }
 
   @Override
-  public Object getRowKey(FraisPensionFamilleJournalier bean) {
-    return bean.getId();
+  public String getRowKey(FraisPensionFamilleJournalier bean) {
+    return bean.getId().toString();
   }
 
   @Override
   public List<FraisPensionFamilleJournalier> load(
       int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
-    int max = first + pageSize > datasource.size() ? datasource.size() : first + pageSize;
     setRowCount(datasource.size());
-    return datasource.subList(first, max);
+    return datasource.stream().skip(first).limit(pageSize).collect(Collectors.toList());
   }
 
   public FraisPensionFamilleJournalier getRowData(int rowIndex) {

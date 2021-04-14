@@ -4,12 +4,14 @@ import fr.famivac.gestionnaire.domains.sejours.control.VoyageDTO;
 import fr.famivac.gestionnaire.web.utils.LazyFilter;
 import fr.famivac.gestionnaire.web.utils.LazySorter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.apache.commons.collections4.ComparatorUtils;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
-import org.primefaces.model.SortOrder;
+import org.primefaces.model.SortMeta;
 
 /** @author paoesco */
 public class LazyVoyagesDataModel extends LazyDataModel<VoyageDTO> {
@@ -33,30 +35,28 @@ public class LazyVoyagesDataModel extends LazyDataModel<VoyageDTO> {
   }
 
   @Override
-  public Object getRowKey(VoyageDTO bean) {
-    return bean.getVoyageId();
+  public String getRowKey(VoyageDTO bean) {
+    return bean.getVoyageId().toString();
   }
 
   @Override
   public List<VoyageDTO> load(
-      int first,
-      int pageSize,
-      String sortField,
-      SortOrder sortOrder,
-      Map<String, FilterMeta> filters) {
-    var filter = new LazyFilter<>(filters.values());
+      int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
+    var filter = new LazyFilter<>(filterBy.values());
+    List<Comparator<VoyageDTO>> comparators =
+        sortBy.values().stream()
+            .map(o -> new LazySorter<>(VoyageDTO.class, o.getField(), o.getOrder()))
+            .collect(Collectors.toList());
+    var comparator = ComparatorUtils.chainedComparator(comparators);
 
     var rowCount = datasource.stream().filter(filter).count();
     setRowCount((int) rowCount);
 
-    var data =
-        datasource.stream()
-            .filter(filter)
-            .sorted(new LazySorter<>(VoyageDTO.class, sortField, sortOrder))
-            .skip(first)
-            .limit(pageSize)
-            .collect(Collectors.toList());
-
-    return data;
+    return datasource.stream()
+        .filter(filter)
+        .sorted(comparator)
+        .skip(first)
+        .limit(pageSize)
+        .collect(Collectors.toList());
   }
 }

@@ -4,6 +4,7 @@ import fr.famivac.gestionnaire.domains.parametres.entity.FraisDossier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
@@ -27,16 +28,15 @@ public class LazyFraisDossierDataModel extends LazyDataModel<FraisDossier> {
   }
 
   @Override
-  public Object getRowKey(FraisDossier bean) {
-    return bean.getId();
+  public String getRowKey(FraisDossier bean) {
+    return bean.getId().toString();
   }
 
   @Override
   public List<FraisDossier> load(
       int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
-    int max = first + pageSize > datasource.size() ? datasource.size() : first + pageSize;
     setRowCount(datasource.size());
-    return datasource.subList(first, max);
+    return datasource.stream().skip(first).limit(pageSize).collect(Collectors.toList());
   }
 
   public FraisDossier getRowData(int rowIndex) {
