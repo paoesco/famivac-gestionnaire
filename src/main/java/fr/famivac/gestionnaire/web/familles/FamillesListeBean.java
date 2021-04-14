@@ -4,6 +4,7 @@ import fr.famivac.gestionnaire.domains.familles.boundary.FamilleService;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,15 +24,11 @@ public class FamillesListeBean implements Serializable {
     this.familleService = familleService;
   }
 
+  @PostConstruct
   public void init() {
     archivees = false;
     periodesAccueil = new ArrayList<>();
-    rechercher();
-  }
-
-  public void rechercher() {
-    lazyModel =
-        new LazyFamilleDataModel(familleService.rechercher("", "", periodesAccueil, archivees));
+    lazyModel = new LazyFamilleDataModel(familleService.search("", "", periodesAccueil, archivees));
   }
 
   public void supprimer(Long id) {

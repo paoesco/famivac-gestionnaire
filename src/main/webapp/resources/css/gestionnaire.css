@@ -4,32 +4,56 @@ html {
     position: relative;
     min-height: 100%;
 }
+
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
 }
-/*.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-   Set the fixed height of the footer here 
-  height: 60px;
-  background-color: #f5f5f5;
-}*/
+
+
 .container {
     width: 95%;
 }
 
-.voffset  { margin-top: 2px; }
-.voffset1 { margin-top: 5px; }
-.voffset2 { margin-top: 10px; }
-.voffset3 { margin-top: 15px; }
-.voffset4 { margin-top: 30px; }
-.voffset5 { margin-top: 40px; }
-.voffset6 { margin-top: 60px; }
-.voffset7 { margin-top: 80px; }
-.voffset8 { margin-top: 100px; }
-.voffset9 { margin-top: 150px; }
+.voffset {
+    margin-top: 2px;
+}
+
+.voffset1 {
+    margin-top: 5px;
+}
+
+.voffset2 {
+    margin-top: 10px;
+}
+
+.voffset3 {
+    margin-top: 15px;
+}
+
+.voffset4 {
+    margin-top: 30px;
+}
+
+.voffset5 {
+    margin-top: 40px;
+}
+
+.voffset6 {
+    margin-top: 60px;
+}
+
+.voffset7 {
+    margin-top: 80px;
+}
+
+.voffset8 {
+    margin-top: 100px;
+}
+
+.voffset9 {
+    margin-top: 150px;
+}
 
 .ui-tabs.ui-tabs-top {
     border-bottom: none;
@@ -53,7 +77,11 @@ body {
 }
 
 .ui-widget {
-    font-size: 1.0em;
+    font-size: 14px !important;
+}
+
+.ui-widget .ui-widget {
+    font-size: 14px !important;
 }
 
 .ui-selectmanycheckbox label {

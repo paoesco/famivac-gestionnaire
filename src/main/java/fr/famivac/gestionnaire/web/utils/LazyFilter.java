@@ -33,7 +33,7 @@ public class LazyFilter<T> implements Predicate<T> {
         }
 
         // Creates getter
-        String filterProperty = filterMeta.getFilterField();
+        String filterProperty = filterMeta.getField();
         String getterMethodName =
             "get" + Character.toUpperCase(filterProperty.charAt(0)) + filterProperty.substring(1);
         // Get property value in object to test

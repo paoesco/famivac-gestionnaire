@@ -1,161 +1,161 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <h:head></h:head>
+<h:head></h:head>
 
-    <h:body>
+<h:body>
 
-        <ui:composition template="/WEB-INF/template/layout.xhtml">
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
 
-            <ui:define name="metadata">
-                <f:metadata>
-                    <f:viewAction action="#{famillesListeBean.init()}"></f:viewAction>
-                </f:metadata>
-            </ui:define>
+        <ui:define name="title">Familles</ui:define>
 
-            <ui:define name="title">Familles</ui:define>
+        <ui:define name="content">
 
-            <ui:define name="content">
-
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-offset-1 col-md-10">
-                            <p:button 
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <p:button
                                 outcome="/familles/ajouter.xhtml"
-                                styleClass="btn-default pull-left" 
+                                styleClass="btn-default pull-left"
                                 value="Ajouter"
                                 icon="ui-icon-plus"/>
-                            <h:form id="form">
-                                <p:selectManyButton 
+                        <h:form id="form">
+                            <p:selectManyButton
                                     value="#{famillesListeBean.periodesAccueil}"
                                     styleClass="pull-right">
-                                    <p:ajax event="change" update="datatable" listener="#{famillesListeBean.rechercher()}"></p:ajax>
-                                    <f:selectItem itemLabel="Hiver" itemValue="HIVER" />
-                                    <f:selectItem itemLabel="Printemps" itemValue="PRINTEMPS" />
-                                    <f:selectItem itemLabel="Juillet" itemValue="JUILLET" />
-                                    <f:selectItem itemLabel="Août" itemValue="AOUT" />
-                                    <f:selectItem itemLabel="Toussaint" itemValue="TOUSSAINT" />
-                                    <f:selectItem itemLabel="Noël" itemValue="NOEL" />
-                                </p:selectManyButton>
-                                
-                                <p:selectOneButton
+                                <p:ajax event="change" update="datatable"
+                                        listener="#{famillesListeBean.rechercher()}"></p:ajax>
+                                <f:selectItem itemLabel="Hiver" itemValue="HIVER"/>
+                                <f:selectItem itemLabel="Printemps" itemValue="PRINTEMPS"/>
+                                <f:selectItem itemLabel="Juillet" itemValue="JUILLET"/>
+                                <f:selectItem itemLabel="Août" itemValue="AOUT"/>
+                                <f:selectItem itemLabel="Toussaint" itemValue="TOUSSAINT"/>
+                                <f:selectItem itemLabel="Noël" itemValue="NOEL"/>
+                            </p:selectManyButton>
+
+                            <p:selectOneButton
                                     id="checkbox-archivees"
                                     value="#{famillesListeBean.archivees}"
                                     styleClass="pull-right">
-                                    <p:ajax event="change" update="datatable" listener="#{famillesListeBean.rechercher()}"></p:ajax>
-                                    <f:selectItem itemLabel="Actives" itemValue="false" />
-                                    <f:selectItem itemLabel="Archivées" itemValue="true" />
-                                </p:selectOneButton>
-                                <br/>
-                                <br/>
-                                <p:dataTable 
+                                <p:ajax event="change" update="datatable"
+                                        listener="#{famillesListeBean.rechercher()}"></p:ajax>
+                                <f:selectItem itemLabel="Actives" itemValue="false"/>
+                                <f:selectItem itemLabel="Archivées" itemValue="true"/>
+                            </p:selectOneButton>
+                            <br/>
+                            <br/>
+                            <p:dataTable
                                     id="datatable"
-                                    var="bean" 
+                                    var="bean"
                                     value="#{famillesListeBean.lazyModel}"
                                     paginator="true"
                                     paginatorPosition="bottom"
                                     rowKey="#{bean.id}"
                                     rows="20"
                                     lazy="true"
-                                    sortBy="#{bean.nomReferent}">
+                            >
 
-                                    <p:column 
-                                        headerText="Nom" 
+                                <p:column
+                                        headerText="Nom"
                                         sortBy="#{bean.nomReferent}"
+                                        sortOrder="asc"
                                         filterBy="#{bean.nomReferent}">
-                                        <h:outputText value="#{bean.nomReferent}"></h:outputText>
-                                    </p:column>
-                                    <p:column 
-                                        headerText="Prénom" 
+                                    <h:outputText value="#{bean.nomReferent}"></h:outputText>
+                                </p:column>
+                                <p:column
+                                        headerText="Prénom"
                                         sortBy="#{bean.prenomReferent}"
                                         filterBy="#{bean.prenomReferent}">
-                                        <h:outputText value="#{bean.prenomReferent}"></h:outputText>
-                                    </p:column>
-                                    <p:column 
-                                        headerText="Téléphone" 
-                                        sortBy="#{bean.telephoneReferent}">
-                                        <h:outputText value="#{bean.telephoneReferent}"></h:outputText>
-                                    </p:column>
-                                    <p:column 
-                                        headerText="Email" 
-                                        sortBy="#{bean.emailReferent}">
-                                        <h:outputText value="#{bean.emailReferent}"></h:outputText>
-                                    </p:column>
-                                    <p:column 
+                                    <h:outputText value="#{bean.prenomReferent}"></h:outputText>
+                                </p:column>
+                                <p:column
+                                        headerText="Téléphone">
+                                    <h:outputText value="#{bean.telephoneReferent}"></h:outputText>
+                                </p:column>
+                                <p:column
+                                        headerText="Email">
+                                    <h:outputText value="#{bean.emailReferent}"></h:outputText>
+                                </p:column>
+                                <p:column
                                         headerText="Statut">
-                                        <h:outputText value="En cours" styleClass="label label-primary" rendered="#{not bean.radiee and not bean.candidature}"/>
-                                        <h:outputText value="Radiée" styleClass="label label-danger" rendered="#{bean.radiee}"/>
-                                        <h:outputText value="Candidature" styleClass="label label-warning" rendered="#{not bean.radiee and bean.candidature}"/>
-                                    </p:column>
+                                    <h:outputText value="En cours" styleClass="label label-primary"
+                                                  rendered="#{not bean.radiee and not bean.candidature}"/>
+                                    <h:outputText value="Radiée" styleClass="label label-danger"
+                                                  rendered="#{bean.radiee}"/>
+                                    <h:outputText value="Candidature"
+                                                  styleClass="label label-warning"
+                                                  rendered="#{not bean.radiee and bean.candidature}"/>
+                                </p:column>
 
-                                    <p:column width="140">
-                                        <p:button 
+                                <p:column width="140">
+                                    <p:button
                                             outcome="/familles/details.xhtml"
-                                            styleClass="btn-default pull-left" 
+                                            styleClass="btn-default pull-left"
                                             icon="fa fa-pencil">
-                                            <f:param name="id" value="#{bean.id}"></f:param>
-                                        </p:button>
-                                        <p:commandButton 
+                                        <f:param name="id" value="#{bean.id}"></f:param>
+                                    </p:button>
+                                    <p:commandButton
                                             styleClass="btn-default"
                                             icon="fa fa-trash"
                                             actionListener="#{famillesListeBean.supprimer(bean.id)}"
                                             update="datatable">
-                                            <p:confirm 
-                                                header="Confirmation" 
-                                                message="Êtes vous sûr de vouloir supprimer cette famille ?" 
-                                                icon="ui-icon-alert" />
-                                        </p:commandButton>
-                                        <p:commandButton 
+                                        <p:confirm
+                                                header="Confirmation"
+                                                message="Êtes vous sûr de vouloir supprimer cette famille ?"
+                                                icon="ui-icon-alert"/>
+                                    </p:commandButton>
+                                    <p:commandButton
                                             rendered="#{!bean.archivee}"
                                             styleClass="btn-default"
                                             icon="fa fa-archive"
                                             actionListener="#{famillesListeBean.archiver(bean.id)}"
                                             update="datatable">
-                                            <p:confirm 
-                                                header="Confirmation" 
-                                                message="Êtes vous sûr de vouloir archiver cette famille ?" 
-                                                icon="ui-icon-alert" />
-                                        </p:commandButton>
+                                        <p:confirm
+                                                header="Confirmation"
+                                                message="Êtes vous sûr de vouloir archiver cette famille ?"
+                                                icon="ui-icon-alert"/>
+                                    </p:commandButton>
+                                    <p:commandButton
+                                            rendered="#{bean.archivee}"
+                                            styleClass="btn-default"
+                                            icon="fa fa-repeat"
+                                            actionListener="#{famillesListeBean.desarchiver(bean.id)}"
+                                            update="datatable :form:checkbox-archivees">
+                                        <p:confirm
+                                                header="Confirmation"
+                                                message="Êtes vous sûr de vouloir désarchiver cette famille ?"
+                                                icon="ui-icon-alert"/>
+                                    </p:commandButton>
+                                    <p:confirmDialog global="true">
                                         <p:commandButton
-                                                rendered="#{bean.archivee}"
-                                                styleClass="btn-default"
-                                                icon="fa fa-repeat"
-                                                actionListener="#{famillesListeBean.desarchiver(bean.id)}"
-                                                update="datatable :form:checkbox-archivees">
-                                            <p:confirm
-                                                    header="Confirmation"
-                                                    message="Êtes vous sûr de vouloir désarchiver cette famille ?"
-                                                    icon="ui-icon-alert" />
-                                        </p:commandButton>
-                                        <p:confirmDialog global="true">
-                                            <p:commandButton 
-                                                value="Oui" 
-                                                type="button" 
-                                                process="@this"
-                                                styleClass="ui-confirmdialog-yes pull-right" 
-                                                icon="ui-icon-check" />
-                                            <p:commandButton 
-                                                value="Non" 
+                                                value="Oui"
                                                 type="button"
-                                                styleClass="ui-confirmdialog-no pull-right" 
-                                                icon="ui-icon-close" />
-                                        </p:confirmDialog>
-                                    </p:column>
+                                                process="@this"
+                                                styleClass="ui-confirmdialog-yes pull-right"
+                                                icon="ui-icon-check"/>
+                                        <p:commandButton
+                                                value="Non"
+                                                type="button"
+                                                styleClass="ui-confirmdialog-no pull-right"
+                                                icon="ui-icon-close"/>
+                                    </p:confirmDialog>
+                                </p:column>
 
-                                </p:dataTable>
-                            </h:form>
-                        </div>
-                    </div> <!-- .row -->
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                </div> <!-- .row -->
 
-                </div> <!-- .container -->
+            </div> <!-- .container -->
 
-            </ui:define>
-        </ui:composition>
-    </h:body>
+        </ui:define>
+    </ui:composition>
+</h:body>
 </html>
 

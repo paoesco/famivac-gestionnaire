@@ -149,7 +149,7 @@
     <dependency>
       <artifactId>bootstrap</artifactId>
       <groupId>org.webjars</groupId>
-      <version>3.3.7-1</version>
+      <version>3.4.1</version>
     </dependency>
     <dependency>
       <artifactId>metismenu</artifactId>
@@ -165,6 +165,12 @@
       <artifactId>spring-security-core</artifactId>
       <groupId>org.springframework.security</groupId>
       <version>5.2.1.RELEASE</version>
+    </dependency>
+    <dependency>
+      <artifactId>lombok</artifactId>
+      <groupId>org.projectlombok</groupId>
+      <scope>provided</scope>
+      <version>1.18.20</version>
     </dependency>
     <!-- Data Exporter -->
     <dependency>

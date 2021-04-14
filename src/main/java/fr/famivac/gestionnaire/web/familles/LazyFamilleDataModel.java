@@ -4,17 +4,16 @@ import fr.famivac.gestionnaire.domains.familles.boundary.FamilleDTO;
 import fr.famivac.gestionnaire.web.utils.LazyFilter;
 import fr.famivac.gestionnaire.web.utils.LazySorter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.apache.commons.collections4.ComparatorUtils;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
-import org.primefaces.model.SortOrder;
+import org.primefaces.model.SortMeta;
 
-/** @author paoesco */
 public class LazyFamilleDataModel extends LazyDataModel<FamilleDTO> {
-
-  //    private static final Logger logger = Logger.getLogger(LazyFamilleDataModel.class.getName());
 
   private final List<FamilleDTO> datasource;
 
@@ -33,30 +32,27 @@ public class LazyFamilleDataModel extends LazyDataModel<FamilleDTO> {
   }
 
   @Override
-  public Object getRowKey(FamilleDTO bean) {
-    return bean.getId();
+  public String getRowKey(FamilleDTO bean) {
+    return bean.getId().toString();
   }
 
   @Override
   public List<FamilleDTO> load(
-      int first,
-      int pageSize,
-      String sortField,
-      SortOrder sortOrder,
-      Map<String, FilterMeta> filterBy) {
+      int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
     var filter = new LazyFilter<>(filterBy.values());
-
-    var rowCount = datasource.stream().filter(filter).count();
-    setRowCount((int) rowCount);
-
-    var data =
-        datasource.stream()
-            .filter(filter)
-            .sorted(new LazySorter<>(FamilleDTO.class, sortField, sortOrder))
-            .skip(first)
-            .limit(pageSize)
+    List<Comparator<FamilleDTO>> comparators =
+        sortBy.values().stream()
+            .map(o -> new LazySorter<>(FamilleDTO.class, o.getField(), o.getOrder()))
             .collect(Collectors.toList());
+    var comparator = ComparatorUtils.chainedComparator(comparators);
+    var rowCount = datasource.stream().filter(filter).count();
 
-    return data;
+    setRowCount((int) rowCount);
+    return datasource.stream()
+        .filter(filter)
+        .sorted(comparator)
+        .skip(first)
+        .limit(pageSize)
+        .collect(Collectors.toList());
   }
 }

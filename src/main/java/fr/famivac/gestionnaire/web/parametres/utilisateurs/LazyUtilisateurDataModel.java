@@ -4,6 +4,7 @@ import fr.famivac.gestionnaire.domains.utilisateurs.control.RetrieveUtilisateurs
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
@@ -28,16 +29,15 @@ public class LazyUtilisateurDataModel extends LazyDataModel<RetrieveUtilisateurs
   }
 
   @Override
-  public Object getRowKey(RetrieveUtilisateursDTO bean) {
+  public String getRowKey(RetrieveUtilisateursDTO bean) {
     return bean.getLogin();
   }
 
   @Override
   public List<RetrieveUtilisateursDTO> load(
       int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
-    int max = first + pageSize > datasource.size() ? datasource.size() : first + pageSize;
     setRowCount(datasource.size());
-    return datasource.subList(first, max);
+    return datasource.stream().skip(first).limit(pageSize).collect(Collectors.toList());
   }
 
   public RetrieveUtilisateursDTO getRowData(int rowIndex) {

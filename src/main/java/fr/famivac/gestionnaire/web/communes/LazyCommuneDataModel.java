@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
-import org.primefaces.model.SortOrder;
+import org.primefaces.model.SortMeta;
 
 /** @author paoesco */
 public class LazyCommuneDataModel extends LazyDataModel<Commune> {
@@ -33,22 +34,19 @@ public class LazyCommuneDataModel extends LazyDataModel<Commune> {
   }
 
   @Override
-  public Object getRowKey(Commune bean) {
+  public String getRowKey(Commune bean) {
     return bean.getCode();
   }
 
   @Override
   public List<Commune> load(
-      int first,
-      int pageSize,
-      String sortField,
-      SortOrder sortOrder,
-      Map<String, FilterMeta> filterBy) {
-    int max = first + pageSize > datasource.size() ? datasource.size() : first + pageSize;
+      int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
     setRowCount(datasource.size());
-    datasource.sort(
-        (Commune o1, Commune o2) -> alphanumComparator.compare(o1.getCode(), o2.getCode()));
-    return datasource.subList(first, max);
+    return datasource.stream()
+        .sorted((Commune o1, Commune o2) -> alphanumComparator.compare(o1.getCode(), o2.getCode()))
+        .skip(first)
+        .limit(pageSize)
+        .collect(Collectors.toList());
   }
 
   public boolean contains(Commune bean) {
