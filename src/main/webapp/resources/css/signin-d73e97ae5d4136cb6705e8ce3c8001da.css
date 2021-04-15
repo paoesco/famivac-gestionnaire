@@ -2,7 +2,6 @@ body {
     padding-top: 40px;
     padding-bottom: 40px;
     background-color: #eee;
-    font-size: 14px !important;
 }
 
 .form-signin {
@@ -53,3 +52,6 @@ body {
     background-attachment: scroll;
 }
 
+.ui-widget {
+    font-size: 14px !important;
+}
