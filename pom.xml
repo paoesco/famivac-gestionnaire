@@ -119,7 +119,7 @@
           </execution>
         </executions>
         <groupId>org.jacoco</groupId>
-        <version>0.8.5</version>
+        <version>0.8.7</version>
       </plugin>
     </plugins>
   </build>
@@ -134,7 +134,7 @@
     <dependency>
       <artifactId>javamelody-core</artifactId>
       <groupId>net.bull.javamelody</groupId>
-      <version>1.82.0</version>
+      <version>1.85.0</version>
     </dependency>
     <dependency>
       <artifactId>primefaces</artifactId>
@@ -164,7 +164,7 @@
     <dependency>
       <artifactId>spring-security-core</artifactId>
       <groupId>org.springframework.security</groupId>
-      <version>5.2.1.RELEASE</version>
+      <version>5.4.6</version>
     </dependency>
     <dependency>
       <artifactId>lombok</artifactId>
@@ -224,7 +224,7 @@
       <artifactId>mockito-junit-jupiter</artifactId>
       <groupId>org.mockito</groupId>
       <scope>test</scope>
-      <version>3.9.0</version>
+      <version>3.10.0</version>
     </dependency>
     <!-- End Tests -->
   </dependencies>
