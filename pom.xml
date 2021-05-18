@@ -164,7 +164,7 @@
     <dependency>
       <artifactId>spring-security-core</artifactId>
       <groupId>org.springframework.security</groupId>
-      <version>5.4.6</version>
+      <version>5.5.0</version>
     </dependency>
     <dependency>
       <artifactId>lombok</artifactId>
